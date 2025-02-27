@@ -22,6 +22,25 @@ jobs:
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
 
+  asset_precompile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: test pre-compiling the assets
+        env:
+          RAILS_ENV: production
+        run: SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+
+
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -67,10 +86,16 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Run tests
+      - name: create database
         env:
           RAILS_ENV: test
-        run: bin/rails db:test:prepare test test:system
+        run: bin/rails db:test:prepare
+
+      - name: Precompile assets
+        run: SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+
+      - name: Run RSpec tests
+        run: bundle exec rspec
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
