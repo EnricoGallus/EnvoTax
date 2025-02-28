@@ -1,0 +1,21 @@
+<%= form.hidden_field :id %>
+
+<div class="my-5">
+  <%= form.label :street %>
+  <%= form.text_field :street, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": address.errors[:street].none?, "border-red-400 focus:outline-red-600": address.errors[:street].any?}] %>
+</div>
+
+<div class="my-5">
+  <%= form.label :city %>
+  <%= form.text_field :city, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": address.errors[:city].none?, "border-red-400 focus:outline-red-600": address.errors[:city].any?}] %>
+</div>
+
+<div class="my-5">
+  <%= form.label :zip %>
+  <%= form.text_field :zip, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": address.errors[:zip].none?, "border-red-400 focus:outline-red-600": address.errors[:zip].any?}] %>
+</div>
+
+<div class="my-5">
+  <%= form.label :country %>
+  <%= form.text_field :country, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": address.errors[:country].none?, "border-red-400 focus:outline-red-600": address.errors[:country].any?}] %>
+</div>

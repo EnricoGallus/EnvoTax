@@ -22,7 +22,7 @@
 
 <body>
 <div class="drawer">
-  <input id="navigation" type="checkbox" class="drawer-toggle" />
+  <input id="navigation" type="checkbox" class="drawer-toggle"/>
   <div class="drawer-content flex flex-col">
     <!-- Navbar -->
     <div class="navbar bg-base-300 w-full">
@@ -42,11 +42,13 @@
         </label>
       </div>
       <div class="navbar-start"><%= link_to "EnvoTax", root_path %></div>
-      <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-horizontal">
-          <%= render partial: "shared/navigation/menu" %>
-        </ul>
-      </div>
+      <% if user_signed_in? %>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="menu menu-horizontal">
+            <%= render partial: "shared/navigation/menu" %>
+          </ul>
+        </div>
+      <% end %>
       <div class="navbar-end hidden lg:flex">
         <ul class="menu menu-horizontal">
           <%= render partial: "shared/navigation/user_info" %>
