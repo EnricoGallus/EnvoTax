@@ -1,4 +1,39 @@
 @import "tailwindcss";
+/*@plugin "daisyui/theme" {
+    name: "envotax";
+    default: true;
+    prefersdark: false;
+    color-scheme: "light";
+    --color-base-100: oklch(35.64% 0.039 248.97);
+    --color-base-200: oklch(55% 0.016 285.938);
+    --color-base-300: oklch(20% 0 0);
+    --color-base-content: oklch(95% 0.026 236.824);
+    --color-primary: oklch(59.16% 0.140 53.38);
+    --color-primary-content: oklch(27% 0.077 45.635);
+    --color-secondary: oklch(80% 0.105 251.813);
+    --color-secondary-content: oklch(28% 0.091 267.935);
+    --color-accent: oklch(75% 0.183 55.934);
+    --color-accent-content: oklch(28% 0.109 3.907);
+    --color-neutral: oklch(44% 0.11 240.79);
+    --color-neutral-content: oklch(97% 0.013 236.62);
+    --color-info: oklch(54% 0.245 262.881);
+    --color-info-content: oklch(97% 0.014 254.604);
+    --color-success: oklch(62% 0.194 149.214);
+    --color-success-content: oklch(98% 0.018 155.826);
+    --color-warning: oklch(68% 0.162 75.834);
+    --color-warning-content: oklch(98% 0.026 102.212);
+    --color-error: oklch(59% 0.249 0.584);
+    --color-error-content: oklch(97% 0.014 343.198);
+    --radius-selector: 0rem;
+    --radius-field: 1rem;
+    --radius-box: 0rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+    --border: 1px;
+    --depth: 1;
+    --noise: 0;
+}*/
+
 @plugin "daisyui" {
     themes: light, dark --prefersdark, corporate --default;
 }
