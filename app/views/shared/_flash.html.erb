@@ -1,28 +1,3 @@
-<% flash.each do |type, message| %>
-  <%# Map Rails flash types to DaisyUI alert styles %>
-  <% flash_classes = { notice: "alert-success", alert: "alert-warning", error: "alert-error" } %>
-  <% daisy_class = flash_classes[type.to_sym] || "alert-info" %>
-
-  <div class="alert <%= daisy_class %> shadow-lg w-full mb-4">
-    <div class="flex-1">
-      <% if daisy_class == "alert-success" %>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-current mr-2" fill="none" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
-      <% elsif daisy_class == "alert-warning" %>
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m-6 4h12M5 9l2-2m0 0l2-2m-2 2l-2-2m10 2h4m-4 4h4m-4 4h4"></path>
-        </svg>
-      <% elsif daisy_class == "alert-error" %>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-current mr-2" fill="none" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      <% end %>
-      <p><%= message %></p>
-    </div>
-    <div>
-      <button onclick="this.parentElement.parentElement.remove();" class="btn btn-sm btn-ghost">
-        ✕
-      </button>
-    </div>
-  </div>
+<% flash.each do |type, text| %>
+  <%= toast(text, type:) %>
 <% end %>
