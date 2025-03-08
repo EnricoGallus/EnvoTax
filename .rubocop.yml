@@ -16,10 +16,10 @@ plugins:
   - rubocop-performance
   - rubocop-thread_safety
   - rubocop-md
-
-require:
   - rubocop-i18n
   - rubocop-factory_bot
+
+require:
   - rubocop-capybara
   - rubocop-rspec_rails
 
@@ -31,3 +31,7 @@ Style/StringLiterals:
 
 Metrics/MethodLength:
   Max: 15
+
+# test specifications
+RSpecRails/InferredSpecType:
+  Enabled: false

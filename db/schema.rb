@@ -10,19 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_28_055002) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_08_022234) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "city"
-    t.string "zip"
-    t.string "country"
+    t.string "postal_code"
+    t.integer "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "prefecture"
+    t.string "building"
   end
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
-    t.string "currency"
+    t.integer "currency"
     t.integer "address_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

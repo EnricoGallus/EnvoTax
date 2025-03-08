@@ -2,9 +2,11 @@
 
 FactoryBot.define do
   factory :address do
-    street { "MyString" }
-    city { "MyString" }
-    zip { "MyString" }
-    country { "MyString" }
+    postal_code { "#{Faker::Number.number(digits: 3)}-#{Faker::Number.number(digits: 4)}" }
+    prefecture { Faker::Address.state }
+    city { Faker::Address.city }
+    street { Faker::Address.street_name }
+    building { Faker::Address.secondary_address }
+    country { :japan }
   end
 end

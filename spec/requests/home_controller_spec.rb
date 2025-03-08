@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "Root Path" do
+RSpec.describe HomeController, type: :request do
   describe "GET /index" do
     it "returns http success" do
       get root_path

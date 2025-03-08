@@ -2,13 +2,9 @@
 
 require "rails_helper"
 
-RSpec.describe "clients/show" do
+RSpec.describe "clients/show.html.erb", type: :view do
   before do
-    assign(:client, Client.create!(
-                      name: "Name",
-                      currency: "Currency",
-                      address: nil
-                    ))
+    assign(:client, create(:client))
   end
 
   it "renders attributes in <p>" do

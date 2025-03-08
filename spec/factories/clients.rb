@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :client do
-    name { "MyString" }
-    currency { "MyString" }
-    address { nil }
+    name { Faker::Name.name }
+    currency { :yen }
+    address factory: %i[address]
   end
 end

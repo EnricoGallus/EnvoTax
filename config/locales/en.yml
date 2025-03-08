@@ -5,3 +5,10 @@ en:
   menu:
     "login": "Log in"
     "logout": "Log out"
+  activerecord:
+    errors:
+      models:
+        address:
+          attributes:
+            postal_code:
+              invalid: "must be in the format XXX-XXXX"

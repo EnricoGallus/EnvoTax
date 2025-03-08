@@ -14,7 +14,6 @@ class ClientsController < ApplicationController
   # GET /clients/new
   def new
     @client = Client.new
-    @client.build_address
   end
 
   # GET /clients/1/edit
@@ -67,6 +66,8 @@ class ClientsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def client_params
-    params.expect(client: [:name, :currency, { address_attributes: [:id, :street, :city, :zip, :country] }])
+    params.expect(client: [:name, :currency,
+                           { address_attributes:
+                               [:id, :postal_code, :prefecture, :city, :street, :building, :country] }])
   end
 end
