@@ -1,10 +1,12 @@
-<% content_for :title, "Editing client" %>
+<% content_for :title, t('clients.title_edit') %>
 
 <div class="md:w-2/3 w-full">
   <h1 class="font-bold text-4xl">Editing client</h1>
 
   <%= render "form", client: @client %>
 
-  <%= link_to "Show this client", @client, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to clients", clients_path, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+  <div class="flex justify-between items-center pt-5">
+    <%= link_to t('actions.show'), @client, class: "btn btn-primary" %>
+    <%= link_to t('actions.back'), clients_path, class: "btn btn-neutral" %>
+  </div>
 </div>

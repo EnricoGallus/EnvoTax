@@ -13,12 +13,12 @@
 
   <div class="my-5">
     <%= form.label :name %>
-    <%= form.text_field :name, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": client.errors[:name].none?, "border-red-400 focus:outline-red-600": client.errors[:name].any?}] %>
+    <%= form.text_field :name, class: ["input validator", {"border-red-400 focus:outline-red-600": client.errors[:name].any?}] %>
   </div>
 
   <div class="my-5">
     <%= form.label :currency %>
-    <%= form.select :currency, Client.currencies.keys.map { |currency| [currency.humanize, currency] }, {}, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": client.errors[:currency].none?, "border-red-400 focus:outline-red-600": client.errors[:currency].any?}] %>
+    <%= form.select :currency, Client.currencies.keys.map { |currency| [currency.humanize, currency] }, {}, class: ["select", {"border-red-400 focus:outline-red-600": client.errors[:currency].any?}] %>
   </div>
 
   <%= form.fields_for :address do |address_form| %>
@@ -26,6 +26,6 @@
   <% end %>
 
   <div class="inline">
-    <%= form.submit class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

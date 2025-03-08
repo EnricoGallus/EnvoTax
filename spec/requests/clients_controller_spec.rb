@@ -80,9 +80,9 @@ RSpec.describe ClientsController, type: :request do
       let(:new_attributes) do
         { name: "Updated Client", currency: :yen }
       end
+      let(:client) { create(:client) }
 
       before do
-        client = create(:client)
         patch client_url(client), params: { client: new_attributes }
         client.reload
       end

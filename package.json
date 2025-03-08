@@ -6,11 +6,11 @@
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^8.0.12",
+    "@hotwired/turbo-rails": "^8.0.13",
     "toastify-js": "^1.12.0"
   },
   "devDependencies": {
-    "daisyui": "^5.0.0-beta.9",
+    "daisyui": "^5.0.0",
     "esbuild": "^0.25.0"
   }
 }

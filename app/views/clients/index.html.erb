@@ -1,31 +1,42 @@
-<% content_for :title, "Clients" %>
+<% content_for :title, t('clients.title_index') %>
 
 <div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
-  <% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Clients</h1>
-    <%= link_to "New client", new_client_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+    <h1 class="font-bold text-4xl"><%= t('clients.header') %></h1>
+    <%= link_to t('actions.new'), new_client_path, class: "btn btn-primary btn-lg" %>
   </div>
 
   <div id="clients" class="min-w-full divide-y divide-gray-200 space-y-5">
     <% if @clients.any? %>
-      <% @clients.each do |client| %>
-        <div class="flex justify-between items-center">
-          <%= render client %>
-          <div class="space-x-2">
-            <%= link_to "Show", client, class: "rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= link_to "Edit", edit_client_path(client), class: "rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <div class="inline-block">
-              <%= button_to "Destroy", client, method: :delete, class: "rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-            </div>
-          </div>
-        </div>
-      <% end %>
+      <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+        <table class="table">
+          <thead>
+          <tr>
+            <th><%= t('clients.table.name') %></th>
+            <th><%= t('clients.table.currency') %></th>
+            <th><%= t('clients.table.actions') %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @clients.each do |client| %>
+            <tr id="<%= dom_id client %>">
+              <td><%= client.name %></td>
+              <td><%= client.currency %></td>
+              <td>
+                <%= link_to t('actions.show'), client, class: "btn btn-primary" %>
+                <%= link_to t('actions.edit'), edit_client_path(client), class: "btn btn-primary" %>
+                <div class="inline-block">
+                  <%= button_to t('actions.delete'), client, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('actions.confirmation') } %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
     <% else %>
-      <p class="text-center my-10">No clients found.</p>
+      <p class="text-center my-10"><%= t('clients.none_found') %></p>
     <% end %>
   </div>
 </div>

@@ -9,6 +9,7 @@ class Client < ApplicationRecord
 
   validates :name, presence: true
   validates :currency, presence: true, inclusion: { in: currencies.keys }
+  validates :address, presence: true
 
   after_initialize :build_default_address, if: :new_record?
 
