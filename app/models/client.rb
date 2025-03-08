@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# model for storing client information
 class Client < ApplicationRecord
   belongs_to :address
   accepts_nested_attributes_for :address

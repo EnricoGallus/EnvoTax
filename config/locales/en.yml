@@ -5,6 +5,12 @@ en:
   menu:
     "login": "Log in"
     "logout": "Log out"
+
+  clients:
+    "successfully_created": "Client was successfully created."
+    "successfully_updated": "Client was successfully updated."
+    "successfully_destroyed": "Client was successfully destroyed."
+
   activerecord:
     errors:
       models:

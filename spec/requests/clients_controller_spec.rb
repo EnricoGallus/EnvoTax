@@ -81,19 +81,21 @@ RSpec.describe ClientsController, type: :request do
         { name: "Updated Client", currency: :yen }
       end
 
-      it "updates the requested client" do
+      before do
         client = create(:client)
         patch client_url(client), params: { client: new_attributes }
         client.reload
+      end
 
+      it "updates the requested client name" do
         expect(client.name).to eq("Updated Client")
+      end
+
+      it "updates the requested client currency" do
         expect(client.currency).to eq("yen")
       end
 
       it "redirects to the client" do
-        client = create(:client)
-        patch client_url(client), params: { client: new_attributes }
-        client.reload
         expect(response).to redirect_to(client_url(client))
       end
     end

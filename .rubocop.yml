@@ -29,6 +29,9 @@ Layout/LineLength:
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
+Style/SymbolArray:
+  Enabled: false
+
 Metrics/MethodLength:
   Max: 15
 

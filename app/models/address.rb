@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
+# model for storing address information
 class Address < ApplicationRecord
-  has_many :clients
+  has_many :clients, dependent: :nullify
 
   enum :country, { japan: 0 }
 

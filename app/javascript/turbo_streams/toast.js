@@ -6,6 +6,7 @@ window.Turbo.StreamActions.toast = function() {
     const duration = Number(this.getAttribute("duration"))
     const gravity = this.getAttribute("gravity")
     const position = this.getAttribute("position")
+    const close = this.getAttribute("close")
 
     /*TODO: styling of toasts not done yet*/
     Toastify({
@@ -15,5 +16,6 @@ window.Turbo.StreamActions.toast = function() {
         position: position,
         className: className,
         stopOnFocus: true,
+        close: close
     }).showToast()
 }

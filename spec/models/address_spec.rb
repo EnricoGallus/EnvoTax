@@ -12,8 +12,11 @@ RSpec.describe Address, type: :model do
     it { is_expected.to validate_presence_of(:street) }
     it { is_expected.to validate_presence_of(:country) }
 
-    it "validates format of postal_code" do
+    it "validates format of postal_code for valid entry" do
       expect(address).to allow_value("123-4567").for(:postal_code)
+    end
+
+    it "validates format of postal_code for invalid entry" do
       expect(address).not_to allow_value("1234567").for(:postal_code).with_message("must be in the format XXX-XXXX")
     end
 
