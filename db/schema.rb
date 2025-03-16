@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_08_022234) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_16_033213) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "city"
@@ -31,6 +31,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_08_022234) do
     t.index ["address_id"], name: "index_clients_on_address_id"
   end
 
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.integer "client_id", null: false
+    t.decimal "hourly_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_projects_on_client_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -42,4 +51,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_08_022234) do
   end
 
   add_foreign_key "clients", "addresses"
+  add_foreign_key "projects", "clients"
 end

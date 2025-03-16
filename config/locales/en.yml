@@ -7,6 +7,7 @@ en:
     logout: "Log out"
     settings: "Settings"
     client: "Clients"
+    projects: "Projects"
 
   actions:
     new: "New"
@@ -27,6 +28,17 @@ en:
       actions: "Actions"
       currency: "Currency"
       name: "Name"
+    successfully_created: "Client was successfully created."
+    successfully_updated: "Client was successfully updated."
+    successfully_destroyed: "Client was successfully destroyed."
+
+  projects:
+    header: "Projects"
+    none_found: "No projects found."
+    table:
+      name: "Project Name"
+      hourly_rate: "Hourly Rate"
+      actions: "Actions"
     successfully_created: "Client was successfully created."
     successfully_updated: "Client was successfully updated."
     successfully_destroyed: "Client was successfully destroyed."
