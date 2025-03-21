@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InvoiceCreator
   def initialize(client, user, start_date, end_date)
     @client = client

@@ -4,7 +4,6 @@ class TimeEntry < ApplicationRecord
   belongs_to :project
   belongs_to :invoice, optional: true
 
-  validates :project_id, presence: true
   validates :name, presence: true
   validates :date, presence: true
   validates :time_from, presence: true
