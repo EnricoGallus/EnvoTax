@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
+# controller for the time entries
 class TimeEntriesController < ApplicationController
   before_action :set_time_entry, only: %i[show edit update destroy]
 
   # GET /time_entries or /time_entries.json
   def index
-    @time_entries = TimeEntry.all
+    @q = TimeEntry.ransack(params[:q])
+    @time_entries = @q.result(distinct: true)
   end
 
   # GET /time_entries/1 or /time_entries/1.json
