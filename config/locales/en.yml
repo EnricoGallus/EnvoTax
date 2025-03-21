@@ -8,6 +8,7 @@ en:
     settings: "Settings"
     client: "Clients"
     projects: "Projects"
+    expenses: "Expenses"
 
   actions:
     new: "New"
@@ -42,6 +43,10 @@ en:
     successfully_created: "Client was successfully created."
     successfully_updated: "Client was successfully updated."
     successfully_destroyed: "Client was successfully destroyed."
+
+  expense:
+    new:
+      content_title: "New expense"
 
   activerecord:
     errors:
