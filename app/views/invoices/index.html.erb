@@ -1,0 +1,47 @@
+<% content_for :title, t('invoices.index.content_title') %>
+
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl"><%= t('invoices.index.title') %></h1>
+    <%= link_to t('invoices.index.new'), new_invoice_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+  </div>
+
+  <div id="invoices" class="min-w-full divide-y divide-gray-200 space-y-5">
+    <% if @invoices.any? %>
+      <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+        <table class="table">
+          <thead>
+          <tr>
+            <th><%= t('activerecord.attributes.invoice.client') %></th>
+            <th><%= t('activerecord.attributes.invoice.invoice_date') %></th>
+            <th><%= t('invoices.index.table.sum') %></th>
+            <th><%= t('table.actions') %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @invoices.each do |invoice| %>
+            <tr id="<%= dom_id invoice %>">
+              <td><%= invoice.client.name %></td>
+              <td><%= invoice.invoice_date %></td>
+              <td><%= invoice.total_amount %></td>
+              <td>
+                <%= link_to t('table.show'), invoice, class: "btn btn-primary" %>
+                <%= link_to t('table.edit'), edit_invoice_path(invoice), class: "btn btn-primary" %>
+                <div class="inline-block">
+                  <%= button_to t('table.delete'), invoice, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <p class="text-center my-10"><%= t('invoices.index.none_found') %></p>
+    <% end %>
+  </div>
+</div>
