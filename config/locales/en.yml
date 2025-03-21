@@ -51,6 +51,15 @@ en:
   expense:
     new:
       content_title: "New expense"
+    index:
+      content_title: "Expenses"
+      title: "Expenses"
+      none_found: "No expenses found."
+      new: "New expense"
+      table:
+          date: "Date"
+          description: "Description"
+          amount: "Amount"
 
   invoices:
     index:
@@ -63,6 +72,10 @@ en:
 
   select:
     all: "All"
+
+  ransack:
+    search: "Search"
+    reset: "Reset"
 
   activerecord:
     models:
@@ -86,9 +99,11 @@ en:
         name: "Name"
         currency: "Currency"
       expense:
+        client: "Client"
         amount: "Amount"
         date: "Date"
         description: "Description"
+        category: "Category"
       invoice:
         client: "Client"
         user: "User"

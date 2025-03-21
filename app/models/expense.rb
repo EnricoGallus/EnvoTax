@@ -12,4 +12,12 @@ class Expense < ApplicationRecord
   validates :date, presence: true
 
   enum :category, { software: 0, hardware: 1, travel: 2, meals: 3, other: 4 }
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[amount category date description]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[client invoice]
+  end
 end

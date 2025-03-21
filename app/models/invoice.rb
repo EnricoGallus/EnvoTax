@@ -17,6 +17,10 @@ class Invoice < ApplicationRecord
     time_entries.sum(&:calculate_cost) + expenses.sum(&:amount)
   end
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[client_id created_at end_date id invoice_date start_date status updated_at user_id]
+  end
+
   private
 
   def clear_generated_errors_for_job_save

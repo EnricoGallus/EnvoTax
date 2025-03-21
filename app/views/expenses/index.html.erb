@@ -1,31 +1,50 @@
-<% content_for :title, "Expenses" %>
+<% content_for :title, t('expense.index.content_title') %>
 
 <div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
-  <% end %>
+
+  <%= render 'search_form', locale: { q: @q } %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Expenses</h1>
-    <%= link_to "New expense", new_expense_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+    <h1 class="font-bold text-4xl"><%= t('expense.index.title') %></h1>
+    <%= link_to t('expense.index.new'), new_expense_path, class: "btn btn-primary btn-lg" %>
   </div>
 
   <div id="expenses" class="min-w-full divide-y divide-gray-200 space-y-5">
     <% if @expenses.any? %>
-      <% @expenses.each do |expense| %>
-        <div class="flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0">
-          <%= render expense %>
-          <div class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
-            <%= link_to "Show", expense, class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= link_to "Edit", edit_expense_path(expense), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <div class="sm:inline-block">
-              <%= button_to "Destroy", expense, method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-            </div>
-          </div>
-        </div>
-      <% end %>
+      <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+        <table class="table">
+          <thead>
+          <tr>
+            <th><%= sort_link(@q, :client_name, t('activerecord.attributes.expense.client')) %></th>
+            <th><%= sort_link(@q, :amount, t('activerecord.attributes.expense.amount')) %></th>
+            <th><%= sort_link(@q, :category, t('activerecord.attributes.expense.category')) %></th>
+            <th><%= sort_link(@q, :date, t('activerecord.attributes.expense.date')) %></th>
+            <th><%= sort_link(@q, :description, t('activerecord.attributes.expense.description')) %></th>
+            <th><%= t('clients.table.actions') %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @expenses.each do |expense| %>
+            <tr id="<%= dom_id expense %>">
+              <td><%= expense.client&.name %></td>
+              <td><%= expense.amount %></td>
+              <td><%= expense.category %></td>
+              <td><%= expense.date %></td>
+              <td><%= expense.description %></td>
+              <td>
+                <%= link_to t('table.show'), expense, class: "btn btn-primary" %>
+                <%= link_to t('table.edit'), edit_expense_path(expense), class: "btn btn-primary" %>
+                <div class="inline-block">
+                  <%= button_to t('table.delete'), expense, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
     <% else %>
-      <p class="text-center my-10">No expenses found.</p>
+      <p class="text-center my-10"><%= t('expense.index.none_found') %></p>
     <% end %>
   </div>
 </div>

@@ -13,6 +13,10 @@ class Client < ApplicationRecord
 
   after_initialize :build_default_address, if: :new_record?
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[name address currency]
+  end
+
   private
 
   def build_default_address

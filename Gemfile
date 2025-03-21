@@ -45,6 +45,9 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# search
+gem "ransack"
+
 # pdf rendering
 gem "wicked_pdf"
 gem "wkhtmltopdf-binary"

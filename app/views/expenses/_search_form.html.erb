@@ -1,0 +1,53 @@
+<div id="expenses_search" class="min-w-full pb-5">
+  <fieldset class="fieldset bg-base-200 border border-base-300 p-4 rounded-box">
+    <%= search_form_for @q, url: expenses_path, method: :get, class: "grid grid-cols-1 md:grid-cols-2 gap-4" do |f| %>
+
+      <div class="flex justify-between">
+        <%= f.label :amount_gteq, "Min Amount", class: "label" %>
+        <%= f.number_field :amount_gteq, class: "input input-bordered" %>
+      </div>
+
+      <div class="flex justify-between">
+        <%= f.label :amount_lteq, "Max Amount", class: "label" %>
+        <%= f.number_field :amount_lteq, class: "input input-bordered" %>
+      </div>
+
+      <div class="flex justify-between">
+        <%= f.label :date_gteq, "From Date", class: "label" %>
+        <%= f.date_field :date_gteq, class: "input input-bordered" %>
+      </div>
+
+      <div class="flex justify-between gap-3">
+        <%= f.label :date_lteq, "To Date", class: "label" %>
+        <%= f.date_field :date_lteq, class: "input input-bordered" %>
+      </div>
+
+      <div class="flex justify-between gap-3">
+        <%= f.label :invoice_id_null, "Invoice Status", class: "label" %>
+        <%= f.select :invoice_id_null,
+                     options_for_select([
+                                          [t('select.all'), ""],
+                                          ["Without Invoice", "true"],
+                                          ["With Invoice", "false"]
+                                        ], selected: params[:q]&.[](:invoice_id_null)),
+                     {}, class: "select input-bordered" %>
+      </div>
+
+      <div class="flex justify-between gap-3">
+        <%= f.label :category_eq, "Category", class: "label" %>
+        <%= f.select :category_eq,
+                     options_for_select(
+                       [[t('select.all'), ""]] +
+                         Expense.categories.map { |k, v| [k.titleize, v] },
+                       selected: params[:q]&.[](:category_eq)
+                     ),
+                     {}, class: "select input-bordered" %>
+      </div>
+
+      <div class="col-span-1 md:col-span-2 flex justify-end gap-2">
+        <%= f.submit t('ransack.search'), class: "btn btn-primary" %>
+        <%= link_to t('ransack.reset'), expenses_path, class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+  </fieldset>
+</div>
