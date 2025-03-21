@@ -15,6 +15,7 @@
           <tr>
             <th><%= t('activerecord.attributes.invoice.client') %></th>
             <th><%= t('activerecord.attributes.invoice.invoice_date') %></th>
+            <th><%= t('activerecord.attributes.invoice.status') %></th>
             <th><%= t('invoices.index.table.sum') %></th>
             <th><%= t('table.actions') %></th>
           </tr>
@@ -24,6 +25,7 @@
             <tr id="<%= dom_id invoice %>">
               <td><%= invoice.client.name %></td>
               <td><%= invoice.invoice_date %></td>
+              <td><%= invoice.status %></td>
               <td><%= invoice.total_amount %></td>
               <td>
                 <%= link_to t('table.preview'), invoice_path(invoice, format: :pdf), class: "btn btn-primary" %>
