@@ -10,14 +10,16 @@ en:
     projects: "Projects"
     expenses: "Expenses"
     time_entry: "Track Time"
+    invoices: "Invoices"
 
-  actions:
+  table:
+    actions: "Actions"
     new: "New"
     edit: "Edit"
     show: "Show"
     back: "Back"
     delete: "Delete"
-    confirmation: "Are you sure?"
+    delete_confirmation: "Are you sure?"
 
   clients:
     header: "Clients"
@@ -49,7 +51,58 @@ en:
     new:
       content_title: "New expense"
 
+  invoices:
+    index:
+      content_title: "Invoices"
+      title: "Invoices"
+      none_found: "No invoices found."
+      new: "New invoice"
+      table:
+        sum: "Amount"
+
+  select:
+    all: "All"
+
   activerecord:
+    models:
+      client:
+        one: "Client"
+        other: "Clients"
+      expense:
+        one: "Expense"
+        other: "Expenses"
+      invoice:
+        one: "Invoice"
+        other: "Invoices"
+      time_entry:
+        one: "Time Entry"
+        other: "Time Entries"
+      user:
+        one: "User"
+        other: "Users"
+    attributes:
+      client:
+        name: "Name"
+        currency: "Currency"
+      expense:
+        amount: "Amount"
+        date: "Date"
+        description: "Description"
+      invoice:
+        client: "Client"
+        user: "User"
+        start_date: "Start Date"
+        end_date: "End Date"
+        status: "Status"
+        invoice_date: "Invoice Date"
+      time_entry:
+        project: "Project"
+        date: "Date"
+        hours: "Hours"
+        cost: "Cost"
+      user:
+        email: "Email"
+        password: "Password"
     errors:
       models:
         address:

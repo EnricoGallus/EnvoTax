@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :invoices
   resources :time_entries
   resources :expenses
   devise_for :users, skip: [:registrations]

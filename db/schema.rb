@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_21_053253) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_21_064502) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -67,7 +67,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_053253) do
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "invoice_id"
     t.index ["client_id"], name: "index_expenses_on_client_id"
+    t.index ["invoice_id"], name: "index_expenses_on_invoice_id"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.integer "client_id", null: false
+    t.integer "user_id", null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "status"
+    t.date "invoice_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_invoices_on_client_id"
+    t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -87,6 +102,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_053253) do
     t.integer "project_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "invoice_id"
+    t.index ["invoice_id"], name: "index_time_entries_on_invoice_id"
     t.index ["project_id"], name: "index_time_entries_on_project_id"
   end
 
@@ -104,6 +121,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_053253) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "clients", "addresses"
   add_foreign_key "expenses", "clients"
+  add_foreign_key "expenses", "invoices"
+  add_foreign_key "invoices", "clients"
+  add_foreign_key "invoices", "users"
   add_foreign_key "projects", "clients"
+  add_foreign_key "time_entries", "invoices"
   add_foreign_key "time_entries", "projects"
 end
