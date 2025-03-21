@@ -77,11 +77,7 @@ en:
       none_found: "No time entries found."
       new: "New time entry"
       table:
-        date: "Date"
-        time_from: "From"
-        time_to: "To"
-        spend_time: "Spend time"
-        project: "Project"
+        spent_time: "Spend time"
 
   select:
     all: "All"

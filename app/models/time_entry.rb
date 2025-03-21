@@ -10,9 +10,20 @@ class TimeEntry < ApplicationRecord
   validates :time_from, presence: true
   validates :time_to, presence: true
 
+  def spent_time_in_seconds
+    time_to - time_from
+  end
+
+  def spent_time
+    seconds = spent_time_in_seconds
+    hours = seconds / 1.hour
+    minutes = (seconds % 1.hour) / 1.minute
+
+    format("%<hours>02d:%<minutes>02d", hours: hours, minutes: minutes)
+  end
+
   def calculate_cost
-    hours = (time_to - time_from) / 1.hour
-    hours * project.hourly_rate
+    spent_time_in_seconds / 1.hour * project.hourly_rate
   end
 
   def self.ransackable_attributes(_auth_object = nil)
