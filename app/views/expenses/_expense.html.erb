@@ -22,7 +22,7 @@
   <div>
     <% if expense.receipt.representable? %>
       <%= image_tag expense.receipt.representation(resize_to_limit: [100, 100]) %>
-    <% else %>
+    <% elsif expense.receipt.attached? %>
       <%= link_to "Download", rails_blob_path(expense.receipt, disposition: "attachment") %>
     <% end %>
   </div>

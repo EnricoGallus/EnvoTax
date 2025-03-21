@@ -9,6 +9,7 @@ en:
     client: "Clients"
     projects: "Projects"
     expenses: "Expenses"
+    time_entry: "Track Time"
 
   actions:
     new: "New"
