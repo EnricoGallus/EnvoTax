@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# controller for invoice handling
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: %i[show edit update destroy]
 
@@ -9,7 +10,18 @@ class InvoicesController < ApplicationController
   end
 
   # GET /invoices/1 or /invoices/1.json
-  def show; end
+  def show
+    respond_to do |format|
+      format.pdf do
+        render pdf: "invoice_#{@invoice.id}",
+               template: "invoices/show",
+               layout: "invoice",
+               disposition: "inline",
+               page_size: "A4",
+               orientation: "Portrait"
+      end
+    end
+  end
 
   # GET /invoices/new
   def new
