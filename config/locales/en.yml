@@ -70,12 +70,29 @@ en:
       table:
         sum: "Amount"
 
+  time_entry:
+    index:
+      content_title: "Time Entries"
+      title: "Time Entries"
+      none_found: "No time entries found."
+      new: "New time entry"
+      table:
+        date: "Date"
+        time_from: "From"
+        time_to: "To"
+        spend_time: "Spend time"
+        project: "Project"
+
   select:
     all: "All"
 
   ransack:
     search: "Search"
     reset: "Reset"
+
+  time:
+    formats:
+      time_only: "%H:%M"
 
   activerecord:
     models:
@@ -114,8 +131,10 @@ en:
       time_entry:
         project: "Project"
         date: "Date"
-        hours: "Hours"
-        cost: "Cost"
+        time_from: "From"
+        time_to: "To"
+        name: "Name"
+        invoice: "Invoice"
       user:
         email: "Email"
         password: "Password"
