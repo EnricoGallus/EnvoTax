@@ -1,0 +1,37 @@
+<%= form_with(model: payment_adjustment, class: "contents") do |form| %>
+  <% if payment_adjustment.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(payment_adjustment.errors.count, "error") %> prohibited this payment_adjustment from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% payment_adjustment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :client_id %>
+    <%= form.select :client_id, options_from_collection_for_select(Client.all, :id, :name, selected: payment_adjustment.client_id), { include_blank: true }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": payment_adjustment.errors[:client].none?, "border-red-400 focus:outline-red-600": payment_adjustment.errors[:client].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :amount %>
+    <%= form.text_field :amount, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": payment_adjustment.errors[:amount].none?, "border-red-400 focus:outline-red-600": payment_adjustment.errors[:amount].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :description %>
+    <%= form.text_field :description, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": payment_adjustment.errors[:description].none?, "border-red-400 focus:outline-red-600": payment_adjustment.errors[:description].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :date %>
+    <%= form.date_field :date, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": payment_adjustment.errors[:date].none?, "border-red-400 focus:outline-red-600": payment_adjustment.errors[:date].any?}] %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

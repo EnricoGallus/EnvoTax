@@ -14,6 +14,7 @@ en:
     finances: "Finances"
     cost_types: "Cost Types"
     categories: "Categories"
+    payment_adjustments: "Payment Adjustments"
 
   table:
     actions: "Actions"
@@ -82,6 +83,13 @@ en:
       table:
         spent_time: "Spend time"
 
+  payment_adjustment:
+    index:
+      title: "Payment Adjustments"
+      content_title: "Payment Adjustments"
+      new: "New Payment Adjustment"
+      none_found: "No payment adjustments found"
+
   select:
     all: "All"
 
@@ -110,6 +118,9 @@ en:
       user:
         one: "User"
         other: "Users"
+      payment_adjustment:
+        one: "Payment Adjustment"
+        other: "Payment Adjustments"
     attributes:
       client:
         name: "Name"
@@ -139,6 +150,13 @@ en:
       user:
         email: "Email"
         password: "Password"
+      payment_adjustment:
+        client: "Client"
+        user: "User"
+        amount: "Amount"
+        description: "Description"
+        date: "Date"
+        status: "Status"
     errors:
       models:
         address:

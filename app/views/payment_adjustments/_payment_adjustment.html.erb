@@ -1,0 +1,22 @@
+<div id="<%= dom_id payment_adjustment %>" class="w-full sm:w-auto my-5 space-y-5">
+  <div>
+    <strong class="block font-medium mb-1">Client:</strong>
+    <%= payment_adjustment.client.name %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Amount:</strong>
+    <%= payment_adjustment.amount %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= payment_adjustment.description %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Date:</strong>
+    <%= payment_adjustment.date %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Status:</strong>
+    <%= payment_adjustment.status %>
+  </div>
+</div>

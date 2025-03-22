@@ -9,6 +9,7 @@
 user = User.new(email: "test@test.com", password: "hugahuga")
 user.save!
 
+# TODO: make names translatable
 cost_types = [
   { name: "Software" },
   { name: "Hardware" },
@@ -20,6 +21,7 @@ cost_types.each do |cost_type|
   CostType.find_or_create_by(name: cost_type[:name])
 end
 
+# TODO: make names translatable
 categories = [
   { name: "Work" },
   { name: "Sponsorship" }

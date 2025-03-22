@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :payment_adjustments
   resources :categories
   resources :cost_types
   resources :invoices

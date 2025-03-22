@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_22_012235) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_22_223029) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -102,6 +102,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_22_012235) do
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
+  create_table "payment_adjustments", force: :cascade do |t|
+    t.integer "client_id", null: false
+    t.integer "user_id", null: false
+    t.decimal "amount", null: false
+    t.string "description"
+    t.date "date", null: false
+    t.integer "status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_payment_adjustments_on_client_id"
+    t.index ["user_id"], name: "index_payment_adjustments_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name", null: false
     t.integer "client_id", null: false
@@ -145,6 +158,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_22_012235) do
   add_foreign_key "invoices", "categories"
   add_foreign_key "invoices", "clients"
   add_foreign_key "invoices", "users"
+  add_foreign_key "payment_adjustments", "clients"
+  add_foreign_key "payment_adjustments", "users"
   add_foreign_key "projects", "clients"
   add_foreign_key "time_entries", "invoices"
   add_foreign_key "time_entries", "projects"

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# represents an invoice to a client
+# represents an invoice for a client
 class Invoice < ApplicationRecord
   belongs_to :client
   belongs_to :user
