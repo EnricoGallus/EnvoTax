@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_21_064502) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_22_012235) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -50,6 +50,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_064502) do
     t.string "building"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "clients", force: :cascade do |t|
     t.string "name"
     t.integer "currency"
@@ -59,39 +65,51 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_064502) do
     t.index ["address_id"], name: "index_clients_on_address_id"
   end
 
+  create_table "cost_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "expenses", force: :cascade do |t|
     t.integer "client_id"
     t.decimal "amount", null: false
-    t.integer "category", null: false
     t.text "description"
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "invoice_id"
+    t.integer "cost_type_id", null: false
+    t.integer "category_id", null: false
+    t.index ["category_id"], name: "index_expenses_on_category_id"
     t.index ["client_id"], name: "index_expenses_on_client_id"
+    t.index ["cost_type_id"], name: "index_expenses_on_cost_type_id"
     t.index ["invoice_id"], name: "index_expenses_on_invoice_id"
   end
 
   create_table "invoices", force: :cascade do |t|
     t.integer "client_id", null: false
     t.integer "user_id", null: false
-    t.date "start_date"
-    t.date "end_date"
-    t.integer "status"
-    t.date "invoice_date"
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.integer "status", null: false
+    t.date "invoice_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category_id", null: false
+    t.index ["category_id"], name: "index_invoices_on_category_id"
     t.index ["client_id"], name: "index_invoices_on_client_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.integer "client_id", null: false
-    t.decimal "hourly_rate"
+    t.decimal "hourly_rate", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_projects_on_client_id"
+    t.index ["name"], name: "index_projects_on_name", unique: true
   end
 
   create_table "time_entries", force: :cascade do |t|
@@ -120,8 +138,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_064502) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "clients", "addresses"
+  add_foreign_key "expenses", "categories"
   add_foreign_key "expenses", "clients"
+  add_foreign_key "expenses", "cost_types"
   add_foreign_key "expenses", "invoices"
+  add_foreign_key "invoices", "categories"
   add_foreign_key "invoices", "clients"
   add_foreign_key "invoices", "users"
   add_foreign_key "projects", "clients"

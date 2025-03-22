@@ -1,18 +1,21 @@
 # frozen_string_literal: true
 
+# service that creates an invoice and attaches time entries and expenses to it
+# depending on the selected time period
 class InvoiceCreator
-  def initialize(client, user, start_date, end_date)
+  def initialize(client, user, start_date, end_date, category_id)
     @client = client
     @user = user
     @start_date = start_date
     @end_date = end_date
+    @category = Category.find(category_id)
   end
 
   def call
     ActiveRecord::Base.transaction do
       invoice = create_invoice
 
-      assign_time_entries(invoice)
+      assign_time_entries(invoice) if invoice.category.name == "Work"
       assign_expenses(invoice)
     end
   end
@@ -25,6 +28,7 @@ class InvoiceCreator
       user: @user,
       start_date: @start_date,
       end_date: @end_date,
+      category: @category,
       invoice_date: Time.zone.now,
       status: :draft
     )
@@ -39,6 +43,7 @@ class InvoiceCreator
 
   def assign_expenses(invoice)
     expenses = Expense.where(client: @client)
+                      .where(category: @category)
                       .where(date: @start_date..@end_date)
                       .where(invoice_id: nil)
     expenses.update_all(invoice_id: invoice.id)

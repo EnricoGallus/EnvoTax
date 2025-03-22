@@ -17,8 +17,13 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :category %>
-    <%= form.select :category, options_for_select(Expense.categories.keys.map { |category| [category.humanize, category] }, selected: expense.category), {}, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": expense.errors[:category].none?, "border-red-400 focus:outline-red-600": expense.errors[:category].any?}] %>
+    <%= form.label :cost_type_id %>
+    <%= form.collection_select :cost_type_id, CostType.all, :id, :name, { include_blank: true }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": expense.errors[:cost_type].none?, "border-red-400 focus:outline-red-600": expense.errors[:cost_type].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :category_id %>
+    <%= form.collection_select :category_id, Category.all, :id, :name, { include_blank: true }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": expense.errors[:category].none?, "border-red-400 focus:outline-red-600": expense.errors[:category].any?}] %>
   </div>
 
   <div class="my-5">

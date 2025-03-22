@@ -28,7 +28,7 @@
               <td><%= invoice.status %></td>
               <td><%= invoice.total_amount %></td>
               <td>
-                <%= link_to t('table.preview'), invoice_path(invoice, format: :pdf), class: "btn btn-primary" %>
+                <%= link_to t('table.preview'), invoice_path(invoice, format: :pdf), class: "btn btn-primary", target: "_blank" %>
                 <%= link_to t('table.edit'), edit_invoice_path(invoice), class: "btn btn-primary" %>
                 <div class="inline-block">
                   <%= button_to t('table.delete'), invoice, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>

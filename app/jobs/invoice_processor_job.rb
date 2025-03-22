@@ -9,7 +9,7 @@ class InvoiceProcessorJob < ApplicationJob
     user = User.find(current_user_id)
 
     clients.each do |client|
-      InvoiceCreator.new(client, user, params[:start_date], params[:end_date]).call
+      InvoiceCreator.new(client, user, params[:start_date], params[:end_date], params[:category_id]).call
     end
   end
 end

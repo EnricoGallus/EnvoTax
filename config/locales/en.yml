@@ -11,6 +11,9 @@ en:
     expenses: "Expenses"
     time_entry: "Track Time"
     invoices: "Invoices"
+    finances: "Finances"
+    cost_types: "Cost Types"
+    categories: "Categories"
 
   table:
     actions: "Actions"
@@ -116,6 +119,7 @@ en:
         amount: "Amount"
         date: "Date"
         description: "Description"
+        cost_type: "Cost Type"
         category: "Category"
       invoice:
         client: "Client"
@@ -124,6 +128,7 @@ en:
         end_date: "End Date"
         status: "Status"
         invoice_date: "Invoice Date"
+        cost_type: "Cost Type"
       time_entry:
         project: "Project"
         date: "Date"

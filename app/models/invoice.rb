@@ -4,6 +4,7 @@
 class Invoice < ApplicationRecord
   belongs_to :client
   belongs_to :user
+  belongs_to :category
 
   has_many :time_entries, dependent: :nullify
   has_many :expenses, dependent: :nullify

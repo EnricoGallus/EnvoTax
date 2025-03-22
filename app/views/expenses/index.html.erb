@@ -17,7 +17,8 @@
           <tr>
             <th><%= sort_link(@q, :client_name, t('activerecord.attributes.expense.client')) %></th>
             <th><%= sort_link(@q, :amount, t('activerecord.attributes.expense.amount')) %></th>
-            <th><%= sort_link(@q, :category, t('activerecord.attributes.expense.category')) %></th>
+            <th><%= sort_link(@q, :cost_type_name, t('activerecord.attributes.expense.cost_type')) %></th>
+            <th><%= sort_link(@q, :category_name, t('activerecord.attributes.expense.category')) %></th>
             <th><%= sort_link(@q, :date, t('activerecord.attributes.expense.date')) %></th>
             <th><%= sort_link(@q, :description, t('activerecord.attributes.expense.description')) %></th>
             <th><%= t('clients.table.actions') %></th>
@@ -28,7 +29,8 @@
             <tr id="<%= dom_id expense %>">
               <td><%= expense.client&.name %></td>
               <td><%= expense.amount %></td>
-              <td><%= expense.category %></td>
+              <td><%= expense.cost_type.name %></td>
+              <td><%= expense.category.name %></td>
               <td><%= expense.date %></td>
               <td><%= expense.description %></td>
               <td>

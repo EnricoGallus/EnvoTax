@@ -34,14 +34,13 @@
       </div>
 
       <div class="flex justify-between gap-3">
-        <%= f.label :category_eq, "Category", class: "label" %>
-        <%= f.select :category_eq,
-                     options_for_select(
-                       [[t('select.all'), ""]] +
-                         Expense.categories.map { |k, v| [k.titleize, v] },
-                       selected: params[:q]&.[](:category_eq)
-                     ),
-                     {}, class: "select input-bordered" %>
+        <%= f.label :cost_type_id_eq, "Cost Type", class: "label" %>
+        <%= f.collection_select :cost_type_id_eq, CostType.all, :id, :name, {include_blank: true, selected: params[:q]&.[](:cost_type_id_eq)}, class: "select input-bordered" %>
+      </div>
+
+      <div class="flex justify-between gap-3">
+        <%= f.label :category_id_eq, "Cost Type", class: "label" %>
+        <%= f.collection_select :category_id_eq, Category.all, :id, :name, {include_blank: true, selected: params[:q]&.[](:category_id_eq)}, class: "select input-bordered" %>
       </div>
 
       <div class="col-span-1 md:col-span-2 flex justify-end gap-2">

@@ -17,6 +17,11 @@
   </div>
 
   <div class="my-5">
+    <%= form.label :category_id %>
+    <%= form.collection_select :category_id, Category.all, :id, :name, { include_blank: true }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:category].none?, "border-red-400 focus:outline-red-600": invoice.errors[:category].any?}] %>
+  </div>
+
+  <div class="my-5">
     <%= form.label :start_date %>
     <%= form.date_field :start_date, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:start_date].none?, "border-red-400 focus:outline-red-600": invoice.errors[:start_date].any?}] %>
   </div>

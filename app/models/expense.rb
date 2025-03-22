@@ -4,20 +4,19 @@
 class Expense < ApplicationRecord
   belongs_to :client, optional: true
   belongs_to :invoice, optional: true
+  belongs_to :cost_type
+  belongs_to :category
 
   has_one_attached :receipt
 
   validates :amount, presence: true
-  validates :category, presence: true
   validates :date, presence: true
 
-  enum :category, { software: 0, hardware: 1, travel: 2, meals: 3, other: 4 }
-
   def self.ransackable_attributes(_auth_object = nil)
-    %w[amount category date description]
+    %w[amount date description cost_type_id]
   end
 
   def self.ransackable_associations(_auth_object = nil)
-    %w[client invoice]
+    %w[client invoice cost_type]
   end
 end
