@@ -96,7 +96,14 @@
         <% if expense.receipt.attached? %>
           <tr>
             <td colspan="3" class="text-center">
-              <%= wicked_pdf_image_tag(url_for(expense.receipt), style: "max-height: 200px; max-width: 100%;") %>
+              <% begin %>
+                <% blob = expense.receipt.blob %>
+                <% image_data = Base64.strict_encode64(blob.download) %>
+                <img src="data:<%= blob.content_type %>;base64,<%= image_data %>" style="max-height: 200px; max-width: 100%;">
+              <% rescue => e %>
+                <p class="text-danger">Error loading receipt: <%= e.message %></p>
+              <% end %>
+              <%#= image_tag rails_representation_url(expense.receipt, only_path: false) %>
             </td>
           </tr>
         <% end %>
