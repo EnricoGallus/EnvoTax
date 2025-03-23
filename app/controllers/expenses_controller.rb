@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Controller for Expenses
 class ExpensesController < ApplicationController
   before_action :set_expense, only: %i[show edit update destroy]
 

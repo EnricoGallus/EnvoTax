@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Controller for IncomeTaxes
 class IncomeTaxesController < ApplicationController
   before_action :set_income_tax, only: %i[show edit update destroy]
 

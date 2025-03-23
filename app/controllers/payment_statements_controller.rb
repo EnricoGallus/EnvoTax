@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# controller for payment statements
 class PaymentStatementsController < ApplicationController
   before_action :set_payment_statement, only: %i[show edit update destroy]
 

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# migration for adding time entries
 class CreateTimeEntries < ActiveRecord::Migration[8.0]
   def change
     create_table :time_entries do |t|

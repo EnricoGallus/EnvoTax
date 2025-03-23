@@ -23,7 +23,7 @@ class Invoice < ApplicationRecord
   def update_status_from_allocations!
     if allocated_amount >= total_amount
       update(status: :paid)
-    elsif allocated_amount > 0
+    elsif allocated_amount.positive?
       update(status: :partially_paid)
     elsif [:paid, :partially_paid].include?(status)
       update(status: :sent)

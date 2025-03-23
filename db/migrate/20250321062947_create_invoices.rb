@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# migration for adding invoice table
 class CreateInvoices < ActiveRecord::Migration[8.0]
   def change
     create_table :invoices do |t|

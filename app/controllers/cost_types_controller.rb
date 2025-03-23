@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Controller for cost types
 class CostTypesController < ApplicationController
   before_action :set_cost_type, only: %i[show edit update destroy]
 

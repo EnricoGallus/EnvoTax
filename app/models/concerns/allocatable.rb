@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# module to combine allocation relation. used by invoice and payment adjustments
 module Allocatable
   extend ActiveSupport::Concern
 

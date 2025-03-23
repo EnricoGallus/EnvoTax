@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Controller for PaymentAdjustments
 class PaymentAdjustmentsController < ApplicationController
   before_action :set_payment_adjustment, only: %i[show edit update destroy]
 

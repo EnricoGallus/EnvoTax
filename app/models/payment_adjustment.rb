@@ -9,7 +9,7 @@ class PaymentAdjustment < ApplicationRecord
 
   validates :amount, :date, presence: true
 
-  enum :status, { pending: 0, partially_paid: 1, paid: 2, canceled: 2 }
+  enum :status, { pending: 0, partially_paid: 1, paid: 2, canceled: 3 }
 
   after_initialize :set_default_status, if: :new_record?
 

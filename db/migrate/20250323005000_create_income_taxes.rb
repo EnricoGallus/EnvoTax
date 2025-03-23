@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# create table for income tax
 class CreateIncomeTaxes < ActiveRecord::Migration[8.0]
   def change
     create_table :income_taxes do |t|

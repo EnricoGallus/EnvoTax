@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # helps in formatting the currency correctly
 module CurrencyHelper
   def format_currency(amount)
