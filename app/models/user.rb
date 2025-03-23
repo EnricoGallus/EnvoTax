@@ -8,4 +8,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :payment_adjustments, dependent: :destroy
+  has_many :payment_statements, dependent: :destroy
 end

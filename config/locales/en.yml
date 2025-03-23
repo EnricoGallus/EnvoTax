@@ -15,6 +15,8 @@ en:
     cost_types: "Cost Types"
     categories: "Categories"
     payment_adjustments: "Payment Adjustments"
+    payment_statements: "Payment Statements"
+    income_taxes: "Income Taxes"
 
   table:
     actions: "Actions"
@@ -90,6 +92,20 @@ en:
       new: "New Payment Adjustment"
       none_found: "No payment adjustments found"
 
+  payment_statement:
+    index:
+      title: "Payment Statements"
+      content_title: "Payment Statements"
+      new: "New Payment Statement"
+      none_found: "No payment statements found"
+
+  income_tax:
+    index:
+      title: "Income Taxes"
+      content_title: "Income Taxes"
+      new: "New Income Tax"
+      none_found: "No income taxes found"
+
   select:
     all: "All"
 
@@ -121,6 +137,12 @@ en:
       payment_adjustment:
         one: "Payment Adjustment"
         other: "Payment Adjustments"
+      payment_statement:
+        one: "Payment Statement"
+        other: "Payment Statements"
+      income_tax:
+        one: "Income Tax"
+        other: "Income Taxes"
     attributes:
       client:
         name: "Name"
@@ -157,6 +179,15 @@ en:
         description: "Description"
         date: "Date"
         status: "Status"
+      payment_statement:
+        client: "Client"
+        user: "User"
+        amount: "Amount"
+        received_on: "Received On"
+        status: "Status"
+      income_tax:
+        tax_type: "Tax Type"
+        tax_rate: "Tax Rate"
     errors:
       models:
         address:

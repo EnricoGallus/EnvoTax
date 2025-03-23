@@ -1,0 +1,46 @@
+<% content_for :title, t('payment statement.index.content_title') %>
+
+<div class="w-full">
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl"><%= t('payment_statement.index.title') %></h1>
+    <%= link_to t('payment_statement.index.new'), new_payment_statement_path, class: "btn btn-primary btn-lg" %>
+  </div>
+
+  <div id="payment_statements" class="min-w-full divide-y divide-gray-200 space-y-5">
+    <% if @payment_statements.any? %>
+      <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+        <table class="table">
+          <thead>
+          <tr>
+            <th><%= sort_link(@q, :client_name, t('activerecord.attributes.payment_statement.client')) %></th>
+            <th><%= sort_link(@q, :amount, t('activerecord.attributes.payment_statement.amount')) %></th>
+            <th><%= sort_link(@q, :received_on, t('activerecord.attributes.payment_statement.received_on')) %></th>
+            <th><%= sort_link(@q, :status, t('activerecord.attributes.payment_statement.status')) %></th>
+            <th><%= t('table.actions') %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @payment_statements.each do |payment_statement| %>
+            <tr id="<%= dom_id payment_statement %>">
+              <td><%= payment_statement.client.name %></td>
+              <td><%= format_currency(payment_statement.amount) %></td>
+              <td><%= payment_statement.received_on %></td>
+              <td><%= payment_statement.status %></td>
+              <td>
+                <%= link_to t('table.show'), payment_statement, class: "btn btn-primary" %>
+                <%= link_to t('table.edit'), edit_payment_statement_path(payment_statement), class: "btn btn-primary" %>
+                <div class="sm:inline-block">
+                  <%= button_to t('table.delete'), payment_statement, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <p class="text-center my-10"><%= t('payment_statement.index.none_found') %></p>
+    <% end %>
+  </div>
+</div>

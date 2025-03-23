@@ -6,8 +6,9 @@
 #
 
 # TODO: move email and password to credentials
-user = User.new(email: "test@test.com", password: "hugahuga")
-user.save!
+User.find_or_create_by(email: "test@test.com") do |u|
+  u.password = "hugahuga"
+end
 
 # TODO: make names translatable
 cost_types = [
@@ -30,3 +31,9 @@ categories = [
 categories.each do |category|
   Category.find_or_create_by(name: category[:name])
 end
+
+# TODO: make names translatable
+# TODO: future make tax entries country specific
+IncomeTax.find_or_create_by(tax_type: "Income Tax 5%", tax_rate: 5.00)
+IncomeTax.find_or_create_by(tax_type: "Income Tax 10.21%", tax_rate: 10.21)
+IncomeTax.find_or_create_by(tax_type: "No Income Tax", tax_rate: 0.00)
