@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_23_005000) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_23_010626) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -122,6 +122,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_005000) do
     t.index ["user_id"], name: "index_payment_adjustments_on_user_id"
   end
 
+  create_table "payment_allocations", force: :cascade do |t|
+    t.decimal "amount"
+    t.integer "income_tax_id", null: false
+    t.integer "payment_statement_id", null: false
+    t.string "reference_type", null: false
+    t.integer "reference_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["income_tax_id"], name: "index_payment_allocations_on_income_tax_id"
+    t.index ["payment_statement_id"], name: "index_payment_allocations_on_payment_statement_id"
+    t.index ["reference_type", "reference_id"], name: "index_payment_allocations_on_reference"
+  end
+
   create_table "payment_statements", force: :cascade do |t|
     t.integer "client_id", null: false
     t.integer "user_id", null: false
@@ -179,6 +192,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_005000) do
   add_foreign_key "invoices", "users"
   add_foreign_key "payment_adjustments", "clients"
   add_foreign_key "payment_adjustments", "users"
+  add_foreign_key "payment_allocations", "income_taxes"
+  add_foreign_key "payment_allocations", "payment_statements"
   add_foreign_key "payment_statements", "clients"
   add_foreign_key "payment_statements", "users"
   add_foreign_key "projects", "clients"

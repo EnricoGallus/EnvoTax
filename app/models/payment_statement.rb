@@ -7,11 +7,31 @@ class PaymentStatement < ApplicationRecord
 
   has_one_attached :receipt
 
+  has_many :payment_allocations, dependent: :destroy
+
   enum :status, { pending: 0, partially_distributed: 1, distributed: 2 }
 
   validates :amount, :received_on, presence: true
 
   after_initialize :set_default_status, if: :new_record?
+
+  def allocated_amount
+    payment_allocations.sum(:amount)
+  end
+
+  def unallocated_amount
+    amount - allocated_amount
+  end
+
+  def update_status!
+    if payment_allocations.empty?
+      update(status: :pending)
+    elsif unallocated_amount <= 0
+      update(status: :distributed)
+    else
+      update(status: :partially_distributed)
+    end
+  end
 
   private
 

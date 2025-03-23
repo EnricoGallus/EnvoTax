@@ -1,0 +1,11 @@
+module Allocatable
+  extend ActiveSupport::Concern
+
+  included do
+    has_many :payment_allocations, as: :reference, dependent: :destroy
+  end
+
+  def allocated_amount
+    payment_allocations.sum(:amount)
+  end
+end

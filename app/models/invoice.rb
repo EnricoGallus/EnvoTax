@@ -2,6 +2,8 @@
 
 # represents an invoice for a client
 class Invoice < ApplicationRecord
+  include Allocatable
+
   belongs_to :client
   belongs_to :user
   belongs_to :category
@@ -16,6 +18,16 @@ class Invoice < ApplicationRecord
 
   def total_amount
     time_entries.sum(&:calculate_cost) + expenses.sum(&:amount)
+  end
+
+  def update_status_from_allocations!
+    if allocated_amount >= total_amount
+      update(status: :paid)
+    elsif allocated_amount > 0
+      update(status: :partially_paid)
+    elsif [:paid, :partially_paid].include?(status)
+      update(status: :sent)
+    end
   end
 
   def self.ransackable_attributes(_auth_object = nil)

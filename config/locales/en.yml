@@ -106,6 +106,13 @@ en:
       new: "New Income Tax"
       none_found: "No income taxes found"
 
+  payment_allocation:
+    index:
+      title: "Payment Allocations"
+      content_title: "Payment Allocations"
+      new: "New Payment Allocation"
+      none_found: "No payment allocations found"
+
   select:
     all: "All"
 
@@ -143,6 +150,9 @@ en:
       income_tax:
         one: "Income Tax"
         other: "Income Taxes"
+      payment_allocation:
+        one: "Payment Allocation"
+        other: "Payment Allocations"
     attributes:
       client:
         name: "Name"
@@ -188,6 +198,10 @@ en:
       income_tax:
         tax_type: "Tax Type"
         tax_rate: "Tax Rate"
+      payment_allocation:
+        amount: "Amount"
+        tax: "Tax"
+        payment_statement: "Payment Statement"
     errors:
       models:
         address:
