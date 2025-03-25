@@ -28,13 +28,13 @@ RSpec.describe PaymentAdjustment, type: :model do
   describe "callbacks" do
     context "when initialized" do
       it "sets default status to pending for new records" do
-        payment_adjustment = PaymentAdjustment.new
+        payment_adjustment = described_class.new
         expect(payment_adjustment.status).to eq("pending")
       end
 
       it "does not change status for persisted records" do
         payment_adjustment = create(:payment_adjustment, status: :paid)
-        reloaded = PaymentAdjustment.find(payment_adjustment.id)
+        reloaded = described_class.find(payment_adjustment.id)
         expect(reloaded.status).to eq("paid")
       end
     end
@@ -45,8 +45,7 @@ RSpec.describe PaymentAdjustment, type: :model do
 
     context "when no allocations exist" do
       it "updates status to pending" do
-        allow(payment_adjustment).to receive(:payment_allocations).and_return([])
-        allow(payment_adjustment).to receive(:allocated_amount).and_return(0)
+        allow(payment_adjustment).to receive_messages(payment_allocations: [], allocated_amount: 0)
 
         payment_adjustment.update_status_from_allocations!
 
@@ -56,8 +55,7 @@ RSpec.describe PaymentAdjustment, type: :model do
 
     context "when fully allocated" do
       it "updates status to paid" do
-        allow(payment_adjustment).to receive(:payment_allocations).and_return([double])
-        allow(payment_adjustment).to receive(:allocated_amount).and_return(Money.new(1000))
+        allow(payment_adjustment).to receive_messages(payment_allocations: [double], allocated_amount: Money.new(1000))
 
         payment_adjustment.update_status_from_allocations!
 
@@ -67,8 +65,7 @@ RSpec.describe PaymentAdjustment, type: :model do
 
     context "when partially allocated" do
       it "updates status to partially_paid" do
-        allow(payment_adjustment).to receive(:payment_allocations).and_return([double])
-        allow(payment_adjustment).to receive(:allocated_amount).and_return(Money.new(500))
+        allow(payment_adjustment).to receive_messages(payment_allocations: [double], allocated_amount: Money.new(500))
 
         payment_adjustment.update_status_from_allocations!
 

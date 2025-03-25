@@ -5,10 +5,10 @@ FactoryBot.define do
     amount { Faker::Number.number(digits: 5) }
     income_tax
     payment_statement
-    reference { create(:invoice) }
+    reference { association invoice }
 
     trait :for_payment_adjustment do
-      reference { create(:payment_adjustment) }
+      reference { association payment_adjustment }
     end
   end
 end

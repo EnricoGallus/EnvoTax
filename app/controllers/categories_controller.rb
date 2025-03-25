@@ -26,7 +26,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to @category, notice: "Category was successfully created."
+      redirect_to @category, notice: t("categories.successfully_created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   def update
     if @category.update(category_params)
-      redirect_to @category, notice: "Category was successfully updated.", status: :see_other
+      redirect_to @category, notice: t("categories.successfully_updated"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -44,7 +44,7 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   def destroy
     @category.destroy!
-    redirect_to categories_path, notice: "Category was successfully destroyed.", status: :see_other
+    redirect_to categories_path, notice: t("categories.successfully_destroyed"), status: :see_other
   end
 
   private

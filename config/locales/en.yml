@@ -49,6 +49,16 @@ en:
     successfully_updated: "Client was successfully updated."
     successfully_destroyed: "Client was successfully destroyed."
 
+  categories:
+    successfully_created: "Category was successfully created."
+    successfully_updated: "Category was successfully updated."
+    successfully_destroyed: "Category was successfully destroyed."
+
+  cost_types:
+    successfully_created: "Cost type was successfully created."
+    successfully_updated: "Cost type was successfully updated."
+    successfully_destroyed: "Cost type was successfully destroyed."
+
   expense:
     new:
       content_title: "New expense"
@@ -61,6 +71,9 @@ en:
           date: "Date"
           description: "Description"
           amount: "Amount"
+    successfully_created: "Expense was successfully created."
+    successfully_updated: "Expense was successfully updated."
+    successfully_destroyed: "Expense was successfully destroyed."
 
   invoices:
     index:
@@ -70,6 +83,9 @@ en:
       new: "New invoice"
       table:
         sum: "Amount"
+    successfully_created: "Invoice was successfully created."
+    successfully_updated: "Invoice was successfully updated."
+    successfully_destroyed: "Invoice was successfully destroyed."
 
   time_entry:
     index:
@@ -79,6 +95,9 @@ en:
       new: "New time entry"
       table:
         spent_time: "Spend time"
+    successfully_created: "Time entry was successfully created."
+    successfully_updated: "Time entry was successfully updated."
+    successfully_destroyed: "Time entry was successfully destroyed."
 
   payment_adjustment:
     index:
@@ -86,6 +105,9 @@ en:
       content_title: "Payment Adjustments"
       new: "New Payment Adjustment"
       none_found: "No payment adjustments found"
+    successfully_created: "Payment adjustment was successfully created."
+    successfully_updated: "Payment adjustment was successfully updated."
+    successfully_destroyed: "Payment adjustment was successfully destroyed."
 
   payment_statement:
     index:
@@ -93,6 +115,9 @@ en:
       content_title: "Payment Statements"
       new: "New Payment Statement"
       none_found: "No payment statements found"
+    successfully_created: "Payment statement was successfully created."
+    successfully_updated: "Payment statement was successfully updated."
+    successfully_destroyed: "Payment statement was successfully destroyed."
 
   income_tax:
     index:
@@ -100,6 +125,9 @@ en:
       content_title: "Income Taxes"
       new: "New Income Tax"
       none_found: "No income taxes found"
+    successfully_created: "Income tax was successfully created."
+    successfully_updated: "Income tax was successfully updated."
+    successfully_destroyed: "Income tax was successfully destroyed."
 
   payment_allocation:
     index:
@@ -107,6 +135,9 @@ en:
       content_title: "Payment Allocations"
       new: "New Payment Allocation"
       none_found: "No payment allocations found"
+    successfully_created: "Payment allocations was successfully created."
+    successfully_updated: "Payment allocations was successfully updated."
+    successfully_destroyed: "Payment allocations was successfully destroyed."
 
   select:
     all: "All"

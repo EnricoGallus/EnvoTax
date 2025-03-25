@@ -26,7 +26,7 @@ class IncomeTaxesController < ApplicationController
     @income_tax = IncomeTax.new(income_tax_params)
 
     if @income_tax.save
-      redirect_to @income_tax, notice: "Income tax was successfully created."
+      redirect_to @income_tax, notice: t("income_taxes.controller.successfuly_created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class IncomeTaxesController < ApplicationController
   # PATCH/PUT /income_taxes/1
   def update
     if @income_tax.update(income_tax_params)
-      redirect_to @income_tax, notice: "Income tax was successfully updated.", status: :see_other
+      redirect_to @income_tax, notice: t("income_tax.successfully_updated"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -44,7 +44,7 @@ class IncomeTaxesController < ApplicationController
   # DELETE /income_taxes/1
   def destroy
     @income_tax.destroy!
-    redirect_to income_taxes_path, notice: "Income tax was successfully destroyed.", status: :see_other
+    redirect_to income_taxes_path, notice: t("income_tax.successfully_destroyed"), status: :see_other
   end
 
   private

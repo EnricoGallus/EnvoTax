@@ -26,7 +26,7 @@ class PaymentAdjustmentsController < ApplicationController
     @payment_adjustment = current_user.payment_adjustments.build(payment_adjustment_params)
 
     if @payment_adjustment.save
-      redirect_to @payment_adjustment, notice: "Payment adjustment was successfully created."
+      redirect_to @payment_adjustment, notice: t("payment_adjustments.successfully_created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class PaymentAdjustmentsController < ApplicationController
   # PATCH/PUT /payment_adjustments/1
   def update
     if @payment_adjustment.update(payment_adjustment_params)
-      redirect_to @payment_adjustment, notice: "Payment adjustment was successfully updated.", status: :see_other
+      redirect_to @payment_adjustment, notice: t("payment_adjustment.successfully_updated"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -44,7 +44,7 @@ class PaymentAdjustmentsController < ApplicationController
   # DELETE /payment_adjustments/1
   def destroy
     @payment_adjustment.destroy!
-    redirect_to payment_adjustments_path, notice: "Payment adjustment was successfully destroyed.", status: :see_other
+    redirect_to payment_adjustments_path, notice: t("payment_adjustment.successfully_destroyed"), status: :see_other
   end
 
   private

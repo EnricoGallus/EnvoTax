@@ -27,7 +27,7 @@ class TimeEntriesController < ApplicationController
 
     respond_to do |format|
       if @time_entry.save
-        format.html { redirect_to @time_entry, notice: "Time entry was successfully created." }
+        format.html { redirect_to @time_entry, notice: t("time_entry.successfully_created") }
         format.json { render :show, status: :created, location: @time_entry }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class TimeEntriesController < ApplicationController
   def update
     respond_to do |format|
       if @time_entry.update(time_entry_params)
-        format.html { redirect_to @time_entry, notice: "Time entry was successfully updated." }
+        format.html { redirect_to @time_entry, notice: t("time_entry.successfully_updated") }
         format.json { render :show, status: :ok, location: @time_entry }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,7 +55,7 @@ class TimeEntriesController < ApplicationController
 
     respond_to do |format|
       format.html do
-        redirect_to time_entries_path, status: :see_other, notice: "Time entry was successfully destroyed."
+        redirect_to time_entries_path, status: :see_other, notice: t("time_entry.successfully_destroyed")
       end
       format.json { head :no_content }
     end

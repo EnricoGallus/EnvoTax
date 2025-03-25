@@ -26,7 +26,7 @@ class PaymentStatementsController < ApplicationController
     @payment_statement = current_user.payment_statements.build(payment_statement_params)
 
     if @payment_statement.save
-      redirect_to @payment_statement, notice: "Payment statement was successfully created."
+      redirect_to @payment_statement, notice: t("payment_statement.successfully_created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class PaymentStatementsController < ApplicationController
   # PATCH/PUT /payment_statements/1
   def update
     if @payment_statement.update(payment_statement_params)
-      redirect_to @payment_statement, notice: "Payment statement was successfully updated.", status: :see_other
+      redirect_to @payment_statement, notice: t("payment_statement.successfully_updated"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -44,7 +44,7 @@ class PaymentStatementsController < ApplicationController
   # DELETE /payment_statements/1
   def destroy
     @payment_statement.destroy!
-    redirect_to payment_statements_path, notice: "Payment statement was successfully destroyed.", status: :see_other
+    redirect_to payment_statements_path, notice: t("payment_statement.successfully_destroyed"), status: :see_other
   end
 
   private

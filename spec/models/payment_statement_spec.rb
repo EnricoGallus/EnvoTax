@@ -30,13 +30,13 @@ RSpec.describe PaymentStatement, type: :model do
   describe "callbacks" do
     describe "after_initialize" do
       it "sets default status to pending for new records" do
-        payment_statement = PaymentStatement.new
+        payment_statement = described_class.new
         expect(payment_statement.status).to eq("pending")
       end
 
       it "doesn't change status for persisted records" do
         payment_statement = create(:payment_statement, status: :distributed)
-        reloaded = PaymentStatement.find(payment_statement.id)
+        reloaded = described_class.find(payment_statement.id)
         expect(reloaded.status).to eq("distributed")
       end
     end

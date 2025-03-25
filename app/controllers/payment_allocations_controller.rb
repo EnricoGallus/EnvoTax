@@ -27,7 +27,7 @@ class PaymentAllocationsController < ApplicationController
     @payment_allocation = @payment_statement.payment_allocations.build(payment_allocation_params)
 
     if @payment_allocation.save
-      redirect_to payment_statement_path(@payment_statement), notice: "Payment allocation was successfully created."
+      redirect_to payment_statement_path(@payment_statement), notice: t("payment_allocation.successfully_created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class PaymentAllocationsController < ApplicationController
   # PATCH/PUT /payment_allocations/1
   def update
     if @payment_allocation.update(payment_allocation_params)
-      redirect_to payment_statement_path(@payment_statement), notice: "Payment allocation was successfully updated.",
+      redirect_to payment_statement_path(@payment_statement), notice: t("payment_allocation.successfully_updated"),
                                                               status: :see_other
     else
       render :edit, status: :unprocessable_entity
@@ -46,7 +46,7 @@ class PaymentAllocationsController < ApplicationController
   # DELETE /payment_allocations/1
   def destroy
     @payment_allocation.destroy!
-    redirect_to payment_statement_path(@payment_statement), notice: "Payment allocation was successfully destroyed.",
+    redirect_to payment_statement_path(@payment_statement), notice: t("payment_allocation.successfully_destroyed"),
                                                             status: :see_other
   end
 

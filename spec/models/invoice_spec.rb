@@ -55,8 +55,7 @@ RSpec.describe Invoice, type: :model do
 
     context "when fully paid" do
       it "updates status to paid" do
-        allow(invoice).to receive(:total_amount).and_return(1000)
-        allow(invoice).to receive(:allocated_amount).and_return(1000)
+        allow(invoice).to receive_messages(total_amount: 1000, allocated_amount: 1000)
 
         invoice.update_status_from_allocations!
 
@@ -66,8 +65,7 @@ RSpec.describe Invoice, type: :model do
 
     context "when partially paid" do
       it "updates status to partially_paid" do
-        allow(invoice).to receive(:total_amount).and_return(1000)
-        allow(invoice).to receive(:allocated_amount).and_return(500)
+        allow(invoice).to receive_messages(total_amount: 1000, allocated_amount: 500)
 
         invoice.update_status_from_allocations!
 
@@ -78,8 +76,7 @@ RSpec.describe Invoice, type: :model do
     context "when was paid but allocation is removed" do
       it "updates status to sent" do
         invoice.update(status: :paid)
-        allow(invoice).to receive(:total_amount).and_return(Money.new(1000))
-        allow(invoice).to receive(:allocated_amount).and_return(Money.new(0))
+        allow(invoice).to receive_messages(total_amount: Money.new(1000), allocated_amount: Money.new(0))
 
         invoice.update_status_from_allocations!
 

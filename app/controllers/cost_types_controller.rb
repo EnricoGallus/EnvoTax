@@ -26,7 +26,7 @@ class CostTypesController < ApplicationController
     @cost_type = CostType.new(cost_type_params)
 
     if @cost_type.save
-      redirect_to @cost_type, notice: "Cost type was successfully created."
+      redirect_to @cost_type, notice: t("cost_types.successfully_created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class CostTypesController < ApplicationController
   # PATCH/PUT /cost_types/1
   def update
     if @cost_type.update(cost_type_params)
-      redirect_to @cost_type, notice: "Cost type was successfully updated.", status: :see_other
+      redirect_to @cost_type, notice: t("cost_types.successfully_updated"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -44,7 +44,7 @@ class CostTypesController < ApplicationController
   # DELETE /cost_types/1
   def destroy
     @cost_type.destroy!
-    redirect_to cost_types_path, notice: "Cost type was successfully destroyed.", status: :see_other
+    redirect_to cost_types_path, notice: t("cost_types.successfully_destroyed"), status: :see_other
   end
 
   private
