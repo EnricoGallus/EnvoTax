@@ -5,7 +5,7 @@ class PaymentAllocationsController < ApplicationController
   before_action :set_payment_statement
   before_action :set_payment_allocation, only: %i[show edit update destroy]
 
-  # TODO: This should be added to payment_statements_controller show method
+  # TODO: This should be added to payment_statements_controller show method and than removed. index is not routed
   def index
     @q = PaymentAllocation.ransack(params[:q])
     @payment_allocations = @q.result(distinct: true)

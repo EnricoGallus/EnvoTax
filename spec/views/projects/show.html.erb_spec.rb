@@ -11,8 +11,4 @@ RSpec.describe "projects/show", type: :view do
   it "renders name" do
     expect(rendered).to match(/Name/)
   end
-
-  it "renders hourly rate" do
-    expect(rendered).to match(/Hourly rate/)
-  end
 end

@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   resources :income_taxes
   resources :payment_statements do
-    resources :payment_allocations
+    resources :payment_allocations, except: [:index]
   end
   resources :payment_adjustments
   resources :categories
