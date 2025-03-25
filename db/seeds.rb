@@ -5,7 +5,6 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
 
-# TODO: move email and password to credentials
 User.find_or_create_by(email: Rails.application.credentials.dig(:user, :email)) do |u|
   u.password = Rails.application.credentials.dig(:user, :password)
 end
