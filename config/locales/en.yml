@@ -35,10 +35,6 @@ en:
     title_show: "Showing Client"
     title_edit: "Editing client"
     none_found: "No clients found."
-    table:
-      actions: "Actions"
-      currency: "Currency"
-      name: "Name"
     successfully_created: "Client was successfully created."
     successfully_updated: "Client was successfully updated."
     successfully_destroyed: "Client was successfully destroyed."
@@ -48,7 +44,6 @@ en:
     none_found: "No projects found."
     table:
       name: "Project Name"
-      hourly_rate: "Hourly Rate"
       actions: "Actions"
     successfully_created: "Client was successfully created."
     successfully_updated: "Client was successfully updated."
@@ -156,7 +151,9 @@ en:
     attributes:
       client:
         name: "Name"
-        currency: "Currency"
+        hourly_rate: "Hourly Rate"
+      project:
+        name: "Name"
       expense:
         client: "Client"
         amount: "Amount"

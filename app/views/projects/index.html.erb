@@ -13,16 +13,14 @@
         <table class="table">
           <thead>
           <tr>
-            <th><%= t('projects.table.name') %></th>
-            <th><%= t('projects.table.hourly_rate') %></th>
-            <th><%= t('projects.table.actions') %></th>
+            <th><%= t('activerecord.attributes.project.name') %></th>
+            <th><%= t('table.actions') %></th>
           </tr>
           </thead>
           <tbody>
           <% @projects.each do |project| %>
             <tr id="<%= dom_id project %>">
               <td><%= project.name %></td>
-              <td><%= project.hourly_rate %></td>
               <td>
                 <%= link_to t('table.show'), project, class: "btn btn-primary" %>
                 <%= link_to t('table.edit'), edit_project_path(project), class: "btn btn-primary" %>

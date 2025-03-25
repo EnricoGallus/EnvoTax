@@ -45,7 +45,8 @@ RSpec.describe TimeEntry, type: :model do
 
   describe "#calculate_cost" do
     it "calculates the cost based on spent time and project hourly rate" do
-      project = build(:project, hourly_rate: 100)
+      client = build(:client, hourly_rate: 100)
+      project = build(:project, client: client)
       time_from = Time.zone.now
       time_to = time_from + 2.hours + 30.minutes
       time_entry = build(:time_entry, project: project, time_from: time_from, time_to: time_to)

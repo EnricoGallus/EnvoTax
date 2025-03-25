@@ -6,15 +6,14 @@ class Client < ApplicationRecord
   has_many :projects, dependent: :destroy
   accepts_nested_attributes_for :address
 
-  enum :currency, { yen: 0 }
+  monetize :hourly_rate_cents, with_currency: :jpy, numericality: { greater_than_or_equal_to: 0 }
 
   validates :name, presence: true
-  validates :currency, presence: true, inclusion: { in: currencies.keys }
 
   after_initialize :build_default_address, if: :new_record?
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[name address currency]
+    %w[name address hourly_rate]
   end
 
   private

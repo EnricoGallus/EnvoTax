@@ -66,8 +66,8 @@
           <td><%= entry.time_from&.strftime('%H:%M') %></td>
           <td><%= entry.time_to&.strftime('%H:%M') %></td>
           <td class="text-end"><%= ((entry.time_to - entry.time_from) / 1.hour).round(2) if entry.time_from && entry.time_to %></td>
-          <td class="text-end"><%= number_to_currency(entry.project.hourly_rate, unit: @invoice.client.currency) %></td>
-          <td class="text-end"><%= number_to_currency(entry.calculate_cost, unit: @invoice.client.currency) %></td>
+          <td class="text-end"><%= entry.project.client.hourly_rate.format %></td>
+          <td class="text-end"><%= entry.calculate_cost.format %></td>
         </tr>
       <% end %>
       </tbody>
@@ -91,7 +91,7 @@
         <tr>
           <td><%= expense.date&.strftime('%b %d, %Y') %></td>
           <td><%= expense.description %></td>
-          <td class="text-end"><%= number_to_currency(expense.amount, unit: @invoice.client.currency) %></td>
+          <td class="text-end"><%= expense.amount.format %></td>
         </tr>
         <% if expense.receipt.attached? %>
           <tr>
@@ -118,7 +118,7 @@
     <table class="table">
       <tr class="fw-bold">
         <td>Total:</td>
-        <td class="text-end"><%= number_to_currency(@invoice.total_amount, unit: @invoice.client.currency) %></td>
+        <td class="text-end"><%= @invoice.total_amount.format %></td>
       </tr>
     </table>
   </div>

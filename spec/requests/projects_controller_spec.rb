@@ -9,7 +9,7 @@ RSpec.describe "/projects", type: :request do
   end
 
   let(:invalid_attributes) do
-    { name: nil, hourly_rate: nil }
+    { name: nil }
   end
 
   before do
@@ -78,7 +78,7 @@ RSpec.describe "/projects", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) do
-        { name: "Updated Project", hourly_rate: 2005.10 }
+        { name: "Updated Project" }
       end
       let(:project) { create(:project) }
 
@@ -89,10 +89,6 @@ RSpec.describe "/projects", type: :request do
 
       it "updates the requested project name" do
         expect(project.name).to eq(new_attributes[:name])
-      end
-
-      it "updates the requested project hourly rate" do
-        expect(project.hourly_rate).to eq(new_attributes[:hourly_rate])
       end
 
       it "redirects to the project" do

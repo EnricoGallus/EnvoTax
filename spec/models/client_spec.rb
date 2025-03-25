@@ -7,13 +7,6 @@ RSpec.describe Client, type: :model do
 
   describe "validations" do
     it { is_expected.to validate_presence_of(:name) }
-
-    it "raises an ArgumentError for an invalid currency" do
-      expect { client.currency = 5 }.to raise_error(ArgumentError, "'5' is not a valid currency")
-    end
-
-    it "validates inclusion of currency", skip: "throws argument exception instead of failing validation" do
-      expect(client).to validate_inclusion_of(:currency).in_array(described_class.currencies.keys)
-    end
+    it { is_expected.to validate_numericality_of(:hourly_rate).is_greater_than_or_equal_to(0) }
   end
 end

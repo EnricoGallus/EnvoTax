@@ -24,7 +24,7 @@
           <% @payment_statements.each do |payment_statement| %>
             <tr id="<%= dom_id payment_statement %>">
               <td><%= payment_statement.client.name %></td>
-              <td><%= format_currency(payment_statement.amount) %></td>
+              <td><%= payment_statement.amount.format %></td>
               <td><%= payment_statement.received_on %></td>
               <td><%= payment_statement.status %></td>
               <td>

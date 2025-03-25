@@ -23,7 +23,7 @@ class TimeEntry < ApplicationRecord
   end
 
   def calculate_cost
-    spent_time_in_seconds / 1.hour * project.hourly_rate
+    spent_time_in_seconds / 1.hour * project.client.hourly_rate
   end
 
   def self.ransackable_attributes(_auth_object = nil)

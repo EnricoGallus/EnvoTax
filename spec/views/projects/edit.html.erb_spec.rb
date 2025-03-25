@@ -19,7 +19,6 @@ RSpec.describe "projects/edit", type: :view do
     assert_select "form[action=?][method=?]", project_path(project), "post" do
       assert_select "input[name=?]", "project[name]"
       assert_select "select[name=?]", "project[client_id]"
-      assert_select "input[name=?]", "project[hourly_rate]"
     end
   end
 end

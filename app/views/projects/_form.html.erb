@@ -21,12 +21,7 @@
     <%= form.select :client_id, options_for_select(@clients), {}, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": project.errors[:client].none?, "border-red-400 focus:outline-red-600": project.errors[:client].any?}] %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :hourly_rate, class: "label" %>
-    <%= form.text_field :hourly_rate, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": project.errors[:hourly_rate].none?, "border-red-400 focus:outline-red-600": project.errors[:hourly_rate].any?}] %>
-  </div>
-
   <div class="inline">
-    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -12,7 +12,7 @@ RSpec.describe "clients/show.html.erb", type: :view do
     expect(rendered).to match(/Name/)
   end
 
-  it "renders currency" do
-    expect(rendered).to match(/Currency/)
+  it "renders hourly rate" do
+    expect(rendered).to match(/Hourly rate/)
   end
 end

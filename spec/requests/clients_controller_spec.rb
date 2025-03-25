@@ -9,7 +9,7 @@ RSpec.describe ClientsController, type: :request do
   end
 
   let(:invalid_attributes) do
-    { name: nil, currency: nil }
+    { name: nil, hourly_rate: nil }
   end
 
   before do
@@ -78,7 +78,7 @@ RSpec.describe ClientsController, type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) do
-        { name: "Updated Client", currency: :yen }
+        { name: "Updated Client", hourly_rate: 5000 }
       end
       let(:client) { create(:client) }
 
@@ -91,8 +91,8 @@ RSpec.describe ClientsController, type: :request do
         expect(client.name).to eq("Updated Client")
       end
 
-      it "updates the requested client currency" do
-        expect(client.currency).to eq("yen")
+      it "updates the requested client hourly rate" do
+        expect(client.hourly_rate).to eq(Money.new(5000))
       end
 
       it "redirects to the client" do

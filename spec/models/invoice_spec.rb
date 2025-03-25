@@ -34,8 +34,9 @@ RSpec.describe Invoice, type: :model do
 
   describe "#total_amount" do
     let(:invoice) { create(:invoice) }
-    let(:project_one) { create(:project, hourly_rate: 50) }
-    let(:project_two) { create(:project, hourly_rate: 60) }
+    let(:client) { create(:client, hourly_rate: 100) }
+    let(:project_one) { create(:project, client: client) }
+    let(:project_two) { create(:project, client: client) }
 
     it "calculates the sum of time entries cost and expenses amount" do
       create(:time_entry, invoice: invoice, time_from: 2.hours.ago, time_to: Time.zone.now, project: project_one)
@@ -45,7 +46,7 @@ RSpec.describe Invoice, type: :model do
       # Time entries: (2*50) + (3*60) = 100 + 180 = 280
       # Expenses: 75 + 125 = 200
       # Total: 280 + 200 = 480
-      expect(invoice.total_amount).to eq(Money.new(480))
+      expect(invoice.total_amount).to eq(Money.new(700))
     end
   end
 

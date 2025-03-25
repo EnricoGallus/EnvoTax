@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :client do
     name { Faker::Name.name }
-    currency { :yen }
+    hourly_rate { Faker::Number.number(digits: 5) }
     address factory: %i[address]
   end
 end

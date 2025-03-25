@@ -59,8 +59,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_010626) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
-    t.integer "currency"
     t.integer "address_id", null: false
+    t.integer "hourly_rate_cents", default: 0, null: false
+    t.string "hourly_rate_currency", default: "JPY", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_clients_on_address_id"
@@ -157,8 +158,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_010626) do
   create_table "projects", force: :cascade do |t|
     t.string "name", null: false
     t.integer "client_id", null: false
-    t.integer "hourly_rate_cents", default: 0, null: false
-    t.string "hourly_rate_currency", default: "JPY", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_projects_on_client_id"

@@ -17,8 +17,8 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :currency %>
-    <%= form.select :currency, Client.currencies.keys.map { |currency| [currency.humanize, currency] }, {}, class: ["select", {"border-red-400 focus:outline-red-600": client.errors[:currency].any?}] %>
+    <%= form.label :hourly_rate, class: "label" %>
+    <%= form.number_field :hourly_rate, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": client.errors[:hourly_rate].none?, "border-red-400 focus:outline-red-600": client.errors[:hourly_rate].any?}] %>
   </div>
 
   <%= form.fields_for :address do |address_form| %>

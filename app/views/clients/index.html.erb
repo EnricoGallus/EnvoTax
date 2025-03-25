@@ -13,16 +13,16 @@
         <table class="table">
           <thead>
           <tr>
-            <th><%= t('clients.table.name') %></th>
-            <th><%= t('clients.table.currency') %></th>
-            <th><%= t('clients.table.actions') %></th>
+            <th><%= t('activerecord.attributes.client.name') %></th>
+            <th><%= t('activerecord.attributes.client.hourly_rate') %></th>
+            <th><%= t('table.actions') %></th>
           </tr>
           </thead>
           <tbody>
           <% @clients.each do |client| %>
             <tr id="<%= dom_id client %>">
               <td><%= client.name %></td>
-              <td><%= client.currency %></td>
+              <td><%= client.hourly_rate.format %></td>
               <td>
                 <%= link_to t('table.show'), client, class: "btn btn-primary" %>
                 <%= link_to t('table.edit'), edit_client_path(client), class: "btn btn-primary" %>
