@@ -5,7 +5,7 @@ class InvoiceProcessorJob < ApplicationJob
   queue_as :default
 
   def perform(params, current_user_id)
-    clients = params[:client_id].present? ? Client.find(params[:client_id]) : Client.all
+    clients = params[:client_id].present? ? [Client.find(params[:client_id])] : Client.all
     user = User.find(current_user_id)
 
     clients.each do |client|

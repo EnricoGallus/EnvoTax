@@ -2,11 +2,12 @@
 
 FactoryBot.define do
   factory :invoice do
-    client { nil }
-    user { nil }
-    start_date { "2025-03-21" }
-    end_date { "2025-03-21" }
-    status { 1 }
-    invoice_date { "2025-03-21" }
+    client
+    user
+    category
+    invoice_date { Faker::Date.backward(days: 30) }
+    start_date { Faker::Date.backward(days: 60) }
+    end_date { Faker::Date.backward(days: 30) }
+    status { :draft }
   end
 end

@@ -14,7 +14,7 @@ class Invoice < ApplicationRecord
   validates :invoice_date, :start_date, :end_date, :status, presence: true
   validate :clear_generated_errors_for_job_save
 
-  enum :status, { draft: 0, sent: 1, paid: 2, overdue: 3 }
+  enum :status, { draft: 0, sent: 1, partially_paid: 2, paid: 3, overdue: 4 }
 
   def total_amount
     time_entries.sum(&:calculate_cost) + expenses.sum(&:amount)

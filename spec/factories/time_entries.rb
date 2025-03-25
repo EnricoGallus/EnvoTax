@@ -2,10 +2,14 @@
 
 FactoryBot.define do
   factory :time_entry do
-    date { "2025-03-21" }
-    time_from { "2025-03-21 14:32:53" }
-    time_to { "2025-03-21 14:32:53" }
-    name { "MyString" }
-    project { nil }
+    name { Faker::Name.name }
+    date { Faker::Date.between(from: 1.month.ago, to: Time.zone.now) }
+    time_from { Faker::Time.between(from: DateTime.now - 4, to: DateTime.now - 2) }
+    time_to { Faker::Time.between(from: DateTime.now - 2, to: DateTime.now) }
+    project
+
+    trait :with_invoice do
+      invoice
+    end
   end
 end

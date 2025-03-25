@@ -8,6 +8,8 @@ class CreateIncomeTaxes < ActiveRecord::Migration[8.0]
       t.decimal :tax_rate, precision: 5, scale: 2, null: false
 
       t.timestamps
+
+      t.index :tax_type, unique: true
     end
   end
 end

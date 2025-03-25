@@ -6,6 +6,7 @@ AllCops:
     - "bin/**"
     - "db/schema.rb"
     - "db/*schema.rb"
+    - "db/migrate/20250321051220_create_active_storage_tables.active_storage.rb"
     - "node_modules/**/*"
     - "tmp/**/*"
     - "vendor/**/*"
@@ -37,4 +38,10 @@ Metrics/MethodLength:
 
 # test specifications
 RSpecRails/InferredSpecType:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
   Enabled: false

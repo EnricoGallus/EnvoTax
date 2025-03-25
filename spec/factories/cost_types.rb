@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :cost_type do
-    name { "MyString" }
+    name { Faker::Name.unique.name }
   end
 end

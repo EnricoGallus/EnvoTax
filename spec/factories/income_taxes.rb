@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :income_tax do
-    tax_type { "MyString" }
-    tax_rate { "9.99" }
+    tax_type { Faker::Name.unique.name }
+    tax_rate { Faker::Number.decimal(l_digits: 2, r_digits: 2) }
   end
 end

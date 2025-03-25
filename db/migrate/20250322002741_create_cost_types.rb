@@ -7,9 +7,10 @@ class CreateCostTypes < ActiveRecord::Migration[8.0]
       t.string :name, null: false
 
       t.timestamps
+
+      t.index :name, unique: true
     end
 
     add_reference :expenses, :cost_type, null: false, foreign_key: true
-    remove_column :expenses, :category
   end
 end

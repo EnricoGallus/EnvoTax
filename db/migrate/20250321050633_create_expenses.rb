@@ -6,7 +6,6 @@ class CreateExpenses < ActiveRecord::Migration[8.0]
     create_table :expenses do |t|
       t.references :client, null: true, foreign_key: true
       t.decimal :amount, null: false
-      t.integer :category, null: false
       t.text :description
       t.date :date, null: false
 

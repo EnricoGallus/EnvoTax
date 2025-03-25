@@ -2,10 +2,10 @@
 
 FactoryBot.define do
   factory :payment_statement do
-    client { nil }
-    user { nil }
-    amount { "9.99" }
-    received_on { "2025-03-23" }
-    status { "MyString" }
+    client
+    user
+    amount { Faker::Number.number(digits: 5) }
+    received_on { Faker::Date.between(from: 3.months.ago, to: Time.zone.now) }
+    status { :pending }
   end
 end

@@ -2,11 +2,23 @@
 
 FactoryBot.define do
   factory :payment_adjustment do
-    client { nil }
-    user { nil }
-    amount { "9.99" }
-    description { "MyString" }
-    date { "2025-03-23" }
-    status { 1 }
+    amount { Faker::Number.number(digits: 5) }
+    date { Faker::Date.between(from: 3.months.ago, to: Time.zone.now) }
+    description { Faker::Lorem.sentence(word_count: 3) }
+    status { :pending }
+    client
+    user
+
+    trait :partially_paid do
+      status { :partially_paid }
+    end
+
+    trait :paid do
+      status { :paid }
+    end
+
+    trait :canceled do
+      status { :canceled }
+    end
   end
 end

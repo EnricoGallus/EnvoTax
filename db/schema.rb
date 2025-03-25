@@ -51,9 +51,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_010626) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
   create_table "clients", force: :cascade do |t|
@@ -69,6 +70,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_010626) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_cost_types_on_name", unique: true
   end
 
   create_table "expenses", force: :cascade do |t|
@@ -88,10 +90,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_010626) do
   end
 
   create_table "income_taxes", force: :cascade do |t|
-    t.string "tax_type"
-    t.decimal "tax_rate"
+    t.string "tax_type", null: false
+    t.decimal "tax_rate", precision: 5, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tax_type"], name: "index_income_taxes_on_tax_type", unique: true
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -123,7 +126,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_010626) do
   end
 
   create_table "payment_allocations", force: :cascade do |t|
-    t.decimal "amount"
+    t.decimal "amount", null: false
     t.integer "income_tax_id", null: false
     t.integer "payment_statement_id", null: false
     t.string "reference_type", null: false
