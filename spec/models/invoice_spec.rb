@@ -45,7 +45,7 @@ RSpec.describe Invoice, type: :model do
       # Time entries: (2*50) + (3*60) = 100 + 180 = 280
       # Expenses: 75 + 125 = 200
       # Total: 280 + 200 = 480
-      expect(invoice.total_amount).to eq(480)
+      expect(invoice.total_amount).to eq(Money.new(480))
     end
   end
 
@@ -77,8 +77,8 @@ RSpec.describe Invoice, type: :model do
     context "when was paid but allocation is removed" do
       it "updates status to sent" do
         invoice.update(status: :paid)
-        allow(invoice).to receive(:total_amount).and_return(1000)
-        allow(invoice).to receive(:allocated_amount).and_return(0)
+        allow(invoice).to receive(:total_amount).and_return(Money.new(1000))
+        allow(invoice).to receive(:allocated_amount).and_return(Money.new(0))
 
         invoice.update_status_from_allocations!
 

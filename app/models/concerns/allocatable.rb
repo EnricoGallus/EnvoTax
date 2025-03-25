@@ -9,6 +9,6 @@ module Allocatable
   end
 
   def allocated_amount
-    payment_allocations.sum(:amount)
+    payment_allocations.sum(:amount_cents).to_money
   end
 end

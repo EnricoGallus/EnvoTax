@@ -75,7 +75,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_010626) do
 
   create_table "expenses", force: :cascade do |t|
     t.integer "client_id"
-    t.decimal "amount", null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "JPY", null: false
     t.text "description"
     t.date "date", null: false
     t.datetime "created_at", null: false
@@ -115,7 +116,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_010626) do
   create_table "payment_adjustments", force: :cascade do |t|
     t.integer "client_id", null: false
     t.integer "user_id", null: false
-    t.decimal "amount", null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "JPY", null: false
     t.string "description"
     t.date "date", null: false
     t.integer "status", null: false
@@ -126,7 +128,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_010626) do
   end
 
   create_table "payment_allocations", force: :cascade do |t|
-    t.decimal "amount", null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "JPY", null: false
     t.integer "income_tax_id", null: false
     t.integer "payment_statement_id", null: false
     t.string "reference_type", null: false
@@ -141,7 +144,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_010626) do
   create_table "payment_statements", force: :cascade do |t|
     t.integer "client_id", null: false
     t.integer "user_id", null: false
-    t.decimal "amount", null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "JPY", null: false
     t.date "received_on", null: false
     t.integer "status", null: false
     t.datetime "created_at", null: false
@@ -153,7 +157,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_010626) do
   create_table "projects", force: :cascade do |t|
     t.string "name", null: false
     t.integer "client_id", null: false
-    t.decimal "hourly_rate", null: false
+    t.integer "hourly_rate_cents", default: 0, null: false
+    t.string "hourly_rate_currency", default: "JPY", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_projects_on_client_id"

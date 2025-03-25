@@ -6,7 +6,8 @@ class CreateProjects < ActiveRecord::Migration[8.0]
     create_table :projects do |t|
       t.string :name, null: false
       t.references :client, null: false, foreign_key: true
-      t.decimal :hourly_rate, null: false
+      t.integer :hourly_rate_cents, default: 0, null: false
+      t.string :hourly_rate_currency, default: "JPY", null: false
 
       t.timestamps
 

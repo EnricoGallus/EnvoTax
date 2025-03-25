@@ -48,6 +48,9 @@ gem "thruster", require: false
 # search
 gem "ransack"
 
+# money
+gem "money-rails"
+
 # pdf rendering
 gem "wicked_pdf"
 gem "wkhtmltopdf-binary"

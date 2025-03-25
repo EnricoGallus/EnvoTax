@@ -6,7 +6,8 @@ class CreatePaymentAdjustments < ActiveRecord::Migration[8.0]
     create_table :payment_adjustments do |t|
       t.references :client, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
-      t.decimal :amount, null: false
+      t.integer :amount_cents, default: 0, null: false
+      t.string :amount_currency, default: "JPY", null: false
       t.string :description
       t.date :date, null: false
       t.integer :status, null: false

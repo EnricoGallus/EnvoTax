@@ -11,7 +11,7 @@ RSpec.describe PaymentAdjustment, type: :model do
   end
 
   describe "validations" do
-    it { is_expected.to validate_presence_of(:amount) }
+    it { is_expected.to validate_numericality_of(:amount).is_greater_than_or_equal_to(0) }
     it { is_expected.to validate_presence_of(:date) }
   end
 
@@ -57,7 +57,7 @@ RSpec.describe PaymentAdjustment, type: :model do
     context "when fully allocated" do
       it "updates status to paid" do
         allow(payment_adjustment).to receive(:payment_allocations).and_return([double])
-        allow(payment_adjustment).to receive(:allocated_amount).and_return(1000)
+        allow(payment_adjustment).to receive(:allocated_amount).and_return(Money.new(1000))
 
         payment_adjustment.update_status_from_allocations!
 
@@ -68,7 +68,7 @@ RSpec.describe PaymentAdjustment, type: :model do
     context "when partially allocated" do
       it "updates status to partially_paid" do
         allow(payment_adjustment).to receive(:payment_allocations).and_return([double])
-        allow(payment_adjustment).to receive(:allocated_amount).and_return(500)
+        allow(payment_adjustment).to receive(:allocated_amount).and_return(Money.new(500))
 
         payment_adjustment.update_status_from_allocations!
 

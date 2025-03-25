@@ -17,7 +17,7 @@ class Invoice < ApplicationRecord
   enum :status, { draft: 0, sent: 1, partially_paid: 2, paid: 3, overdue: 4 }
 
   def total_amount
-    time_entries.sum(&:calculate_cost) + expenses.sum(&:amount)
+    time_entries.sum(&:calculate_cost).to_money + expenses.sum(:amount_cents).to_money
   end
 
   def update_status_from_allocations!
@@ -25,7 +25,7 @@ class Invoice < ApplicationRecord
       update(status: :paid)
     elsif allocated_amount.positive?
       update(status: :partially_paid)
-    elsif [:paid, :partially_paid].include?(status)
+    elsif [:paid, :partially_paid].include?(status.to_sym)
       update(status: :sent)
     end
   end

@@ -6,7 +6,7 @@ class PaymentAllocation < ApplicationRecord
   belongs_to :payment_statement
   belongs_to :reference, polymorphic: true
 
-  validates :amount, presence: true
+  monetize :amount_cents, with_currency: :jpy, numericality: { greater_than_or_equal_to: 0 }
 
   after_destroy :update_statuses
   after_save :update_statuses

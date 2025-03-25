@@ -7,7 +7,9 @@ class PaymentAdjustment < ApplicationRecord
   belongs_to :client
   belongs_to :user
 
-  validates :amount, :date, presence: true
+  monetize :amount_cents, with_currency: :jpy, numericality: { greater_than_or_equal_to: 0 }
+
+  validates :date, presence: true
 
   enum :status, { pending: 0, partially_paid: 1, paid: 2, canceled: 3 }
 
@@ -16,7 +18,7 @@ class PaymentAdjustment < ApplicationRecord
   def update_status_from_allocations!
     if payment_allocations.empty?
       update(status: :pending)
-    elsif amount - allocated_amount <= 0
+    elsif amount - allocated_amount <= Money.new(0)
       update(status: :paid)
     else
       update(status: :partially_paid)

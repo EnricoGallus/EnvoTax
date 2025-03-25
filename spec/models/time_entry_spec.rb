@@ -51,7 +51,7 @@ RSpec.describe TimeEntry, type: :model do
       time_entry = build(:time_entry, project: project, time_from: time_from, time_to: time_to)
 
       # 2.5 hours * $100/hour = $250
-      expect(time_entry.calculate_cost).to eq(250)
+      expect(time_entry.calculate_cost).to eq(Money.new(250))
     end
   end
 

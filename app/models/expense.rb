@@ -9,7 +9,8 @@ class Expense < ApplicationRecord
 
   has_one_attached :receipt
 
-  validates :amount, presence: true
+  monetize :amount_cents, with_currency: :jpy, numericality: { greater_than_or_equal_to: 0 }
+
   validates :date, presence: true
 
   def self.ransackable_attributes(_auth_object = nil)

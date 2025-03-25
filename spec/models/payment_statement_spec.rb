@@ -13,7 +13,7 @@ RSpec.describe PaymentStatement, type: :model do
   end
 
   describe "validations" do
-    it { is_expected.to validate_presence_of(:amount) }
+    it { is_expected.to validate_numericality_of(:amount).is_greater_than_or_equal_to(0) }
     it { is_expected.to validate_presence_of(:received_on) }
   end
 
@@ -48,12 +48,12 @@ RSpec.describe PaymentStatement, type: :model do
       create(:payment_allocation, payment_statement: payment_statement, amount: 20_000)
       create(:payment_allocation, payment_statement: payment_statement, amount: 30_000)
 
-      expect(payment_statement.allocated_amount).to eq(50_000)
+      expect(payment_statement.allocated_amount).to eq(Money.new(50_000))
     end
 
     it "returns 0 when there are no allocations" do
       payment_statement = create(:payment_statement)
-      expect(payment_statement.allocated_amount).to eq(0)
+      expect(payment_statement.allocated_amount).to eq(Money.new(0))
     end
   end
 
@@ -63,12 +63,12 @@ RSpec.describe PaymentStatement, type: :model do
       create(:payment_allocation, payment_statement: payment_statement, amount: 30_000)
       create(:payment_allocation, payment_statement: payment_statement, amount: 20_000)
 
-      expect(payment_statement.unallocated_amount).to eq(50_000)
+      expect(payment_statement.unallocated_amount).to eq(Money.new(50_000))
     end
 
     it "returns the full amount when there are no allocations" do
       payment_statement = create(:payment_statement, amount: 100_000)
-      expect(payment_statement.unallocated_amount).to eq(100_000)
+      expect(payment_statement.unallocated_amount).to eq(Money.new(100_000))
     end
   end
 
