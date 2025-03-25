@@ -6,8 +6,8 @@
 #
 
 # TODO: move email and password to credentials
-User.find_or_create_by(email: "test@test.com") do |u|
-  u.password = "hugahuga"
+User.find_or_create_by(email: Rails.application.credentials.dig(:user, :email)) do |u|
+  u.password = Rails.application.credentials.dig(:user, :password)
 end
 
 # TODO: make names translatable
