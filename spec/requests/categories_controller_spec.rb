@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "/categories", type: :request do
+RSpec.describe CategoriesController, type: :request do
   let(:user) { create(:user) }
   let(:valid_attributes) do
     attributes_for(:category)

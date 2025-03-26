@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "/projects", type: :request do
+RSpec.describe ProjectsController, type: :request do
   let(:user) { create(:user) }
   let(:valid_attributes) do
     attributes_for(:project).merge(client_id: create(:client).id)
