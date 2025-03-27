@@ -17,6 +17,7 @@ en:
     payment_adjustments: "Payment Adjustments"
     payment_statements: "Payment Statements"
     income_taxes: "Income Taxes"
+    account: "Account"
 
   table:
     actions: "Actions"
@@ -138,6 +139,12 @@ en:
     successfully_created: "Payment allocations was successfully created."
     successfully_updated: "Payment allocations was successfully updated."
     successfully_destroyed: "Payment allocations was successfully destroyed."
+
+  users:
+    edit:
+      content_title: "Account settings"
+      title: "Account settings"
+    successfully_updated: "Account setting was successfully updated."
 
   select:
     all: "All"

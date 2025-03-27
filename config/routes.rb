@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :bank_accounts
   resources :income_taxes
   resources :payment_statements do
     resources :payment_allocations, except: [:index]
@@ -11,9 +12,14 @@ Rails.application.routes.draw do
   resources :invoices
   resources :time_entries
   resources :expenses
-  devise_for :users, skip: [:registrations]
   resources :clients
   resources :projects
+  resource :account, only: [:edit, :update], controller: "users" do
+    resource :bank_account, only: [:show, :new, :create, :edit, :update, :destroy]
+  end
+
+  devise_for :users, skip: [:registrations]
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

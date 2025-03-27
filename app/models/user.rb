@@ -2,6 +2,9 @@
 
 # model for the user information
 class User < ApplicationRecord
+  include HasBankAccount
+  include Addressable
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :registerable, :trackable and :omniauthable
   devise :database_authenticatable,

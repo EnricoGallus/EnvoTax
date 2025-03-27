@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_23_010626) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_27_121932) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -48,6 +48,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_010626) do
     t.datetime "updated_at", null: false
     t.string "prefecture"
     t.string "building"
+    t.string "addressable_type"
+    t.bigint "addressable_id"
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
+  end
+
+  create_table "bank_accounts", force: :cascade do |t|
+    t.string "account_holder"
+    t.string "bank_name"
+    t.string "branch_code"
+    t.string "account_number"
+    t.string "accountable_type", null: false
+    t.integer "accountable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["accountable_type", "accountable_id"], name: "index_bank_accounts_on_accountable"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -59,12 +74,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_010626) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
-    t.integer "address_id", null: false
     t.integer "hourly_rate_cents", default: 0, null: false
     t.string "hourly_rate_currency", default: "JPY", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_clients_on_address_id"
   end
 
   create_table "cost_types", force: :cascade do |t|
@@ -183,13 +196,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_010626) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "name", default: "", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "clients", "addresses"
   add_foreign_key "expenses", "categories"
   add_foreign_key "expenses", "clients"
   add_foreign_key "expenses", "cost_types"

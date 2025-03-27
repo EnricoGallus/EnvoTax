@@ -2,7 +2,7 @@
 
 # model for storing address information
 class Address < ApplicationRecord
-  has_many :clients, dependent: :nullify
+  belongs_to :addressable, polymorphic: true
 
   enum :country, { japan: 0 }
 

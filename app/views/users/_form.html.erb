@@ -1,0 +1,30 @@
+<%= form_with(model: user, class: "contents", url: account_path) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :name, class: "label" %>
+    <%= form.text_field :name, class: ["input w-full validator", {"border-red-400 focus:outline-red-600": user.errors[:name].any?}] %>
+  </div>
+
+  <%= form.fields_for :address do |address_form| %>
+    <%= render 'address/form', form: address_form, address: user.address %>
+  <% end %>
+
+  <%= form.fields_for :bank_account do |bank_account_form| %>
+    <%= render 'bank_accounts/form', form: bank_account_form, bank_account: user.bank_account %>
+  <% end %>
+
+  <div class="inline">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

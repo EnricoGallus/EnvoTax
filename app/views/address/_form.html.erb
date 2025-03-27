@@ -1,31 +1,29 @@
-<%= form.hidden_field :id %>
-
 <div class="my-5">
-  <%= form.label :postal_code %>
-  <%= form.text_field :postal_code, class: ["input", {"border-red-400 focus:outline-red-600": address.errors[:postal_code].any?}] %>
+  <%= form.label :postal_code, class: "label" %>
+  <%= form.text_field :postal_code, class: ["input w-full", {"border-red-400 focus:outline-red-600": address.errors[:postal_code].any?}] %>
 </div>
 
 <div class="my-5">
-  <%= form.label :prefecture %>
-  <%= form.text_field :prefecture, class: ["input", {"border-red-400 focus:outline-red-600": address.errors[:prefecture].any?}] %>
+  <%= form.label :prefecture, class: "label" %>
+  <%= form.text_field :prefecture, class: ["input w-full", {"border-red-400 focus:outline-red-600": address.errors[:prefecture].any?}] %>
 </div>
 
 <div class="my-5">
-  <%= form.label :city %>
-  <%= form.text_field :city, class: ["input", {"border-red-400 focus:outline-red-600": address.errors[:city].any?}] %>
+  <%= form.label :city, class: "label" %>
+  <%= form.text_field :city, class: ["input w-full", {"border-red-400 focus:outline-red-600": address.errors[:city].any?}] %>
 </div>
 
 <div class="my-5">
-  <%= form.label :street %>
-  <%= form.text_field :street, class: ["input", {"border-red-400 focus:outline-red-600": address.errors[:street].any?}] %>
+  <%= form.label :street, class: "label" %>
+  <%= form.text_field :street, class: ["input w-full", {"border-red-400 focus:outline-red-600": address.errors[:street].any?}] %>
 </div>
 
 <div class="my-5">
-  <%= form.label :building %>
-  <%= form.text_field :building, class: ["input", {"border-red-400 focus:outline-red-600": address.errors[:building].any?}] %>
+  <%= form.label :building, class: "label" %>
+  <%= form.text_field :building, class: ["input w-full", {"border-red-400 focus:outline-red-600": address.errors[:building].any?}] %>
 </div>
 
 <div class="my-5">
-  <%= form.label :country %>
-  <%= form.select :country, Address.countries.keys.map { |country| [country.humanize, country] }, {}, class: ["select", {"border-red-400 focus:outline-red-600": address.errors[:country].any?}] %>
+  <%= form.label :country, class: "label" %>
+  <%= form.select :country, Address.countries.keys.map { |country| [country.humanize, country] }, {}, class: ["select w-full", {"border-red-400 focus:outline-red-600": address.errors[:country].any?}] %>
 </div>
