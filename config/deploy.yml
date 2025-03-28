@@ -1,3 +1,5 @@
+<% require "dotenv"; Dotenv.load(".env.prod") %>
+
 # Name of your application. Used to uniquely configure containers.
 service: EnvoTax
 
@@ -7,8 +9,7 @@ image: envo_tax
 # Deploy to these servers.
 servers:
   web:
-#    - KAMAL_WEB_SERVER_PUBLIC_IP
-    - 52.198.76.244
+    - <%= ENV["KAMAL_WEB_SERVER_PUBLIC_IP"] %>
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -27,7 +28,7 @@ registry:
   # Specify the registry server, if you're not using Docker Hub
   # server: registry.digitalocean.com / ghcr.io / ...
   #server: KAMAL_REGISTRY_SERVER
-  server: 525433558515.dkr.ecr.ap-northeast-1.amazonaws.com
+  server:  <%= ENV["KAMAL_REGISTRY_SERVER"] %>
   username: AWS
   # Always use an access token rather than real password when possible.
   password:
@@ -54,6 +55,7 @@ env:
 
     # Log everything from Rails
     # RAILS_LOG_LEVEL: debug
+    SENTRY_DSN: <%= ENV["SENTRY_DSN"] %>
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
@@ -66,9 +68,8 @@ aliases:
 
 # Use a persistent storage volume for sqlite database files and local Active Storage files.
 # Recommended to change this to a mounted volume path that is backed up off server.
-#TODO: we should definitely do that
-#volumes:
-# - "envo_tax_storage:/rails/storage"
+volumes:
+ - "/dev/xvdbb:/rails/storage"
 
 
 # Bridge fingerprinted assets, like JS and CSS, between versions to avoid
@@ -92,8 +93,8 @@ builder:
 
 # Use a different ssh user than root
 ssh:
- user: ec2-user
- keys: [ "~/.ssh/EnvoTax.pem" ]
+  user: ec2-user
+  keys: [ "~/.ssh/EnvoTax.pem" ]
 
 # Use accessory services (secrets come from .kamal/secrets).
 # accessories:

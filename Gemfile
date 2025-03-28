@@ -55,6 +55,10 @@ gem "money-rails"
 gem "wicked_pdf"
 gem "wkhtmltopdf-binary"
 
+# sentry
+gem "sentry-rails"
+gem "sentry-ruby"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
