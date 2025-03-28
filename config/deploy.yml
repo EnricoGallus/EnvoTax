@@ -55,6 +55,7 @@ env:
 
     # Log everything from Rails
     # RAILS_LOG_LEVEL: debug
+    SENTRY_DSN: <%= ENV["SENTRY_DSN"] %>
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
@@ -67,8 +68,8 @@ aliases:
 
 # Use a persistent storage volume for sqlite database files and local Active Storage files.
 # Recommended to change this to a mounted volume path that is backed up off server.
-volumes:
- - "/mnt/storage:/rails/storage"
+# volumes:
+# - "kamal_rails_storage:/rails/storage"
 
 
 # Bridge fingerprinted assets, like JS and CSS, between versions to avoid
