@@ -58,6 +58,7 @@ gem "wkhtmltopdf-binary"
 # sentry
 gem "sentry-rails"
 gem "sentry-ruby"
+gem "stackprof"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

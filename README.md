@@ -46,5 +46,5 @@ sudo usermod -aG docker ec2-user
 
 - setup aws configure and provide the necessary credentials
 - it needs a user in aws that has the necessary permissions for ecr and ec2
-- adjust the `config.yml` file to match the server settings
+- adjust the `deploy.yml` file to match the server settings
 - when running `kamal deploy` from own machine, ssh port needs to be opened up
