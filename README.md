@@ -44,6 +44,8 @@ sudo usermod -aG docker ec2-user
 
 ### Using kamal
 
+- check for the current profile by executing `aws configure list`
+- export aws profile by executing `export AWS_PROFILE=envotax`
 - setup aws configure and provide the necessary credentials
 - it needs a user in aws that has the necessary permissions for ecr and ec2
 - adjust the `deploy.yml` file to match the server settings
