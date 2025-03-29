@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This migration creates a contracts table with various attributes
 class CreateContracts < ActiveRecord::Migration[8.0]
   def change
     create_table :contracts do |t|

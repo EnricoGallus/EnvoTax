@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Contract model representing a contract with a client
 class Contract < ApplicationRecord
   belongs_to :client
 

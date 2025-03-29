@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This migration converts the addresses table to a polymorphic association
 class ConvertAddressToPolymorphic < ActiveRecord::Migration[8.0]
   def change
     add_column :addresses, :addressable_type, :string

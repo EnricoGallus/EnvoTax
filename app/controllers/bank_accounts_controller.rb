@@ -28,7 +28,7 @@ class BankAccountsController < ApplicationController
     @bank_account = @accountable.build_bank_account(bank_account_params)
 
     if @bank_account.save
-      redirect_to @bank_account, notice: "Bank account was successfully created."
+      redirect_to @bank_account, notice: t("bank_account.successfully_created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class BankAccountsController < ApplicationController
   # PATCH/PUT /bank_accounts/1
   def update
     if @bank_account.update(bank_account_params)
-      redirect_to @bank_account, notice: "Bank account was successfully updated.", status: :see_other
+      redirect_to @bank_account, notice: t("bank_account.successfully_updated"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -46,7 +46,7 @@ class BankAccountsController < ApplicationController
   # DELETE /bank_accounts/1
   def destroy
     @bank_account.destroy!
-    redirect_to bank_accounts_path, notice: "Bank account was successfully destroyed.", status: :see_other
+    redirect_to bank_accounts_path, notice: t("bank_account.successfully_destroyed"), status: :see_other
   end
 
   private

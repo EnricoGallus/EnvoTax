@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# ContractsController manages the CRUD operations for contracts.
 class ContractsController < ApplicationController
   before_action :set_contract, only: %i[show edit update destroy]
 
@@ -25,7 +26,7 @@ class ContractsController < ApplicationController
     @contract = Contract.new(contract_params)
 
     if @contract.save
-      redirect_to @contract, notice: "Contract was successfully created."
+      redirect_to @contract, notice: t("contract.successfully_created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,7 +35,7 @@ class ContractsController < ApplicationController
   # PATCH/PUT /contracts/1
   def update
     if @contract.update(contract_params)
-      redirect_to @contract, notice: "Contract was successfully updated.", status: :see_other
+      redirect_to @contract, notice: t("cost_types.successfully_updated"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,7 +44,7 @@ class ContractsController < ApplicationController
   # DELETE /contracts/1
   def destroy
     @contract.destroy!
-    redirect_to contracts_path, notice: "Contract was successfully destroyed.", status: :see_other
+    redirect_to contracts_path, notice: t("contract.successfully_destroyed"), status: :see_other
   end
 
   private

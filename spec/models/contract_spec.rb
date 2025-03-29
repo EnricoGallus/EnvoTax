@@ -24,20 +24,20 @@ RSpec.describe Contract, type: :model do
     end
 
     describe "custom validations" do
-      context "end_date_after_start_date" do
+      context "when end_date after start_date" do
         it "is valid when end_date is after start_date" do
-          contract = build(:contract, start_date: Date.today, end_date: Date.tomorrow)
+          contract = build(:contract, start_date: Time.zone.today, end_date: Date.tomorrow)
           expect(contract).to be_valid
         end
 
         it "is invalid when end_date is before start_date" do
-          contract = build(:contract, start_date: Date.today, end_date: Date.yesterday)
+          contract = build(:contract, start_date: Time.zone.today, end_date: Date.yesterday)
           expect(contract).not_to be_valid
           expect(contract.errors[:end_date]).to include("must be after the start date")
         end
 
         it "is valid when end_date equals start_date" do
-          contract = build(:contract, start_date: Date.today, end_date: Date.today)
+          contract = build(:contract, start_date: Time.zone.today, end_date: Time.zone.today)
           expect(contract).not_to be_valid
           expect(contract.errors[:end_date]).to include("must be after the start date")
         end
@@ -52,11 +52,11 @@ RSpec.describe Contract, type: :model do
   describe "ransack" do
     it "allows searching on specific attributes" do
       expected_attrs = %w[budget_limit client_id end_date id name start_date status]
-      expect(Contract.ransackable_attributes).to match_array(expected_attrs)
+      expect(described_class.ransackable_attributes).to match_array(expected_attrs)
     end
 
     it "allows searching on specific associations" do
-      expect(Contract.ransackable_associations).to contain_exactly("client")
+      expect(described_class.ransackable_associations).to contain_exactly("client")
     end
   end
 

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This migration creates a bank_accounts table with various attributes
 class CreateBankAccounts < ActiveRecord::Migration[8.0]
   def change
     create_table :bank_accounts do |t|

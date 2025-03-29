@@ -135,12 +135,20 @@ en:
     successfully_updated: "Payment allocations was successfully updated."
     successfully_destroyed: "Payment allocations was successfully destroyed."
 
+  bank_account:
+    successfully_created: "Bank account was successfully created."
+    successfully_updated: "Bank account was successfully updated."
+    successfully_destroyed: "Bank account was successfully destroyed."
+
   contract:
     index:
       content_title: "Contracts"
       title: "Contracts"
       new: "New contract"
       none_found: "No contracts found"
+    successfully_created: "Contract was successfully created."
+    successfully_updated: "Contract was successfully updated."
+    successfully_destroyed: "Contract was successfully destroyed."
 
   users:
     edit:
