@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_27_121932) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_29_120952) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -78,6 +78,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_27_121932) do
     t.string "hourly_rate_currency", default: "JPY", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "contracts", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "client_id", null: false
+    t.integer "budget_limit_cents"
+    t.string "budget_limit_currency", default: "JPY"
+    t.date "start_date", null: false
+    t.date "end_date"
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_contracts_on_client_id"
+    t.index ["name"], name: "index_contracts_on_name", unique: true
   end
 
   create_table "cost_types", force: :cascade do |t|
@@ -204,6 +218,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_27_121932) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "contracts", "clients"
   add_foreign_key "expenses", "categories"
   add_foreign_key "expenses", "clients"
   add_foreign_key "expenses", "cost_types"

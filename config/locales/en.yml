@@ -18,6 +18,7 @@ en:
     payment_statements: "Payment Statements"
     income_taxes: "Income Taxes"
     account: "Account"
+    contracts: "Contracts"
 
   table:
     actions: "Actions"
@@ -140,6 +141,13 @@ en:
     successfully_updated: "Payment allocations was successfully updated."
     successfully_destroyed: "Payment allocations was successfully destroyed."
 
+  contract:
+    index:
+      content_title: "Contracts"
+      title: "Contracts"
+      new: "New contract"
+      none_found: "No contracts found"
+
   users:
     edit:
       content_title: "Account settings"
@@ -186,6 +194,9 @@ en:
       payment_allocation:
         one: "Payment Allocation"
         other: "Payment Allocations"
+      contract:
+        one: "Contract"
+        other: "Contracts"
     attributes:
       client:
         name: "Name"
@@ -237,6 +248,13 @@ en:
         amount: "Amount"
         tax: "Tax"
         payment_statement: "Payment Statement"
+      contract:
+        name: "Name"
+        client: "Client"
+        budget_limit: "Budget Limit"
+        start_date: "Start Date"
+        end_date: "End Date"
+        status: "Status"
     errors:
       models:
         address:

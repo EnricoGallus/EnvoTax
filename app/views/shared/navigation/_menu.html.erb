@@ -1,4 +1,4 @@
-<ul class="menu menu-horizontal px-1">
+<ul class="menu menu-horizontal px-1 z-1">
   <li><%= link_to t('menu.expenses'), expenses_path %></li>
   <li><%= link_to t('menu.time_entry'), time_entries_path %></li>
   <li>
@@ -10,6 +10,7 @@
         <li><%= link_to t('menu.payment_adjustments'), payment_adjustments_path %></li>
         <li><%= link_to t('menu.income_taxes'), income_taxes_path %></li>
         <li><%= link_to t('menu.cost_types'), cost_types_path %></li>
+        <li><%= link_to t('menu.contracts'), contracts_path %></li>
         <li><%= link_to t('menu.categories'), categories_path %></li>
       </ul>
     </details>
