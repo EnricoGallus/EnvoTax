@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :expense do
     amount { Faker::Number.number(digits: 5) }
     cost_type
-    category
+    contract
     description { Faker::Name.name }
     date { Faker::Date.backward(days: 14) }
 

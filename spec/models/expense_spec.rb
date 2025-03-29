@@ -6,10 +6,9 @@ RSpec.describe Expense, type: :model do
   subject(:expense) { build(:expense) }
 
   describe "associations" do
-    it { is_expected.to belong_to(:client).optional }
     it { is_expected.to belong_to(:invoice).optional }
     it { is_expected.to belong_to(:cost_type) }
-    it { is_expected.to belong_to(:category) }
+    it { is_expected.to belong_to(:contract).optional }
     it { is_expected.to have_one_attached(:receipt) }
   end
 

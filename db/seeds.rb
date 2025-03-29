@@ -22,16 +22,6 @@ cost_types.each do |cost_type|
 end
 
 # TODO: make names translatable
-categories = [
-  { name: "Work" },
-  { name: "Sponsorship" }
-]
-
-categories.each do |category|
-  Category.find_or_create_by(name: category[:name])
-end
-
-# TODO: make names translatable
 # TODO: future make tax entries country specific
 IncomeTax.find_or_create_by(tax_type: "Income Tax 5%", tax_rate: 5.00)
 IncomeTax.find_or_create_by(tax_type: "Income Tax 10.21%", tax_rate: 10.21)

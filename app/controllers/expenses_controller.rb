@@ -68,6 +68,6 @@ class ExpensesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def expense_params
-    params.expect(expense: [:client_id, :amount, :cost_type_id, :category_id, :description, :date, :receipt])
+    params.expect(expense: [:contract_id, :amount, :cost_type_id, :description, :date, :receipt])
   end
 end

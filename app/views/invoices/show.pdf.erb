@@ -24,9 +24,9 @@
   </div>
   <div class="col-6">
     <h5 class="fw-bold mb-2">To:</h5>
-    <p><%= @invoice.client.name %></p>
-    <% if @invoice.client.address.present? %>
-      <p><%= @invoice.client.address %></p>
+    <p><%= @invoice.contract.client.name %></p>
+    <% if @invoice.contract.client.address.present? %>
+      <p><%= @invoice.contract.client.address %></p>
     <% end %>
     <%# if @invoice.client.email.present? %>
       <!--<p><%#= @invoice.client.email %></p>-->

@@ -4,9 +4,8 @@
 class Invoice < ApplicationRecord
   include Allocatable
 
-  belongs_to :client
   belongs_to :user
-  belongs_to :category
+  belongs_to :contract
 
   has_many :time_entries, dependent: :nullify
   has_many :expenses, dependent: :nullify
@@ -31,7 +30,11 @@ class Invoice < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[client_id created_at end_date id invoice_date start_date status updated_at user_id]
+    %w[contract_id end_date id invoice_date start_date status user_id]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[contract expenses payment_allocations time_entries user]
   end
 
   private
@@ -39,7 +42,7 @@ class Invoice < ApplicationRecord
   def clear_generated_errors_for_job_save
     return unless validation_context == :job
 
-    errors.delete(:client)
+    errors.delete(:contract)
     errors.delete(:user)
     errors.delete(:status)
   end

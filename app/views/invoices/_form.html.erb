@@ -12,13 +12,8 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :client_id %>
-    <%= form.select :client_id, options_from_collection_for_select(Client.all, :id, :name, selected: invoice.client_id), { prompt: t('select.all') }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:client_id].none?, "border-red-400 focus:outline-red-600": invoice.errors[:client_id].any?}] %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :category_id %>
-    <%= form.collection_select :category_id, Category.all, :id, :name, { include_blank: true }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:category].none?, "border-red-400 focus:outline-red-600": invoice.errors[:category].any?}] %>
+    <%= form.label :contract_id %>
+    <%= form.select :contract_id, options_from_collection_for_select(Contract.all, :id, :name, selected: invoice.contract_id), { prompt: t('select.all') }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:contract].none?, "border-red-400 focus:outline-red-600": invoice.errors[:contract].any?}] %>
   </div>
 
   <div class="my-5">

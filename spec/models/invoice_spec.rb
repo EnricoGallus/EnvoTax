@@ -6,9 +6,8 @@ RSpec.describe Invoice, type: :model do
   subject(:invoice) { build(:invoice) }
 
   describe "associations" do
-    it { is_expected.to belong_to(:client) }
     it { is_expected.to belong_to(:user) }
-    it { is_expected.to belong_to(:category) }
+    it { is_expected.to belong_to(:contract) }
     it { is_expected.to have_many(:time_entries).dependent(:nullify) }
     it { is_expected.to have_many(:expenses).dependent(:nullify) }
   end

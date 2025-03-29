@@ -27,7 +27,7 @@
             <tr id="<%= dom_id contract %>">
               <td><%= contract.name %></td>
               <td><%= contract.client.name %></td>
-              <td><%= contract.budget_limit.format %></td>
+              <td><%= contract.budget_limit&.format %></td>
               <td><%= contract.start_date %></td>
               <td><%= contract.end_date %></td>
               <td><%= contract.status %></td>

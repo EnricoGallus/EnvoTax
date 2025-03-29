@@ -6,7 +6,8 @@ class InvoicesController < ApplicationController
 
   # GET /invoices or /invoices.json
   def index
-    @invoices = Invoice.all
+    @q = Invoice.ransack(params[:q])
+    @invoices = @q.result(distinct: true)
   end
 
   # GET /invoices/1 or /invoices/1.json
@@ -79,6 +80,6 @@ class InvoicesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def invoice_params
-    params.expect(invoice: [:client_id, :start_date, :end_date, :invoice_date, :category_id])
+    params.expect(invoice: [:client_id, :start_date, :end_date, :invoice_date, :contract_id])
   end
 end

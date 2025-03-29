@@ -13,7 +13,6 @@ en:
     invoices: "Invoices"
     finances: "Finances"
     cost_types: "Cost Types"
-    categories: "Categories"
     payment_adjustments: "Payment Adjustments"
     payment_statements: "Payment Statements"
     income_taxes: "Income Taxes"
@@ -50,11 +49,6 @@ en:
     successfully_created: "Client was successfully created."
     successfully_updated: "Client was successfully updated."
     successfully_destroyed: "Client was successfully destroyed."
-
-  categories:
-    successfully_created: "Category was successfully created."
-    successfully_updated: "Category was successfully updated."
-    successfully_destroyed: "Category was successfully destroyed."
 
   cost_types:
     successfully_created: "Cost type was successfully created."
@@ -204,20 +198,18 @@ en:
       project:
         name: "Name"
       expense:
-        client: "Client"
+        contract: "Contract"
         amount: "Amount"
         date: "Date"
         description: "Description"
         cost_type: "Cost Type"
-        category: "Category"
       invoice:
-        client: "Client"
+        contract: "Contract"
         user: "User"
         start_date: "Start Date"
         end_date: "End Date"
         status: "Status"
         invoice_date: "Invoice Date"
-        cost_type: "Cost Type"
       time_entry:
         project: "Project"
         date: "Date"

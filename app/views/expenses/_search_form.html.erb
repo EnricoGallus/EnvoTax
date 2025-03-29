@@ -39,8 +39,8 @@
       </div>
 
       <div class="flex justify-between gap-3">
-        <%= f.label :category_id_eq, "Cost Type", class: "label" %>
-        <%= f.collection_select :category_id_eq, Category.all, :id, :name, {include_blank: true, selected: params[:q]&.[](:category_id_eq)}, class: "select input-bordered" %>
+        <%= f.label :contract_id_eq, t('activerecord.attributes.expense.contract'), class: "label" %>
+        <%= f.collection_select :contract_id_eq, Contract.all, :id, :name, {include_blank: true, selected: params[:q]&.[](:contract_id_eq)}, class: "select input-bordered" %>
       </div>
 
       <div class="col-span-1 md:col-span-2 flex justify-end gap-2">

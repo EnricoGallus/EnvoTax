@@ -5,11 +5,11 @@ class InvoiceProcessorJob < ApplicationJob
   queue_as :default
 
   def perform(params, current_user_id)
-    clients = params[:client_id].present? ? [Client.find(params[:client_id])] : Client.all
+    contracts = params[:contract_id].present? ? [Contract.find(params[:contract_id])] : Contract.all
     user = User.find(current_user_id)
 
-    clients.each do |client|
-      InvoiceCreator.new(client, user, params[:start_date], params[:end_date], params[:category_id]).call
+    contracts.each do |contract|
+      InvoiceCreator.new(contract, user, params[:start_date], params[:end_date], params[:invoice_date]).call
     end
   end
 end

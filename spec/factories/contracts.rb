@@ -2,12 +2,11 @@
 
 FactoryBot.define do
   factory :contract do
-    name { "MyString" }
-    client { nil }
-    budget_limit_cents { 1 }
-    budget_limit_currency { "MyString" }
-    start_date { "2025-03-29" }
-    end_date { "2025-03-29" }
-    status { 1 }
+    name { Faker::Name.unique.name }
+    client
+    budget_limit_cents { Faker::Number.between(from: 50_000, to: 10_000_000) }
+    start_date { Faker::Date.between(from: 1.year.ago, to: Date.today) }
+    end_date { Faker::Date.between(from: 1.day.from_now, to: 1.year.from_now) }
+    status { :active }
   end
 end

@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     resources :payment_allocations, except: [:index]
   end
   resources :payment_adjustments
-  resources :categories
   resources :cost_types
   resources :invoices
   resources :time_entries

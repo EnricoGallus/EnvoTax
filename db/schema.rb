@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_29_120952) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_29_224206) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -65,13 +65,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_120952) do
     t.index ["accountable_type", "accountable_id"], name: "index_bank_accounts_on_accountable"
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_categories_on_name", unique: true
-  end
-
   create_table "clients", force: :cascade do |t|
     t.string "name"
     t.integer "hourly_rate_cents", default: 0, null: false
@@ -102,7 +95,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_120952) do
   end
 
   create_table "expenses", force: :cascade do |t|
-    t.integer "client_id"
     t.integer "amount_cents", default: 0, null: false
     t.string "amount_currency", default: "JPY", null: false
     t.text "description"
@@ -111,9 +103,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_120952) do
     t.datetime "updated_at", null: false
     t.integer "invoice_id"
     t.integer "cost_type_id", null: false
-    t.integer "category_id", null: false
-    t.index ["category_id"], name: "index_expenses_on_category_id"
-    t.index ["client_id"], name: "index_expenses_on_client_id"
+    t.integer "contract_id"
+    t.index ["contract_id"], name: "index_expenses_on_contract_id"
     t.index ["cost_type_id"], name: "index_expenses_on_cost_type_id"
     t.index ["invoice_id"], name: "index_expenses_on_invoice_id"
   end
@@ -127,7 +118,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_120952) do
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.integer "client_id", null: false
     t.integer "user_id", null: false
     t.date "start_date", null: false
     t.date "end_date", null: false
@@ -135,9 +125,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_120952) do
     t.date "invoice_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "category_id", null: false
-    t.index ["category_id"], name: "index_invoices_on_category_id"
-    t.index ["client_id"], name: "index_invoices_on_client_id"
+    t.integer "contract_id", null: false
+    t.index ["contract_id"], name: "index_invoices_on_contract_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
@@ -219,12 +208,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_120952) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "contracts", "clients"
-  add_foreign_key "expenses", "categories"
-  add_foreign_key "expenses", "clients"
+  add_foreign_key "expenses", "contracts"
   add_foreign_key "expenses", "cost_types"
   add_foreign_key "expenses", "invoices"
-  add_foreign_key "invoices", "categories"
-  add_foreign_key "invoices", "clients"
+  add_foreign_key "invoices", "contracts"
   add_foreign_key "invoices", "users"
   add_foreign_key "payment_adjustments", "clients"
   add_foreign_key "payment_adjustments", "users"
