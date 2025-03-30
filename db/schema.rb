@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_29_224206) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_30_000350) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -73,13 +73,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_224206) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contract_instances", force: :cascade do |t|
+    t.integer "contract_id", null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "budget_limit_cents"
+    t.string "budget_limit_currency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contract_id"], name: "index_contract_instances_on_contract_id"
+  end
+
   create_table "contracts", force: :cascade do |t|
     t.string "name", null: false
     t.integer "client_id", null: false
     t.integer "budget_limit_cents"
     t.string "budget_limit_currency", default: "JPY"
-    t.date "start_date", null: false
-    t.date "end_date"
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -103,8 +112,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_224206) do
     t.datetime "updated_at", null: false
     t.integer "invoice_id"
     t.integer "cost_type_id", null: false
-    t.integer "contract_id"
-    t.index ["contract_id"], name: "index_expenses_on_contract_id"
+    t.integer "contract_instance_id"
+    t.index ["contract_instance_id"], name: "index_expenses_on_contract_instance_id"
     t.index ["cost_type_id"], name: "index_expenses_on_cost_type_id"
     t.index ["invoice_id"], name: "index_expenses_on_invoice_id"
   end
@@ -125,8 +134,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_224206) do
     t.date "invoice_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "contract_id", null: false
-    t.index ["contract_id"], name: "index_invoices_on_contract_id"
+    t.integer "contract_instance_id"
+    t.index ["contract_instance_id"], name: "index_invoices_on_contract_instance_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
@@ -207,11 +216,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_224206) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "contract_instances", "contracts"
   add_foreign_key "contracts", "clients"
-  add_foreign_key "expenses", "contracts"
+  add_foreign_key "expenses", "contract_instances"
   add_foreign_key "expenses", "cost_types"
   add_foreign_key "expenses", "invoices"
-  add_foreign_key "invoices", "contracts"
+  add_foreign_key "invoices", "contract_instances"
   add_foreign_key "invoices", "users"
   add_foreign_key "payment_adjustments", "clients"
   add_foreign_key "payment_adjustments", "users"

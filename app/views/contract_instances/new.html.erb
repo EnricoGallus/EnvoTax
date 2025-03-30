@@ -1,0 +1,9 @@
+<% content_for :title, "New contract instance" %>
+
+<div class="md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">New contract instance</h1>
+
+  <%= render "form", contract: @contract, contract_instance: @contract_instance %>
+
+  <%= link_to t('table.back'), contract_path(@contract), class: "btn" %>
+</div>

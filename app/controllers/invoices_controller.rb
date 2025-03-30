@@ -38,7 +38,7 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.valid?(:job)
-        InvoiceProcessorJob.perform_later(invoice_params, current_user.id)
+        InvoiceProcessorJob.perform_later(invoice_params, current_user.id, params[:invoice][:contract_id])
         format.html { redirect_to @invoice, notice: t("invoices.successfully_created") }
         format.json { render :show, status: :created, location: @invoice }
       else
@@ -80,6 +80,6 @@ class InvoicesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def invoice_params
-    params.expect(invoice: [:client_id, :start_date, :end_date, :invoice_date, :contract_id])
+    params.expect(invoice: [:client_id, :start_date, :end_date, :invoice_date])
   end
 end

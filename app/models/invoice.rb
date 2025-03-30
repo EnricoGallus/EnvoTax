@@ -5,7 +5,7 @@ class Invoice < ApplicationRecord
   include Allocatable
 
   belongs_to :user
-  belongs_to :contract
+  belongs_to :contract_instance
 
   has_many :time_entries, dependent: :nullify
   has_many :expenses, dependent: :nullify
@@ -42,7 +42,7 @@ class Invoice < ApplicationRecord
   def clear_generated_errors_for_job_save
     return unless validation_context == :job
 
-    errors.delete(:contract)
+    errors.delete(:contract_instance)
     errors.delete(:user)
     errors.delete(:status)
   end

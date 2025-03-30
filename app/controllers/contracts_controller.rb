@@ -11,7 +11,10 @@ class ContractsController < ApplicationController
   end
 
   # GET /contracts/1
-  def show; end
+  def show
+    @q = @contract.contract_instances.ransack(params[:q])
+    @contract_instances = @q.result(distinct: true)
+  end
 
   # GET /contracts/new
   def new
@@ -56,6 +59,6 @@ class ContractsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def contract_params
-    params.expect(contract: [:name, :client_id, :budget_limit, :start_date, :end_date])
+    params.expect(contract: [:name, :client_id])
   end
 end

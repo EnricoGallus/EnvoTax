@@ -21,21 +21,6 @@
     <%= form.select :client_id, options_from_collection_for_select(Client.all, :id, :name, selected: contract.client_id), { include_blank: true }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": contract.errors[:client].none?, "border-red-400 focus:outline-red-600": contract.errors[:client].any?}] %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :budget_limit %>
-    <%= form.number_field :budget_limit, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": contract.errors[:budget_limit].none?, "border-red-400 focus:outline-red-600": contract.errors[:budget_limit].any?}] %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :start_date %>
-    <%= form.date_field :start_date, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": contract.errors[:start_date].none?, "border-red-400 focus:outline-red-600": contract.errors[:start_date].any?}] %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :end_date %>
-    <%= form.date_field :end_date, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": contract.errors[:end_date].none?, "border-red-400 focus:outline-red-600": contract.errors[:end_date].any?}] %>
-  </div>
-
   <div class="inline">
     <%= form.submit class: "btn btn-primary" %>
   </div>

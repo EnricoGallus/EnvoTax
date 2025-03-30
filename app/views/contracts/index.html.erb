@@ -15,9 +15,6 @@
           <tr>
             <th><%= sort_link(@q, :name, t('activerecord.attributes.contract.name')) %></th>
             <th><%= sort_link(@q, :client_name, t('activerecord.attributes.contract.client')) %></th>
-            <th><%= sort_link(@q, :budget_limit_cents, t('activerecord.attributes.contract.budget_limit')) %></th>
-            <th><%= sort_link(@q, :start_date, t('activerecord.attributes.contract.start_date')) %></th>
-            <th><%= sort_link(@q, :end_date, t('activerecord.attributes.contract.end_date')) %></th>
             <th><%= sort_link(@q, :status, t('activerecord.attributes.contract.status')) %></th>
             <th><%= t('table.actions') %></th>
           </tr>
@@ -27,9 +24,6 @@
             <tr id="<%= dom_id contract %>">
               <td><%= contract.name %></td>
               <td><%= contract.client.name %></td>
-              <td><%= contract.budget_limit&.format %></td>
-              <td><%= contract.start_date %></td>
-              <td><%= contract.end_date %></td>
               <td><%= contract.status %></td>
               <td>
                 <%= link_to t('table.show'), contract, class: "btn btn-primary" %>

@@ -17,7 +17,7 @@
   </div>
   <div>
     <strong class="block font-medium mb-1"><%= t('activerecord.attributes.expense.contract') %>:</strong>
-    <%= expense.contract&.name %>
+    <%= expense.contract_instance&.contract&.name %>
   </div>
   <div>
     <% if expense.receipt.representable? %>

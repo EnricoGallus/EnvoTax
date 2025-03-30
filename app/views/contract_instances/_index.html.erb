@@ -1,0 +1,45 @@
+<div class="w-full">
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl"><%= t('contract_instance.index.title') %></h1>
+    <%= link_to t('contract_instance.index.new'), new_contract_contract_instance_path(contract), class: "btn btn-primary btn-lg" %>
+  </div>
+
+  <div id="contract_instances" class="min-w-full divide-y divide-gray-200 space-y-5">
+    <% if contract_instances.any? %>
+      <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+        <table class="table">
+          <thead>
+          <tr>
+            <th><%= sort_link(@q, :contract_name, t('activerecord.attributes.contract_instance.contract')) %></th>
+            <th><%= sort_link(@q, :start_date, t('activerecord.attributes.contract_instance.start_date')) %></th>
+            <th><%= sort_link(@q, :end_date, t('activerecord.attributes.contract_instance.end_date')) %></th>
+            <th><%= sort_link(@q, :budget_limit, t('activerecord.attributes.contract_instance.budget_limit')) %></th>
+
+            <th><%= t('table.actions') %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% contract_instances.each do |contract_instance| %>
+            <tr id="<%= dom_id contract_instance %>">
+              <td><%= contract_instance.contract.name %></td>
+              <td><%= contract_instance.start_date %></td>
+              <td><%= contract_instance.end_date %></td>
+              <td><%= contract_instance.budget_limit&.format %></td>
+              <td>
+                <%= link_to t('table.show'), contract_contract_instance_path(contract, contract_instance), class: "btn btn-primary" %>
+                <%= link_to t('table.edit'), edit_contract_contract_instance_path(contract, contract_instance), class: "btn btn-primary" %>
+                <div class="sm:inline-block">
+                  <%= button_to t('table.delete'), contract_contract_instance_path(contract, contract_instance), method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <p class="text-center my-10"><%= t('contract_instance.index.none_found') %></p>
+    <% end %>
+  </div>
+</div>

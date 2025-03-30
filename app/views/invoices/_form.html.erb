@@ -13,7 +13,7 @@
 
   <div class="my-5">
     <%= form.label :contract_id %>
-    <%= form.select :contract_id, options_from_collection_for_select(Contract.all, :id, :name, selected: invoice.contract_id), { prompt: t('select.all') }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:contract].none?, "border-red-400 focus:outline-red-600": invoice.errors[:contract].any?}] %>
+    <%= form.select :contract_id, options_from_collection_for_select(Contract.all, :id, :name), { prompt: t('select.all') }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:contract].none?, "border-red-400 focus:outline-red-600": invoice.errors[:contract].any?}] %>
   </div>
 
   <div class="my-5">

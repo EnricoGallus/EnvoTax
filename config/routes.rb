@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :contracts
+  resources :contracts do
+    resources :contract_instances, except: [:index]
+  end
   resources :bank_accounts
   resources :income_taxes
   resources :payment_statements do

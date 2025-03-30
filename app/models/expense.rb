@@ -2,7 +2,7 @@
 
 # represents an expense
 class Expense < ApplicationRecord
-  belongs_to :contract, optional: true
+  belongs_to :contract_instance, optional: true
   belongs_to :invoice, optional: true
   belongs_to :cost_type
 
@@ -13,10 +13,10 @@ class Expense < ApplicationRecord
   validates :date, presence: true
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[amount date description contract_id cost_type_id invoice_id]
+    %w[amount date description contract_instance_id cost_type_id invoice_id]
   end
 
   def self.ransackable_associations(_auth_object = nil)
-    %w[contract invoice cost_type]
+    %w[contract_instance invoice cost_type]
   end
 end

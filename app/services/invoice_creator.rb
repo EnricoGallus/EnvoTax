@@ -24,7 +24,7 @@ class InvoiceCreator
 
   def create_invoice
     Invoice.create!(
-      contract: @contract,
+      contract_instance: @contract.active_instance_by_period(@start_date, @end_date),
       user: @user,
       start_date: @start_date,
       end_date: @end_date,
@@ -41,7 +41,7 @@ class InvoiceCreator
   end
 
   def assign_expenses(invoice)
-    expenses = Expense.where(contract: @contract)
+    expenses = Expense.where(contract_instance: invoice.contract_instance)
                       .where(date: @start_date..@end_date)
                       .where(invoice_id: nil)
     expenses.update_all(invoice_id: invoice.id)

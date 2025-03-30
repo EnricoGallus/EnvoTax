@@ -150,6 +150,15 @@ en:
     successfully_updated: "Contract was successfully updated."
     successfully_destroyed: "Contract was successfully destroyed."
 
+  contract_instance:
+    index:
+      title: "Contract Instances"
+      new: "New contract instance"
+      none_found: "No contracts instances found"
+    successfully_created: "Contract instance was successfully created."
+    successfully_updated: "Contract instance was successfully updated."
+    successfully_destroyed: "Contract instance was successfully destroyed."
+
   users:
     edit:
       content_title: "Account settings"
@@ -199,6 +208,9 @@ en:
       contract:
         one: "Contract"
         other: "Contracts"
+      contract_instance:
+        one: "Contract Instance"
+        other: "Contract Instances"
     attributes:
       client:
         name: "Name"
@@ -206,7 +218,7 @@ en:
       project:
         name: "Name"
       expense:
-        contract: "Contract"
+        contract_instance: "Contract Instance"
         amount: "Amount"
         date: "Date"
         description: "Description"
@@ -251,10 +263,12 @@ en:
       contract:
         name: "Name"
         client: "Client"
-        budget_limit: "Budget Limit"
+        status: "Status"
+      contract_instance:
+        contract: "Contract"
         start_date: "Start Date"
         end_date: "End Date"
-        status: "Status"
+        budget_limit: "Budget Limit"
     errors:
       models:
         address:

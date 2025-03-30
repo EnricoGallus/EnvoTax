@@ -15,18 +15,18 @@
         <table class="table">
           <thead>
           <tr>
-            <th><%= sort_link(@q, :contract_name, t('activerecord.attributes.expense.contract')) %></th>
+            <th><%= sort_link(@q, :contract_instance_name, t('activerecord.attributes.expense.contract_instance')) %></th>
             <th><%= sort_link(@q, :amount_cents, t('activerecord.attributes.expense.amount')) %></th>
             <th><%= sort_link(@q, :cost_type_name, t('activerecord.attributes.expense.cost_type')) %></th>
             <th><%= sort_link(@q, :date, t('activerecord.attributes.expense.date')) %></th>
             <th><%= sort_link(@q, :description, t('activerecord.attributes.expense.description')) %></th>
-            <th><%= t('clients.table.actions') %></th>
+            <th><%= t('table.actions') %></th>
           </tr>
           </thead>
           <tbody>
           <% @expenses.each do |expense| %>
             <tr id="<%= dom_id expense %>">
-              <td><%= expense.contract&.name %></td>
+              <td><%= expense.contract_instance&.name %></td>
               <td><%= expense.amount.format %></td>
               <td><%= expense.cost_type.name %></td>
               <td><%= expense.date %></td>

@@ -13,7 +13,7 @@
         <table class="table">
           <thead>
           <tr>
-            <td><%= sort_link(@q, :contract_name, t('activerecord.attributes.invoice.contract'))  %></td>
+            <td><%= sort_link(@q, :contract_instance_name, t('activerecord.attributes.invoice.contract'))  %></td>
             <td><%= sort_link(@q, :invoice_date, t('activerecord.attributes.invoice.invoice_date')) %></td>
             <td><%= sort_link(@q, :status, t('activerecord.attributes.invoice.status')) %></td>
             <th><%= t('table.actions') %></th>
@@ -22,7 +22,7 @@
           <tbody>
           <% @invoices.each do |invoice| %>
             <tr id="<%= dom_id invoice %>">
-              <td><%= invoice.contract.name %></td>
+              <td><%= invoice.contract_instance.name %></td>
               <td><%= invoice.invoice_date %></td>
               <td><%= invoice.status %></td>
               <td><%= invoice.total_amount.format %></td>

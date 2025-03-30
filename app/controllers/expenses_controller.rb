@@ -3,6 +3,7 @@
 # Controller for Expenses
 class ExpensesController < ApplicationController
   before_action :set_expense, only: %i[show edit update destroy]
+  before_action :set_contract_instance, only: %i[create update]
 
   # GET /expenses or /expenses.json
   def index
@@ -66,8 +67,15 @@ class ExpensesController < ApplicationController
     @expense = Expense.find(params.expect(:id))
   end
 
+  def set_contract_instance
+    return unless params[:expense][:contract_id].present? && params[:expense][:date].present?
+
+    contract = Contract.find(params[:expense][:contract_id])
+    @expense.contract_instance = contract.active_instance_by_date(params[:expense][:date])
+  end
+
   # Only allow a list of trusted parameters through.
   def expense_params
-    params.expect(expense: [:contract_id, :amount, :cost_type_id, :description, :date, :receipt])
+    params.expect(expense: [:amount, :cost_type_id, :description, :date, :receipt, :contract_instance_id])
   end
 end
