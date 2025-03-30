@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # concern for bank account
-module HasBankAccount
+module Accountable
   extend ActiveSupport::Concern
 
   included do

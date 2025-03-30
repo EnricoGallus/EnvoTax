@@ -48,8 +48,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_30_000350) do
     t.datetime "updated_at", null: false
     t.string "prefecture"
     t.string "building"
-    t.string "addressable_type"
-    t.bigint "addressable_id"
+    t.string "addressable_type", null: false
+    t.bigint "addressable_id", null: false
     t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
   end
 

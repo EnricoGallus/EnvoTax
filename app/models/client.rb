@@ -2,7 +2,7 @@
 
 # model for storing client information
 class Client < ApplicationRecord
-  include HasBankAccount
+  include Accountable
   include Addressable
 
   has_many :projects, dependent: :destroy

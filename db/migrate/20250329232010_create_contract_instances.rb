@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This migration creates the contract_instances table with references to the contracts table.
 class CreateContractInstances < ActiveRecord::Migration[8.0]
   def change
     create_table :contract_instances do |t|

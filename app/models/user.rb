@@ -2,7 +2,7 @@
 
 # model for the user information
 class User < ApplicationRecord
-  include HasBankAccount
+  include Accountable
   include Addressable
 
   # Include default devise modules. Others available are:

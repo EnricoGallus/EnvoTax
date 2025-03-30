@@ -275,3 +275,9 @@ en:
           attributes:
             postal_code:
               invalid: "must be in the format XXX-XXXX"
+        bank_account:
+          attributes:
+            account_number:
+              invalid: "must be 7 digits"
+            branch_code:
+              invalid: "must be 3 digits"
