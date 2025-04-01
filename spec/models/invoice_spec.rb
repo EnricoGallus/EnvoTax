@@ -7,7 +7,7 @@ RSpec.describe Invoice, type: :model do
 
   describe "associations" do
     it { is_expected.to belong_to(:user) }
-    it { is_expected.to belong_to(:contract) }
+    it { is_expected.to belong_to(:contract_instance) }
     it { is_expected.to have_many(:time_entries).dependent(:nullify) }
     it { is_expected.to have_many(:expenses).dependent(:nullify) }
   end
@@ -87,26 +87,26 @@ RSpec.describe Invoice, type: :model do
   describe ".ransackable_attributes" do
     it "returns allowed attributes for ransack" do
       expect(described_class.ransackable_attributes).to match_array(
-        %w[client_id created_at end_date id invoice_date start_date status updated_at user_id]
+        %w[contract_id end_date id invoice_date start_date status user_id]
       )
     end
   end
 
   describe "#clear_generated_errors_for_job_save" do
     it "clears specific errors when validation context is job" do
-      invoice = build(:invoice, client: nil, user: nil, status: nil)
+      invoice = build(:invoice, contract_instance: nil, user: nil, status: nil)
       invoice.valid?(:job)
 
-      expect(invoice.errors).not_to include(:client)
+      expect(invoice.errors).not_to include(:contract_instance)
       expect(invoice.errors).not_to include(:user)
       expect(invoice.errors).not_to include(:status)
     end
 
     it "keeps errors for normal validation" do
-      invoice = build(:invoice, client: nil, user: nil, status: nil)
+      invoice = build(:invoice, contract_instance: nil, user: nil, status: nil)
       invoice.valid?
 
-      expect(invoice.errors).to include(:client)
+      expect(invoice.errors).to include(:contract_instance)
       expect(invoice.errors).to include(:user)
       expect(invoice.errors).to include(:status)
     end

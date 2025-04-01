@@ -27,4 +27,10 @@ RSpec.describe Contract, type: :model do
       expect(described_class.ransackable_associations).to contain_exactly("client")
     end
   end
+
+  describe "factory" do
+    it "has a valid factory" do
+      expect(build(:contract)).to be_valid
+    end
+  end
 end

@@ -6,6 +6,6 @@ module Addressable
 
   included do
     has_one :address, as: :addressable, dependent: :destroy
-    accepts_nested_attributes_for :address, allow_destroy: true, reject_if: :all_blank
+    accepts_nested_attributes_for :address, allow_destroy: true
   end
 end

@@ -5,6 +5,8 @@ class User < ApplicationRecord
   include Accountable
   include Addressable
 
+  validates :name, presence: true
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :registerable, :trackable and :omniauthable
   devise :database_authenticatable,

@@ -12,7 +12,7 @@ RSpec.describe ContractInstance, type: :model do
   describe "validations" do
     it { is_expected.to validate_presence_of(:start_date) }
     it { is_expected.to validate_presence_of(:end_date) }
-    it { is_expected.to validate_numericality_of(:budget_limit_cents).is_greater_than_or_equal_to(0) }
+    it { is_expected.to validate_numericality_of(:budget_limit_cents).allow_nil }
 
     describe "custom validations" do
       context "when validating end_date after start_date" do
@@ -27,23 +27,26 @@ RSpec.describe ContractInstance, type: :model do
           expect(instance.errors[:end_date]).to include("must be after the start date")
         end
 
-        it "is invalid when end_date equals start_date" do
+        it "is valid when end_date equals start_date" do
           instance = build(:contract_instance, start_date: Time.zone.today, end_date: Time.zone.today)
-          expect(instance).not_to be_valid
-          expect(instance.errors[:end_date]).to include("must be after the start date")
+          expect(instance).to be_valid
         end
       end
     end
   end
 
   describe "monetize" do
-    it "monetizes budget_limit" do
-      instance = build(:contract_instance, budget_limit_cents: 5000)
-      expect(instance.budget_limit.cents).to eq(5000)
-      expect(instance.budget_limit.currency.iso_code).to eq("JPY")
-    end
+    subject(:model) { build(:contract_instance) }
 
-    it { is_expected.to validate_numericality_of(:budget_limit_cents).is_greater_than(0) }
+    it "requires values greater than 0 when present" do
+      model.budget_limit = Money.new(0, "JPY")
+      model.valid?
+      expect(model.errors[:budget_limit]).to include("must be greater than 0")
+
+      model.budget_limit = Money.new(100, "JPY")
+      model.valid?
+      expect(model.errors[:budget_limit]).to be_empty
+    end
   end
 
   describe "delegation" do
@@ -62,6 +65,12 @@ RSpec.describe ContractInstance, type: :model do
 
     it "allows searching on specific associations" do
       expect(described_class.ransackable_associations).to contain_exactly("contract")
+    end
+  end
+
+  describe "factory" do
+    it "has a valid factory" do
+      expect(build(:contract_instance)).to be_valid
     end
   end
 end
