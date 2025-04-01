@@ -5,12 +5,10 @@ class Contract < ApplicationRecord
   belongs_to :client
 
   has_many :contract_instances, dependent: :destroy
-  has_many :expenses, dependent: :restrict_with_error
-  has_many :invoices, dependent: :restrict_with_error
 
   enum :status, { active: 0, inactive: 1, completed: 2 }
 
-  validates :name, presence: true
+  validates :name, :status, presence: true
 
   def active_instance_by_period(start_date, end_date)
     contract_instances.where("start_date <= ? AND end_date >= ?",

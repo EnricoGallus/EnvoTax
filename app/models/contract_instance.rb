@@ -3,6 +3,8 @@
 # contract instance represents a period within a contract
 class ContractInstance < ApplicationRecord
   belongs_to :contract
+  has_many :expenses, dependent: :restrict_with_error
+  has_many :invoices, dependent: :restrict_with_error
 
   monetize :budget_limit_cents, with_currency: :jpy, allow_nil: true, numericality: { greater_than: 0 }
 

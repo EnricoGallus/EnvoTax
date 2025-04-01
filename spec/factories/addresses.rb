@@ -8,5 +8,15 @@ FactoryBot.define do
     street { Faker::Address.street_name }
     building { Faker::Address.secondary_address }
     country { :japan }
+
+    for_client
+
+    trait :for_client do
+      addressable factory: %i[client]
+    end
+
+    trait :for_user do
+      addressable factory: %i[user]
+    end
   end
 end

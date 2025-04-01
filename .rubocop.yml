@@ -19,8 +19,6 @@ plugins:
   - rubocop-md
   - rubocop-i18n
   - rubocop-factory_bot
-
-require:
   - rubocop-capybara
   - rubocop-rspec_rails
 

@@ -8,7 +8,7 @@ RSpec.describe Expense, type: :model do
   describe "associations" do
     it { is_expected.to belong_to(:invoice).optional }
     it { is_expected.to belong_to(:cost_type) }
-    it { is_expected.to belong_to(:contract).optional }
+    it { is_expected.to belong_to(:contract_instance).optional }
     it { is_expected.to have_one_attached(:receipt) }
   end
 
@@ -19,14 +19,14 @@ RSpec.describe Expense, type: :model do
   end
 
   describe "validations" do
-    it { is_expected.to validate_numericality_of(:amount).is_greater_than_or_equal_to(0) }
+    it { is_expected.to validate_numericality_of(:amount).is_greater_than(0) }
     it { is_expected.to validate_presence_of(:date) }
   end
 
   describe ".ransackable_attributes" do
     it "returns allowed attributes for ransack" do
       expect(described_class.ransackable_attributes).to match_array(
-        %w[amount date description cost_type_id]
+        %w[amount contract_instance_id cost_type_id date description invoice_id]
       )
     end
   end
@@ -34,7 +34,7 @@ RSpec.describe Expense, type: :model do
   describe ".ransackable_associations" do
     it "returns allowed associations for ransack" do
       expect(described_class.ransackable_associations).to match_array(
-        %w[client invoice cost_type]
+        %w[contract_instance invoice cost_type]
       )
     end
   end

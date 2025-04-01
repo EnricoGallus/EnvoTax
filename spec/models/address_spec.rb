@@ -12,20 +12,40 @@ RSpec.describe Address, type: :model do
     it { is_expected.to validate_presence_of(:street) }
     it { is_expected.to validate_presence_of(:country) }
 
+    it { is_expected.to define_enum_for(:country).with_values(japan: 0) }
+
     it "validates format of postal_code for valid entry" do
-      expect(address).to allow_value("123-4567").for(:postal_code)
+      address.postal_code = "123-4567"
+      expect(address).to be_valid
     end
 
     it "validates format of postal_code for invalid entry" do
-      expect(address).not_to allow_value("1234567").for(:postal_code).with_message("must be in the format XXX-XXXX")
+      address.postal_code = "1234567"
+      expect(address).not_to be_valid
+      expect(address.errors[:postal_code]).to include(
+        I18n.t("activerecord.errors.models.address.attributes.postal_code.invalid")
+      )
+    end
+  end
+
+  describe "associations" do
+    it { is_expected.to belong_to(:addressable) }
+  end
+
+  describe "factory" do
+    it "has a valid factory" do
+      expect(build(:address)).to be_valid
+    end
+  end
+
+  describe "country enum" do
+    it "allows setting valid country" do
+      address.country = "japan"
+      expect(address).to be_valid
     end
 
     it "raises an ArgumentError for an invalid country" do
-      expect { address.country = 5 }.to raise_error(ArgumentError, "'5' is not a valid country")
-    end
-
-    it "validates inclusion of country", skip: "throws argument exception instead of failing validation" do
-      expect(address).to validate_inclusion_of(:country).in_array(described_class.countries.keys)
+      expect { address.country = "invalid_country" }.to raise_error(ArgumentError)
     end
   end
 end

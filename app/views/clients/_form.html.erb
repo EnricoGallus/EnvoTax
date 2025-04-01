@@ -25,10 +25,6 @@
     <%= render 'address/form', form: address_form, address: client.address %>
   <% end %>
 
-  <%= form.fields_for :bank_account do |bank_account_form| %>
-    <%= render 'bank_accounts/form', form: bank_account_form, bank_account: client.bank_account %>
-  <% end %>
-
   <div class="inline">
     <%= form.submit class: "btn btn-primary" %>
   </div>

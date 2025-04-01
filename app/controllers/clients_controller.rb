@@ -16,7 +16,6 @@ class ClientsController < ApplicationController
   def new
     @client = Client.new
     @client.build_address
-    @client.build_bank_account
   end
 
   # GET /clients/1/edit
@@ -71,8 +70,6 @@ class ClientsController < ApplicationController
   def client_params
     params.expect(client: [:name, :hourly_rate,
                            { address_attributes:
-                               [:id, :postal_code, :prefecture, :city, :street, :building, :country] },
-                           { bank_account_attributes:
-                               [:id, :account_holder, :bank_name, :branch_code, :account_number] }])
+                               [:id, :postal_code, :prefecture, :city, :street, :building, :country] }])
   end
 end
