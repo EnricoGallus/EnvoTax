@@ -6,9 +6,7 @@
 
   <%%= render @<%= singular_table_name %> %>
 
-  <%%= link_to "Edit this <%= human_name.downcase %>", <%= edit_helper(type: :path) %>, class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%%= link_to "Back to <%= human_name.pluralize.downcase %>", <%= index_helper %>_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <div class="sm:inline-block mt-2 sm:mt-0 sm:ml-2">
-    <%%= button_to "Destroy this <%= human_name.downcase %>", <%= model_resource_name(prefix: "@") %>, method: :delete, class: "w-full rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-  </div>
+  <%%= link_to t('table.edit'), <%= edit_helper(type: :path) %>, class: "btn btn-primary" %>
+  <%%= link_to t('table.back')', <%= index_helper %>_path, class: "btn" %>
+  <%%= button_to t('table.delete'), <%= model_resource_name(prefix: "@") %>, method: :delete, class: "btn btn-error", form_class: "inline-block", data: { turbo_confirm: t('table.delete_confirmation') } %>
 </div>
