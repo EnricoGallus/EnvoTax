@@ -7,7 +7,7 @@ class TimeEntriesController < ApplicationController
   # GET /time_entries or /time_entries.json
   def index
     @q = TimeEntry.ransack(params[:q])
-    @time_entries = @q.result(distinct: true)
+    @time_entries = @q.result(distinct: true).order(time_from: :desc)
   end
 
   # GET /time_entries/new

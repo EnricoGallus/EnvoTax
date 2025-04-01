@@ -284,3 +284,7 @@ en:
               invalid: "must be 7 digits"
             branch_code:
               invalid: "must be 3 digits"
+        time_entry:
+          attributes:
+            time_overlap:
+              invalid: "Overlaps with another time entry on the same day"

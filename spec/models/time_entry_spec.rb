@@ -71,4 +71,85 @@ RSpec.describe TimeEntry, type: :model do
       )
     end
   end
+
+  describe "#no_time_overlap" do
+    let(:project) { create(:project) }
+    let(:date) { Date.current }
+
+    context "when creating a new time entry" do
+      before do
+        create(:time_entry,
+               project: project,
+               date: date,
+               time_from: Time.zone.parse("10:00"),
+               time_to: Time.zone.parse("12:00"))
+      end
+
+      it "prevents overlapping time entries (case 1: entry starts before and ends during)" do
+        overlapping_entry = build(:time_entry,
+                                  project: project,
+                                  date: date,
+                                  time_from: Time.zone.parse("09:00"),
+                                  time_to: Time.zone.parse("11:00"))
+
+        expect(overlapping_entry).not_to be_valid
+        expect(overlapping_entry.errors[:base]).to include(
+          I18n.t("activerecord.errors.models.time_entry.attributes.time_overlap.invalid")
+        )
+      end
+
+      it "prevents overlapping time entries (case 2: entry starts before and ends after)" do
+        overlapping_entry = build(:time_entry,
+                                  project: project,
+                                  date: date,
+                                  time_from: Time.zone.parse("09:00"),
+                                  time_to: Time.zone.parse("13:00"))
+
+        expect(overlapping_entry).not_to be_valid
+      end
+
+      it "prevents overlapping time entries (case 3: entry falls completely within)" do
+        overlapping_entry = build(:time_entry,
+                                  project: project,
+                                  date: date,
+                                  time_from: Time.zone.parse("10:30"),
+                                  time_to: Time.zone.parse("11:30"))
+
+        expect(overlapping_entry).not_to be_valid
+      end
+
+      it "allows adjacent time entries" do
+        non_overlapping_entry = build(:time_entry,
+                                      project: project,
+                                      date: date,
+                                      time_from: Time.zone.parse("12:00"),
+                                      time_to: Time.zone.parse("14:00"))
+
+        expect(non_overlapping_entry).to be_valid
+      end
+
+      it "allows entries on different days" do
+        different_day_entry = build(:time_entry,
+                                    project: project,
+                                    date: date + 1.day,
+                                    time_from: Time.zone.parse("10:00"),
+                                    time_to: Time.zone.parse("12:00"))
+
+        expect(different_day_entry).to be_valid
+      end
+    end
+
+    context "when updating an existing time entry" do
+      it "excludes itself from the overlap check" do
+        entry = create(:time_entry,
+                       project: project,
+                       date: date,
+                       time_from: Time.zone.parse("10:00"),
+                       time_to: Time.zone.parse("12:00"))
+
+        entry.name = "Updated name"
+        expect(entry).to be_valid
+      end
+    end
+  end
 end
