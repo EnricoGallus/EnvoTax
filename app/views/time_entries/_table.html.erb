@@ -7,7 +7,7 @@
       <th><%= sort_link(q, :time_to, t('activerecord.attributes.time_entry.time_to')) %></th>
       <th><%= sort_link(q, :project_name, t('activerecord.attributes.time_entry.project')) %></th>
       <th><%= t('time_entry.index.table.spent_time') %></th>
-      <th><%= t('clients.table.actions') %></th>
+      <th><%= t('table.actions') %></th>
     </tr>
     </thead>
     <tbody>
@@ -19,11 +19,8 @@
         <td><%= time_entry.project&.name %></td>
         <td><%= time_entry.spent_time %></td>
         <td>
-          <%= link_to t('table.show'), time_entry, class: "btn btn-primary" %>
           <%= link_to t('table.edit'), edit_time_entry_path(time_entry), class: "btn btn-primary" %>
-          <div class="inline-block">
-            <%= button_to t('table.delete'), time_entry, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
-          </div>
+          <%= button_to t('table.delete'), time_entry, method: :delete, class: "btn btn-error", form_class: "inline-block", data: { turbo_confirm: t('table.delete_confirmation') } %>
         </td>
       </tr>
     <% end %>

@@ -11,32 +11,36 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :date %>
-    <%= form.date_field :date, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": time_entry.errors[:date].none?, "border-red-400 focus:outline-red-600": time_entry.errors[:date].any?}] %>
-  </div>
+  <div class="grid grid-cols-1 md:grid-cols-5 gap-4 my-5">
 
-  <div class="my-5">
-    <%= form.label :time_from %>
-    <%= form.time_field :time_from, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": time_entry.errors[:time_from].none?, "border-red-400 focus:outline-red-600": time_entry.errors[:time_from].any?}] %>
-  </div>
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name, class: ["input w-full", { "border-gray-400 focus:outline-blue-600": time_entry.errors[:name].none?, "border-red-400 focus:outline-red-600": time_entry.errors[:name].any? }] %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :time_to %>
-    <%= form.time_field :time_to, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": time_entry.errors[:time_to].none?, "border-red-400 focus:outline-red-600": time_entry.errors[:time_to].any?}] %>
-  </div>
+    <div>
+      <%= form.label :project_id %>
+      <%= form.select :project_id, options_from_collection_for_select(Project.all, :id, :name, selected: time_entry.project_id), {}, class: ["select w-full", { "border-gray-400 focus:outline-blue-600": time_entry.errors[:project_id].none?, "border-red-400 focus:outline-red-600": time_entry.errors[:project_id].any? }] %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": time_entry.errors[:name].none?, "border-red-400 focus:outline-red-600": time_entry.errors[:name].any?}] %>
-  </div>
+    <div>
+      <%= form.label :date %>
+      <%= form.date_field :date, class: ["input w-full", { "border-gray-400 focus:outline-blue-600": time_entry.errors[:date].none?, "border-red-400 focus:outline-red-600": time_entry.errors[:date].any? }] %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :project_id %>
-    <%= form.select :project_id, options_from_collection_for_select(Project.all, :id, :name, selected: time_entry.project_id), { }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": time_entry.errors[:project_id].none?, "border-red-400 focus:outline-red-600": time_entry.errors[:project_id].any?}] %>
+    <div>
+      <%= form.label :time_from %>
+      <%= form.time_field :time_from, class: ["input w-full", { "border-gray-400 focus:outline-blue-600": time_entry.errors[:time_from].none?, "border-red-400 focus:outline-red-600": time_entry.errors[:time_from].any? }] %>
+    </div>
+
+    <div>
+      <%= form.label :time_to %>
+      <%= form.time_field :time_to, class: ["input w-full", { "border-gray-400 focus:outline-blue-600": time_entry.errors[:time_to].none?, "border-red-400 focus:outline-red-600": time_entry.errors[:time_to].any? }] %>
+    </div>
+
   </div>
 
   <div class="inline">
-    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

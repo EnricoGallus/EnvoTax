@@ -91,6 +91,9 @@ en:
       new: "New time entry"
       table:
         spent_time: "Spend time"
+    new:
+      content_title: "New time entry"
+      title: "New time entry"
     successfully_created: "Time entry was successfully created."
     successfully_updated: "Time entry was successfully updated."
     successfully_destroyed: "Time entry was successfully destroyed."

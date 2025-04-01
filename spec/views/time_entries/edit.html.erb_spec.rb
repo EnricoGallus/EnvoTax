@@ -3,12 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "time_entries/edit", type: :view do
-  let(:time_entry) do
-    TimeEntry.create!(
-      name: "MyString",
-      project: nil
-    )
-  end
+  let(:time_entry) { create(:time_entry) }
 
   before do
     assign(:time_entry, time_entry)
@@ -20,7 +15,7 @@ RSpec.describe "time_entries/edit", type: :view do
     assert_select "form[action=?][method=?]", time_entry_path(time_entry), "post" do
       assert_select "input[name=?]", "time_entry[name]"
 
-      assert_select "input[name=?]", "time_entry[project_id]"
+      assert_select "input[name=?]", "time_entry[time_from]"
     end
   end
 end

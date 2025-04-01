@@ -2,7 +2,7 @@
 
 # controller for the time entries
 class TimeEntriesController < ApplicationController
-  before_action :set_time_entry, only: %i[show edit update destroy]
+  before_action :set_time_entry, only: %i[edit update destroy]
 
   # GET /time_entries or /time_entries.json
   def index
@@ -10,12 +10,10 @@ class TimeEntriesController < ApplicationController
     @time_entries = @q.result(distinct: true)
   end
 
-  # GET /time_entries/1 or /time_entries/1.json
-  def show; end
-
   # GET /time_entries/new
   def new
     @time_entry = TimeEntry.new
+    @time_entry.date = Time.zone.today
   end
 
   # GET /time_entries/1/edit

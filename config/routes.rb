@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :payment_adjustments
   resources :cost_types
   resources :invoices
-  resources :time_entries
+  resources :time_entries, except: [:show]
   resources :expenses
   resources :clients
   resources :projects
