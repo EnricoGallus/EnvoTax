@@ -33,16 +33,6 @@ RSpec.describe TimeEntry, type: :model do
     end
   end
 
-  describe "#spent_time" do
-    it "formats the spent time as HH:MM" do
-      time_from = Time.zone.now
-      time_to = time_from + 2.hours + 30.minutes
-      time_entry = build(:time_entry, time_from: time_from, time_to: time_to)
-
-      expect(time_entry.spent_time).to eq("02:30")
-    end
-  end
-
   describe "#calculate_cost" do
     it "calculates the cost based on spent time and project hourly rate" do
       client = build(:client, hourly_rate: 100)

@@ -17,7 +17,7 @@
         <td><%= l time_entry.time_from, format: :time_only %></td>
         <td><%= l time_entry.time_to, format: :time_only %></td>
         <td><%= time_entry.project&.name %></td>
-        <td><%= time_entry.spent_time %></td>
+        <td><%= format_spent_time(time_entry.spent_time_in_seconds) %></td>
         <td>
           <%= link_to t('table.edit'), edit_time_entry_path(time_entry), class: "btn btn-primary" %>
           <%= button_to t('table.delete'), time_entry, method: :delete, class: "btn btn-error", form_class: "inline-block", data: { turbo_confirm: t('table.delete_confirmation') } %>

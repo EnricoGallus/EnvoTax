@@ -11,7 +11,10 @@
     <% if @time_entries.any? %>
       <% @time_entries.group_by { |entry| entry.date }.each do |date, entries| %>
         <div class="my-6">
-          <h2 class="text-xl font-semibold mb-2"><%= l date, format: :long %></h2>
+          <div class="grid grid-cols-2 justify-between items-center bg-base-200 p-2">
+            <h2 class="text-xl font-semibold"><%= l date, format: :long %></h2>
+            <p class="text-end">Total: <%= format_spent_time(entries.sum(&:spent_time_in_seconds)) %></p>
+          </div>
           <%= render 'table', q: @q, entries: entries %>
         </div>
       <% end %>

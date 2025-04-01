@@ -15,14 +15,6 @@ class TimeEntry < ApplicationRecord
     time_to - time_from
   end
 
-  def spent_time
-    seconds = spent_time_in_seconds
-    hours = seconds / 1.hour
-    minutes = (seconds % 1.hour) / 1.minute
-
-    format("%<hours>02d:%<minutes>02d", hours: hours, minutes: minutes)
-  end
-
   def calculate_cost
     spent_time_in_seconds / 1.hour * project.client.hourly_rate
   end
