@@ -8,14 +8,12 @@ RSpec.describe "time_entries/index", type: :view do
   let(:tomorrow) { today + 1.day }
 
   before do
-    # Create entries with different dates to test grouping
     assign(:time_entries, [
              create(:time_entry, project: project, date: today, name: "Task 1"),
              create(:time_entry, project: project, date: today, name: "Task 2"),
              create(:time_entry, project: project, date: tomorrow, name: "Task 3")
            ])
 
-    # Mock the ransack object
     assign(:q, TimeEntry.ransack)
   end
 

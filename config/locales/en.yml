@@ -147,8 +147,8 @@ en:
     index:
       content_title: "Contracts"
       title: "Contracts"
-      new: "New contract"
-      none_found: "No contracts found"
+      new: "New Contract"
+      none_found: "No Contracts found"
     successfully_created: "Contract was successfully created."
     successfully_updated: "Contract was successfully updated."
     successfully_destroyed: "Contract was successfully destroyed."
@@ -156,7 +156,7 @@ en:
   contract_instance:
     index:
       title: "Contract Instances"
-      new: "New contract instance"
+      new: "New Contract Instance"
       none_found: "No contracts instances found"
     successfully_created: "Contract instance was successfully created."
     successfully_updated: "Contract instance was successfully updated."

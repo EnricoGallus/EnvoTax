@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   resources :contracts do
-    resources :contract_instances, except: [:index]
+    resources :contract_instances, except: [:index, :show]
   end
   resources :bank_accounts
   resources :income_taxes

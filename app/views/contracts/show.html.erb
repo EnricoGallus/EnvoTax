@@ -1,6 +1,6 @@
 <% content_for :title, "Showing contract" %>
 
-<div class="md:w-2/3 w-full">
+<div class="w-full">
 
   <h1 class="font-bold text-4xl">Showing contract</h1>
 
@@ -8,7 +8,5 @@
 
   <%= link_to t('table.edit'), edit_contract_path(@contract), class: "btn btn-primary" %>
   <%= link_to t('table.back'), contracts_path, class: "btn" %>
-  <div class="sm:inline-block mt-2 sm:mt-0 sm:ml-2">
-    <%= button_to t('table.delete'), @contract, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
-  </div>
+  <%= button_to t('table.delete'), @contract, method: :delete, class: "btn btn-error", form_class: "inline-block", data: { turbo_confirm: t('table.delete_confirmation') } %>
 </div>

@@ -28,9 +28,7 @@
               <td>
                 <%= link_to t('table.show'), contract, class: "btn btn-primary" %>
                 <%= link_to t('table.edit'), edit_contract_path(contract), class: "btn btn-primary" %>
-                <div class="sm:inline-block">
-                  <%= button_to t('table.delete'), contract, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
-                </div>
+                <%= button_to t('table.delete'), contract, method: :delete, class: "btn btn-error", form_class: "inline-block", data: { turbo_confirm: t('table.delete_confirmation') } %>
               </td>
             </tr>
           <% end %>

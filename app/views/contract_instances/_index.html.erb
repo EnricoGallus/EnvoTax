@@ -1,4 +1,4 @@
-<div class="w-full">
+<div class="w-full p-5">
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl"><%= t('contract_instance.index.title') %></h1>
@@ -27,11 +27,8 @@
               <td><%= contract_instance.end_date %></td>
               <td><%= contract_instance.budget_limit&.format %></td>
               <td>
-                <%= link_to t('table.show'), contract_contract_instance_path(contract, contract_instance), class: "btn btn-primary" %>
                 <%= link_to t('table.edit'), edit_contract_contract_instance_path(contract, contract_instance), class: "btn btn-primary" %>
-                <div class="sm:inline-block">
-                  <%= button_to t('table.delete'), contract_contract_instance_path(contract, contract_instance), method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
-                </div>
+                <%= button_to t('table.delete'), contract_contract_instance_path(contract, contract_instance), method: :delete, class: "btn btn-error", form_class: "inline-block", data: { turbo_confirm: t('table.delete_confirmation') } %>
               </td>
             </tr>
           <% end %>
