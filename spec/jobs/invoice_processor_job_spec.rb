@@ -19,7 +19,7 @@ RSpec.describe InvoiceProcessorJob, type: :job do
       allow(Contract).to receive(:find).with(contract.id).and_return(contract)
       allow(InvoiceCreator).to receive(:new).and_return(invoice_creator)
 
-      described_class.perform_now(params, user.id)
+      described_class.perform_now(params, user.id, contract.id)
 
       expect(InvoiceCreator).to have_received(:new)
         .with(contract, user, params[:start_date], params[:end_date], params[:category_id])
@@ -38,7 +38,7 @@ RSpec.describe InvoiceProcessorJob, type: :job do
         expect(invoice_creator).to receive(:call)
       end
 
-      described_class.perform_now(params, user.id)
+      described_class.perform_now(params, user.id, nil)
     end
   end
 end

@@ -3,7 +3,7 @@
 # model for the user information
 class User < ApplicationRecord
   include Accountable
-  include Addressable
+  include AddressableConcern
 
   validates :name, presence: true
 

@@ -2,7 +2,7 @@
 
 # model for storing client information
 class Client < ApplicationRecord
-  include Addressable
+  include AddressableConcern
 
   has_many :projects, dependent: :destroy
 
