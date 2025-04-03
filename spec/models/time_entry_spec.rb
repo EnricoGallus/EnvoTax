@@ -25,9 +25,7 @@ RSpec.describe TimeEntry, type: :model do
 
   describe "#spent_time_in_seconds" do
     it "calculates the time difference in seconds" do
-      time_from = Time.zone.now
-      time_to = time_from + 2.hours + 30.minutes
-      time_entry = build(:time_entry, time_from: time_from, time_to: time_to)
+      time_entry = build(:time_entry, :with_duration, hours: 2, minutes: 30)
 
       expect(time_entry.spent_time_in_seconds).to eq(9000) # 2.5 hours in seconds
     end
@@ -37,9 +35,7 @@ RSpec.describe TimeEntry, type: :model do
     it "calculates the cost based on spent time and project hourly rate" do
       client = build(:client, hourly_rate: 100)
       project = build(:project, client: client)
-      time_from = Time.zone.now
-      time_to = time_from + 2.hours + 30.minutes
-      time_entry = build(:time_entry, project: project, time_from: time_from, time_to: time_to)
+      time_entry = build(:time_entry, :with_duration, hours: 2, minutes: 30, project: project)
 
       # 2.5 hours * $100/hour = $250
       expect(time_entry.calculate_cost).to eq(Money.new(250))

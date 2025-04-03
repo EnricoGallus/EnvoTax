@@ -50,3 +50,7 @@ sudo usermod -aG docker ec2-user
 - it needs a user in aws that has the necessary permissions for ecr and ec2
 - adjust the `deploy.yml` file to match the server settings
 - when running `kamal deploy` from own machine, ssh port needs to be opened up
+
+## Database backup
+- create a backup of the database by executing `kamal server exec cat /mnt/storage/production.sqlite3 > production.sqlite3`
+- but rememeber to remove the first couple of lines, it contains output from the kamal command
