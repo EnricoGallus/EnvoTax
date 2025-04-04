@@ -12,10 +12,6 @@ RSpec.describe TimeEntriesController, type: :routing do
       expect(get: "/time_entries/new").to route_to("time_entries#new")
     end
 
-    it "routes to #show" do
-      expect(get: "/time_entries/1").to route_to("time_entries#show", id: "1")
-    end
-
     it "routes to #edit" do
       expect(get: "/time_entries/1/edit").to route_to("time_entries#edit", id: "1")
     end

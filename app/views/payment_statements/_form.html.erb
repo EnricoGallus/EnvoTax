@@ -1,34 +1,27 @@
 <%= form_with(model: payment_statement, class: "contents") do |form| %>
-  <% if payment_statement.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(payment_statement.errors.count, "error") %> prohibited this payment_statement from being saved:</h2>
+  <%= render partial: "shared/error_messages", locals: { model: payment_statement } %>
 
-      <ul class="list-disc ml-6">
-        <% payment_statement.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 py-5">
+    <div>
+      <%= form.label :client %>
+      <%= form.select :client_id, options_from_collection_for_select(Client.all, :id, :name, selected: payment_statement.client_id), { include_blank: true }, class: ["select w-full", { "border-gray-400 focus:outline-blue-600": payment_statement.errors[:client].none?, "border-red-400 focus:outline-red-600": payment_statement.errors[:client].any? }] %>
     </div>
-  <% end %>
 
-  <div class="my-5">
-    <%= form.label :client_id %>
-    <%= form.select :client_id, options_from_collection_for_select(Client.all, :id, :name, selected: payment_statement.client_id), { include_blank: true }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": payment_statement.errors[:client].none?, "border-red-400 focus:outline-red-600": payment_statement.errors[:client].any?}] %>
-  </div>
+    <div>
+      <%= form.label :amount %>
+      <%= form.text_field :amount, class: ["input w-full", { "border-gray-400 focus:outline-blue-600": payment_statement.errors[:amount].none?, "border-red-400 focus:outline-red-600": payment_statement.errors[:amount].any? }] %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :amount %>
-    <%= form.text_field :amount, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": payment_statement.errors[:amount].none?, "border-red-400 focus:outline-red-600": payment_statement.errors[:amount].any?}] %>
-  </div>
+    <div>
+      <%= form.label :received_on %>
+      <%= form.date_field :received_on, class: ["input w-full", { "border-gray-400 focus:outline-blue-600": payment_statement.errors[:received_on].none?, "border-red-400 focus:outline-red-600": payment_statement.errors[:received_on].any? }] %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :received_on %>
-    <%= form.date_field :received_on, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": payment_statement.errors[:received_on].none?, "border-red-400 focus:outline-red-600": payment_statement.errors[:received_on].any?}] %>
-  </div>
+    <div>
+      <%= form.label :receipt %>
+      <%= form.file_field :receipt, class: ["file-input w-full", { "border-gray-400 focus:outline-blue-600": payment_statement.errors[:receipt].none?, "border-red-400 focus:outline-red-600": payment_statement.errors[:receipt].any? }] %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :receipt %>
-    <%= form.file_field :receipt, class: ["file-input w-full", {"border-gray-400 focus:outline-blue-600": payment_statement.errors[:receipt].none?, "border-red-400 focus:outline-red-600": payment_statement.errors[:receipt].any?}] %>
   </div>
 
   <div class="inline">

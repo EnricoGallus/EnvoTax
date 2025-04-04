@@ -36,7 +36,7 @@ class InvoicesController < ApplicationController
     respond_to do |format|
       if @invoice.valid?(:job)
         InvoiceProcessorJob.perform_later(invoice_params, current_user.id, params[:invoice][:contract_id])
-        format.html { redirect_to @invoice, notice: t("invoices.successfully_created") }
+        format.html { redirect_to invoices_path, notice: t("invoices.successfully_created") }
         format.json { render :show, status: :created, location: @invoice }
       else
         format.html { render :new, status: :unprocessable_entity }
