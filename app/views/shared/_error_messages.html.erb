@@ -1,0 +1,15 @@
+<% if model.errors.any? %>
+  <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+    <h2>
+      <%= t("errors.template.header",
+            count: model.errors.count,
+            model: model.class.model_name.human) %>
+    </h2>
+
+    <ul class="list-disc ml-6">
+      <% model.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

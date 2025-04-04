@@ -15,10 +15,10 @@
         <table class="table">
           <thead>
           <tr>
-            <th><%= sort_link(@q, :contract_instance_name, t('activerecord.attributes.expense.contract_instance')) %></th>
             <th><%= sort_link(@q, :amount_cents, t('activerecord.attributes.expense.amount')) %></th>
             <th><%= sort_link(@q, :cost_type_name, t('activerecord.attributes.expense.cost_type')) %></th>
             <th><%= sort_link(@q, :date, t('activerecord.attributes.expense.date')) %></th>
+            <th><%= sort_link(@q, :contract_instance_name, t('activerecord.attributes.expense.contract_instance')) %></th>
             <th><%= sort_link(@q, :description, t('activerecord.attributes.expense.description')) %></th>
             <th><%= t('table.actions') %></th>
           </tr>
@@ -26,13 +26,13 @@
           <tbody>
           <% @expenses.each do |expense| %>
             <tr id="<%= dom_id expense %>">
-              <td><%= expense.contract_instance&.name %></td>
               <td><%= expense.amount.format %></td>
               <td><%= expense.cost_type.name %></td>
               <td><%= expense.date %></td>
+              <td><%= expense.contract_instance&.name %></td>
               <td><%= expense.description %></td>
               <td>
-                <%= link_to t('table.show'), expense, class: "btn btn-primary" %>
+                <%= link_to t('table.show'), expense, class: "btn btn-accent" %>
                 <%= link_to t('table.edit'), edit_expense_path(expense), class: "btn btn-primary" %>
                 <div class="inline-block">
                   <%= button_to t('table.delete'), expense, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>

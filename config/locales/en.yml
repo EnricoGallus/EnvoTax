@@ -58,6 +58,10 @@ en:
   expense:
     new:
       content_title: "New expense"
+      title: "New expense"
+    edit:
+      content_title: "Edit expense"
+      title: "Edit expense"
     index:
       content_title: "Expenses"
       title: "Expenses"
@@ -178,6 +182,12 @@ en:
   time:
     formats:
       time_only: "%H:%M"
+
+  errors:
+    template:
+      header:
+        one: "1 error prohibited this %{model} from being saved:"
+        other: "%{count} errors prohibited this %{model} from being saved:"
 
   activerecord:
     models:

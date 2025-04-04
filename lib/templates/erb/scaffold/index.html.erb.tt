@@ -26,7 +26,7 @@
             <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
           <% end -%>
             <td>
-                <%%= link_to t('table.show'), <%= model_resource_name(singular_table_name) %>, class: "btn btn-primary" %>
+                <%%= link_to t('table.show'), <%= model_resource_name(singular_table_name) %>, class: "btn btn-accent" %>
                 <%%= link_to t('table.edit'), <%= edit_helper(singular_table_name, type: :path) %>, class: "btn btn-primary" %>
                 <div class="sm:inline-block">
                   <%%= button_to t('table.delete'), <%= model_resource_name(singular_table_name) %>, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
