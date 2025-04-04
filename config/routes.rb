@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
   resources :payment_adjustments
   resources :cost_types
-  resources :invoices
+  resources :invoices, except: [:edit, :update]
   resources :time_entries, except: [:show]
   resources :expenses
   resources :clients

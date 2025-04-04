@@ -2,7 +2,7 @@
 
 # controller for invoice handling
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: %i[show edit update destroy]
+  before_action :set_invoice, only: %i[show destroy]
 
   # GET /invoices or /invoices.json
   def index
@@ -29,9 +29,6 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new
   end
 
-  # GET /invoices/1/edit
-  def edit; end
-
   # POST /invoices or /invoices.json
   def create
     @invoice = Invoice.new(invoice_params)
@@ -43,19 +40,6 @@ class InvoicesController < ApplicationController
         format.json { render :show, status: :created, location: @invoice }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @invoice.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /invoices/1 or /invoices/1.json
-  def update
-    respond_to do |format|
-      if @invoice.update(invoice_params)
-        format.html { redirect_to @invoice, notice: t("invoices.successfully_updated") }
-        format.json { render :show, status: :ok, location: @invoice }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @invoice.errors, status: :unprocessable_entity }
       end
     end

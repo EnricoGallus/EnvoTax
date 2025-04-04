@@ -1,37 +1,30 @@
 <%= form_with(model: invoice, class: "contents") do |form| %>
-  <% if invoice.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+  <%= render partial: "shared/error_messages", locals: { model: invoice } %>
 
-      <ul class="list-disc ml-6">
-        <% invoice.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 py-5">
+    <div>
+      <%= form.label :contract %>
+      <%= form.select :contract_id, options_from_collection_for_select(Contract.all, :id, :name), { prompt: t('select.all') }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:contract].none?, "border-red-400 focus:outline-red-600": invoice.errors[:contract].any?}] %>
     </div>
-  <% end %>
 
-  <div class="my-5">
-    <%= form.label :contract_id %>
-    <%= form.select :contract_id, options_from_collection_for_select(Contract.all, :id, :name), { prompt: t('select.all') }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:contract].none?, "border-red-400 focus:outline-red-600": invoice.errors[:contract].any?}] %>
-  </div>
+    <div>
+      <%= form.label :invoice_date %>
+      <%= form.date_field :invoice_date, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:invoice_date].none?, "border-red-400 focus:outline-red-600": invoice.errors[:invoice_date].any?}] %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :start_date %>
-    <%= form.date_field :start_date, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:start_date].none?, "border-red-400 focus:outline-red-600": invoice.errors[:start_date].any?}] %>
-  </div>
+    <div>
+      <%= form.label :start_date %>
+      <%= form.date_field :start_date, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:start_date].none?, "border-red-400 focus:outline-red-600": invoice.errors[:start_date].any?}] %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :end_date %>
-    <%= form.date_field :end_date, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:end_date].none?, "border-red-400 focus:outline-red-600": invoice.errors[:end_date].any?}] %>
-  </div>
+    <div>
+      <%= form.label :end_date %>
+      <%= form.date_field :end_date, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:end_date].none?, "border-red-400 focus:outline-red-600": invoice.errors[:end_date].any?}] %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :invoice_date %>
-    <%= form.date_field :invoice_date, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:invoice_date].none?, "border-red-400 focus:outline-red-600": invoice.errors[:invoice_date].any?}] %>
   </div>
 
   <div class="inline">
-    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

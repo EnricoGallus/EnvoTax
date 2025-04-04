@@ -100,6 +100,9 @@ en:
       new: "New invoice"
       table:
         sum: "Amount"
+    new:
+      content_title: "New invoice"
+      title: "New invoice"
     successfully_created: "Invoice was successfully created."
     successfully_updated: "Invoice was successfully updated."
     successfully_destroyed: "Invoice was successfully destroyed."
