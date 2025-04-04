@@ -21,7 +21,7 @@ RSpec.describe "projects/index", type: :view do
   def assert_project_details(element, project)
     assert_select element, "td", text: project.name, count: 1
     assert_select element, "td" do
-      assert_select "a.btn.btn-primary", text: /Show/
+      assert_select "a.btn.btn-accent", text: /Show/
       assert_select "a.btn.btn-primary", text: /Edit/
       assert_select "form button.btn.btn-error", text: /Delete/
     end

@@ -158,6 +158,9 @@ en:
       content_title: "Payment Allocations"
       new: "New Payment Allocation"
       none_found: "No payment allocations found"
+    edit:
+      content_title: "Edit Payment Allocation"
+      title: "Edit Payment Allocation"
     successfully_created: "Payment allocations was successfully created."
     successfully_updated: "Payment allocations was successfully updated."
     successfully_destroyed: "Payment allocations was successfully destroyed."
