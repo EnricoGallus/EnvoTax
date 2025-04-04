@@ -3,11 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "cost_types/edit", type: :view do
-  let(:cost_type) do
-    CostType.create!(
-      name: "MyString"
-    )
-  end
+  let(:cost_type) { create(:cost_type) }
 
   before do
     assign(:cost_type, cost_type)

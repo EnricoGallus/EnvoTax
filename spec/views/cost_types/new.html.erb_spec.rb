@@ -4,9 +4,7 @@ require "rails_helper"
 
 RSpec.describe "cost_types/new", type: :view do
   before do
-    assign(:cost_type, CostType.new(
-                         name: "MyString"
-                       ))
+    assign(:cost_type, CostType.new)
   end
 
   it "renders new cost_type form" do

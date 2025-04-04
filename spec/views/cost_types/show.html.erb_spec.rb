@@ -4,9 +4,7 @@ require "rails_helper"
 
 RSpec.describe "cost_types/show", type: :view do
   before do
-    assign(:cost_type, CostType.create!(
-                         name: "Name"
-                       ))
+    assign(:cost_type, create(:cost_type))
   end
 
   it "renders attributes in <p>" do

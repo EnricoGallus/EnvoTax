@@ -22,7 +22,7 @@
             <tr id="<%= dom_id cost_type %>">
               <td><%= cost_type.name %></td>
               <td>
-                <%= link_to t('table.show'), cost_type, class: "btn btn-primary" %>
+                <%= link_to t('table.show'), cost_type, class: "btn btn-accent" %>
                 <%= link_to t('table.edit'), edit_cost_type_path(cost_type), class: "btn btn-primary" %>
                 <div class="sm:inline-block">
                   <%= button_to t('table.delete'), cost_type, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
