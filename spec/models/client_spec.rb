@@ -52,7 +52,7 @@ RSpec.describe Client, type: :model do
 
   describe ".ransackable_attributes" do
     it "returns the allowed attributes for searching" do
-      expect(Client.ransackable_attributes).to match_array(%w[name address hourly_rate])
+      expect(described_class.ransackable_attributes).to match_array(%w[name address hourly_rate])
     end
   end
 end
