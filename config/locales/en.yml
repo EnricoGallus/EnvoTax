@@ -49,11 +49,20 @@ en:
     successfully_destroyed: "Client was successfully destroyed."
 
   projects:
-    header: "Projects"
-    none_found: "No projects found."
-    table:
-      name: "Project Name"
-      actions: "Actions"
+    new:
+      content_title: "New project"
+      title: "New project"
+    edit:
+      content_title: "Edit project"
+      title: "Edit project"
+    index:
+      content_title: "Projects"
+      title: "Projects"
+      none_found: "No projects found."
+      new: "New project"
+    show:
+      content_title: "Showing project"
+      title: "Showing project"
     successfully_created: "Client was successfully created."
     successfully_updated: "Client was successfully updated."
     successfully_destroyed: "Client was successfully destroyed."
@@ -238,6 +247,7 @@ en:
         hourly_rate: "Hourly Rate"
       project:
         name: "Name"
+        client: "Client"
       expense:
         contract_instance: "Contract Instance"
         amount: "Amount"

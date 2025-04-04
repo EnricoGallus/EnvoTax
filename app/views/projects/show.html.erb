@@ -1,8 +1,8 @@
-<% content_for :title, "Showing project" %>
+<% content_for :title, t('projects.show.content_title') %>
 
-<div class="md:w-2/3 w-full">
+<div class="w-full">
 
-  <h1 class="font-bold text-4xl">Showing project</h1>
+  <h1 class="font-bold text-4xl"><%= t('projects.show.title') %></h1>
 
   <%= render @project %>
 
