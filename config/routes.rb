@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :contracts do
     resources :contract_instances, except: [:index, :show]
   end
-  resources :bank_accounts
+
   resources :income_taxes
   resources :payment_statements do
     resources :payment_allocations, except: [:index]
@@ -16,9 +16,7 @@ Rails.application.routes.draw do
   resources :expenses
   resources :clients
   resources :projects
-  resource :account, only: [:edit, :update], controller: "users" do
-    resource :bank_account, only: [:show, :new, :create, :edit, :update, :destroy]
-  end
+  resource :account, only: [:edit, :update], controller: "users"
 
   devise_for :users, skip: [:registrations]
 

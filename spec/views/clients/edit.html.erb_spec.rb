@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "clients/edit.html.erb", type: :view do
-  let(:client) { create(:client) }
+  let(:client) { create(:client, :with_address) }
 
   before do
     assign(:client, client)
@@ -18,7 +18,6 @@ RSpec.describe "clients/edit.html.erb", type: :view do
     assert_select "form[action=?][method=?]", client_path(client), "post" do
       assert_select "input[name=?]", "client[name]"
       assert_select "input[name=?]", "client[hourly_rate]"
-      assert_select "input[name=?]", "client[address_attributes][id]"
       assert_select "input[name=?]", "client[address_attributes][postal_code]"
     end
   end

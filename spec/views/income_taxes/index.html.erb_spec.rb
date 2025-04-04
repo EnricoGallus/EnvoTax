@@ -4,16 +4,8 @@ require "rails_helper"
 
 RSpec.describe "income_taxes/index", type: :view do
   before do
-    assign(:income_taxes, [
-             IncomeTax.create!(
-               tax_type: "Tax Type",
-               tax_rate: "9.99"
-             ),
-             IncomeTax.create!(
-               tax_type: "Tax Type",
-               tax_rate: "9.99"
-             )
-           ])
+    assign(:income_taxes, create_list(:income_tax, 2))
+    assign(:q, IncomeTax.ransack)
   end
 
   it "renders a list of income_taxes" do

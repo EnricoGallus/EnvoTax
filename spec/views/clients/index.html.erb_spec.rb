@@ -20,9 +20,9 @@ RSpec.describe "clients/index.html.erb", type: :view do
 
   def assert_client_details(element, client)
     assert_select element, "td", text: client.name, count: 1
-    assert_select element, "td", text: client.hourly_rate, count: 1
+    assert_select element, "td", text: client.hourly_rate.format, count: 1
     assert_select element, "td" do
-      assert_select "a.btn.btn-primary", text: /Show/
+      assert_select "a.btn.btn-accent", text: /Show/
       assert_select "a.btn.btn-primary", text: /Edit/
       assert_select "form button.btn.btn-error", text: /Delete/
     end
