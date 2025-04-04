@@ -1,9 +1,9 @@
-<% content_for :title, t('clients.title_index') %>
+<% content_for :title, t('clients.index.content_title') %>
 
 <div class="w-full">
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl"><%= t('clients.header') %></h1>
+    <h1 class="font-bold text-4xl"><%= t('clients.index.title') %></h1>
     <%= link_to t('table.new'), new_client_path, class: "btn btn-primary btn-lg" %>
   </div>
 
@@ -24,7 +24,7 @@
               <td><%= client.name %></td>
               <td><%= client.hourly_rate.format %></td>
               <td>
-                <%= link_to t('table.show'), client, class: "btn btn-primary" %>
+                <%= link_to t('table.show'), client, class: "btn btn-accent" %>
                 <%= link_to t('table.edit'), edit_client_path(client), class: "btn btn-primary" %>
                 <div class="inline-block">
                   <%= button_to t('table.delete'), client, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
@@ -36,7 +36,7 @@
         </table>
       </div>
     <% else %>
-      <p class="text-center my-10"><%= t('clients.none_found') %></p>
+      <p class="text-center my-10"><%= t('clients.index.none_found') %></p>
     <% end %>
   </div>
 </div>

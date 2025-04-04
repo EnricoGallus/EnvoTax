@@ -1,16 +1,12 @@
-<% content_for :title, t('clients.title_show') %>
+<% content_for :title, t('clients.show.content_title') %>
 
-<div class="md:w-2/3 w-full">
+<div class="w-full">
 
-  <h1 class="font-bold text-4xl">Showing client</h1>
+  <h1 class="font-bold text-4xl"><%= t('clients.show.title') %></h1>
 
   <%= render @client %>
 
-  <div class="flex justify-between items-center">
-    <%= link_to t('table.edit'), edit_client_path(@client), class: "btn btn-primary" %>
-    <%= link_to t('table.back'), clients_path, class: "btn btn-neutral" %>
-    <div class="inline-block">
-      <%= button_to t('table.delete'), @client, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
-    </div>
-  </div>
+  <%= link_to t('table.edit'), edit_client_path(@client), class: "btn btn-primary" %>
+  <%= link_to t('table.back'), clients_path, class: "btn" %>
+  <%= button_to t('table.delete'), @client, method: :delete, class: "btn btn-error", form_class: "inline-block", data: { turbo_confirm: t('table.delete_confirmation') } %>
 </div>

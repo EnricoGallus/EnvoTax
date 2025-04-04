@@ -31,11 +31,19 @@ en:
 
   clients:
     header: "Clients"
-    title_index: "Clients"
-    title_new: "New Client"
-    title_show: "Showing Client"
-    title_edit: "Editing client"
-    none_found: "No clients found."
+    show:
+      content_title: "Showing Client"
+      title: "Showing Client"
+    new:
+      content_title: "New Client"
+      title: "New Client"
+    index:
+      content_title: "Clients"
+      title: "Clients"
+      none_found: "No clients found."
+    edit:
+      content_title: "Editing client"
+      title: "Editing client"
     successfully_created: "Client was successfully created."
     successfully_updated: "Client was successfully updated."
     successfully_destroyed: "Client was successfully destroyed."
