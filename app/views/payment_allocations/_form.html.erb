@@ -21,12 +21,12 @@
     <%= form.select :income_tax_id, options_from_collection_for_select(IncomeTax.all, :id, :tax_type, selected: payment_allocation.income_tax_id), { include_blank: true }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": payment_allocation.errors[:income_tax].none?, "border-red-400 focus:outline-red-600": payment_allocation.errors[:income_tax].any?}] %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :allocate_to %>
-    <%= form.select :allocate_to, options_for_select(
-      (Invoice.all.map { |invoice| ["Invoice ##{invoice.id}", "Invoice_#{invoice.id}"] } +
-        PaymentAdjustment.all.map { |pa| ["Payment Adjustment ##{pa.id}", "PaymentAdjustment_#{pa.id}"] })
-    ), { prompt: "Select Reference" }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": payment_allocation.errors[:allocate_to].none?, "border-red-400 focus:outline-red-600": payment_allocation.errors[:allocate_to].any?}] %>
+  <div data-controller="reference-selector">
+    <%= label_tag :reference, "Reference" %>
+    <%= select_tag :reference, options_for_select(@references, "#{payment_allocation.reference_type}_#{payment_allocation.reference_id}"), data: { action: "change->reference-selector#update" }, include_blank: true, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": payment_allocation.errors[:reference].none?, "border-red-400 focus:outline-red-600": payment_allocation.errors[:reference].any?}] %>
+
+    <%= form.hidden_field :reference_type, data: { reference_selector_target: "type" } %>
+    <%= form.hidden_field :reference_id, data: { reference_selector_target: "id" } %>
   </div>
 
   <div class="inline">

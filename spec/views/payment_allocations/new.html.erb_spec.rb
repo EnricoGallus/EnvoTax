@@ -8,6 +8,7 @@ RSpec.describe "payment_allocations/new", type: :view do
   before do
     assign(:payment_allocation, PaymentAllocation.new)
     assign(:payment_statement, payment_statement)
+    assign(:references, [])
     render
   end
 

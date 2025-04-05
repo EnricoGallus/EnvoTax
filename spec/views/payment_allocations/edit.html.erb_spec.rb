@@ -8,6 +8,7 @@ RSpec.describe "payment_allocations/edit", type: :view do
   before do
     assign(:payment_allocation, payment_allocation)
     assign(:payment_statement, payment_allocation.payment_statement)
+    assign(:references, [])
     render
   end
 

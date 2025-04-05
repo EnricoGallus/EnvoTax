@@ -52,10 +52,10 @@ RSpec.describe PaymentAllocationsController, type: :request do
         end.to change(PaymentAllocation, :count).by(1)
       end
 
-      it "redirects to the created payment_allocation" do
+      it "redirects to the created payment statement" do
         post payment_statement_payment_allocations_url(payment_statement),
              params: { payment_allocation: valid_attributes }
-        expect(response).to redirect_to(payment_statements_url(payment_statement))
+        expect(response).to redirect_to(payment_statement_path(payment_statement))
       end
     end
 
