@@ -20,15 +20,13 @@
           <tbody>
           <% @payment_statement.payment_allocations.each do |payment_allocation| %>
             <tr id="<%= dom_id payment_allocation %>">
-              <td><%= payment_allocation.amount %></td>
+              <td><%= payment_allocation.amount.format %></td>
               <td><%= payment_allocation.income_tax.tax_type %></td>
               <td><%= payment_allocation.reference %></td>
               <td>
-                <%= link_to t('table.show'), payment_statement_payment_allocation_path(@payment_statement, payment_allocation), class: "btn btn-primary" %>
+                <%= link_to t('table.show'), payment_statement_payment_allocation_path(@payment_statement, payment_allocation), class: "btn btn-accent" %>
                 <%= link_to t('table.edit'), edit_payment_statement_payment_allocation_path(@payment_statement, payment_allocation), class: "btn btn-primary" %>
-                <div class="sm:inline-block">
-                  <%= button_to t('table.delete'), payment_statement_payment_allocation_path(@payment_statement, payment_allocation), method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
-                </div>
+                <%= button_to t('table.delete'), payment_statement_payment_allocation_path(@payment_statement, payment_allocation), method: :delete, class: "btn btn-error", form_class: "inline-block", data: { turbo_confirm: t('table.delete_confirmation') } %>
               </td>
             </tr>
           <% end %>
