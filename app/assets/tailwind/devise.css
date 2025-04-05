@@ -1,0 +1,35 @@
+h2 {
+    @apply text-2xl font-bold;
+}
+
+#error_explanation {
+    @apply bg-red-100 text-red-700 p-4 my-4;
+}
+
+.field {
+    label {
+        @apply label;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+        @apply input w-full;
+    }
+
+    input[type="checkbox"] {
+        @apply checkbox;
+    }
+
+    @apply py-2;
+}
+
+.actions {
+    button,
+    input[type="submit"] {
+        @apply btn btn-primary w-full;
+    }
+
+    @apply py-2;
+}

@@ -1,0 +1,139 @@
+<!-- app/views/invoices/show.pdf.erb -->
+<div class="invoice-header">
+  <div class="row">
+    <div class="col-6">
+      <h1 class="fw-bold">INVOICE</h1>
+      <p class="text-muted">#<%= @invoice.id %></p>
+    </div>
+    <!--<div class="col-6 text-end">
+      <%# if current_user.company_logo.attached? %>
+        <%#= wicked_pdf_image_tag(url_for(current_user.company_logo), style: "height: 80px;") %>
+      <%# end %>
+    </div>-->
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col-6">
+    <!--<h5 class="fw-bold mb-2">From:</h5>
+    <p><%#= current_user.company_name.present? || current_user.email %></p>
+    <%# if current_user.address.present? %>
+      <p><%#= current_user.address %></p>
+    <%# end %>
+    <p><%#= current_user.email %></p>-->
+  </div>
+  <div class="col-6">
+    <h5 class="fw-bold mb-2">To:</h5>
+    <p><%= @invoice.contract_instance.contract.client.name %></p>
+    <% if @invoice.contract_instance.contract.client.address.present? %>
+      <p><%= @invoice.contract_instance.contract.client.address %></p>
+    <% end %>
+    <%# if @invoice.client.email.present? %>
+      <!--<p><%#= @invoice.client.email %></p>-->
+    <%# end %>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col-6">
+    <h5 class="fw-bold mb-2"><%= t('activerecord.attributes.invoice.invoice') %>:</h5>
+    <p>Date: <%= @invoice.invoice_date&.strftime('%B %d, %Y') %></p>
+    <p>Period: <%= @invoice.start_date&.strftime('%b %d') %> - <%= @invoice.end_date&.strftime('%b %d, %Y') %></p>
+    <p>Status: <span class="badge <%= @invoice.status == 'paid' ? 'bg-success' : 'bg-warning' %>"><%= @invoice.status&.upcase %></span></p>
+  </div>
+</div>
+
+<% if @invoice.time_entries.any? %>
+  <div class="mb-4">
+    <h5 class="fw-bold mb-3"><%= t('activerecord.models.time_entry.other') %></h5>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th><%= t('activerecord.attributes.time_entry.date') %></th>
+        <th><%= t('activerecord.attributes.time_entry.project') %></th>
+        <th>From</th>
+        <th>To</th>
+        <th class="text-end">Hours</th>
+        <th class="text-end">Rate</th>
+        <th class="text-end">Amount</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @invoice.time_entries.includes(:project).each do |entry| %>
+        <tr>
+          <td><%= entry.date&.strftime('%b %d, %Y') %></td>
+          <td><%= entry.project.name %></td>
+          <td><%= entry.time_from&.strftime('%H:%M') %></td>
+          <td><%= entry.time_to&.strftime('%H:%M') %></td>
+          <td class="text-end"><%= ((entry.time_to - entry.time_from) / 1.hour).round(2) if entry.time_from && entry.time_to %></td>
+          <td class="text-end"><%= entry.project.client.hourly_rate.format %></td>
+          <td class="text-end"><%= entry.calculate_cost.format %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<% if @invoice.expenses.any? %>
+  <div class="mb-4">
+    <h5 class="fw-bold mb-3"><%= t('activerecord.models.expense.other') %></h5>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th><%= t('activerecord.attributes.expense.date') %></th>
+        <th><%= t('activerecord.attributes.expense.description') %></th>
+        <th class="text-end"><%= t('activerecord.attributes.expense.amount') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @invoice.expenses.each do |expense| %>
+        <tr>
+          <td><%= expense.date&.strftime('%b %d, %Y') %></td>
+          <td><%= expense.description %></td>
+          <td class="text-end"><%= expense.amount.format %></td>
+        </tr>
+        <% if expense.receipt.attached? %>
+          <tr>
+            <td colspan="3" class="text-center">
+              <% begin %>
+                <% blob = expense.receipt.blob %>
+                <% image_data = Base64.strict_encode64(blob.download) %>
+                <img src="data:<%= blob.content_type %>;base64,<%= image_data %>" style="max-height: 200px; max-width: 100%;">
+              <% rescue => e %>
+                <p class="text-danger">Error loading receipt: <%= e.message %></p>
+              <% end %>
+              <%#= image_tag rails_representation_url(expense.receipt, only_path: false) %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<div class="row mb-4">
+  <div class="col-6 offset-6">
+    <table class="table">
+      <tr class="fw-bold">
+        <td>Total:</td>
+        <td class="text-end"><%= @invoice.total_amount.format %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<%# if current_user.bank_name.present? || current_user.bank_iban.present? %>
+  <!--<div class="mt-5 pt-4 border-top text-muted">
+    <h5 class="fw-bold mb-2">Payment Details:</h5>
+    <p>Please transfer the amount to the following account:</p>
+    <%# if current_user.bank_name.present? %>
+      <p>Bank: <%#= current_user.bank_name %></p>
+    <%# end %>
+    <%# if current_user.bank_iban.present? %>
+      <p>IBAN: <%#= current_user.bank_iban %></p>
+    <%# end %>
+    <p>Reference: Invoice #<%#= @invoice.id %></p>
+  </div>-->
+<%# end %>

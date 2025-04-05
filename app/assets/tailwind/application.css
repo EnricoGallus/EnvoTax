@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@import "toastify-js/src/toastify.css";
+@import "./devise.css";
+@plugin "daisyui" {
+    themes: light, dark, corporate --default;
+}

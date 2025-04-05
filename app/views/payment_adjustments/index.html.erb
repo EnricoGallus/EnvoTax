@@ -1,0 +1,48 @@
+<% content_for :title, t('payment_adjustment.index.content_title') %>
+
+<div class="w-full">
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl"><%= t('payment_adjustment.index.title') %></h1>
+    <%= link_to t('payment_adjustment.index.new'), new_payment_adjustment_path, class: "btn btn-primary btn-lg" %>
+  </div>
+
+  <div id="payment_adjustments" class="min-w-full divide-y divide-gray-200 space-y-5">
+    <% if @payment_adjustments.any? %>
+      <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+        <table class="table">
+          <thead>
+          <tr>
+            <th><%= sort_link(@q, :client_name, t('activerecord.attributes.payment_adjustment.client')) %></th>
+            <th><%= sort_link(@q, :amount, t('activerecord.attributes.payment_adjustment.amount')) %></th>
+            <th><%= sort_link(@q, :description, t('activerecord.attributes.payment_adjustment.description')) %></th>
+            <th><%= sort_link(@q, :date, t('activerecord.attributes.payment_adjustment.date')) %></th>
+            <th><%= sort_link(@q, :status, t('activerecord.attributes.payment_adjustment.status')) %></th>
+            <th><%= t('table.actions') %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @payment_adjustments.each do |payment_adjustment| %>
+            <tr id="<%= dom_id payment_adjustment %>">
+              <td><%= payment_adjustment.client.name %></td>
+              <td><%= payment_adjustment.amount.format %></td>
+              <td><%= payment_adjustment.description %></td>
+              <td><%= payment_adjustment.date %></td>
+              <td><%= payment_adjustment.status %></td>
+              <td>
+                <%= link_to t('table.show'), payment_adjustment, class: "btn btn-accent" %>
+                <%= link_to t('table.edit'), edit_payment_adjustment_path(payment_adjustment), class: "btn btn-primary" %>
+                <div class="sm:inline-block">
+                  <%= button_to t('table.delete'), payment_adjustment, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <p class="text-center my-10"><%= t('payment_adjustment.index.none_found') %></p>
+    <% end %>
+  </div>
+</div>

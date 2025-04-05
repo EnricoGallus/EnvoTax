@@ -1,31 +1,342 @@
 # Files in the config/locales directory are used for internationalization and
 # are automatically loaded by Rails. If you want to use locales other than
 # English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  menu:
+    login: "Log in"
+    logout: "Log out"
+    settings: "Settings"
+    client: "Clients"
+    projects: "Projects"
+    expenses: "Expenses"
+    time_entry: "Track Time"
+    invoices: "Invoices"
+    finances: "Finances"
+    cost_types: "Cost Types"
+    payment_adjustments: "Payment Adjustments"
+    payment_statements: "Payment Statements"
+    income_taxes: "Income Taxes"
+    account: "Account"
+    contracts: "Contracts"
+
+  table:
+    actions: "Actions"
+    new: "New"
+    edit: "Edit"
+    show: "Show"
+    back: "Back"
+    delete: "Delete"
+    delete_confirmation: "Are you sure?"
+    preview: "Preview"
+
+  clients:
+    header: "Clients"
+    show:
+      content_title: "Showing Client"
+      title: "Showing Client"
+    new:
+      content_title: "New Client"
+      title: "New Client"
+    index:
+      content_title: "Clients"
+      title: "Clients"
+      none_found: "No clients found."
+    edit:
+      content_title: "Editing client"
+      title: "Editing client"
+    successfully_created: "Client was successfully created."
+    successfully_updated: "Client was successfully updated."
+    successfully_destroyed: "Client was successfully destroyed."
+
+  projects:
+    new:
+      content_title: "New project"
+      title: "New project"
+    edit:
+      content_title: "Edit project"
+      title: "Edit project"
+    index:
+      content_title: "Projects"
+      title: "Projects"
+      none_found: "No projects found."
+      new: "New project"
+    show:
+      content_title: "Showing project"
+      title: "Showing project"
+    successfully_created: "Client was successfully created."
+    successfully_updated: "Client was successfully updated."
+    successfully_destroyed: "Client was successfully destroyed."
+
+  cost_types:
+    successfully_created: "Cost type was successfully created."
+    successfully_updated: "Cost type was successfully updated."
+    successfully_destroyed: "Cost type was successfully destroyed."
+
+  expense:
+    new:
+      content_title: "New expense"
+      title: "New expense"
+    edit:
+      content_title: "Edit expense"
+      title: "Edit expense"
+    index:
+      content_title: "Expenses"
+      title: "Expenses"
+      none_found: "No expenses found."
+      new: "New expense"
+      table:
+          date: "Date"
+          description: "Description"
+          amount: "Amount"
+    successfully_created: "Expense was successfully created."
+    successfully_updated: "Expense was successfully updated."
+    successfully_destroyed: "Expense was successfully destroyed."
+
+  invoices:
+    index:
+      content_title: "Invoices"
+      title: "Invoices"
+      none_found: "No invoices found."
+      new: "New invoice"
+      table:
+        sum: "Amount"
+    new:
+      content_title: "New invoice"
+      title: "New invoice"
+    successfully_created: "Invoice was successfully created."
+    successfully_updated: "Invoice was successfully updated."
+    successfully_destroyed: "Invoice was successfully destroyed."
+
+  time_entry:
+    index:
+      content_title: "Time Entries"
+      title: "Time Entries"
+      none_found: "No time entries found."
+      new: "New time entry"
+      table:
+        spent_time: "Spend time"
+    new:
+      content_title: "New time entry"
+      title: "New time entry"
+    successfully_created: "Time entry was successfully created."
+    successfully_updated: "Time entry was successfully updated."
+    successfully_destroyed: "Time entry was successfully destroyed."
+
+  payment_adjustment:
+    index:
+      title: "Payment Adjustments"
+      content_title: "Payment Adjustments"
+      new: "New Payment Adjustment"
+      none_found: "No payment adjustments found"
+    successfully_created: "Payment adjustment was successfully created."
+    successfully_updated: "Payment adjustment was successfully updated."
+    successfully_destroyed: "Payment adjustment was successfully destroyed."
+
+  payment_statement:
+    index:
+      title: "Payment Statements"
+      content_title: "Payment Statements"
+      new: "New Payment Statement"
+      none_found: "No payment statements found"
+    successfully_created: "Payment statement was successfully created."
+    successfully_updated: "Payment statement was successfully updated."
+    successfully_destroyed: "Payment statement was successfully destroyed."
+
+  income_tax:
+    index:
+      title: "Income Taxes"
+      content_title: "Income Taxes"
+      new: "New Income Tax"
+      none_found: "No income taxes found"
+    successfully_created: "Income tax was successfully created."
+    successfully_updated: "Income tax was successfully updated."
+    successfully_destroyed: "Income tax was successfully destroyed."
+
+  payment_allocation:
+    index:
+      title: "Payment Allocations"
+      content_title: "Payment Allocations"
+      new: "New Payment Allocation"
+      none_found: "No payment allocations found"
+    edit:
+      content_title: "Edit Payment Allocation"
+      title: "Edit Payment Allocation"
+    successfully_created: "Payment allocations was successfully created."
+    successfully_updated: "Payment allocations was successfully updated."
+    successfully_destroyed: "Payment allocations was successfully destroyed."
+
+  bank_account:
+    successfully_created: "Bank account was successfully created."
+    successfully_updated: "Bank account was successfully updated."
+    successfully_destroyed: "Bank account was successfully destroyed."
+
+  contract:
+    index:
+      content_title: "Contracts"
+      title: "Contracts"
+      new: "New Contract"
+      none_found: "No Contracts found"
+    successfully_created: "Contract was successfully created."
+    successfully_updated: "Contract was successfully updated."
+    successfully_destroyed: "Contract was successfully destroyed."
+
+  contract_instance:
+    index:
+      title: "Contract Instances"
+      new: "New Contract Instance"
+      none_found: "No contracts instances found"
+    successfully_created: "Contract instance was successfully created."
+    successfully_updated: "Contract instance was successfully updated."
+    successfully_destroyed: "Contract instance was successfully destroyed."
+
+  users:
+    edit:
+      content_title: "Account settings"
+      title: "Account settings"
+    successfully_updated: "Account setting was successfully updated."
+
+  select:
+    all: "All"
+
+  ransack:
+    search: "Search"
+    reset: "Reset"
+
+  time:
+    formats:
+      time_only: "%H:%M"
+
+  errors:
+    template:
+      header:
+        one: "1 error prohibited this %{model} from being saved:"
+        other: "%{count} errors prohibited this %{model} from being saved:"
+
+  activerecord:
+    models:
+      address:
+        one: "Address"
+        other: "Addresses"
+      bank_account:
+        one: "Bank Account"
+        other: "Bank Accounts"
+      client:
+        one: "Client"
+        other: "Clients"
+      expense:
+        one: "Expense"
+        other: "Expenses"
+      invoice:
+        one: "Invoice"
+        other: "Invoices"
+      time_entry:
+        one: "Time Entry"
+        other: "Time Entries"
+      user:
+        one: "User"
+        other: "Users"
+      payment_adjustment:
+        one: "Payment Adjustment"
+        other: "Payment Adjustments"
+      payment_statement:
+        one: "Payment Statement"
+        other: "Payment Statements"
+      income_tax:
+        one: "Income Tax"
+        other: "Income Taxes"
+      payment_allocation:
+        one: "Payment Allocation"
+        other: "Payment Allocations"
+      contract:
+        one: "Contract"
+        other: "Contracts"
+      contract_instance:
+        one: "Contract Instance"
+        other: "Contract Instances"
+    attributes:
+      address:
+        street: "Street"
+        city: "City"
+        building: "Building"
+        prefecture: "Prefecture"
+        postal_code: "Postal Code"
+        country: "Country"
+      bank_account:
+        account_holder: "Account Holder"
+        account_number: "Account Number"
+        branch_code: "Branch Code"
+        bank_name: "Bank Name"
+      client:
+        name: "Name"
+        hourly_rate: "Hourly Rate"
+      project:
+        name: "Name"
+        client: "Client"
+      expense:
+        contract_instance: "Contract Instance"
+        amount: "Amount"
+        date: "Date"
+        description: "Description"
+        cost_type: "Cost Type"
+      invoice:
+        contract: "Contract"
+        user: "User"
+        start_date: "Start Date"
+        end_date: "End Date"
+        status: "Status"
+        invoice_date: "Invoice Date"
+      time_entry:
+        project: "Project"
+        date: "Date"
+        time_from: "From"
+        time_to: "To"
+        name: "Name"
+        invoice: "Invoice"
+      user:
+        email: "Email"
+        password: "Password"
+      payment_adjustment:
+        client: "Client"
+        user: "User"
+        amount: "Amount"
+        description: "Description"
+        date: "Date"
+        status: "Status"
+      payment_statement:
+        client: "Client"
+        user: "User"
+        amount: "Amount"
+        received_on: "Received On"
+        status: "Status"
+      income_tax:
+        tax_type: "Tax Type"
+        tax_rate: "Tax Rate"
+      payment_allocation:
+        amount: "Amount"
+        tax: "Tax"
+        payment_statement: "Payment Statement"
+      contract:
+        name: "Name"
+        client: "Client"
+        status: "Status"
+      contract_instance:
+        contract: "Contract"
+        start_date: "Start Date"
+        end_date: "End Date"
+        budget_limit: "Budget Limit"
+    errors:
+      models:
+        address:
+          attributes:
+            postal_code:
+              invalid: "must be in the format XXX-XXXX"
+        bank_account:
+          attributes:
+            account_number:
+              invalid: "must be 7 digits"
+            branch_code:
+              invalid: "must be 3 digits"
+        time_entry:
+          attributes:
+            time_overlap:
+              invalid: "Overlaps with another time entry on the same day"

@@ -1,0 +1,26 @@
+<ul class="menu menu-horizontal px-1 z-1">
+  <li><%= link_to t('menu.expenses'), expenses_path %></li>
+  <li><%= link_to t('menu.time_entry'), time_entries_path %></li>
+  <li>
+    <details>
+      <summary><%= t('menu.finances') %></summary>
+      <ul class="bg-base-100 rounded-t-none p-2">
+        <li><%= link_to t('menu.invoices'), invoices_path %></li>
+        <li><%= link_to t('menu.payment_statements'), payment_statements_path %></li>
+        <li><%= link_to t('menu.payment_adjustments'), payment_adjustments_path %></li>
+        <li><%= link_to t('menu.income_taxes'), income_taxes_path %></li>
+        <li><%= link_to t('menu.cost_types'), cost_types_path %></li>
+        <li><%= link_to t('menu.contracts'), contracts_path %></li>
+      </ul>
+    </details>
+  </li>
+  <li>
+    <details>
+      <summary><%= t('menu.settings') %></summary>
+      <ul class="bg-base-100 rounded-t-none p-2">
+        <li><%= link_to t('menu.client'), clients_path %></li>
+        <li><%= link_to t('menu.projects'), projects_path %></li>
+      </ul>
+    </details>
+  </li>
+</ul>

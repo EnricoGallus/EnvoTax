@@ -1,0 +1,12 @@
+<div id="<%= dom_id project %>">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 py-5">
+    <div>
+      <strong class="block font-medium mb-1"><%= t('activerecord.attributes.project.name') %>:</strong>
+      <%= project.name %>
+    </div>
+    <div>
+      <strong class="block font-medium mb-1"><%= t('activerecord.attributes.project.client') %>:</strong>
+      <%= project.client.name %>
+    </div>
+  </div>
+</div>

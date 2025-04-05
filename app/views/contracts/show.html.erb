@@ -1,0 +1,12 @@
+<% content_for :title, "Showing contract" %>
+
+<div class="w-full">
+
+  <h1 class="font-bold text-4xl">Showing contract</h1>
+
+  <%= render @contract %>
+
+  <%= link_to t('table.edit'), edit_contract_path(@contract), class: "btn btn-primary" %>
+  <%= link_to t('table.back'), contracts_path, class: "btn" %>
+  <%= button_to t('table.delete'), @contract, method: :delete, class: "btn btn-error", form_class: "inline-block", data: { turbo_confirm: t('table.delete_confirmation') } %>
+</div>

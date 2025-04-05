@@ -1,0 +1,16 @@
+<div id="<%= dom_id contract %>" class="grid grid-cols-3 gap-4 p-4">
+  <div>
+    <strong class="block font-medium mb-1"><%= t('activerecord.attributes.contract.name') %>:</strong>
+    <%= contract.name %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1"><%= t('activerecord.attributes.contract.client') %>:</strong>
+    <%= contract.client.name %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1"><%= t('activerecord.attributes.contract.status') %>:</strong>
+    <%= contract.status %>
+  </div>
+</div>
+
+<%= render partial: "contract_instances/index", locals: { contract: @contract, contract_instances: @contract_instances} %>

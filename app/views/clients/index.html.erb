@@ -1,0 +1,42 @@
+<% content_for :title, t('clients.index.content_title') %>
+
+<div class="w-full">
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl"><%= t('clients.index.title') %></h1>
+    <%= link_to t('table.new'), new_client_path, class: "btn btn-primary btn-lg" %>
+  </div>
+
+  <div id="clients" class="min-w-full divide-y divide-gray-200 space-y-5">
+    <% if @clients.any? %>
+      <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+        <table class="table">
+          <thead>
+          <tr>
+            <th><%= t('activerecord.attributes.client.name') %></th>
+            <th><%= t('activerecord.attributes.client.hourly_rate') %></th>
+            <th><%= t('table.actions') %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @clients.each do |client| %>
+            <tr id="<%= dom_id client %>">
+              <td><%= client.name %></td>
+              <td><%= client.hourly_rate.format %></td>
+              <td>
+                <%= link_to t('table.show'), client, class: "btn btn-accent" %>
+                <%= link_to t('table.edit'), edit_client_path(client), class: "btn btn-primary" %>
+                <div class="inline-block">
+                  <%= button_to t('table.delete'), client, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <p class="text-center my-10"><%= t('clients.index.none_found') %></p>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<%= form_with(model: [contract, contract_instance], class: "contents") do |form| %>
+  <% if contract_instance.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(contract_instance.errors.count, "error") %> prohibited this contract_instance from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% contract_instance.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :start_date %>
+    <%= form.date_field :start_date, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": contract_instance.errors[:start_date].none?, "border-red-400 focus:outline-red-600": contract_instance.errors[:start_date].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :end_date %>
+    <%= form.date_field :end_date, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": contract_instance.errors[:end_date].none?, "border-red-400 focus:outline-red-600": contract_instance.errors[:end_date].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :budget_limit %>
+    <%= form.number_field :budget_limit, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": contract_instance.errors[:budget_limit].none?, "border-red-400 focus:outline-red-600": contract_instance.errors[:budget_limit].any?}] %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

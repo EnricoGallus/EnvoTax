@@ -1,0 +1,12 @@
+<%% content_for :title, "Showing <%= human_name.downcase %>" %>
+
+<div class="md:w-2/3 w-full">
+
+  <h1 class="font-bold text-4xl">Showing <%= human_name.downcase %></h1>
+
+  <%%= render @<%= singular_table_name %> %>
+
+  <%%= link_to t('table.edit'), <%= edit_helper(type: :path) %>, class: "btn btn-primary" %>
+  <%%= link_to t('table.back')', <%= index_helper %>_path, class: "btn" %>
+  <%%= button_to t('table.delete'), <%= model_resource_name(prefix: "@") %>, method: :delete, class: "btn btn-error", form_class: "inline-block", data: { turbo_confirm: t('table.delete_confirmation') } %>
+</div>

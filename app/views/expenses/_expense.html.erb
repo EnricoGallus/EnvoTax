@@ -1,0 +1,39 @@
+<div id="<%= dom_id expense %>">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-5">
+
+    <div>
+      <strong class="block font-medium"><%= t('activerecord.attributes.expense.amount') %>:</strong>
+      <%= expense.amount.format %>
+    </div>
+
+    <div>
+      <strong class="block font-medium mb-1"><%= t('activerecord.attributes.expense.date') %>:</strong>
+      <%= expense.date %>
+    </div>
+
+    <div>
+      <strong class="block font-medium mb-1"><%= t('activerecord.attributes.expense.cost_type') %>:</strong>
+      <%= expense.cost_type.name %>
+    </div>
+
+    <div>
+      <strong class="block font-medium mb-1"><%= t('activerecord.attributes.expense.description') %>:</strong>
+      <%= expense.description %>
+    </div>
+
+    <div>
+      <strong class="block font-medium mb-1"><%= t('activerecord.attributes.expense.contract_instance') %>:</strong>
+      <%= expense.contract_instance&.name %>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-4">
+    <div>
+      <% if expense.receipt.representable? %>
+        <%= image_tag expense.receipt.representation(resize_to_limit: [100, 100]) %>
+      <% elsif expense.receipt.attached? %>
+        <%= link_to "Download", rails_blob_path(expense.receipt, disposition: "attachment") %>
+      <% end %>
+    </div>
+  </div>
+</div>

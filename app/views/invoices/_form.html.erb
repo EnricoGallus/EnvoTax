@@ -1,0 +1,30 @@
+<%= form_with(model: invoice, class: "contents") do |form| %>
+  <%= render partial: "shared/error_messages", locals: { model: invoice } %>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 py-5">
+    <div>
+      <%= form.label :contract %>
+      <%= form.select :contract_id, options_from_collection_for_select(Contract.all, :id, :name), { prompt: t('select.all') }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:contract].none?, "border-red-400 focus:outline-red-600": invoice.errors[:contract].any?}] %>
+    </div>
+
+    <div>
+      <%= form.label :invoice_date %>
+      <%= form.date_field :invoice_date, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:invoice_date].none?, "border-red-400 focus:outline-red-600": invoice.errors[:invoice_date].any?}] %>
+    </div>
+
+    <div>
+      <%= form.label :start_date %>
+      <%= form.date_field :start_date, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:start_date].none?, "border-red-400 focus:outline-red-600": invoice.errors[:start_date].any?}] %>
+    </div>
+
+    <div>
+      <%= form.label :end_date %>
+      <%= form.date_field :end_date, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": invoice.errors[:end_date].none?, "border-red-400 focus:outline-red-600": invoice.errors[:end_date].any?}] %>
+    </div>
+
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

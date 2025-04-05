@@ -1,13 +1,15 @@
+<% require "dotenv"; Dotenv.load(".env.prod") %>
+
 # Name of your application. Used to uniquely configure containers.
-service: envo_tax
+service: EnvoTax
 
 # Name of the container image.
-image: your-user/envo_tax
+image: envo_tax
 
 # Deploy to these servers.
 servers:
   web:
-    - 192.168.0.1
+    - <%= ENV["KAMAL_WEB_SERVER_PUBLIC_IP"] %>
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -19,14 +21,15 @@ servers:
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
   ssl: true
-  host: app.example.com
+  host: envotax.enchan.org
 
 # Credentials for your image host.
 registry:
   # Specify the registry server, if you're not using Docker Hub
   # server: registry.digitalocean.com / ghcr.io / ...
-  username: your-user
-
+  #server: KAMAL_REGISTRY_SERVER
+  server:  <%= ENV["KAMAL_REGISTRY_SERVER"] %>
+  username: AWS
   # Always use an access token rather than real password when possible.
   password:
     - KAMAL_REGISTRY_PASSWORD
@@ -52,6 +55,7 @@ env:
 
     # Log everything from Rails
     # RAILS_LOG_LEVEL: debug
+    SENTRY_DSN: <%= ENV["SENTRY_DSN"] %>
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
@@ -65,17 +69,17 @@ aliases:
 # Use a persistent storage volume for sqlite database files and local Active Storage files.
 # Recommended to change this to a mounted volume path that is backed up off server.
 volumes:
-  - "envo_tax_storage:/rails/storage"
+  - "/mnt/storage:/rails/storage"
 
 
 # Bridge fingerprinted assets, like JS and CSS, between versions to avoid
 # hitting 404 on in-flight requests. Combines all files from new and old
-# version inside the asset_path.
+# version inside the asset_path
 asset_path: /rails/public/assets
 
 # Configure the image builder.
 builder:
-  arch: amd64
+  arch: arm64
 
   # # Build image via remote server (useful for faster amd64 builds on arm64 computers)
   # remote: ssh://docker@docker-builder-server
@@ -88,8 +92,9 @@ builder:
   #   - RAILS_MASTER_KEY
 
 # Use a different ssh user than root
-# ssh:
-#   user: app
+ssh:
+  user: ec2-user
+  keys: [ "~/.ssh/EnvoTax.pem" ]
 
 # Use accessory services (secrets come from .kamal/secrets).
 # accessories:

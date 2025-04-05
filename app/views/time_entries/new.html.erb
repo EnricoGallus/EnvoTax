@@ -1,0 +1,9 @@
+<% content_for :title, t('time_entry.new.content_title') %>
+
+<div class="w-full">
+  <h1 class="font-bold text-4xl"><%= t('time_entry.new.title') %></h1>
+
+  <%= render "form", time_entry: @time_entry %>
+
+  <%= link_to t('table.back'), time_entries_path, class: "btn" %>
+</div>

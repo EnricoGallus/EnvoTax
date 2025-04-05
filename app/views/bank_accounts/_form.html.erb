@@ -1,0 +1,24 @@
+<fieldset class="fieldset pb-5">
+  <legend class="fieldset-legend"><%= t('activerecord.models.bank_account.one') %></legend>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <%= form.label :account_holder, class: "label" %>
+      <%= form.text_field :account_holder, class: ["input w-full", { "border-gray-400 focus:outline-blue-600": bank_account.errors[:account_holder].none?, "border-red-400 focus:outline-red-600": bank_account.errors[:account_holder].any? }] %>
+    </div>
+
+    <div>
+      <%= form.label :bank_name, class: "label" %>
+      <%= form.text_field :bank_name, class: ["input w-full", { "border-gray-400 focus:outline-blue-600": bank_account.errors[:bank_name].none?, "border-red-400 focus:outline-red-600": bank_account.errors[:bank_name].any? }] %>
+    </div>
+
+    <div>
+      <%= form.label :branch_code, class: "label" %>
+      <%= form.text_field :branch_code, class: ["input w-full", { "border-gray-400 focus:outline-blue-600": bank_account.errors[:branch_code].none?, "border-red-400 focus:outline-red-600": bank_account.errors[:branch_code].any? }] %>
+    </div>
+
+    <div>
+      <%= form.label :account_number, class: "label" %>
+      <%= form.text_field :account_number, class: ["input w-full", { "border-gray-400 focus:outline-blue-600": bank_account.errors[:account_number].none?, "border-red-400 focus:outline-red-600": bank_account.errors[:account_number].any? }] %>
+    </div>
+  </div>
+</fieldset>

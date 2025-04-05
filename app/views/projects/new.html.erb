@@ -1,0 +1,9 @@
+<% content_for :title, t('projects.new.title') %>
+
+<div class="w-full">
+  <h1 class="font-bold text-4xl"><%= t('projects.new.title') %></h1>
+
+  <%= render "form", project: @project %>
+
+  <%= link_to t('table.back'), projects_path, class: "btn" %>
+</div>

@@ -1,0 +1,52 @@
+<div id="expenses_search" class="min-w-full py-5">
+  <fieldset class="fieldset bg-base-200 border border-base-300 p-4 rounded-box">
+    <%= search_form_for @q, url: expenses_path, method: :get, class: "grid grid-cols-1 md:grid-cols-2 gap-2" do |f| %>
+
+      <div>
+        <%= f.label :amount_gteq, "Min Amount", class: "label" %>
+        <%= f.number_field :amount_gteq, class: "input input-bordered w-full" %>
+      </div>
+
+      <div>
+        <%= f.label :amount_lteq, "Max Amount", class: "label" %>
+        <%= f.number_field :amount_lteq, class: "input input-bordered w-full" %>
+      </div>
+
+      <div>
+        <%= f.label :date_gteq, "From Date", class: "label" %>
+        <%= f.date_field :date_gteq, class: "input input-bordered w-full" %>
+      </div>
+
+      <div>
+        <%= f.label :date_lteq, "To Date", class: "label" %>
+        <%= f.date_field :date_lteq, class: "input input-bordered w-full" %>
+      </div>
+
+      <div>
+        <%= f.label :invoice_id_null, "Invoice Status", class: "label" %>
+        <%= f.select :invoice_id_null,
+                     options_for_select([
+                                          [t('select.all'), ""],
+                                          ["Without Invoice", "true"],
+                                          ["With Invoice", "false"]
+                                        ], selected: params[:q]&.[](:invoice_id_null)),
+                     {}, class: "select input-bordered w-full" %>
+      </div>
+
+      <div>
+        <%= f.label :cost_type_id_eq, "Cost Type", class: "label" %>
+        <%= f.collection_select :cost_type_id_eq, CostType.all, :id, :name, {include_blank: true, selected: params[:q]&.[](:cost_type_id_eq)}, class: "select input-bordered w-full" %>
+      </div>
+
+      <div>
+        <%= f.label :contract_instance_id_eq, t('activerecord.attributes.expense.contract_instance'), class: "label" %>
+        <%= f.collection_select :contract_instance_id_eq, ContractInstance.all, :id, :name, {include_blank: true, selected: params[:q]&.[](:contract_instance_id_eq)}, class: "select input-bordered w-full" %>
+      </div>
+
+      <div class="col-span-1 md:col-span-2 flex justify-end gap-2">
+        <%= f.submit t('ransack.search'), class: "btn btn-primary" %>
+        <%= link_to t('ransack.reset'), expenses_path, class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+  </fieldset>
+</div>

@@ -1,0 +1,21 @@
+<%= form_with(model: project, class: "contents") do |form| %>
+  <%= render partial: "shared/error_messages", locals: { model: project } %>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 py-5">
+
+    <div>
+      <%= form.label :name, class: "label" %>
+      <%= form.text_field :name, class: ["input w-full", { "border-gray-400 focus:outline-blue-600": project.errors[:name].none?, "border-red-400 focus:outline-red-600": project.errors[:name].any? }] %>
+    </div>
+
+    <div>
+      <%= form.label :client, class: "label" %>
+      <%= form.select :client_id, options_for_select(@clients), {}, class: ["select w-full", { "border-gray-400 focus:outline-blue-600": project.errors[:client].none?, "border-red-400 focus:outline-red-600": project.errors[:client].any? }] %>
+    </div>
+
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

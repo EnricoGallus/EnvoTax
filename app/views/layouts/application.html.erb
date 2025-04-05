@@ -1,27 +1,75 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= content_for(:title) || "Envo Tax" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<html data-theme="corporate" lang="en">
+<head>
+  <title><%= content_for(:title) || "EnvoTax" %></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= yield :head %>
+  <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+  <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+  <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-  </head>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+  <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+<div class="drawer">
+  <input id="navigation" type="checkbox" class="drawer-toggle"/>
+  <div class="drawer-content flex flex-col">
+    <div class="navbar bg-base-300 w-full">
+      <div class="flex-none lg:hidden">
+        <label for="navigation" aria-label="open sidebar" class="btn btn-square btn-ghost">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="inline-block h-6 w-6 stroke-current">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </label>
+      </div>
+      <div class="navbar-start"><%= link_to "EnvoTax", root_path %></div>
+      <% if user_signed_in? %>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="menu menu-horizontal">
+            <%= render partial: "shared/navigation/menu" %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="navbar-end hidden lg:flex">
+        <ul class="menu menu-horizontal">
+          <%= render partial: "shared/navigation/user_info" %>
+        </ul>
+      </div>
+    </div>
+    <main>
+      <%= render partial: "shared/flash" %>
+      <div class="min-h-screen bg-base-200 pt-6">
+        <div class="flex w-full md:w-4/5 lg:w-3/4 bg-base-100 shadow-lg rounded-lg p-6 mx-auto">
+          <%= yield %>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="drawer-side">
+    <label for="navigation" aria-label="close sidebar" class="drawer-overlay"></label>
+    <ul class="menu bg-base-200 min-h-full w-80 p-4">
+      <%= render partial: "shared/navigation/menu" %>
+      <%= render partial: "shared/navigation/user_info" %>
+    </ul>
+  </div>
+</div>
+</body>
 </html>

@@ -1,0 +1,18 @@
+<div id="<%= dom_id payment_allocation %>" class="w-full sm:w-auto my-5 space-y-5">
+  <div>
+    <strong class="block font-medium mb-1">Amount:</strong>
+    <%= payment_allocation.amount.format %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Tax:</strong>
+    <%= payment_allocation.income_tax.tax_type %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Payment statement:</strong>
+    <%= payment_allocation.payment_statement_id %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Reference:</strong>
+    <%= payment_allocation.reference_id %>
+  </div>
+</div>
