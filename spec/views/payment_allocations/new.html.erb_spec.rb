@@ -18,7 +18,8 @@ RSpec.describe "payment_allocations/new", type: :view do
 
       assert_select "select[name=?]", "payment_allocation[income_tax_id]"
 
-      assert_select "select[name=?]", "payment_allocation[allocate_to]"
+      assert_select "input[name=?]", "payment_allocation[reference_id]"
+      assert_select "input[name=?]", "payment_allocation[reference_type]"
     end
   end
 end
