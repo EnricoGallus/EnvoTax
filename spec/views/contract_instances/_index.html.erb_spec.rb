@@ -27,7 +27,7 @@ RSpec.describe "contract_instances/_index", type: :view do
     end
 
     it "renders the contract instances table with headers" do
-      expect(rendered).to have_css("table.table")
+      expect(rendered).to have_table(class: "table")
       expect(rendered).to have_css("th", text: I18n.t("activerecord.attributes.contract_instance.contract"))
       expect(rendered).to have_css("th", text: I18n.t("activerecord.attributes.contract_instance.start_date"))
       expect(rendered).to have_css("th", text: I18n.t("activerecord.attributes.contract_instance.end_date"))
@@ -56,7 +56,7 @@ RSpec.describe "contract_instances/_index", type: :view do
     end
 
     it "does not render the table" do
-      expect(rendered).to have_no_css("table.table")
+      expect(rendered).to have_no_table(class: "table")
     end
   end
 end

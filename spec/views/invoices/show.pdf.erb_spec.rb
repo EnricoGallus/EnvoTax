@@ -23,7 +23,10 @@ RSpec.describe "invoices/show", type: :view do
 
   it "renders the invoice details", skip: "under construction" do
     expect(rendered).to have_content("Date: #{invoice.created_at.strftime('%B %d, %Y')}")
-    expect(rendered).to have_content("Period: #{invoice.start_date.strftime('%B %d, %Y')} - #{invoice.end_date.strftime('%B %d, %Y')}")
+    start_date = invoice.start_date.strftime("%B %d, %Y")
+    end_date = invoice.end_date.strftime("%B %d, %Y")
+    period_text = "Period: #{start_date} - #{end_date}"
+    expect(rendered).to have_content(period_text)
     expect(rendered).to have_content("Status: #{invoice.status.humanize}")
   end
 
