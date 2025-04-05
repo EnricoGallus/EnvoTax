@@ -1,15 +1,11 @@
 <div id="<%= dom_id payment_statement %>" class="w-full sm:w-auto my-5 space-y-5">
   <div>
     <strong class="block font-medium mb-1">Client:</strong>
-    <%= payment_statement.client_id %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= payment_statement.user_id %>
+    <%= payment_statement.client.name %>
   </div>
   <div>
     <strong class="block font-medium mb-1">Amount:</strong>
-    <%= payment_statement.amount %>
+    <%= payment_statement.amount.format %>
   </div>
   <div>
     <strong class="block font-medium mb-1">Received on:</strong>
