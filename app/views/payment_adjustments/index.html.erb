@@ -25,12 +25,12 @@
           <% @payment_adjustments.each do |payment_adjustment| %>
             <tr id="<%= dom_id payment_adjustment %>">
               <td><%= payment_adjustment.client.name %></td>
-              <td><%= payment_adjustment.amount %></td>
+              <td><%= payment_adjustment.amount.format %></td>
               <td><%= payment_adjustment.description %></td>
               <td><%= payment_adjustment.date %></td>
               <td><%= payment_adjustment.status %></td>
               <td>
-                <%= link_to t('table.show'), payment_adjustment, class: "btn btn-primary" %>
+                <%= link_to t('table.show'), payment_adjustment, class: "btn btn-accent" %>
                 <%= link_to t('table.edit'), edit_payment_adjustment_path(payment_adjustment), class: "btn btn-primary" %>
                 <div class="sm:inline-block">
                   <%= button_to t('table.delete'), payment_adjustment, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
