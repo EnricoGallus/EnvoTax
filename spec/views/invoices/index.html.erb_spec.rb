@@ -1,0 +1,31 @@
+# frozen_string_literal: true
+
+require "rails_helper"
+
+RSpec.describe "invoices/index", type: :view do
+  let(:invoices) { create_list(:invoice, 2) }
+
+  before do
+    assign(:invoices, invoices)
+    assign(:q, Invoice.ransack)
+    render
+  end
+
+  it "renders a list of invoices" do
+    assert_select "#invoices" do
+      assert_select "table tbody tr[id]", count: 2 do |elements|
+        elements.each_with_index { |element, index| assert_details(element, invoices[index]) }
+      end
+    end
+  end
+
+  private
+
+  def assert_details(element, invoices)
+    assert_select element, "td", text: invoices.contract_instance.name, count: 1
+    assert_select element, "td" do
+      assert_select "a.btn.btn-accent", text: /Preview/
+      assert_select "form button.btn.btn-error", text: /Delete/
+    end
+  end
+end

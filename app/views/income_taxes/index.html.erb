@@ -24,7 +24,7 @@
               <td><%= income_tax.tax_type %></td>
               <td><%= income_tax.tax_rate %></td>
               <td>
-                <%= link_to t('table.show'), income_tax, class: "btn btn-primary" %>
+                <%= link_to t('table.show'), income_tax, class: "btn btn-accent" %>
                 <%= link_to t('table.edit'), edit_income_tax_path(income_tax), class: "btn btn-primary" %>
                 <div class="sm:inline-block">
                   <%= button_to t('table.delete'), income_tax, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>

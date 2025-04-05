@@ -19,6 +19,8 @@ RSpec.describe "cost_types/index", type: :view do
     end
   end
 
+  private
+
   def assert_details(element, cost_type)
     assert_select element, "td", text: cost_type.name, count: 1
     assert_select element, "td" do

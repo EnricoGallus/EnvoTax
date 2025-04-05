@@ -3,12 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "income_taxes/edit", type: :view do
-  let(:income_tax) do
-    IncomeTax.create!(
-      tax_type: "MyString",
-      tax_rate: "9.99"
-    )
-  end
+  let(:income_tax) { create(:income_tax) }
 
   before do
     assign(:income_tax, income_tax)

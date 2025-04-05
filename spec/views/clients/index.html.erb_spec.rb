@@ -18,6 +18,8 @@ RSpec.describe "clients/index.html.erb", type: :view do
     end
   end
 
+  private
+
   def assert_client_details(element, client)
     assert_select element, "td", text: client.name, count: 1
     assert_select element, "td", text: client.hourly_rate.format, count: 1

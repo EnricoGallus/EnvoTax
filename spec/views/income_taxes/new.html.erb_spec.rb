@@ -4,10 +4,7 @@ require "rails_helper"
 
 RSpec.describe "income_taxes/new", type: :view do
   before do
-    assign(:income_tax, IncomeTax.new(
-                          tax_type: "MyString",
-                          tax_rate: "9.99"
-                        ))
+    assign(:income_tax, IncomeTax.new)
   end
 
   it "renders new income_tax form" do
