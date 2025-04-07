@@ -53,4 +53,4 @@ sudo usermod -aG docker ec2-user
 
 ## Database backup
 - create a backup of the database by executing `kamal server exec cat /mnt/storage/production.sqlite3 > production.sqlite3`
-- but rememeber to remove the first couple of lines, it contains output from the kamal command
+- but remember to remove the first couple of lines, it contains output from the kamal command

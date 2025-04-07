@@ -13,7 +13,7 @@
         <div class="my-6">
           <div class="grid grid-cols-2 justify-between items-center bg-base-200 p-2">
             <h2 class="text-xl font-semibold"><%= l date, format: :long %></h2>
-            <p class="text-end">Total: <%= format_spent_time(entries.sum(&:spent_time_in_seconds)) %></p>
+            <p class="text-xl text-end">Total: <%= format_spent_time(entries.sum(&:spent_time_in_seconds)) %></p>
           </div>
           <%= render 'table', q: @q, entries: entries %>
         </div>

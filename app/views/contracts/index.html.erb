@@ -1,42 +1,24 @@
-<% content_for :title, t('contract.index.content_title') %>
-
-<div class="w-full">
-
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl"><%= t('contract.index.title') %></h1>
-    <%= link_to t('contract.index.new'), new_contract_path, class: "btn btn-primary btn-lg" %>
-  </div>
-
-  <div id="contracts" class="min-w-full divide-y divide-gray-200 space-y-5">
-    <% if @contracts.any? %>
-      <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-        <table class="table">
-          <thead>
-          <tr>
-            <th><%= sort_link(@q, :name, t('activerecord.attributes.contract.name')) %></th>
-            <th><%= sort_link(@q, :client_name, t('activerecord.attributes.contract.client')) %></th>
-            <th><%= sort_link(@q, :status, t('activerecord.attributes.contract.status')) %></th>
-            <th><%= t('table.actions') %></th>
-          </tr>
-          </thead>
-          <tbody>
-          <% @contracts.each do |contract| %>
-            <tr id="<%= dom_id contract %>">
-              <td><%= contract.name %></td>
-              <td><%= contract.client.name %></td>
-              <td><%= contract.status %></td>
-              <td>
-                <%= link_to t('table.show'), contract, class: "btn btn-primary" %>
-                <%= link_to t('table.edit'), edit_contract_path(contract), class: "btn btn-primary" %>
-                <%= button_to t('table.delete'), contract, method: :delete, class: "btn btn-error", form_class: "inline-block", data: { turbo_confirm: t('table.delete_confirmation') } %>
-              </td>
-            </tr>
-          <% end %>
-          </tbody>
-        </table>
-      </div>
-    <% else %>
-      <p class="text-center my-10"><%= t('contract.index.none_found') %></p>
+<%= render(IndexPageComponent.new(
+  content_title: t('contract.index.content_title'),
+  title: t('contract.index.title'),
+  model_name: 'contract',
+  new_path: new_contract_path,
+  new_text: t('contract.index.new'),
+  collection: @contracts
+)) do %>
+  <%= render(DataTableComponent.new(collection: @contracts)) do |component| %>
+    <% component.with_headers do %>
+      <th><%= sort_link(@q, :name, t('activerecord.attributes.contract.name')) %></th>
+      <th><%= sort_link(@q, :client_name, t('activerecord.attributes.contract.client')) %></th>
+      <th><%= sort_link(@q, :status, t('activerecord.attributes.contract.status')) %></th>
     <% end %>
-  </div>
-</div>
+
+    <% @contracts.each do |contract| %>
+      <% component.with_row do %>
+        <td><%= contract.name %></td>
+        <td><%= contract.client.name %></td>
+        <td><%= contract.status %></td>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
