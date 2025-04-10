@@ -1,15 +1,5 @@
 <%= form_with(model: cost_type, class: "contents") do |form| %>
-  <% if cost_type.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(cost_type.errors.count, "error") %> prohibited this cost_type from being saved:</h2>
-
-      <ul class="list-disc ml-6">
-        <% cost_type.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: "shared/error_messages", locals: { model: cost_type } %>
 
   <div class="my-5">
     <%= form.label :name %>

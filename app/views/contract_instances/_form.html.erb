@@ -1,15 +1,5 @@
 <%= form_with(model: [contract, contract_instance], class: "contents") do |form| %>
-  <% if contract_instance.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(contract_instance.errors.count, "error") %> prohibited this contract_instance from being saved:</h2>
-
-      <ul class="list-disc ml-6">
-        <% contract_instance.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: "shared/error_messages", locals: { model: contract_instance } %>
 
   <div class="my-5">
     <%= form.label :start_date %>

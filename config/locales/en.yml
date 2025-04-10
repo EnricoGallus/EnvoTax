@@ -41,6 +41,7 @@ en:
       content_title: "Clients"
       title: "Clients"
       none_found: "No clients found."
+      new: "New client"
     edit:
       content_title: "Editing client"
       title: "Editing client"
@@ -68,6 +69,11 @@ en:
     successfully_destroyed: "Client was successfully destroyed."
 
   cost_types:
+    index:
+      content_title: "Cost types"
+      title: "Cost types"
+      new: "New Cost type"
+      none_found: "No Cost types found"
     successfully_created: "Cost type was successfully created."
     successfully_updated: "Cost type was successfully updated."
     successfully_destroyed: "Cost type was successfully destroyed."
@@ -185,6 +191,8 @@ en:
       title: "Contract Instances"
       new: "New Contract Instance"
       none_found: "No contracts instances found"
+    name: "%{client}: %{contract} (%{period})"
+    period: "%{start_date} to %{end_date}"
     successfully_created: "Contract instance was successfully created."
     successfully_updated: "Contract instance was successfully updated."
     successfully_destroyed: "Contract instance was successfully destroyed."
@@ -223,6 +231,9 @@ en:
       client:
         one: "Client"
         other: "Clients"
+      cost_type:
+        one: "Cost Type"
+        other: "Cost Types"
       expense:
         one: "Expense"
         other: "Expenses"
@@ -269,6 +280,8 @@ en:
       client:
         name: "Name"
         hourly_rate: "Hourly Rate"
+      cost_type:
+        name: "Name"
       project:
         name: "Name"
         client: "Client"

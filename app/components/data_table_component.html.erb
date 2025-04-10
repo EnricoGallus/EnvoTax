@@ -1,0 +1,37 @@
+<div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+  <table class="table">
+    <thead>
+    <tr>
+      <%= headers %>
+      <% if show_actions? %>
+        <th><%= t('table.actions') %></th>
+      <% end %>
+    </tr>
+    </thead>
+    <tbody>
+    <% rows.each_with_index do |row, index| %>
+      <tr id="<%= dom_id(@collection[index]) %>">
+        <%= row %>
+        <% if show_actions? %>
+          <td>
+            <% if custom_actions %>
+              <%= custom_actions %>
+            <% else %>
+              <% if @show_path %>
+                <%= link_to t('table.show'), @collection[index], class: "btn btn-accent" %>
+              <% end %>
+              <% if @edit_path %>
+                <%= link_to t('table.edit'), [:edit, @collection[index]], class: "btn btn-primary" %>
+              <% end %>
+              <% if @delete_path %>
+                <%= button_to t('table.delete'), @collection[index], method: :delete,
+                              class: "btn btn-error", form_class: "inline-block",
+                              data: { turbo_confirm: t('table.delete_confirmation') } %>
+              <% end %>
+            <% end %>
+          </td>
+        <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
