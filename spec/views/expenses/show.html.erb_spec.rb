@@ -47,8 +47,7 @@ RSpec.describe "expenses/show", type: :view do
 
   context "when expense has a displayable receipt", skip: "mock not working" do
     before do
-      allow(expense.receipt).to receive_messages(attached?: true, representable?: true,
-                                                 representation: "representation_object")
+      allow(expense.receipt).to receive_messages(attached?: true, representable?: true)
       allow(view).to receive(:image_tag).and_return('<img src="/path/to/receipt" />')
 
       render

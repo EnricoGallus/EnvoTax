@@ -32,13 +32,12 @@
     </div>
   </div>
 
-  <div class="grid grid-cols-1 gap-4">
-    <div>
-      <% if expense.receipt.representable? %>
-        <%= image_tag expense.receipt.representation(resize_to_limit: [100, 100]) %>
-      <% elsif expense.receipt.attached? %>
-        <%= link_to "Download", rails_blob_path(expense.receipt, disposition: "attachment") %>
-      <% end %>
-    </div>
+  <div class="grid grid-cols-1 gap-4 pb-4">
+    <strong class="block font-medium mb-1"><%= t('activerecord.attributes.expense.receipt') %>:</strong>
+    <% if expense.receipt.representable? %>
+      <%= image_tag rails_blob_path(expense.receipt) %>
+    <% elsif expense.receipt.attached? %>
+      <%= link_to "Download", rails_blob_path(expense.receipt, disposition: "attachment") %>
+    <% end %>
   </div>
 </div>
