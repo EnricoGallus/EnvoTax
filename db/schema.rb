@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_30_000350) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_10_121633) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -113,6 +113,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_30_000350) do
     t.integer "invoice_id"
     t.integer "cost_type_id", null: false
     t.integer "contract_instance_id"
+    t.integer "transaction_type", default: 0, null: false
     t.index ["contract_instance_id"], name: "index_expenses_on_contract_instance_id"
     t.index ["cost_type_id"], name: "index_expenses_on_cost_type_id"
     t.index ["invoice_id"], name: "index_expenses_on_invoice_id"

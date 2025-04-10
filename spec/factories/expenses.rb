@@ -7,6 +7,7 @@ FactoryBot.define do
     contract_instance
     description { Faker::Name.name }
     date { Faker::Date.backward(days: 14) }
+    transaction_type { :credit }
 
     # optional associations
     invoice { nil }

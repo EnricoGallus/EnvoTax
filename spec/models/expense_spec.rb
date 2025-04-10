@@ -26,7 +26,7 @@ RSpec.describe Expense, type: :model do
   describe ".ransackable_attributes" do
     it "returns allowed attributes for ransack" do
       expect(described_class.ransackable_attributes).to match_array(
-        %w[amount contract_instance_id cost_type_id date description invoice_id]
+        %w[amount contract_instance_id cost_type_id date description invoice_id transaction_type]
       )
     end
   end

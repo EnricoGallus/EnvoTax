@@ -17,6 +17,7 @@
           <tr>
             <th><%= sort_link(@q, :amount_cents, t('activerecord.attributes.expense.amount')) %></th>
             <th><%= sort_link(@q, :cost_type_name, t('activerecord.attributes.expense.cost_type')) %></th>
+            <th><%= sort_link(@q, :transaction_type, t('activerecord.attributes.expense.transaction_type')) %></th>
             <th><%= sort_link(@q, :date, t('activerecord.attributes.expense.date')) %></th>
             <th><%= sort_link(@q, :contract_instance_name, t('activerecord.attributes.expense.contract_instance')) %></th>
             <th><%= sort_link(@q, :description, t('activerecord.attributes.expense.description')) %></th>
@@ -28,15 +29,14 @@
             <tr id="<%= dom_id expense %>">
               <td><%= expense.amount.format %></td>
               <td><%= expense.cost_type.name %></td>
+              <td><%= expense.transaction_type.humanize %></td>
               <td><%= expense.date %></td>
               <td><%= expense.contract_instance&.name %></td>
               <td><%= expense.description %></td>
               <td>
                 <%= link_to t('table.show'), expense, class: "btn btn-accent" %>
                 <%= link_to t('table.edit'), edit_expense_path(expense), class: "btn btn-primary" %>
-                <div class="inline-block">
-                  <%= button_to t('table.delete'), expense, method: :delete, class: "btn btn-error", data: { turbo_confirm: t('table.delete_confirmation') } %>
-                </div>
+                <%= button_to t('table.delete'), expense, method: :delete, class: "btn btn-error", form_class: "inline_block", data: { turbo_confirm: t('table.delete_confirmation') } %>
               </td>
             </tr>
           <% end %>

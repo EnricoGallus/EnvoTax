@@ -291,6 +291,7 @@ en:
         date: "Date"
         description: "Description"
         cost_type: "Cost Type"
+        transaction_type: "Transaction Type"
       invoice:
         contract: "Contract"
         user: "User"

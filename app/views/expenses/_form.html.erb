@@ -9,30 +9,35 @@
     </div>
 
     <div>
-      <%= form.label :date %>
+      <%= form.label :date, class: "label" %>
       <%= form.date_field :date, class: ["input w-full", { "border-gray-400 focus:outline-blue-600": expense.errors[:date].none?, "border-red-400 focus:outline-red-600": expense.errors[:date].any? }] %>
     </div>
 
     <div>
-      <%= form.label :cost_type %>
+      <%= form.label :cost_type, class: "label" %>
       <%= form.collection_select :cost_type_id, CostType.all, :id, :name, { include_blank: true }, class: ["select w-full", { "border-gray-400 focus:outline-blue-600": expense.errors[:cost_type].none?, "border-red-400 focus:outline-red-600": expense.errors[:cost_type].any? }] %>
     </div>
 
     <div>
-      <%= form.label :contract_instance %>
+      <%= form.label :contract_instance, class: "label" %>
       <%= form.collection_select :contract_instance_id, ContractInstance.all, :id, :name, { include_blank: true }, class: ["select w-full", { "border-gray-400 focus:outline-blue-600": expense.errors[:contract].none?, "border-red-400 focus:outline-red-600": expense.errors[:contract].any? }] %>
+    </div>
+
+    <div>
+      <%= form.label :transaction_type, class: "label" %>
+      <%= form.select :transaction_type, Expense.transaction_types.keys.map { |key| [key.humanize, key] }, {}, class: "select w-full" %>
     </div>
 
   </div>
   <div class="grid grid-cols-1 gap-4 pb-5">
 
     <div class="mt-4">
-      <%= form.label :description %>
+      <%= form.label :description, class: "label" %>
       <%= form.textarea :description, rows: 4, class: ["textarea w-full", { "border-gray-400 focus:outline-blue-600": expense.errors[:description].none?, "border-red-400 focus:outline-red-600": expense.errors[:description].any? }] %>
     </div>
 
     <div>
-      <%= form.label :receipt %>
+      <%= form.label :receipt, class: "label" %>
       <%= form.file_field :receipt, class: ["file-input w-full", { "border-gray-400 focus:outline-blue-600": expense.errors[:receipt].none?, "border-red-400 focus:outline-red-600": expense.errors[:receipt].any? }] %>
     </div>
 
