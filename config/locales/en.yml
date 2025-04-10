@@ -191,6 +191,8 @@ en:
       title: "Contract Instances"
       new: "New Contract Instance"
       none_found: "No contracts instances found"
+    name: "%{client}: %{contract} (%{period})"
+    period: "%{start_date} to %{end_date}"
     successfully_created: "Contract instance was successfully created."
     successfully_updated: "Contract instance was successfully updated."
     successfully_destroyed: "Contract instance was successfully destroyed."

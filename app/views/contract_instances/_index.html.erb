@@ -11,7 +11,6 @@
         <table class="table">
           <thead>
           <tr>
-            <th><%= sort_link(@q, :contract_name, t('activerecord.attributes.contract_instance.contract')) %></th>
             <th><%= sort_link(@q, :start_date, t('activerecord.attributes.contract_instance.start_date')) %></th>
             <th><%= sort_link(@q, :end_date, t('activerecord.attributes.contract_instance.end_date')) %></th>
             <th><%= sort_link(@q, :budget_limit, t('activerecord.attributes.contract_instance.budget_limit')) %></th>
@@ -22,7 +21,6 @@
           <tbody>
           <% contract_instances.each do |contract_instance| %>
             <tr id="<%= dom_id contract_instance %>">
-              <td><%= contract_instance.contract.name %></td>
               <td><%= contract_instance.start_date %></td>
               <td><%= contract_instance.end_date %></td>
               <td><%= contract_instance.budget_limit&.format %></td>

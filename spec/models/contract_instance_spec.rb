@@ -49,11 +49,16 @@ RSpec.describe ContractInstance, type: :model do
     end
   end
 
-  describe "delegation" do
-    it "delegates name to contract" do
-      contract = create(:contract, name: "Test Contract")
-      instance = build(:contract_instance, contract: contract)
-      expect(instance.name).to eq("Test Contract")
+  describe "#name" do
+    it "formats name with client and period information" do
+      client = create(:client, name: "ACME Corp")
+      contract = create(:contract, name: "Test Contract", client: client)
+      instance = build(:contract_instance,
+                       contract: contract,
+                       start_date: Date.new(2023, 1, 1),
+                       end_date: Date.new(2023, 12, 31))
+
+      expect(instance.name).to eq("ACME Corp: Test Contract (2023-01-01 to 2023-12-31)")
     end
   end
 

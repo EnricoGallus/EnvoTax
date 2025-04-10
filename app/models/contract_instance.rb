@@ -11,7 +11,20 @@ class ContractInstance < ApplicationRecord
   validates :start_date, :end_date, presence: true
   validate :end_date_after_start_date
 
-  delegate :name, to: :contract
+  def name
+    period = I18n.t(
+      "contract_instance.period",
+      start_date: I18n.l(start_date, format: :default),
+      end_date: I18n.l(end_date, format: :default)
+    )
+
+    I18n.t(
+      "contract_instance.name",
+      client: contract.client.name,
+      contract: contract.name,
+      period: period
+    )
+  end
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[budget_limit contract_id end_date start_date]
