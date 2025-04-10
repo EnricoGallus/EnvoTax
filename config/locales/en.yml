@@ -292,6 +292,7 @@ en:
         description: "Description"
         cost_type: "Cost Type"
         transaction_type: "Transaction Type"
+        receipt: "Receipt"
       invoice:
         contract: "Contract"
         user: "User"
