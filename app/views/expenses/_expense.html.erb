@@ -25,6 +25,11 @@
       <strong class="block font-medium mb-1"><%= t('activerecord.attributes.expense.contract_instance') %>:</strong>
       <%= expense.contract_instance&.name %>
     </div>
+
+    <div>
+      <strong class="block font-medium mb-1"><%= t('activerecord.attributes.expense.transaction_type') %>:</strong>
+      <%= expense.transaction_type.humanize %>
+    </div>
   </div>
 
   <div class="grid grid-cols-1 gap-4">
