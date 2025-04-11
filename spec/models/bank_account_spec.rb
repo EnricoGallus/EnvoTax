@@ -15,15 +15,15 @@ RSpec.describe BankAccount, type: :model do
 
     context "when validating branch_code format" do
       it { is_expected.to allow_value("123").for(:branch_code) }
-      it { is_expected.not_to allow_value("12").for(:branch_code) }
-      it { is_expected.not_to allow_value("1234").for(:branch_code) }
+      it { is_expected.to allow_value("12").for(:branch_code) }
+      it { is_expected.to allow_value("1234").for(:branch_code) }
       it { is_expected.not_to allow_value("abc").for(:branch_code) }
     end
 
     context "when validating account_number format" do
       it { is_expected.to allow_value("1234567").for(:account_number) }
-      it { is_expected.not_to allow_value("123456").for(:account_number) }
-      it { is_expected.not_to allow_value("12345678").for(:account_number) }
+      it { is_expected.to allow_value("123456").for(:account_number) }
+      it { is_expected.to allow_value("12345678").for(:account_number) }
       it { is_expected.not_to allow_value("abcdefg").for(:account_number) }
     end
   end

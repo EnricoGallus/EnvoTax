@@ -5,8 +5,8 @@
       <h1><%= t('invoice.header.title') %></h1>
     </div>
     <!--<div class="col-6 text-end">
-      <%# if current_user.company_logo.attached? %>
-        <%#= wicked_pdf_image_tag(url_for(current_user.company_logo), style: "height: 80px;") %>
+      <%# if @user.company_logo.attached? %>
+        <%#= wicked_pdf_image_tag(url_for(@user.company_logo), style: "height: 80px;") %>
       <%# end %>
     </div>-->
   </div>
@@ -27,10 +27,10 @@
   <tr>
     <td>
       <h5 class="fw-bold mb-2"><%= t('invoice.from.title') %></h5>
-      <div><%= current_user.name %></div>
-      <div><%= t('invoice.address.postal_code', zip: current_user.address.postal_code) %></div>
-      <div><%= current_user.address.to_formatted_address %></div>
-      <div><%= current_user.email %></div>
+      <div><%= @user.name %></div>
+      <div><%= t('invoice.address.postal_code', zip: @user.address.postal_code) %></div>
+      <div><%= @user.address.to_formatted_address %></div>
+      <div><%= @user.email %></div>
     </td>
     <td class="text-end">
       <% client = @invoice.contract_instance.contract.client %>
@@ -104,11 +104,11 @@
   <tr>
     <td>
       <h5 class="fw-bold mb-2"><%= t('invoice.bank_details.title') %></h5>
-      <div><%= t('invoice.bank_details.bank', name: current_user.bank_account.bank_name) %></div>
-      <div><%= t('invoice.bank_details.branch', name: current_user.bank_account.branch_code) %></div>
-      <div><%= t('invoice.bank_details.type', name: current_user.bank_account.account_type) %></div>
-      <div><%= t('invoice.bank_details.account_number', name: current_user.bank_account.account_number) %></div>
-      <div><%= t('invoice.bank_details.account_holder', name: current_user.bank_account.account_holder) %></div>
+      <div><%= t('invoice.bank_details.bank', name: @user.bank_account.bank_name) %></div>
+      <div><%= t('invoice.bank_details.branch', name: @user.bank_account.branch_code) %></div>
+      <div><%= t('invoice.bank_details.type', name: @user.bank_account.account_type) %></div>
+      <div><%= t('invoice.bank_details.account_number', name: @user.bank_account.account_number) %></div>
+      <div><%= t('invoice.bank_details.account_holder', name: @user.bank_account.account_holder) %></div>
     </td>
   </tr>
 </table>

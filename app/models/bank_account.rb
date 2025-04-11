@@ -8,6 +8,6 @@ class BankAccount < ApplicationRecord
 
   validates :account_holder, presence: true
   validates :bank_name, presence: true
-  validates :branch_code, presence: true
-  validates :account_number, presence: true
+  validates :branch_code, presence: true, format: { with: /\A\d+\z/ }
+  validates :account_number, presence: true, format: { with: /\A\d+\z/ }
 end

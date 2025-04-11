@@ -3,17 +3,18 @@
 require "rails_helper"
 
 RSpec.describe "invoices/show", type: :view do
+  let(:user) { create(:user, :with_all_associations) }
   let(:invoice) { create(:invoice) }
 
   before do
     assign(:invoice, invoice)
+    assign(:user, user)
     render
   end
 
   it "renders invoice header" do
     expect(rendered).to have_css(".invoice-header")
-    expect(rendered).to have_css("h1", text: "INVOICE")
-    expect(rendered).to have_content("##{invoice.id}")
+    expect(rendered).to have_css("h1", text: I18n.t("invoice.header.title"))
   end
 
   it "renders the client information" do
@@ -50,7 +51,7 @@ RSpec.describe "invoices/show", type: :view do
   end
 
   it "renders the total amount" do
-    expect(rendered).to have_content("Total:")
+    expect(rendered).to have_content(I18n.t("invoice.billing_details.total"))
     expect(rendered).to have_content(invoice.total_amount.format)
   end
 

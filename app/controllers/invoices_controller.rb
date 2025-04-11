@@ -14,6 +14,7 @@ class InvoicesController < ApplicationController
   def show
     respond_to do |format|
       format.pdf do
+        @user = current_user
         render pdf: "invoice_#{@invoice.id}",
                template: "invoices/show",
                layout: "invoice",

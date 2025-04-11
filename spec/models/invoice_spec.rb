@@ -38,8 +38,9 @@ RSpec.describe Invoice, type: :model do
     let(:project_two) { create(:project, client: client) }
 
     it "calculates the sum of time entries cost and expenses amount" do
-      create(:time_entry, invoice: invoice, time_from: 2.hours.ago, time_to: Time.zone.now, project: project_one)
-      create(:time_entry, invoice: invoice, time_from: 5.hours.ago, time_to: 2.hours.ago, project: project_two)
+      now = Time.zone.now.at_noon
+      create(:time_entry, invoice: invoice, time_from: now - 2.hours, time_to: now, project: project_one)
+      create(:time_entry, invoice: invoice, time_from: now - 5.hours, time_to: now - 2.hours, project: project_two)
       create(:expense, invoice: invoice, amount: 75)
       create(:expense, invoice: invoice, amount: 125)
       # Time entries: (2*50) + (3*60) = 100 + 180 = 280

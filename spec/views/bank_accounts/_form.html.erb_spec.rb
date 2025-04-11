@@ -18,7 +18,8 @@ RSpec.describe "bank_accounts/_form.html.erb", type: :view do
                                                          account_holder: [],
                                                          bank_name: [],
                                                          branch_code: [],
-                                                         account_number: []
+                                                         account_number: [],
+                                                         account_type: []
                                                        })
 
     render partial: "bank_accounts/form", locals: { form: form, bank_account: bank_account }
@@ -55,7 +56,8 @@ RSpec.describe "bank_accounts/_form.html.erb", type: :view do
                                                            account_holder: ["is invalid"],
                                                            bank_name: [],
                                                            branch_code: [],
-                                                           account_number: []
+                                                           account_number: [],
+                                                           account_type: []
                                                          })
 
       render partial: "bank_accounts/form", locals: { form: form, bank_account: bank_account }
