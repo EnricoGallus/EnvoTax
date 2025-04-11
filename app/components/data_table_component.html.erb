@@ -16,18 +16,17 @@
           <td>
             <% if custom_actions %>
               <%= custom_actions %>
-            <% else %>
-              <% if @show_path %>
-                <%= link_to t('table.show'), @collection[index], class: "btn btn-accent" %>
-              <% end %>
-              <% if @edit_path %>
-                <%= link_to t('table.edit'), [:edit, @collection[index]], class: "btn btn-primary" %>
-              <% end %>
-              <% if @delete_path %>
-                <%= button_to t('table.delete'), @collection[index], method: :delete,
-                              class: "btn btn-error", form_class: "inline-block",
-                              data: { turbo_confirm: t('table.delete_confirmation') } %>
-              <% end %>
+            <% end %>
+            <% if @show_path %>
+              <%= link_to t('table.show'), @collection[index], class: "btn btn-accent" %>
+            <% end %>
+            <% if @edit_path %>
+              <%= link_to t('table.edit'), [:edit, @collection[index]], class: "btn btn-primary" %>
+            <% end %>
+            <% if @delete_path %>
+              <%= button_to t('table.delete'), @collection[index], method: :delete,
+                            class: "btn btn-error", form_class: "inline-block",
+                            data: { turbo_confirm: t('table.delete_confirmation') } %>
             <% end %>
           </td>
         <% end %>

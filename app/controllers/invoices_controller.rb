@@ -2,7 +2,7 @@
 
 # controller for invoice handling
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: %i[show destroy]
+  before_action :set_invoice, only: %i[show destroy preview]
 
   # GET /invoices or /invoices.json
   def index
@@ -11,19 +11,10 @@ class InvoicesController < ApplicationController
   end
 
   # GET /invoices/1 or /invoices/1.json
-  def show
-    respond_to do |format|
-      format.pdf do
-        @user = current_user
-        render pdf: "invoice_#{@invoice.id}",
-               template: "invoices/show",
-               layout: "invoice",
-               disposition: "inline",
-               viewport_size: "1280x1024",
-               page_size: "A4",
-               orientation: "Portrait"
-      end
-    end
+  def show; end
+
+  def preview
+    render layout: "invoice"
   end
 
   # GET /invoices/new

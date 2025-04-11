@@ -1,0 +1,133 @@
+<div id="invoice" class="w-full">
+  <div class="text-center mb-6">
+    <h1 class="text-3xl font-bold"><%= t('invoice.header.title') %></h1>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4 mb-6">
+    <div>
+      <p class="text-lg"><%= t('invoice.header.date', date: l(@invoice.invoice_date, format: :default)) %></p>
+    </div>
+    <div class="text-right">
+      <p class="text-lg"><%= t('invoice.header.reference_id', number: @invoice.invoice_number) %></p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4 mb-8">
+    <div class="card shadow-lg p-4">
+      <% client = @invoice.contract_instance.contract.client %>
+      <h5 class="font-bold mb-2"><%= t('invoice.to.title') %></h5>
+      <div class="font-bold"><%= t('invoice.to.client_name', name: client.name) %></div>
+      <% unless client.address.nil? %>
+        <div class=""><%= t('invoice.address.postal_code', zip: client.address.postal_code) %></div>
+        <div class=""><%= client.address.to_formatted_address %></div>
+      <% end %>
+    </div>
+    <div class="card shadow-lg p-4">
+      <h5 class="font-bold mb-2"><%= t('invoice.from.title') %></h5>
+      <div><%= current_user.name %></div>
+      <div><%= t('invoice.address.postal_code', zip: current_user.address.postal_code) %></div>
+      <div><%= current_user.address.to_formatted_address %></div>
+      <div><%= current_user.email %></div>
+    </div>
+  </div>
+
+  <div class="mb-6">
+    <h2 class="font-bold text-center my-5 text-xl"><%= t('invoice.billing_details.title') %></h2>
+    <div class="overflow-x-auto">
+      <table class="table w-full">
+        <thead>
+        <tr>
+          <th><%= t('invoice.billing_details.date') %></th>
+          <th><%= t('invoice.billing_details.description') %></th>
+          <th class="text-right"><%= t('invoice.billing_details.amount') %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% if @invoice.time_entries.any? %>
+          <tr>
+            <td></td>
+            <td>Freelance
+              work: <%= t('invoice.header.period', from: l(@invoice.start_date, format: :default), to: l(@invoice.end_date, format: :default)) %></td>
+            <td class="text-right"><%= @invoice.time_entries.sum(&:calculate_cost).to_money.format %></td>
+          </tr>
+        <% end %>
+        <% if @invoice.expenses.any? %>
+          <% @invoice.expenses.each do |expense| %>
+            <tr>
+              <td><%= l(expense.date, format: :default) %></td>
+              <td><%= expense.description %></td>
+              <td class="text-right"><%= (expense.credit? ? '-' : '') + expense.amount.format %></td>
+            </tr>
+            <% if expense.receipt.attached? %>
+              <tr>
+                <td colspan="3" class="text-center">
+                  <% begin %>
+                    <% blob = expense.receipt.blob %>
+                    <% image_data = Base64.strict_encode64(blob.download) %>
+                    <img src="data:<%= blob.content_type %>;base64,<%= image_data %>"
+                         class="max-w-full max-h-48 mx-auto" alt="image">
+                  <% rescue => e %>
+                    <p class="text-error">Error loading image: <%= e.message %></p>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>
+        <tr class="bg-base-200 font-bold text-lg">
+          <td colspan="2" class="text-end">
+            <%= t('invoice.billing_details.total') %>
+          </td>
+          <td class="text-right"><%= @invoice.total_amount.format %></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4">
+    <div class="card shadow-lg m-8 p-4">
+      <h5 class="font-bold mb-2"><%= t('invoice.bank_details.title') %></h5>
+      <div><%= t('invoice.bank_details.account_holder', name: current_user.bank_account.account_holder) %></div>
+      <div><%= t('invoice.bank_details.bank', name: current_user.bank_account.bank_name) %></div>
+      <div><%= t('invoice.bank_details.branch', name: current_user.bank_account.branch_code) %></div>
+      <div><%= t('invoice.bank_details.account_number', name: current_user.bank_account.account_number) %></div>
+      <div><%= t('invoice.bank_details.type', name: current_user.bank_account.account_type) %></div>
+      <p><%= t('invoice.tax.included') %></p>
+    </div>
+  </div>
+
+  <% if @invoice.time_entries.any? %>
+    <div class="mb-6">
+      <h5 class="font-bold mb-3"><%= t('activerecord.models.time_entry.other') %></h5>
+      <div class="overflow-x-auto">
+        <table class="table table-zebra w-full">
+          <thead>
+          <tr>
+            <th><%= t('activerecord.attributes.time_entry.date') %></th>
+            <th><%= t('activerecord.attributes.time_entry.project') %></th>
+            <th>From</th>
+            <th>To</th>
+            <th class="text-right">Hours</th>
+            <th class="text-right">Rate</th>
+            <th class="text-right">Amount</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @invoice.time_entries.includes(:project).each do |entry| %>
+            <tr>
+              <td><%= entry.date&.strftime('%b %d, %Y') %></td>
+              <td><%= entry.project.name %></td>
+              <td><%= entry.time_from&.strftime('%H:%M') %></td>
+              <td><%= entry.time_to&.strftime('%H:%M') %></td>
+              <td class="text-right"><%= ((entry.time_to - entry.time_from) / 1.hour).round(2) if entry.time_from && entry.time_to %></td>
+              <td class="text-right"><%= entry.project.client.hourly_rate.format %></td>
+              <td class="text-right"><%= entry.calculate_cost.format %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+</div>

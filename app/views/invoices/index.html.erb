@@ -6,7 +6,7 @@
   new_text: t('invoices.index.new'),
   collection: @invoices
 )) do %>
-  <%= render(DataTableComponent.new(collection: @invoices)) do |component| %>
+  <%= render(DataTableComponent.new(collection: @invoices, edit_path: false)) do |component| %>
     <% component.with_headers do %>
       <td><%= sort_link(@q, :contract_instance_name, t('activerecord.attributes.invoice.contract')) %></td>
       <td><%= sort_link(@q, :invoice_date, t('activerecord.attributes.invoice.invoice_date')) %></td>
@@ -20,11 +20,10 @@
         <td><%= invoice.invoice_date %></td>
         <td><%= invoice.status %></td>
         <td><%= invoice.total_amount.format %></td>
-      <% end %>
 
-      <%= component.with_custom_actions do %>
-        <%= link_to t('table.preview'), invoice_path(invoice, format: :pdf), class: "btn btn-accent", target: "_blank" %>
-        <%= button_to t('table.delete'), invoice, method: :delete, class: "btn btn-error", form_class: "inline-block", data: { turbo_confirm: t('table.delete_confirmation') } %>
+        <% component.with_custom_actions do %>
+          <%= link_to t('table.preview'), preview_invoice_path(invoice), class: "btn btn-accent", target: "_blank" %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
