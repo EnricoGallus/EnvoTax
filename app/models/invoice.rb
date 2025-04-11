@@ -17,13 +17,17 @@ class Invoice < ApplicationRecord
 
   enum :status, { draft: 0, sent: 1, partially_paid: 2, paid: 3, overdue: 4 }
 
+  def time_entries_amount
+    time_entries.sum(&:calculate_cost).to_money
+  end
+
+  def expenses_amount
+    expenses.debit.sum(:amount_cents).to_money -
+      expenses.credit.sum(:amount_cents).to_money
+  end
+
   def total_amount
-    time_entries_sum = time_entries.sum(&:calculate_cost).to_money
-
-    expenses_sum = expenses.debit.sum(:amount_cents).to_money -
-                   expenses.credit.sum(:amount_cents).to_money
-
-    time_entries_sum + expenses_sum
+    time_entries_amount + expenses_amount
   end
 
   def update_status_from_allocations!
