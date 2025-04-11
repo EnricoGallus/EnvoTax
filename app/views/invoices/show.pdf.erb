@@ -11,15 +11,16 @@
     </div>-->
   </div>
   <div class="row">
-    <div class="col">
-      <p class="lead"><%= t('invoice.header.date', date: l(@invoice.invoice_date, format: :default)) %></p>
-    </div>
-    <div class="col">
-      <p class="lead"><%= t('invoice.header.period', from: l(@invoice.start_date, format: :default), to: l(@invoice.end_date, format: :default)) %></p>
-    </div>
-    <div class="col">
-      <p class="lead"><%= t('invoice.header.reference_id', number: @invoice.invoice_number) %></p>
-    </div>
+    <table class="table table-borderless">
+      <tr>
+        <td>
+          <p class="lead"><%= t('invoice.header.date', date: l(@invoice.invoice_date, format: :default)) %></p>
+        </td>
+        <td>
+          <p class="lead text-end"><%= t('invoice.header.reference_id', number: @invoice.invoice_number) %></p>
+        </td>
+      </tr>
+    </table>
   </div>
 </div>
 
@@ -49,7 +50,7 @@
 </table>
 
 <div class="mb-4">
-  <h3 class="fw-bold mb-3"><%= t('invoice.billing_details.title') %></h3>
+  <h3 class="fw-bold text-center my-5"><%= t('invoice.billing_details.title') %></h3>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -59,6 +60,13 @@
     </tr>
     </thead>
     <tbody>
+    <% if @invoice.time_entries.any? %>
+      <tr>
+        <td></td>
+        <td>Freelance work: <%= t('invoice.header.period', from: l(@invoice.start_date, format: :default), to: l(@invoice.end_date, format: :default)) %></td>
+        <td class="text-end"><%= @invoice.time_entries.sum(&:calculate_cost).to_money.format %></td>
+      </tr>
+    <% end %>
     <% if @invoice.expenses.any? %>
       <% @invoice.expenses.each do |expense| %>
         <tr>
@@ -104,11 +112,11 @@
   <tr>
     <td>
       <h5 class="fw-bold mb-2"><%= t('invoice.bank_details.title') %></h5>
+      <div><%= t('invoice.bank_details.account_holder', name: @user.bank_account.account_holder) %></div>
       <div><%= t('invoice.bank_details.bank', name: @user.bank_account.bank_name) %></div>
       <div><%= t('invoice.bank_details.branch', name: @user.bank_account.branch_code) %></div>
-      <div><%= t('invoice.bank_details.type', name: @user.bank_account.account_type) %></div>
       <div><%= t('invoice.bank_details.account_number', name: @user.bank_account.account_number) %></div>
-      <div><%= t('invoice.bank_details.account_holder', name: @user.bank_account.account_holder) %></div>
+      <div><%= t('invoice.bank_details.type', name: @user.bank_account.account_type) %></div>
     </td>
   </tr>
 </table>
