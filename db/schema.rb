@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_10_121633) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_11_020840) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -48,8 +48,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_121633) do
     t.datetime "updated_at", null: false
     t.string "prefecture"
     t.string "building"
-    t.string "addressable_type", null: false
-    t.bigint "addressable_id", null: false
+    t.string "addressable_type"
+    t.bigint "addressable_id"
     t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
   end
 
@@ -62,6 +62,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_121633) do
     t.integer "accountable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "account_type", default: 0, null: false
     t.index ["accountable_type", "accountable_id"], name: "index_bank_accounts_on_accountable"
   end
 
@@ -136,7 +137,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_121633) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "contract_instance_id"
+    t.string "invoice_number", default: "", null: false
     t.index ["contract_instance_id"], name: "index_invoices_on_contract_instance_id"
+    t.index ["invoice_number"], name: "index_invoices_on_invoice_number", unique: true
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 

@@ -46,6 +46,7 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 # ui
+gem "enum_help"
 gem "ransack"
 gem "view_component"
 

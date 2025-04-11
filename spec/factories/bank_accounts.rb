@@ -6,6 +6,7 @@ FactoryBot.define do
     bank_name { Faker::Name.name }
     branch_code { Faker::Number.number(digits: 3) }
     account_number { Faker::Number.number(digits: 7) }
+    account_type { :ordinary }
 
     for_user
 

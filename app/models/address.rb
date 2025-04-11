@@ -10,4 +10,8 @@ class Address < ApplicationRecord
   validates :prefecture, :city, :street, presence: true
   validates :building, presence: false
   validates :country, presence: true, inclusion: { in: countries.keys }
+
+  def to_formatted_address
+    "#{prefecture}#{city}#{street}#{building}".strip
+  end
 end
