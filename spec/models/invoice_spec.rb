@@ -111,4 +111,30 @@ RSpec.describe Invoice, type: :model do
       expect(invoice.errors).to include(:status)
     end
   end
+
+  describe "#generate_invoice_number" do
+    it "generates invoice number with format YYYY-MM-XXX" do
+      invoice = build(:invoice, invoice_date: Date.new(2025, 6, 15))
+      invoice.save
+
+      expect(invoice.invoice_number).to match(/^202506-\d{3}$/)
+    end
+
+    it "increments sequence number for invoices in same month" do
+      july_invoice = create(:invoice, invoice_date: Date.new(2025, 7, 10))
+      expect(july_invoice.invoice_number).to eq("202507-001")
+
+      other_july_invoice = create(:invoice, invoice_date: Date.new(2025, 7, 20))
+      expect(other_july_invoice.invoice_number).to eq("202507-002")
+
+      other_year_invoice = create(:invoice, invoice_date: Date.new(2024, 7, 20))
+      expect(other_year_invoice.invoice_number).to eq("202407-001")
+
+      august_invoice = create(:invoice, invoice_date: Date.new(2025, 8, 5))
+      expect(august_invoice.invoice_number).to eq("202508-003")
+
+      december_invoice = create(:invoice, invoice_date: Date.new(2025, 12, 31))
+      expect(december_invoice.invoice_number).to eq("202512-004")
+    end
+  end
 end

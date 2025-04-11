@@ -4,6 +4,8 @@
 class Invoice < ApplicationRecord
   include Allocatable
 
+  before_create :generate_invoice_number
+
   belongs_to :user
   belongs_to :contract_instance
 
@@ -16,7 +18,12 @@ class Invoice < ApplicationRecord
   enum :status, { draft: 0, sent: 1, partially_paid: 2, paid: 3, overdue: 4 }
 
   def total_amount
-    time_entries.sum(&:calculate_cost).to_money + expenses.sum(:amount_cents).to_money
+    time_entries_sum = time_entries.sum(&:calculate_cost).to_money
+
+    expenses_sum = expenses.debit.sum(:amount_cents).to_money -
+                   expenses.credit.sum(:amount_cents).to_money
+
+    time_entries_sum + expenses_sum
   end
 
   def update_status_from_allocations!
@@ -45,5 +52,24 @@ class Invoice < ApplicationRecord
     errors.delete(:contract_instance)
     errors.delete(:user)
     errors.delete(:status)
+  end
+
+  def generate_invoice_number
+    return if invoice_number.present? || invoice_date.blank?
+
+    year = invoice_date.year
+    month = invoice_date.month
+
+    latest_invoice = Invoice.where("strftime('%Y', invoice_date) = ?", year.to_s)
+                            .order(invoice_number: :desc)
+                            .limit(1)
+                            .first
+    sequence = 1
+    if latest_invoice
+      match = latest_invoice.invoice_number.match(/(\d{4})(\d{2})-(\d+)/)
+      sequence = match[3].to_i + 1 if match
+    end
+
+    self.invoice_number = "#{year}#{month.to_s.rjust(2, '0')}-#{sequence.to_s.rjust(3, '0')}"
   end
 end

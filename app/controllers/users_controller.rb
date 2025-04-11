@@ -25,6 +25,6 @@ class UsersController < ApplicationController
                          { address_attributes:
                              [:id, :postal_code, :prefecture, :city, :street, :building, :country] },
                          { bank_account_attributes:
-                             [:id, :account_holder, :bank_name, :branch_code, :account_number] }])
+                             [:id, :account_holder, :bank_name, :branch_code, :account_number, :account_type] }])
   end
 end

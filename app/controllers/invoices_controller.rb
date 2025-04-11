@@ -18,6 +18,7 @@ class InvoicesController < ApplicationController
                template: "invoices/show",
                layout: "invoice",
                disposition: "inline",
+               viewport_size: "1280x1024",
                page_size: "A4",
                orientation: "Portrait"
       end

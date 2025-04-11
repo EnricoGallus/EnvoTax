@@ -12,6 +12,14 @@
     </div>
 
     <div>
+      <%= form.label :account_type, class: "label" %>
+      <%= form.select :account_type,
+                      BankAccount.account_types_i18n.invert,
+                      {},
+                      class: ["select w-full", { "border-gray-400 focus:outline-blue-600": bank_account.errors[:account_type].none?, "border-red-400 focus:outline-red-600": bank_account.errors[:account_type].any? }] %>
+    </div>
+
+    <div>
       <%= form.label :branch_code, class: "label" %>
       <%= form.text_field :branch_code, class: ["input w-full", { "border-gray-400 focus:outline-blue-600": bank_account.errors[:branch_code].none?, "border-red-400 focus:outline-red-600": bank_account.errors[:branch_code].any? }] %>
     </div>

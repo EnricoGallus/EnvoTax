@@ -216,32 +216,32 @@ en:
 
   invoice:
     header:
-      title: "INVOICE"
-      date: "Date: %{date}"
-      period: "Period: %{from} to %{to}"
-      reference_id: "Reference ID: REF-%{number}"
+      title: "御請求書"
+      date: "発行日： %{date}"
+      period: "請求期間： %{from} - %{to}"
+      reference_id: "請求書参照ID: REF-%{number}"
     address:
-      postal_code: "%{zip}"
+      postal_code: "〒%{zip}"
     from:
-      title: "From:"
+      title: "差出人:"
     to:
-      title: "To:"
-      client_name: "%{name}"
+      title: "請求先："
+      client_name: "%{name}株式会社"
     bank_details:
-      title: "Bank Transfer Details"
-      bank: "Bank： %{name}"
-      branch: "Branch： %{name}"
-      type: "Type： %{name}"
-      account_number: "Account No： %{name}"
-      account_holder: "Account Name： %{name}"
+      title: "お振込先"
+      bank: "銀行名： %{name}"
+      branch: "支店名： %{name}"
+      type: "口座種別： %{name}"
+      account_number: "口座番号： %{name}"
+      account_holder: "口座名義： %{name}"
     billing_details:
-      title: "Billing Details"
-      total: "Total:"
-      date: "Date"
-      description: "Description"
-      amount: "Amount"
+      title: "請求内容"
+      total: "合計:"
+      date: "日付"
+      description: "内容"
+      amount: "金額"
     tax:
-      included: "Note: Tax Included"
+      included: "備考：　税込み"
 
   errors:
     template:
@@ -252,8 +252,8 @@ en:
   enums:
     bank_account:
       account_type:
-        ordinary: "Ordinary"
-        savings: "Savings"
+        ordinary: "普通"
+        savings: "当座"
 
   activerecord:
     models:
@@ -313,6 +313,9 @@ en:
         branch_code: "Branch Code"
         bank_name: "Bank Name"
         account_type: "Account Type"
+        account_types:
+          normal: "普通"
+          savings: "貯蓄"
       client:
         name: "Name"
         hourly_rate: "Hourly Rate"
