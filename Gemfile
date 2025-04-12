@@ -53,10 +53,6 @@ gem "view_component"
 # money
 gem "money-rails"
 
-# pdf rendering
-gem "wicked_pdf"
-gem "wkhtmltopdf-binary"
-
 # sentry
 gem "sentry-rails"
 gem "sentry-ruby"

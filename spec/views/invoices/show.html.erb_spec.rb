@@ -8,12 +8,12 @@ RSpec.describe "invoices/show", type: :view do
 
   before do
     assign(:invoice, invoice)
-    assign(:user, user)
+    view.stub(:current_user).and_return(user)
     render
   end
 
   it "renders invoice header" do
-    expect(rendered).to have_css(".invoice-header")
+    expect(rendered).to have_css("#invoice")
     expect(rendered).to have_css("h1", text: I18n.t("invoice.header.title"))
   end
 

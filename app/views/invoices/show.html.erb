@@ -1,0 +1,9 @@
+<% content_for :title, "Showing invoice" %>
+
+<div class="w-full">
+
+  <%= link_to t('table.back'), invoices_path, class: "btn" %>
+  <%= button_to t('table.delete'), @invoice, method: :delete, class: "btn btn-error", form_class: "inline-block", data: { turbo_confirm: t('table.delete_confirmation') } %>
+
+  <%= render partial: "invoice" %>
+</div>
