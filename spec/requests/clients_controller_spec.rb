@@ -4,6 +4,7 @@ require "rails_helper"
 
 RSpec.describe ClientsController, type: :request do
   let(:user) { create(:user) }
+  let(:client) { create(:client, user: user) }
   let(:valid_attributes) do
     attributes_for(:client).merge(address_attributes: attributes_for(:address))
   end
@@ -18,7 +19,6 @@ RSpec.describe ClientsController, type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      create(:client)
       get clients_url
       expect(response).to be_successful
     end
@@ -26,7 +26,6 @@ RSpec.describe ClientsController, type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      client = create(:client)
       get client_url(client)
       expect(response).to be_successful
     end
@@ -41,7 +40,6 @@ RSpec.describe ClientsController, type: :request do
 
   describe "GET /edit" do
     it "renders a successful response" do
-      client = create(:client)
       get edit_client_url(client)
       expect(response).to be_successful
     end
@@ -80,7 +78,6 @@ RSpec.describe ClientsController, type: :request do
       let(:new_attributes) do
         { name: "Updated Client", hourly_rate: 5000 }
       end
-      let(:client) { create(:client) }
 
       before do
         patch client_url(client), params: { client: new_attributes }
@@ -102,7 +99,6 @@ RSpec.describe ClientsController, type: :request do
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        client = create(:client)
         patch client_url(client), params: { client: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -111,14 +107,13 @@ RSpec.describe ClientsController, type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested client" do
-      client = create(:client)
+      client = create(:client, user: user)
       expect do
         delete client_url(client)
       end.to change(Client, :count).by(-1)
     end
 
     it "redirects to the clients list" do
-      client = create(:client)
       delete client_url(client)
       expect(response).to redirect_to(clients_url)
     end

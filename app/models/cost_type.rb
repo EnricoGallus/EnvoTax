@@ -2,6 +2,8 @@
 
 # model for cost type used by expenses and invoices
 class CostType < ApplicationRecord
+  belongs_to :user
+
   has_many :expenses, dependent: :restrict_with_error
 
   validates :name, presence: true, uniqueness: true

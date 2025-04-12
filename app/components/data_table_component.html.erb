@@ -18,15 +18,21 @@
               <%= custom_actions %>
             <% end %>
             <% if @show_path %>
-              <%= link_to t('table.show'), @collection[index], class: "btn btn-accent" %>
+              <% if helpers.policy(@collection[index]).show? %>
+                <%= link_to t('table.show'), @collection[index], class: "btn btn-accent" %>
+              <% end %>
             <% end %>
             <% if @edit_path %>
-              <%= link_to t('table.edit'), [:edit, @collection[index]], class: "btn btn-primary" %>
+              <% if helpers.policy(@collection[index]).edit? %>
+                <%= link_to t('table.edit'), [:edit, @collection[index]], class: "btn btn-primary" %>
+              <% end %>
             <% end %>
             <% if @delete_path %>
-              <%= button_to t('table.delete'), @collection[index], method: :delete,
-                            class: "btn btn-error", form_class: "inline-block",
-                            data: { turbo_confirm: t('table.delete_confirmation') } %>
+              <% if helpers.policy(@collection[index]).destroy? %>
+                <%= button_to t('table.delete'), @collection[index], method: :delete,
+                              class: "btn btn-error", form_class: "inline-block",
+                              data: { turbo_confirm: t('table.delete_confirmation') } %>
+              <% end %>
             <% end %>
           </td>
         <% end %>

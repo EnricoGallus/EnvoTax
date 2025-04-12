@@ -3,7 +3,9 @@
 FactoryBot.define do
   factory :contract do
     name { Faker::Name.unique.name }
-    client
     status { :active }
+
+    client
+    user
   end
 end

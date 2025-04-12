@@ -19,7 +19,7 @@ RSpec.describe ContractsController, type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Contract.create! valid_attributes
+      user.contracts.create! valid_attributes
       get contracts_url
       expect(response).to be_successful
     end
@@ -27,7 +27,7 @@ RSpec.describe ContractsController, type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      contract = Contract.create! valid_attributes
+      contract = user.contracts.create! valid_attributes
       get contract_url(contract)
       expect(response).to be_successful
     end
@@ -42,7 +42,7 @@ RSpec.describe ContractsController, type: :request do
 
   describe "GET /edit" do
     it "renders a successful response" do
-      contract = Contract.create! valid_attributes
+      contract = user.contracts.create! valid_attributes
       get edit_contract_url(contract)
       expect(response).to be_successful
     end
@@ -83,7 +83,7 @@ RSpec.describe ContractsController, type: :request do
       end
 
       it "updates the requested contract" do
-        contract = Contract.create! valid_attributes
+        contract = user.contracts.create! valid_attributes
         patch contract_url(contract), params: { contract: new_attributes }
         contract.reload
 
@@ -91,7 +91,7 @@ RSpec.describe ContractsController, type: :request do
       end
 
       it "redirects to the contract" do
-        contract = Contract.create! valid_attributes
+        contract = user.contracts.create! valid_attributes
         patch contract_url(contract), params: { contract: new_attributes }
         contract.reload
         expect(response).to redirect_to(contract_url(contract))
@@ -100,7 +100,7 @@ RSpec.describe ContractsController, type: :request do
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        contract = Contract.create! valid_attributes
+        contract = user.contracts.create! valid_attributes
         patch contract_url(contract), params: { contract: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -109,14 +109,14 @@ RSpec.describe ContractsController, type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested contract" do
-      contract = Contract.create! valid_attributes
+      contract = user.contracts.create! valid_attributes
       expect do
         delete contract_url(contract)
       end.to change(Contract, :count).by(-1)
     end
 
     it "redirects to the contracts list" do
-      contract = Contract.create! valid_attributes
+      contract = user.contracts.create! valid_attributes
       delete contract_url(contract)
       expect(response).to redirect_to(contracts_url)
     end

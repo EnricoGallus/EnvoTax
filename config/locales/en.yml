@@ -109,6 +109,8 @@ en:
     new:
       content_title: "New invoice"
       title: "New invoice"
+    approve: "Approve"
+    status_change_to_approved: "Invoice approved"
     successfully_created: "Invoice was successfully created."
     successfully_updated: "Invoice was successfully updated."
     successfully_destroyed: "Invoice was successfully destroyed."

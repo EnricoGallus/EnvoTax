@@ -5,6 +5,11 @@ class User < ApplicationRecord
   include Accountable
   include AddressableConcern
 
+  has_many :invoices, dependent: :destroy
+  has_many :clients, dependent: :destroy
+  has_many :contracts, dependent: :destroy
+  has_many :cost_types, dependent: :destroy
+
   validates :name, presence: true
 
   # Include default devise modules. Others available are:

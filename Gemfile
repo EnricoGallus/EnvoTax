@@ -50,6 +50,9 @@ gem "enum_help"
 gem "ransack"
 gem "view_component"
 
+# authorization
+gem "pundit"
+
 # money
 gem "money-rails"
 
@@ -69,6 +72,9 @@ group :development, :test do
 
   gem "factory_bot_rails"
   gem "faker"
+
+  gem "pundit-matchers", "~> 4.0"
+
   gem "rails-controller-testing"
   gem "rspec-rails"
 

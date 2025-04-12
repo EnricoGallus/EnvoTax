@@ -6,7 +6,7 @@ class CostTypesController < ApplicationController
 
   # GET /cost_types
   def index
-    @q = CostType.ransack(params[:q])
+    @q = policy_scope(CostType).ransack(params[:q])
     @cost_types = @q.result(distinct: true)
   end
 
@@ -23,7 +23,7 @@ class CostTypesController < ApplicationController
 
   # POST /cost_types
   def create
-    @cost_type = CostType.new(cost_type_params)
+    @cost_type = current_user.cost_types.new(cost_type_params)
 
     if @cost_type.save
       redirect_to @cost_type, notice: t("cost_types.successfully_created")
@@ -51,7 +51,7 @@ class CostTypesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_cost_type
-    @cost_type = CostType.find(params.expect(:id))
+    @cost_type = authorize CostType.find(params.expect(:id))
   end
 
   # Only allow a list of trusted parameters through.

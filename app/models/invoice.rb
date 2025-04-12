@@ -15,7 +15,7 @@ class Invoice < ApplicationRecord
   validates :invoice_date, :start_date, :end_date, :status, presence: true
   validate :clear_generated_errors_for_job_save
 
-  enum :status, { draft: 0, sent: 1, partially_paid: 2, paid: 3, overdue: 4 }
+  enum :status, { draft: 0, approved: 1, partially_paid: 2, paid: 3, overdue: 4 }
 
   def time_entries_amount
     time_entries.sum(&:calculate_cost).to_money
@@ -36,7 +36,7 @@ class Invoice < ApplicationRecord
     elsif allocated_amount.positive?
       update(status: :partially_paid)
     elsif [:paid, :partially_paid].include?(status.to_sym)
-      update(status: :sent)
+      update(status: :approved)
     end
   end
 

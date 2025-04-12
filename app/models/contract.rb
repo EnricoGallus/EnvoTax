@@ -3,6 +3,7 @@
 # Contract model representing a contract with a client
 class Contract < ApplicationRecord
   belongs_to :client
+  belongs_to :user
 
   has_many :contract_instances, dependent: :destroy
 

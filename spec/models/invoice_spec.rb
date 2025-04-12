@@ -21,7 +21,8 @@ RSpec.describe Invoice, type: :model do
 
   describe "enums" do
     it {
-      expect(invoice).to define_enum_for(:status).with_values(draft: 0, sent: 1, partially_paid: 2, paid: 3, overdue: 4)
+      expect(invoice).to define_enum_for(:status).with_values(draft: 0, approved: 1, partially_paid: 2, paid: 3,
+                                                              overdue: 4)
     }
   end
 
@@ -51,7 +52,7 @@ RSpec.describe Invoice, type: :model do
   end
 
   describe "#update_status_from_allocations!" do
-    let(:invoice) { create(:invoice, status: :sent) }
+    let(:invoice) { create(:invoice, status: :approved) }
 
     context "when fully paid" do
       it "updates status to paid" do
@@ -74,13 +75,13 @@ RSpec.describe Invoice, type: :model do
     end
 
     context "when was paid but allocation is removed" do
-      it "updates status to sent" do
+      it "updates status to paid" do
         invoice.update(status: :paid)
         allow(invoice).to receive_messages(total_amount: Money.new(1000), allocated_amount: Money.new(0))
 
         invoice.update_status_from_allocations!
 
-        expect(invoice.reload).to be_sent
+        expect(invoice.reload).to be_approved
       end
     end
   end

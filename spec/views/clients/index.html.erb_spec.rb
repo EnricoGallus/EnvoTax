@@ -3,10 +3,12 @@
 require "rails_helper"
 
 RSpec.describe "clients/index.html.erb", type: :view do
-  let(:client_list) { create_list(:client, 2) }
+  let(:user) { create(:user) }
+  let(:client_list) { create_list(:client, 2, user: user) }
 
   before do
     assign(:clients, client_list)
+    enable_pundit(view, user)
     render
   end
 

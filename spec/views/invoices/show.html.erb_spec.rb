@@ -9,6 +9,7 @@ RSpec.describe "invoices/show", type: :view do
   before do
     assign(:invoice, invoice)
     view.stub(:current_user).and_return(user)
+    enable_pundit(view, user)
     render
   end
 
