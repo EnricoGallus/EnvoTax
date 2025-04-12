@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_11_020840) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_12_025644) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -72,6 +72,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_11_020840) do
     t.string "hourly_rate_currency", default: "JPY", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
   end
 
   create_table "contract_instances", force: :cascade do |t|
@@ -93,6 +94,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_11_020840) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
     t.index ["client_id"], name: "index_contracts_on_client_id"
     t.index ["name"], name: "index_contracts_on_name", unique: true
   end
@@ -101,6 +103,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_11_020840) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
     t.index ["name"], name: "index_cost_types_on_name", unique: true
   end
 
@@ -220,8 +223,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_11_020840) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "clients", "users"
   add_foreign_key "contract_instances", "contracts"
   add_foreign_key "contracts", "clients"
+  add_foreign_key "contracts", "users"
+  add_foreign_key "cost_types", "users"
   add_foreign_key "expenses", "contract_instances"
   add_foreign_key "expenses", "cost_types"
   add_foreign_key "expenses", "invoices"

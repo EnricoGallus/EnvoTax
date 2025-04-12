@@ -3,11 +3,13 @@
 require "rails_helper"
 
 RSpec.describe "invoices/index", type: :view do
-  let(:invoices) { create_list(:invoice, 2) }
+  let(:user) { create(:user) }
+  let(:invoices) { create_list(:invoice, 2, user: user) }
 
   before do
     assign(:invoices, invoices)
     assign(:q, Invoice.ransack)
+    enable_pundit(view, user)
     render
   end
 

@@ -5,6 +5,8 @@ FactoryBot.define do
     name { Faker::Name.name }
     hourly_rate_cents { Faker::Number.number(digits: 5) }
 
+    user
+
     trait :with_address do
       after(:build) do |client|
         client.build_address(

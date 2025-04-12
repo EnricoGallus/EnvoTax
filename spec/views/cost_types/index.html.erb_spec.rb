@@ -3,11 +3,13 @@
 require "rails_helper"
 
 RSpec.describe "cost_types/index", type: :view do
-  let(:cost_types) { create_list(:cost_type, 2) }
+  let(:user) { create(:user) }
+  let(:cost_types) { create_list(:cost_type, 2, user: user) }
 
   before do
     assign(:cost_types, cost_types)
     assign(:q, CostType.ransack)
+    enable_pundit(view, user)
     render
   end
 

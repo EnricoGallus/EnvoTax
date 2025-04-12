@@ -3,10 +3,12 @@
 require "rails_helper"
 
 RSpec.describe "projects/index", type: :view do
+  let(:user) { create(:user) }
   let(:project_list) { create_list(:project, 2) }
 
   before do
     assign(:projects, project_list)
+    enable_pundit(view, user)
     render
   end
 

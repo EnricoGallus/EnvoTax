@@ -3,14 +3,16 @@
 require "rails_helper"
 
 RSpec.describe "contracts/index", type: :view do
+  let(:user) { create(:user) }
+
   before do
-    assign(:contracts, create_list(:contract, 2))
+    assign(:contracts, create_list(:contract, 2, user: user))
     assign(:q, Contract.ransack)
+    enable_pundit(view, user)
+    render
   end
 
   it "renders a list of contracts" do
-    render
-
     # Test page title and header
     expect(rendered).to have_css("h1", text: "Contracts")
 

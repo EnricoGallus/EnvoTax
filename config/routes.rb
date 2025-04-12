@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :invoices, except: [:edit, :update] do
     member do
       get :preview
+      post :approve
     end
   end
   resources :time_entries, except: [:show]

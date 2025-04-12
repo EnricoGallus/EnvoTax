@@ -6,7 +6,7 @@ class ContractsController < ApplicationController
 
   # GET /contracts
   def index
-    @q = Contract.ransack(params[:q])
+    @q = policy_scope(Contract).ransack(params[:q])
     @contracts = @q.result(distinct: true)
   end
 
@@ -26,7 +26,7 @@ class ContractsController < ApplicationController
 
   # POST /contracts
   def create
-    @contract = Contract.new(contract_params)
+    @contract = current_user.contracts.new(contract_params)
 
     if @contract.save
       redirect_to @contract, notice: t("contract.successfully_created")
@@ -54,7 +54,7 @@ class ContractsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_contract
-    @contract = Contract.find(params.expect(:id))
+    @contract = authorize Contract.find(params.expect(:id))
   end
 
   # Only allow a list of trusted parameters through.

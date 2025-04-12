@@ -2,11 +2,11 @@
 
 # controller for invoice handling
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: %i[show destroy preview]
+  before_action :set_invoice, only: %i[show destroy preview approve]
 
   # GET /invoices or /invoices.json
   def index
-    @q = Invoice.ransack(params[:q])
+    @q = policy_scope(Invoice).ransack(params[:q])
     @invoices = @q.result(distinct: true)
   end
 
@@ -38,6 +38,15 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def approve
+    @invoice.approved!
+    if @invoice.save
+      redirect_to invoices_path, notice: t("invoices.status_change_to_approved")
+    else
+      render :show, status: :unprocessable_entity
+    end
+  end
+
   # DELETE /invoices/1 or /invoices/1.json
   def destroy
     @invoice.destroy!
@@ -52,7 +61,7 @@ class InvoicesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_invoice
-    @invoice = Invoice.find(params.expect(:id))
+    @invoice = authorize Invoice.find(params.expect(:id))
   end
 
   # Only allow a list of trusted parameters through.

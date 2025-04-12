@@ -18,7 +18,7 @@ RSpec.describe CostTypesController, type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      CostType.create! valid_attributes
+      user.cost_types.create! valid_attributes
       get cost_types_url
       expect(response).to be_successful
     end
@@ -26,7 +26,7 @@ RSpec.describe CostTypesController, type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      cost_type = CostType.create! valid_attributes
+      cost_type = user.cost_types.create! valid_attributes
       get cost_type_url(cost_type)
       expect(response).to be_successful
     end
@@ -41,7 +41,7 @@ RSpec.describe CostTypesController, type: :request do
 
   describe "GET /edit" do
     it "renders a successful response" do
-      cost_type = CostType.create! valid_attributes
+      cost_type = user.cost_types.create! valid_attributes
       get edit_cost_type_url(cost_type)
       expect(response).to be_successful
     end
@@ -82,7 +82,7 @@ RSpec.describe CostTypesController, type: :request do
       end
 
       it "updates the requested cost_type" do
-        cost_type = CostType.create! valid_attributes
+        cost_type = user.cost_types.create! valid_attributes
         patch cost_type_url(cost_type), params: { cost_type: new_attributes }
         cost_type.reload
 
@@ -90,7 +90,7 @@ RSpec.describe CostTypesController, type: :request do
       end
 
       it "redirects to the cost_type" do
-        cost_type = CostType.create! valid_attributes
+        cost_type = user.cost_types.create! valid_attributes
         patch cost_type_url(cost_type), params: { cost_type: new_attributes }
         cost_type.reload
         expect(response).to redirect_to(cost_type_url(cost_type))
@@ -99,7 +99,7 @@ RSpec.describe CostTypesController, type: :request do
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        cost_type = CostType.create! valid_attributes
+        cost_type = user.cost_types.create! valid_attributes
         patch cost_type_url(cost_type), params: { cost_type: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -108,14 +108,14 @@ RSpec.describe CostTypesController, type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested cost_type" do
-      cost_type = CostType.create! valid_attributes
+      cost_type = user.cost_types.create! valid_attributes
       expect do
         delete cost_type_url(cost_type)
       end.to change(CostType, :count).by(-1)
     end
 
     it "redirects to the cost_types list" do
-      cost_type = CostType.create! valid_attributes
+      cost_type = user.cost_types.create! valid_attributes
       delete cost_type_url(cost_type)
       expect(response).to redirect_to(cost_types_url)
     end
