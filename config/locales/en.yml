@@ -136,6 +136,12 @@ en:
       content_title: "Payment Adjustments"
       new: "New Payment Adjustment"
       none_found: "No payment adjustments found"
+    show:
+      content_title: "Showing Payment Adjustment"
+      title: "Showing Payment Adjustment"
+    edit:
+      content_title: "Edit Payment Adjustment"
+      title: "Edit Payment Adjustment"
     successfully_created: "Payment adjustment was successfully created."
     successfully_updated: "Payment adjustment was successfully updated."
     successfully_destroyed: "Payment adjustment was successfully destroyed."
@@ -149,6 +155,12 @@ en:
     show:
       content_title: "Showing Payment Statement"
       title: "Showing Payment Statement"
+    edit:
+      content_title: "Edit Payment Statement"
+      title: "Edit Payment Statement"
+    new:
+      content_title: "New Payment Statement"
+      title: "New Payment Statement"
     successfully_created: "Payment statement was successfully created."
     successfully_updated: "Payment statement was successfully updated."
     successfully_destroyed: "Payment statement was successfully destroyed."
@@ -175,6 +187,9 @@ en:
     show:
       content_title: "Showing Payment Allocation"
       title: "Showing Payment Allocation"
+    new:
+      content_title: "New Payment Allocation"
+      title: "New Payment Allocation"
     successfully_created: "Payment allocations was successfully created."
     successfully_updated: "Payment allocations was successfully updated."
     successfully_destroyed: "Payment allocations was successfully destroyed."
@@ -372,7 +387,7 @@ en:
         tax_rate: "Tax Rate"
       payment_allocation:
         amount: "Amount"
-        tax: "Tax"
+        income_tax: "Income Tax"
         payment_statement: "Payment Statement"
         reference: "Reference"
       contract:

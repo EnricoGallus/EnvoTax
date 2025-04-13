@@ -1,9 +1,9 @@
-<% content_for :title, t('payment_allocation.show.content_title') %>
+<% content_for :title, t('payment_statement.show.content_title') %>
 
 <div class="flex flex-col w-full">
   <div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-      <h1 class="font-bold text-4xl"><%= t('payment_allocation.show.title') %></h1>
+      <h1 class="font-bold text-4xl"><%= t('payment_statement.show.title') %></h1>
       <div>
         <%= link_to t('table.edit'), edit_payment_statement_path(@payment_statement), class: "btn btn-primary" %>
         <%= link_to t('table.back'), payment_statements_path, class: "btn" %>

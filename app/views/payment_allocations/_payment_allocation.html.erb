@@ -1,18 +1,18 @@
-<div id="<%= dom_id payment_allocation %>" class="w-full sm:w-auto my-5 space-y-5">
+<div id="<%= dom_id payment_allocation %>" class="grid grid-cols-1 md:grid-cols-2 gap-4 py-5">
   <div>
-    <strong class="block font-medium mb-1">Amount:</strong>
+    <strong class="block font-medium mb-1"><%= t('activerecord.attributes.payment_allocation.amount') %>:</strong>
     <%= payment_allocation.amount.format %>
   </div>
   <div>
-    <strong class="block font-medium mb-1">Tax:</strong>
+    <strong class="block font-medium mb-1"><%= t('activerecord.attributes.payment_allocation.income_tax') %>:</strong>
     <%= payment_allocation.income_tax.tax_type %>
   </div>
   <div>
-    <strong class="block font-medium mb-1">Payment statement:</strong>
+    <strong class="block font-medium mb-1"><%= t('activerecord.attributes.payment_allocation.payment_statement') %>:</strong>
     <%= payment_allocation.payment_statement_id %>
   </div>
   <div>
-    <strong class="block font-medium mb-1">Reference:</strong>
+    <strong class="block font-medium mb-1"><%= t('activerecord.attributes.payment_allocation.reference') %>:</strong>
     <%= payment_allocation.reference_id %>
   </div>
 </div>
