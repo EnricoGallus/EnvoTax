@@ -17,6 +17,10 @@ class Invoice < ApplicationRecord
 
   enum :status, { draft: 0, approved: 1, partially_paid: 2, paid: 3, overdue: 4 }
 
+  def details
+    total_amount.format
+  end
+
   def time_entries_amount
     time_entries.sum(&:calculate_cost).to_money
   end
