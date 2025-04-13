@@ -1,9 +1,9 @@
 <% content_for :title, "New payment allocation" %>
 
-<div class="md:w-2/3 w-full">
+<div class="w-full">
   <h1 class="font-bold text-4xl">New payment allocation</h1>
 
   <%= render "form", payment_statement: @payment_statement, payment_allocation: @payment_allocation %>
 
-  <%= link_to "Back to payment allocations", payment_statement_path(@payment_statement), class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+  <%= link_to t('table.back'), payment_statement_path(@payment_statement), class: "btn" %>
 </div>

@@ -70,7 +70,7 @@ class PaymentAllocationsController < ApplicationController
   def reference_list
     @references = (Invoice.all + PaymentAdjustment.all).map do |ref|
       [
-        "#{ref.class.name} ##{ref.id} – #{ref.try(:description) || ref.try(:amount)}",
+        "#{ref.class.name} ##{ref.id} – #{ref.details}",
         "#{ref.class.name}_#{ref.id}"
       ]
     end

@@ -1,25 +1,27 @@
 <%= form_with(model: [payment_statement, payment_allocation], class: "contents") do |form| %>
   <%= render partial: "shared/error_messages", locals: { model: payment_allocation } %>
 
-  <div class="my-5">
-    <%= form.label :amount %>
-    <%= form.number_field :amount, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": payment_allocation.errors[:amount].none?, "border-red-400 focus:outline-red-600": payment_allocation.errors[:amount].any?}] %>
-  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 py-5">
+    <div>
+      <%= form.label :amount %>
+      <%= form.number_field :amount, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": payment_allocation.errors[:amount].none?, "border-red-400 focus:outline-red-600": payment_allocation.errors[:amount].any?}] %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :income_tax_id %>
-    <%= form.select :income_tax_id, options_from_collection_for_select(IncomeTax.all, :id, :tax_type, selected: payment_allocation.income_tax_id), { include_blank: true }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": payment_allocation.errors[:income_tax].none?, "border-red-400 focus:outline-red-600": payment_allocation.errors[:income_tax].any?}] %>
-  </div>
+    <div>
+      <%= form.label :income_tax_id %>
+      <%= form.select :income_tax_id, options_from_collection_for_select(IncomeTax.all, :id, :tax_type, selected: payment_allocation.income_tax_id), { include_blank: true }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": payment_allocation.errors[:income_tax].none?, "border-red-400 focus:outline-red-600": payment_allocation.errors[:income_tax].any?}] %>
+    </div>
 
-  <div data-controller="reference-selector">
-    <%= label_tag :reference, "Reference" %>
-    <%= select_tag :reference, options_for_select(@references, "#{payment_allocation.reference_type}_#{payment_allocation.reference_id}"), data: { action: "change->reference-selector#update" }, include_blank: true, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": payment_allocation.errors[:reference].none?, "border-red-400 focus:outline-red-600": payment_allocation.errors[:reference].any?}] %>
+    <div data-controller="reference-selector">
+      <%= label_tag :reference, "Reference" %>
+      <%= select_tag :reference, options_for_select(@references, "#{payment_allocation.reference_type}_#{payment_allocation.reference_id}"), data: { action: "change->reference-selector#update" }, include_blank: true, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": payment_allocation.errors[:reference].none?, "border-red-400 focus:outline-red-600": payment_allocation.errors[:reference].any?}] %>
 
-    <%= form.hidden_field :reference_type, data: { reference_selector_target: "type" } %>
-    <%= form.hidden_field :reference_id, data: { reference_selector_target: "id" } %>
+      <%= form.hidden_field :reference_type, data: { reference_selector_target: "type" } %>
+      <%= form.hidden_field :reference_id, data: { reference_selector_target: "id" } %>
+    </div>
   </div>
 
   <div class="inline">
-    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -85,18 +85,7 @@ RSpec.describe PaymentStatement, type: :model do
 
     context "when all amount is allocated" do
       before do
-        create(:payment_allocation, payment_statement: payment_statement, amount: 100_000)
-      end
-
-      it "sets status to distributed" do
-        payment_statement.update_status!
-        expect(payment_statement.reload).to be_distributed
-      end
-    end
-
-    context "when more than the amount is allocated" do
-      before do
-        create(:payment_allocation, payment_statement: payment_statement, amount: 120_000)
+        create(:payment_allocation, payment_statement: payment_statement, amount: payment_statement.unallocated_amount)
       end
 
       it "sets status to distributed" do

@@ -146,6 +146,9 @@ en:
       content_title: "Payment Statements"
       new: "New Payment Statement"
       none_found: "No payment statements found"
+    show:
+      content_title: "Showing Payment Statement"
+      title: "Showing Payment Statement"
     successfully_created: "Payment statement was successfully created."
     successfully_updated: "Payment statement was successfully updated."
     successfully_destroyed: "Payment statement was successfully destroyed."
@@ -169,6 +172,9 @@ en:
     edit:
       content_title: "Edit Payment Allocation"
       title: "Edit Payment Allocation"
+    show:
+      content_title: "Showing Payment Allocation"
+      title: "Showing Payment Allocation"
     successfully_created: "Payment allocations was successfully created."
     successfully_updated: "Payment allocations was successfully updated."
     successfully_destroyed: "Payment allocations was successfully destroyed."
@@ -368,6 +374,7 @@ en:
         amount: "Amount"
         tax: "Tax"
         payment_statement: "Payment Statement"
+        reference: "Reference"
       contract:
         name: "Name"
         client: "Client"
@@ -393,3 +400,7 @@ en:
           attributes:
             time_overlap:
               invalid: "Overlaps with another time entry on the same day"
+        payment_allocation:
+          attributes:
+            amount:
+              exceeded: "cannot exceed the unallocated amount of the payment statement"
