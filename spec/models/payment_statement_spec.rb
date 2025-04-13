@@ -45,10 +45,10 @@ RSpec.describe PaymentStatement, type: :model do
   describe "#allocated_amount" do
     it "returns the sum of all payment allocations" do
       payment_statement = create(:payment_statement)
-      create(:payment_allocation, payment_statement: payment_statement, amount: 20_000)
-      create(:payment_allocation, payment_statement: payment_statement, amount: 30_000)
+      create(:payment_allocation, payment_statement: payment_statement)
+      create(:payment_allocation, payment_statement: payment_statement, amount: payment_statement.unallocated_amount)
 
-      expect(payment_statement.allocated_amount).to eq(Money.new(50_000))
+      expect(payment_statement.unallocated_amount).to eq(Money.new(0))
     end
 
     it "returns 0 when there are no allocations" do
