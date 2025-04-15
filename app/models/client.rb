@@ -7,6 +7,8 @@ class Client < ApplicationRecord
 
   has_many :projects, dependent: :destroy
 
+  enum :calculation_mode, { item_based: 0, total_based: 1 }
+
   monetize :hourly_rate_cents, with_currency: :jpy, numericality: { greater_than_or_equal_to: 0 }
 
   validates :name, presence: true

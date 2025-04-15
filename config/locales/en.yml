@@ -339,6 +339,10 @@ en:
       client:
         name: "Name"
         hourly_rate: "Hourly Rate"
+        calculation_mode: "Calculation Mode"
+        calculation_modes:
+          item_based: "Item Based"
+          total_based: "Total Based"
       cost_type:
         name: "Name"
       project:

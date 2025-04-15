@@ -68,7 +68,7 @@ class ClientsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def client_params
-    params.expect(client: [:name, :hourly_rate,
+    params.expect(client: [:name, :hourly_rate, :calculation_mode,
                            { address_attributes:
                                [:id, :postal_code, :prefecture, :city, :street, :building, :country] }])
   end

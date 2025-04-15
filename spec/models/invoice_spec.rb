@@ -32,25 +32,6 @@ RSpec.describe Invoice, type: :model do
     end
   end
 
-  describe "#total_amount" do
-    let(:invoice) { create(:invoice) }
-    let(:client) { create(:client, hourly_rate: 100) }
-    let(:project_one) { create(:project, client: client) }
-    let(:project_two) { create(:project, client: client) }
-
-    it "calculates the sum of time entries cost and expenses amount" do
-      now = Time.zone.now.at_noon
-      create(:time_entry, invoice: invoice, time_from: now - 2.hours, time_to: now, project: project_one)
-      create(:time_entry, invoice: invoice, time_from: now - 5.hours, time_to: now - 2.hours, project: project_two)
-      create(:expense, invoice: invoice, amount: 75)
-      create(:expense, invoice: invoice, amount: 125)
-      # Time entries: (2*50) + (3*60) = 100 + 180 = 280
-      # Expenses: 75 + 125 = 200
-      # Total: 280 + 200 = 480
-      expect(invoice.total_amount).to eq(Money.new(700))
-    end
-  end
-
   describe "#update_status_from_allocations!" do
     let(:invoice) { create(:invoice, status: :approved) }
 

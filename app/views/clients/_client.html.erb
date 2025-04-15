@@ -8,5 +8,9 @@
       <strong class="block font-medium mb-1"><%= t('activerecord.attributes.client.hourly_rate') %>:</strong>
       <%= client.hourly_rate.format %>
     </div>
+    <div>
+      <strong class="block font-medium mb-1"><%= t('activerecord.attributes.client.calculation_mode') %>:</strong>
+      <%= client.calculation_mode_i18n %>
+    </div>
   </div>
 </div>
