@@ -12,7 +12,9 @@
           <thead>
           <tr>
             <th><%= t('activerecord.attributes.payment_allocation.amount') %></th>
-            <th><%= t('activerecord.attributes.payment_allocation.tax') %></th>
+            <th><%= t('payment_allocation.index.net_amount') %></th>
+            <th><%= t('payment_allocation.index.tax_amount') %></th>
+            <th><%= t('activerecord.attributes.payment_allocation.income_tax') %></th>
             <th><%= t('activerecord.attributes.payment_allocation.reference') %></th>
             <th><%= t('table.actions') %></th>
           </tr>
@@ -21,6 +23,8 @@
           <% @payment_statement.payment_allocations.each do |payment_allocation| %>
             <tr id="<%= dom_id payment_allocation %>">
               <td><%= payment_allocation.amount.format %></td>
+              <td><%= payment_allocation.net_amount.format %></td>
+              <td><%= payment_allocation.tax_amount.format %></td>
               <td><%= payment_allocation.income_tax.tax_type %></td>
               <td><%= payment_allocation.reference %></td>
               <td>

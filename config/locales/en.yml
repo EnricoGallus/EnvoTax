@@ -111,6 +111,7 @@ en:
       title: "New invoice"
     approve: "Approve"
     status_change_to_approved: "Invoice approved"
+    unsupported_calculation_mode: "Unsupported calculation mode %{mode}"
     successfully_created: "Invoice was successfully created."
     successfully_updated: "Invoice was successfully updated."
     successfully_destroyed: "Invoice was successfully destroyed."
@@ -181,6 +182,8 @@ en:
       content_title: "Payment Allocations"
       new: "New Payment Allocation"
       none_found: "No payment allocations found"
+      net_amount: "Net Amount"
+      tax_amount: "Tax Amount"
     edit:
       content_title: "Edit Payment Allocation"
       title: "Edit Payment Allocation"

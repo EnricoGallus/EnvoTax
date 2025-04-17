@@ -54,7 +54,7 @@ sudo usermod -aG docker ec2-user
 ## Docker cleanup
 - run `kamal prune all` to remove all unused containers and images
 - but make sure it is cleaned up `kamal server exec docker system df`
-- looks like sometimes it needs to be manually forced `kamal server exec docker container prune -a`
+- looks like sometimes it needs to be manually forced `kamal server exec docker container prune -f`
 
 ## Database backup
 - create a backup of the database by executing `kamal server exec cat /mnt/storage/production.sqlite3 > production.sqlite3`

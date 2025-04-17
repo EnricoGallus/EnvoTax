@@ -23,9 +23,11 @@ class InvoiceAmountCalculator
     when :item_based
       @invoice.time_entries.sum(&:calculate_cost).to_money
     when :total_based
-      @invoice.time_entries.sum(&:spent_time_in_seconds) / 1.hour * @invoice.contract_instance.contract.client.hourly_rate
+      @invoice.time_entries.sum(&:spent_time_in_seconds) / 1.hour *
+        @invoice.contract_instance.contract.client.hourly_rate
     else
-      raise ArgumentError, "Unsupported calculation mode: #{@invoice.calculation_mode}"
+
+      raise ArgumentError, _(I18n.t("invoices.unsupported_calculation_mode", mode: @invoice.calculation_mode))
     end
   end
 end
