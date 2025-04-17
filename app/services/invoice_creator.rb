@@ -17,6 +17,11 @@ class InvoiceCreator
 
       assign_time_entries(invoice)
       assign_expenses(invoice)
+
+      invoice.total_amount = calculate_total(invoice)
+      invoice.save!
+
+      invoice
     end
   end
 
@@ -29,21 +34,26 @@ class InvoiceCreator
       start_date: @start_date,
       end_date: @end_date,
       invoice_date: @invoice_date,
-      status: :draft
+      status: :draft,
+      calculation_mode: @contract.client.calculation_mode
     )
   end
 
   def assign_time_entries(invoice)
-    time_entries = TimeEntry.where(project: @contract.client.projects)
-                            .where(date: @start_date..@end_date)
-                            .where(invoice_id: nil)
-    time_entries.update_all(invoice_id: invoice.id)
+    TimeEntry.where(project: @contract.client.projects)
+             .where(date: @start_date..@end_date)
+             .where(invoice_id: nil)
+             .find_each { |entry| entry.update!(invoice: invoice) }
   end
 
   def assign_expenses(invoice)
-    expenses = Expense.where(contract_instance: invoice.contract_instance)
-                      .where(date: @start_date..@end_date)
-                      .where(invoice_id: nil)
-    expenses.update_all(invoice_id: invoice.id)
+    Expense.where(contract_instance: invoice.contract_instance)
+           .where(date: @start_date..@end_date)
+           .where(invoice_id: nil)
+           .find_each { |expense| expense.update!(invoice: invoice) }
+  end
+
+  def calculate_total(invoice)
+    InvoiceAmountCalculator.new(invoice).call
   end
 end

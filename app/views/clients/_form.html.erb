@@ -13,6 +13,11 @@
       <%= form.number_field :hourly_rate, class: ["input w-full", { "border-gray-400 focus:outline-blue-600": client.errors[:hourly_rate].none?, "border-red-400 focus:outline-red-600": client.errors[:hourly_rate].any? }] %>
     </div>
 
+    <div>
+      <%= form.label :calculation_mode, class: "label" %>
+      <%= form.select :calculation_mode, Client.calculation_modes_i18n.invert, {}, class: ["select w-full", { "border-gray-400 focus:outline-blue-600": client.errors[:calculation_mode].none?, "border-red-400 focus:outline-red-600": client.errors[:calculation_mode].any? }] %>
+    </div>
+
   </div>
 
   <%= form.fields_for :address do |address_form| %>

@@ -35,6 +35,24 @@ RSpec.describe PaymentAllocation, type: :model do
     end
   end
 
+  describe "#tax_amount" do
+    it "calculates the tax amount based on income tax rate" do
+      income_tax = create(:income_tax, tax_rate: 10)
+      payment_allocation = create(:payment_allocation, income_tax: income_tax, amount_cents: 1000)
+
+      expect(payment_allocation.tax_amount).to eq(Money.new(100))
+    end
+  end
+
+  describe "#net_amount" do
+    it "calculates the net amount by subtracting tax from gross" do
+      income_tax = create(:income_tax, tax_rate: 10)
+      payment_allocation = create(:payment_allocation, income_tax: income_tax, amount_cents: 1000)
+
+      expect(payment_allocation.net_amount).to eq(Money.new(900))
+    end
+  end
+
   describe "#update_statuses" do
     let(:payment_allocation) { create(:payment_allocation) }
 

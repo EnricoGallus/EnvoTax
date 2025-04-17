@@ -9,29 +9,19 @@ class Invoice < ApplicationRecord
   belongs_to :user
   belongs_to :contract_instance
 
+  monetize :total_amount_cents, with_currency: :jpy, numericality: { greater_than_or_equal_to: 0 }
+
   has_many :time_entries, dependent: :nullify
   has_many :expenses, dependent: :nullify
 
   validates :invoice_date, :start_date, :end_date, :status, presence: true
   validate :clear_generated_errors_for_job_save
 
+  enum :calculation_mode, { item_based: 0, total_based: 1 }
   enum :status, { draft: 0, approved: 1, partially_paid: 2, paid: 3, overdue: 4 }
 
   def details
     total_amount.format
-  end
-
-  def time_entries_amount
-    time_entries.sum(&:calculate_cost).to_money
-  end
-
-  def expenses_amount
-    expenses.debit.sum(:amount_cents).to_money -
-      expenses.credit.sum(:amount_cents).to_money
-  end
-
-  def total_amount
-    time_entries_amount + expenses_amount
   end
 
   def update_status_from_allocations!
@@ -60,6 +50,7 @@ class Invoice < ApplicationRecord
     errors.delete(:contract_instance)
     errors.delete(:user)
     errors.delete(:status)
+    errors.delete(:total_amount)
   end
 
   def generate_invoice_number

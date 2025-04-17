@@ -13,6 +13,14 @@ class PaymentAllocation < ApplicationRecord
   after_destroy :update_statuses
   after_save :update_statuses
 
+  def tax_amount
+    (income_tax.tax_rate / 100) * amount
+  end
+
+  def net_amount
+    amount - tax_amount
+  end
+
   def update_statuses
     payment_statement.update_status!
     reference.update_status_from_allocations! if reference.present?
