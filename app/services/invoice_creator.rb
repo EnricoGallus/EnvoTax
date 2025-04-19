@@ -15,7 +15,7 @@ class InvoiceCreator
     ActiveRecord::Base.transaction do
       invoice = create_invoice
 
-      assign_time_entries(invoice)
+      assign_time_entries(invoice) if @contract.process_time_entries
       assign_expenses(invoice)
 
       invoice.total_amount = calculate_total(invoice)

@@ -400,6 +400,7 @@ en:
       contract:
         name: "Name"
         client: "Client"
+        process_time_entries: "Process Time Entries"
         status: "Status"
       contract_instance:
         contract: "Contract"
@@ -426,3 +427,7 @@ en:
           attributes:
             amount:
               exceeded: "cannot exceed the unallocated amount of the payment statement"
+        contract:
+          attributes:
+            process_time_entries:
+              unique: "can only be set to true for one contract per client"

@@ -8,6 +8,10 @@
     <%= contract.client.name %>
   </div>
   <div>
+    <strong class="block font-medium mb-1"><%= t('activerecord.attributes.contract.process_times_entries') %>:</strong>
+    <%= contract.process_time_entries %>
+  </div>
+  <div>
     <strong class="block font-medium mb-1"><%= t('activerecord.attributes.contract.status') %>:</strong>
     <%= contract.status %>
   </div>
