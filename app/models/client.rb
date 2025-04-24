@@ -6,6 +6,7 @@ class Client < ApplicationRecord
   belongs_to :user
 
   has_many :projects, dependent: :destroy
+  has_many :contracts, dependent: :destroy
 
   enum :calculation_mode, { item_based: 0, total_based: 1 }
 

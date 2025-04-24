@@ -59,6 +59,6 @@ class ContractsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def contract_params
-    params.expect(contract: [:name, :client_id])
+    params.expect(contract: [:name, :client_id, :process_time_entries])
   end
 end

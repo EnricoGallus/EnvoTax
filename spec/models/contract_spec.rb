@@ -11,6 +11,38 @@ RSpec.describe Contract, type: :model do
   describe "validations" do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:status) }
+
+    context "when validating process_time_entries" do
+      let(:client) { create(:client) }
+
+      context "when process_time_entries is true" do
+        it "is valid if no other contract for the client has process_time_entries set to true" do
+          create(:contract, client: client, process_time_entries: false)
+          contract = build(:contract, client: client, process_time_entries: true)
+
+          expect(contract).to be_valid
+        end
+
+        it "is invalid if another contract for the client already has process_time_entries set to true" do
+          create(:contract, client: client, process_time_entries: true)
+          contract = build(:contract, client: client, process_time_entries: true)
+
+          expect(contract).not_to be_valid
+          expect(contract.errors[:process_time_entries]).to include(
+            I18n.t("activerecord.errors.models.contract.attributes.process_time_entries.unique")
+          )
+        end
+      end
+
+      context "when process_time_entries is false" do
+        it "is valid regardless of other contracts' process_time_entries values" do
+          create(:contract, client: client, process_time_entries: true)
+          contract = build(:contract, client: client, process_time_entries: false)
+
+          expect(contract).to be_valid
+        end
+      end
+    end
   end
 
   describe "enums" do

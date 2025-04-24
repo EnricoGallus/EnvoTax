@@ -1,14 +1,23 @@
 <%= form_with(model: contract, class: "contents") do |form| %>
   <%= render partial: "shared/error_messages", locals: { model: contract } %>
 
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: ["input w-full", {"border-gray-400 focus:outline-blue-600": contract.errors[:name].none?, "border-red-400 focus:outline-red-600": contract.errors[:name].any?}] %>
-  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 py-5">
 
-  <div class="my-5">
-    <%= form.label :client_id %>
-    <%= form.select :client_id, options_from_collection_for_select(Client.all, :id, :name, selected: contract.client_id), { include_blank: true }, class: ["select w-full", {"border-gray-400 focus:outline-blue-600": contract.errors[:client].none?, "border-red-400 focus:outline-red-600": contract.errors[:client].any?}] %>
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name, class: ["input w-full", { "border-gray-400 focus:outline-blue-600": contract.errors[:name].none?, "border-red-400 focus:outline-red-600": contract.errors[:name].any? }] %>
+    </div>
+
+    <div>
+      <%= form.label :client_id %>
+      <%= form.select :client_id, options_from_collection_for_select(Client.all, :id, :name, selected: contract.client_id), { include_blank: true }, class: ["select w-full", { "border-gray-400 focus:outline-blue-600": contract.errors[:client].none?, "border-red-400 focus:outline-red-600": contract.errors[:client].any? }] %>
+    </div>
+
+    <div>
+      <%= form.label :process_time_entries %>
+      <%= form.check_box :process_time_entries, class: ["checkbox", { "border-gray-400 focus:outline-blue-600": contract.errors[:process_time_entries].none?, "border-red-400 focus:outline-red-600": contract.errors[:process_time_entries].any? }] %>
+    </div>
+
   </div>
 
   <div class="inline">

@@ -10,6 +10,7 @@
     <% component.with_headers do %>
       <th><%= sort_link(@q, :name, t('activerecord.attributes.contract.name')) %></th>
       <th><%= sort_link(@q, :client_name, t('activerecord.attributes.contract.client')) %></th>
+      <th><%= sort_link(@q, :process_time_entries, t('activerecord.attributes.contract.process_time_entries')) %></th>
       <th><%= sort_link(@q, :status, t('activerecord.attributes.contract.status')) %></th>
     <% end %>
 
@@ -17,6 +18,7 @@
       <% component.with_row do %>
         <td><%= contract.name %></td>
         <td><%= contract.client.name %></td>
+        <td><%= contract.process_time_entries %></td>
         <td><%= contract.status %></td>
       <% end %>
     <% end %>

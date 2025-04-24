@@ -20,7 +20,7 @@ RSpec.describe "contracts/index", type: :view do
     expect(rendered).to have_link("New Contract", href: new_contract_path)
 
     # Test table headers
-    expect(rendered).to have_css("table thead th", count: 4)
+    expect(rendered).to have_css("table thead th", count: 5)
     expect(rendered).to have_css("table thead th", text: "Actions")
 
     # Test contract data
