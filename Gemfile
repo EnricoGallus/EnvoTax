@@ -89,7 +89,7 @@ group :development, :test do
   gem "rubocop-rspec_rails", require: false
   gem "rubocop-thread_safety", require: false
 
-  gem "shoulda-matchers", "~> 6.0"
+  gem "shoulda-matchers", "~> 6.5"
   gem "simplecov", require: false
 end
 
