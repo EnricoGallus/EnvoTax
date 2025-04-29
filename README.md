@@ -57,5 +57,6 @@ sudo usermod -aG docker ec2-user
 - looks like sometimes it needs to be manually forced `kamal server exec docker container prune -f`
 
 ## Database backup
+- deactivate caching by executing `kamal shell` and then twice executing `bin/rails dev:cache`
 - create a backup of the database by executing `kamal server exec cat /mnt/storage/production.sqlite3 > production.sqlite3`
 - but remember to remove the first couple of lines, it contains output from the kamal command
