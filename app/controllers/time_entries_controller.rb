@@ -7,7 +7,7 @@ class TimeEntriesController < ApplicationController
   # GET /time_entries or /time_entries.json
   def index
     @q = TimeEntry.ransack(params[:q])
-    @time_entries = @q.result(distinct: true).order(date: :desc, time_from: :desc)
+    @pagy, @time_entries = pagy(@q.result(distinct: true).order(date: :desc, time_from: :desc))
   end
 
   # GET /time_entries/new

@@ -47,6 +47,7 @@ gem "thruster", require: false
 
 # ui
 gem "enum_help"
+gem "pagy", "~> 9.3"
 gem "ransack"
 gem "view_component"
 

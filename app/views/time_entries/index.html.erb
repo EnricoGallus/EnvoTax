@@ -22,4 +22,7 @@
       <p class="text-center my-10"><%= t('expense.index.none_found') %></p>
     <% end %>
   </div>
+  <div class="flex justify-center items-center">
+    <%== pagy_nav(@pagy) %>
+  </div>
 </div>

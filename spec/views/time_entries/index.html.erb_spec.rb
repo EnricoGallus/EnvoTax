@@ -15,6 +15,7 @@ RSpec.describe "time_entries/index", type: :view do
            ])
 
     assign(:q, TimeEntry.ransack)
+    assign(:pagy, Pagy.new(count: 3, page: 1))
   end
 
   context "when renders a list of time_entries grouped by date" do
