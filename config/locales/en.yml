@@ -263,11 +263,14 @@ en:
       account_holder: "Account Name： %{name}"
     billing_details:
       title: "Billing Details"
-      subtotal: "Subtotal:"
       total: "Total:"
-      date: "Date"
+      term: "Term"
       description: "Description"
+      quantity: "Quantity"
+      unit_price: "Unit Price"
       amount: "Amount"
+      total_amount: "Total Amount"
+      grouped_breakdown: "Grouped Breakdown"
     tax:
       included: "Note: Tax Included"
 
