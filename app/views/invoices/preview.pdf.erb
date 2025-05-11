@@ -1,0 +1,117 @@
+<div id="invoice" class="container my-5">
+  <div class="text-center mb-5">
+    <h1 class="display-5 fw-bold"><%= t('invoice.header.title') %></h1>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col">
+      <p class="fs-5"><%= t('invoice.header.date', date: l(@invoice.invoice_date, format: :default)) %></p>
+    </div>
+    <div class="col text-end">
+      <p class="fs-5"><%= t('invoice.header.reference_id', number: @invoice.invoice_number) %></p>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-6 mb-3">
+      <% client = @invoice.contract_instance.contract.client %>
+      <div class="card shadow p-3">
+        <h5 class="fw-bold mb-2"><%= t('invoice.to.title') %></h5>
+        <div class="fw-bold"><%= t('invoice.to.client_name', name: client.name) %></div>
+        <% unless client.address.nil? %>
+          <div><%= t('invoice.address.postal_code', zip: client.address.postal_code) %></div>
+          <div><%= client.address.to_formatted_address %></div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-6 mb-3">
+      <div class="card shadow p-3">
+        <h5 class="fw-bold mb-2"><%= t('invoice.from.title') %></h5>
+        <div><%= current_user.name %></div>
+        <div><%= t('invoice.address.postal_code', zip: current_user.address.postal_code) %></div>
+        <div><%= current_user.address.to_formatted_address %></div>
+        <div><%= current_user.email %></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-5">
+    <h2 class="fw-bold text-center my-4 fs-4"><%= t('invoice.billing_details.title') %></h2>
+    <table class="table table-bordered">
+      <thead class="table-light table-bordered">
+      <tr>
+        <th><%= t('invoice.billing_details.date') %></th>
+        <th><%= t('invoice.billing_details.description') %></th>
+        <th class="text-end"><%= t('invoice.billing_details.amount') %></th>
+      </tr>
+      </thead>
+      <tbody class="table-group-divider">
+      <% if @invoice.time_entries.any? %>
+        <tr>
+          <td colspan="3" class="text-center">
+            <strong><%= t('invoice.header.work') %> - <%= t('invoice.header.period', from: l(@invoice.start_date, format: :default), to: l(@invoice.end_date, format: :default)) %></strong>
+          </td>
+        </tr>
+        <% grouped_entries = @invoice.time_entries.includes(:project).group_by(&:project) %>
+        <% grouped_entries.each do |group, entries| %>
+          <tr>
+            <td></td>
+            <td><%= group.name %> <%= format_spent_time(entries.sum(&:spent_time_in_seconds)) %></td>
+            <td class="text-end"><%= entries.sum(&:calculate_cost).to_money.format %></td>
+          </tr>
+        <% end %>
+        <tr class="fw-bold fs-5">
+          <td colspan="2" class="text-end"><%= t('invoice.billing_details.subtotal') %></td>
+          <td class="text-end"><%= @invoice.time_entries.sum(&:calculate_cost).to_money.format %></td>
+        </tr>
+      <% end %>
+      <% if @invoice.expenses.any? %>
+        <tr>
+          <td colspan="3" class="text-center"><strong><%= t('activerecord.models.expense.other') %>></strong></td>
+        </tr>
+        <% @invoice.expenses.each do |expense| %>
+          <tr>
+            <td><%= l(expense.date, format: :default) %></td>
+            <td><%= expense.description %></td>
+            <td class="text-end"><%= (expense.credit? ? '-' : '') + expense.amount.format %></td>
+          </tr>
+          <% if expense.receipt.attached? %>
+            <tr>
+              <td colspan="3" class="text-center">
+                <% begin %>
+                  <% blob = expense.receipt.blob %>
+                  <% image_data = Base64.strict_encode64(blob.download) %>
+                  <img src="data:<%= blob.content_type %>;base64,<%= image_data %>"
+                       class="img-fluid rounded mx-auto d-block mb-2" alt="receipt">
+                <% rescue => e %>
+                  <p class="text-danger">Error loading image: <%= e.message %></p>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+      <tr class="fw-bold fs-3">
+        <td colspan="2" class="text-end">
+          <%= t('invoice.billing_details.total') %>
+        </td>
+        <td class="text-end"><%= @invoice.total_amount.format %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-md-6">
+      <div class="card shadow p-3">
+        <h5 class="fw-bold mb-2"><%= t('invoice.bank_details.title') %></h5>
+        <div><%= t('invoice.bank_details.account_holder', name: current_user.bank_account.account_holder) %></div>
+        <div><%= t('invoice.bank_details.bank', name: current_user.bank_account.bank_name) %></div>
+        <div><%= t('invoice.bank_details.branch', name: current_user.bank_account.branch_code) %></div>
+        <div><%= t('invoice.bank_details.account_number', name: current_user.bank_account.account_number) %></div>
+        <div><%= t('invoice.bank_details.type', name: current_user.bank_account.account_type_i18n) %></div>
+        <p class="mt-2"><%= t('invoice.tax.included') %></p>
+      </div>
+    </div>
+  </div>
+</div>

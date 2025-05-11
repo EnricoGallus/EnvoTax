@@ -9,6 +9,6 @@ module TimeEntriesHelper
     hours = seconds / 1.hour
     minutes = (seconds % 1.hour) / 1.minute
 
-    format("%<hours>02d:%<minutes>02d", hours: hours, minutes: minutes)
+    format("%<hours>02dh:%<minutes>02dm", hours: hours, minutes: minutes)
   end
 end

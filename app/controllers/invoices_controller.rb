@@ -14,7 +14,27 @@ class InvoicesController < ApplicationController
   def show; end
 
   def preview
-    render layout: "invoice"
+    respond_to do |format|
+      format.html
+      format.pdf do
+        html = render_to_string(
+          template: "invoices/preview",
+          layout: "invoice",
+          assigns: { invoice: @invoice }
+        )
+
+        pdf = FerrumPdf.render_pdf(
+          html: html,
+          url: root_url,
+          pdf_options: {
+            margin_left: 0.1,
+            margin_right: 0.1
+          }
+        )
+
+        send_data pdf, filename: "invoice-#{@invoice.id}.pdf", type: "application/pdf"
+      end
+    end
   end
 
   # GET /invoices/new

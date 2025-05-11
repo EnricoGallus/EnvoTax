@@ -246,6 +246,7 @@ en:
       date: "Date: %{date}"
       period: "Period: %{from} to %{to}"
       reference_id: "Reference ID: REF-%{number}"
+      work: "Contract work"
     address:
       postal_code: "%{zip}"
     from:
@@ -262,6 +263,7 @@ en:
       account_holder: "Account Name： %{name}"
     billing_details:
       title: "Billing Details"
+      subtotal: "Subtotal:"
       total: "Total:"
       date: "Date"
       description: "Description"
@@ -278,7 +280,7 @@ en:
   enums:
     bank_account:
       account_type:
-        ordinary: "Ordinary"
+        ordinary: "Regular"
         savings: "Savings"
 
   activerecord:

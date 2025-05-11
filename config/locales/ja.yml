@@ -240,6 +240,7 @@ en:
       date: "発行日： %{date}"
       period: "請求期間： %{from} - %{to}"
       reference_id: "請求書参照ID: REF-%{number}"
+      work: "作業内容"
     address:
       postal_code: "〒%{zip}"
     from:
@@ -256,6 +257,7 @@ en:
       account_holder: "口座名義： %{name}"
     billing_details:
       title: "請求内容"
+      subtotal: "小計:"
       total: "合計:"
       date: "日付"
       description: "内容"
@@ -272,7 +274,7 @@ en:
   enums:
     bank_account:
       account_type:
-        ordinary: "普通"
+        ordinary: "普通預金"
         savings: "当座"
 
   activerecord:
@@ -290,8 +292,8 @@ en:
         one: "Cost Type"
         other: "Cost Types"
       expense:
-        one: "Expense"
-        other: "Expenses"
+        one: "経費"
+        other: "経費"
       invoice:
         one: "Invoice"
         other: "Invoices"
