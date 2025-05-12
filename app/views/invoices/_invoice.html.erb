@@ -86,12 +86,14 @@
         <% end %>
         <% if @invoice.expenses.any? %>
           <tr>
-            <td colspan="4" class="text-center"><strong><%= t('activerecord.models.expense.other') %>></strong></td>
+            <td colspan="4" class="text-center"><strong><%= t('activerecord.models.expense.other') %></strong></td>
           </tr>
           <% @invoice.expenses.each do |expense| %>
             <tr>
               <td><%= l(expense.date, format: :default) %></td>
               <td><%= expense.description %></td>
+              <td>1</td>
+              <td class="text-right"><%= (expense.credit? ? '-' : '') + expense.amount.format %></td>
               <td class="text-right"><%= (expense.credit? ? '-' : '') + expense.amount.format %></td>
             </tr>
             <% if expense.receipt.attached? %>
