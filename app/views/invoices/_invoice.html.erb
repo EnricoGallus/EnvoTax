@@ -54,6 +54,34 @@
         </tr>
         </thead>
         <tbody>
+        <% if @invoice.expenses.any? %>
+          <tr>
+            <td colspan="4" class="text-center"><strong><%= t('activerecord.models.expense.other') %></strong></td>
+          </tr>
+          <% @invoice.expenses.each do |expense| %>
+            <tr>
+              <td><%= l(expense.date, format: :default) %></td>
+              <td><%= expense.description %></td>
+              <td>1</td>
+              <td><%= (expense.credit? ? '-' : '') + expense.amount.format %></td>
+              <td class="text-right"><%= (expense.credit? ? '-' : '') + expense.amount.format %></td>
+            </tr>
+            <% if expense.receipt.attached? %>
+              <tr>
+                <td colspan="4" class="text-center">
+                  <% begin %>
+                    <% blob = expense.receipt.blob %>
+                    <% image_data = Base64.strict_encode64(blob.download) %>
+                    <img src="data:<%= blob.content_type %>;base64,<%= image_data %>"
+                         class="max-w-full max-h-48 mx-auto" alt="image">
+                  <% rescue => e %>
+                    <p class="text-error">Error loading image: <%= e.message %></p>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>
         <% if @invoice.time_entries.any? %>
         <% hourly_rate = @invoice.contract_instance.contract.client.hourly_rate.to_money.format %>
           <tr>
@@ -73,44 +101,17 @@
             <td class="px-4 py-2 text-right font-medium"><%= t('invoice.billing_details.unit_price') %></td>
             <td class="px-4 py-2 text-right font-medium"><%= t('invoice.billing_details.amount') %></td>
           </tr>
+          <% invoice_calculator = InvoiceAmountCalculator.new(@invoice) %>
           <% grouped_entries = @invoice.time_entries.includes(:project).group_by(&:project) %>
           <% grouped_entries.each do |group, entries| %>
             <tr class="bg-gray-50">
               <td colspan="2" class="border px-4 py-2"><%= group.name %></td>
               <td class="border px-4 py-2 text-right"><%= format_spent_time(entries.sum(&:spent_time_in_seconds)) %></td>
               <td class="border px-4 py-2 text-right"><%= hourly_rate %></td>
-              <td class="border px-4 py-2 text-right"><%= entries.sum(&:calculate_cost).to_money.format %></td>
+              <td class="border px-4 py-2 text-right"><%= invoice_calculator.calculate_time_entries_total(entries).to_money.format %></td>
             </tr>
           <% end %>
           <tr><td colspan="5" class="border-t border-gray-400 py-2"></td></tr>
-        <% end %>
-        <% if @invoice.expenses.any? %>
-          <tr>
-            <td colspan="4" class="text-center"><strong><%= t('activerecord.models.expense.other') %></strong></td>
-          </tr>
-          <% @invoice.expenses.each do |expense| %>
-            <tr>
-              <td><%= l(expense.date, format: :default) %></td>
-              <td><%= expense.description %></td>
-              <td>1</td>
-              <td class="text-right"><%= (expense.credit? ? '-' : '') + expense.amount.format %></td>
-              <td class="text-right"><%= (expense.credit? ? '-' : '') + expense.amount.format %></td>
-            </tr>
-            <% if expense.receipt.attached? %>
-              <tr>
-                <td colspan="4" class="text-center">
-                  <% begin %>
-                    <% blob = expense.receipt.blob %>
-                    <% image_data = Base64.strict_encode64(blob.download) %>
-                    <img src="data:<%= blob.content_type %>;base64,<%= image_data %>"
-                         class="max-w-full max-h-48 mx-auto" alt="image">
-                  <% rescue => e %>
-                    <p class="text-error">Error loading image: <%= e.message %></p>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          <% end %>
         <% end %>
         <tr class="bg-base-200 font-bold text-xl">
           <td colspan="4" class="text-end">

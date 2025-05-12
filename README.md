@@ -60,3 +60,6 @@ sudo usermod -aG docker ec2-user
 - deactivate caching by executing `kamal shell` and then twice executing `bin/rails dev:cache`
 - create a backup of the database by executing `kamal server exec cat /mnt/storage/production.sqlite3 > production.sqlite3`
 - but remember to remove the first couple of lines, it contains output from the kamal command
+
+# Database copy
+scp -i ~/.ssh/EnvoTax.pem storage/production.sqlite3 ec2-user@52.198.76.244:/mnt/storage/production.sqlite3
