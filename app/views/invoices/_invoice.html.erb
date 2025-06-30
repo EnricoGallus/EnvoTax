@@ -83,16 +83,19 @@
           <% end %>
         <% end %>
         <% if @invoice.time_entries.any? %>
-        <% hourly_rate = @invoice.contract_instance.contract.client.hourly_rate.to_money.format %>
+          <% invoice_calculator = InvoiceAmountCalculator.new(@invoice) %>
+          <% hourly_rate = @invoice.contract_instance.contract.client.hourly_rate.to_money.format %>
           <tr>
             <td><%= t('invoice.header.period', from: l(@invoice.start_date, format: :default), to: l(@invoice.end_date, format: :default)) %></td>
             <td><strong><%= t('invoice.header.work') %></strong></td>
             <td><%= format_spent_time(@invoice.time_entries.sum(&:spent_time_in_seconds)) %></td>
             <td><%= hourly_rate %></td>
-            <td class="text-end"><%= @invoice.time_entries.sum(&:calculate_cost).to_money.format %></td>
+            <td class="text-end"><%= invoice_calculator.calculate_time_entries_total(@invoice.time_entries).to_money.format %></td>
           </tr>
 
-          <tr><td colspan="5" class="border-t border-gray-400 py-2"></td></tr>
+          <tr>
+            <td colspan="5" class="border-t border-gray-400 py-2"></td>
+          </tr>
 
           <!-- Grouped Breakdown Header -->
           <tr class="bg-gray-50 text-gray-700 text-xs uppercase">
@@ -101,7 +104,7 @@
             <td class="px-4 py-2 text-right font-medium"><%= t('invoice.billing_details.unit_price') %></td>
             <td class="px-4 py-2 text-right font-medium"><%= t('invoice.billing_details.amount') %></td>
           </tr>
-          <% invoice_calculator = InvoiceAmountCalculator.new(@invoice) %>
+
           <% grouped_entries = @invoice.time_entries.includes(:project).group_by(&:project) %>
           <% grouped_entries.each do |group, entries| %>
             <tr class="bg-gray-50">
@@ -111,7 +114,9 @@
               <td class="border px-4 py-2 text-right"><%= invoice_calculator.calculate_time_entries_total(entries).to_money.format %></td>
             </tr>
           <% end %>
-          <tr><td colspan="5" class="border-t border-gray-400 py-2"></td></tr>
+          <tr>
+            <td colspan="5" class="border-t border-gray-400 py-2"></td>
+          </tr>
         <% end %>
         <tr class="bg-base-200 font-bold text-xl">
           <td colspan="4" class="text-end">
