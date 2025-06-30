@@ -82,4 +82,4 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start server via Thruster by default, this can be overwritten at runtime
 EXPOSE 80
-CMD ["./bin/thrust", "./bin/rails", "server"]
+CMD ["TLS_DOMAIN=envotax.enchan.org", "./bin/thrust", "./bin/rails", "server"]
