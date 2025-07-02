@@ -97,17 +97,18 @@ ssh:
   keys: [ "~/.ssh/EnvoTax.pem" ]
 
 # Use accessory services (secrets come from .kamal/secrets).
-# accessories:
-#   db:
-#     image: mysql:8.0
-#     host: 192.168.0.2
+accessories:
+  db:
+    image: postgres:17.5
+    host: <%= ENV["KAMAL_WEB_SERVER_PUBLIC_IP"] %>
 #     # Change to 3306 to expose port to the world instead of just local network.
-#     port: "127.0.0.1:3306:3306"
-#     env:
-#       clear:
-#         MYSQL_ROOT_HOST: '%'
-#       secret:
-#         - MYSQL_ROOT_PASSWORD
+    port: "5432:5432"
+    env:
+      clear:
+        POSTGRES_USER: postgres
+        POSTGRES_DB: envo_tax_production
+      secret:
+        - POSTGRES_PASSWORD
 #     files:
 #       - config/mysql/production.cnf:/etc/mysql/my.cnf
 #       - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
