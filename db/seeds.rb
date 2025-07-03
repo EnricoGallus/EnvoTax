@@ -6,6 +6,7 @@
 #
 
 User.find_or_create_by!(email: Rails.application.credentials.dig(:user, :email)) do |u|
+  u.name = Rails.application.credentials.dig(:user, :name)
   u.password = Rails.application.credentials.dig(:user, :password)
 end
 
