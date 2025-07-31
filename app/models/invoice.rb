@@ -59,7 +59,7 @@ class Invoice < ApplicationRecord
     year = invoice_date.year
     month = invoice_date.month
 
-    latest_invoice = Invoice.where("strftime('%Y', invoice_date) = ?", year.to_s)
+    latest_invoice = Invoice.where("EXTRACT(YEAR FROM invoice_date) = ?", year)
                             .order(invoice_number: :desc)
                             .limit(1)
                             .first
