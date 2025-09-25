@@ -246,6 +246,7 @@ en:
       date: "Date: %{date}"
       period: "Period: %{from} to %{to}"
       reference_id: "Reference ID: REF-%{number}"
+      work: "Contract work"
     address:
       postal_code: "%{zip}"
     from:
@@ -263,9 +264,13 @@ en:
     billing_details:
       title: "Billing Details"
       total: "Total:"
-      date: "Date"
+      term: "Term"
       description: "Description"
+      quantity: "Quantity"
+      unit_price: "Unit Price"
       amount: "Amount"
+      total_amount: "Total Amount"
+      grouped_breakdown: "Grouped Breakdown"
     tax:
       included: "Note: Tax Included"
 
@@ -278,7 +283,7 @@ en:
   enums:
     bank_account:
       account_type:
-        ordinary: "Ordinary"
+        ordinary: "Regular"
         savings: "Savings"
 
   activerecord:

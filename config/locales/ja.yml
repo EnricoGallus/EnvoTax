@@ -240,13 +240,14 @@ en:
       date: "発行日： %{date}"
       period: "請求期間： %{from} - %{to}"
       reference_id: "請求書参照ID: REF-%{number}"
+      work: "作業内容"
     address:
       postal_code: "〒%{zip}"
     from:
       title: "差出人:"
     to:
       title: "請求先："
-      client_name: "%{name}株式会社"
+      client_name: "株式会社%{name} 御中"
     bank_details:
       title: "お振込先"
       bank: "銀行名： %{name}"
@@ -257,11 +258,15 @@ en:
     billing_details:
       title: "請求内容"
       total: "合計:"
-      date: "日付"
+      term: "期間"
       description: "内容"
+      quantity: "数量"
+      unit_price: "単価"
       amount: "金額"
+      total_amount: "合計金額"
+      grouped_breakdown: "内訳"
     tax:
-      included: "備考：　税込み"
+      included: "備考： 税込み"
 
   errors:
     template:
@@ -272,7 +277,7 @@ en:
   enums:
     bank_account:
       account_type:
-        ordinary: "普通"
+        ordinary: "普通預金"
         savings: "当座"
 
   activerecord:
@@ -290,8 +295,8 @@ en:
         one: "Cost Type"
         other: "Cost Types"
       expense:
-        one: "Expense"
-        other: "Expenses"
+        one: "経費"
+        other: "経費"
       invoice:
         one: "Invoice"
         other: "Invoices"
