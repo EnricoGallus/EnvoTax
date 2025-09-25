@@ -99,7 +99,6 @@ jobs:
 
       - name: create database
         env:
-          DATABASE_PORT: 5433
           RAILS_ENV: test
         run: bin/rails db:test:prepare
 
