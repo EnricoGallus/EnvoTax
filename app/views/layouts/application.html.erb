@@ -40,7 +40,7 @@
           </svg>
         </label>
       </div>
-      <div class="navbar-start"><%= link_to "EnvoTax", root_path %></div>
+      <div class="navbar-start"><%= link_to "EnvoTax #{Rails.application.config.app_version}", root_path %></div>
       <% if user_signed_in? %>
         <div class="navbar-center hidden lg:flex">
           <ul class="menu menu-horizontal">
