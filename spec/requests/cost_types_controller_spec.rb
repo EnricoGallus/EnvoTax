@@ -13,7 +13,7 @@ RSpec.describe CostTypesController, type: :request do
   end
 
   before do
-    sign_in user
+    sign_in user, scope: :user
   end
 
   describe "GET /index" do
