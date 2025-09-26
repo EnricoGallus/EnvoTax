@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_19_213914) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_26_064834) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -210,6 +213,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_19_213914) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "invoice_id"
+    t.integer "spent_time_in_seconds", default: 0, null: false
+    t.integer "cost_cents", default: 0, null: false
+    t.string "cost_currency", default: "JPY", null: false
     t.index ["invoice_id"], name: "index_time_entries_on_invoice_id"
     t.index ["project_id"], name: "index_time_entries_on_project_id"
   end

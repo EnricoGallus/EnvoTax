@@ -23,22 +23,42 @@ RSpec.describe TimeEntry, type: :model do
     end
   end
 
-  describe "#spent_time_in_seconds" do
-    it "calculates the time difference in seconds" do
-      time_entry = build(:time_entry, :with_duration, hours: 2, minutes: 30)
-
-      expect(time_entry.spent_time_in_seconds).to eq(9000) # 2.5 hours in seconds
-    end
-  end
-
-  describe "#calculate_cost" do
-    it "calculates the cost based on spent time and project hourly rate" do
+  describe "before_validation: calculate_spent_time_and_cost" do
+    it "sets spent_time_in_seconds and cost when times and rates are present" do
       client = build(:client, hourly_rate: 100)
       project = build(:project, client: client)
-      time_entry = build(:time_entry, :with_duration, hours: 2, minutes: 30, project: project)
 
-      # 2.5 hours * $100/hour = $250
-      expect(time_entry.calculate_cost).to eq(Money.new(250))
+      entry = build(
+        :time_entry,
+        name: "Work",
+        date: Date.current,
+        time_from: Time.zone.parse("10:00"),
+        time_to: Time.zone.parse("12:30"),
+        project: project
+      )
+
+      expect(entry.spent_time_in_seconds).to eq(0)
+      expect(entry.cost).to eq(Money.zero)
+
+      expect(entry).to be_valid
+
+      expect(entry.spent_time_in_seconds).to eq(9000) # 2.5h in seconds
+      expect(entry.cost).to eq(Money.new(250)) # 2.5 * 100/hr = 250
+    end
+
+    it "does not crash and sets zero cost when project or hourly_rate is missing" do
+      entry = build(
+        :time_entry,
+        name: "Work",
+        date: Date.current,
+        time_from: Time.zone.parse("10:00"),
+        time_to: Time.zone.parse("11:00"),
+        project: nil
+      )
+
+      expect(entry).not_to be_valid # missing project, but callback still runs
+      expect(entry.spent_time_in_seconds).to eq(3600)
+      expect(entry.cost).to eq(Money.zero)
     end
   end
 

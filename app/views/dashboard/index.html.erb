@@ -1,0 +1,21 @@
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+  <%= turbo_frame_tag "today", src: today_dashboard_index_path do %>
+    <div class="card bg-base-200 p-4">Loading today’s entries...</div>
+  <% end %>
+
+  <%= turbo_frame_tag "weekly", src: weekly_dashboard_index_path do %>
+    <div class="card bg-base-200 p-4">Loading weekly overview...</div>
+  <% end %>
+
+  <%= turbo_frame_tag "monthly", src: monthly_dashboard_index_path do %>
+    <div class="card bg-base-200 p-4">Loading monthly overview...</div>
+  <% end %>
+
+  <%= turbo_frame_tag "unbilled_time", src: unbilled_time_dashboard_index_path do %>
+    <div class="card bg-base-200 p-4">Loading unbilled times...</div>
+  <% end %>
+
+  <%= turbo_frame_tag "outstanding_invoices", src: outstanding_invoices_dashboard_index_path do %>
+    <div class="card bg-base-200 p-4">Loading outstanding invoices...</div>
+  <% end %>
+</div>

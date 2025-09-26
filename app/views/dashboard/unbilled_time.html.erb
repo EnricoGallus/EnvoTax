@@ -1,0 +1,20 @@
+<turbo-frame id="unbilled_time">
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">Unbilled Time</h2>
+      <% if @entries.any? %>
+        <p><strong><%= @total_hours %> h</strong> worth <strong><%= number_to_currency(@total_value) %></strong></p>
+        <ul class="list-disc ml-4">
+          <% @entries.limit(5).each do |entry| %>
+            <li><%= entry.project.name %> — <%= entry.spent_time_in_seconds %>h</li>
+          <% end %>
+        </ul>
+        <% if @entries.count > 5 %>
+          <p class="text-sm text-gray-500 mt-2">+ <%= @entries.count - 5 %> more…</p>
+        <% end %>
+      <% else %>
+        <p class="text-sm text-gray-500">No unbilled entries 🎉</p>
+      <% end %>
+    </div>
+  </div>
+</turbo-frame>
