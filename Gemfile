@@ -74,6 +74,8 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "faker"
 
+  gem "foreman", "~> 0.89.1"
+
   gem "pundit-matchers", "~> 4.0"
 
   gem "rails-controller-testing"
