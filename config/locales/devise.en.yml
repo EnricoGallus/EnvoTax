@@ -2,6 +2,17 @@
 
 en:
   devise:
+    views:
+      login:
+        title: "Log in"
+        submit: "Log in"
+      forgot_password:
+        title: "Forgot your password?"
+        submit: "Send me reset password instructions"
+      links:
+        login: "Back to login"
+        forgot_password: "Forgot your password?"
+
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."

@@ -23,6 +23,10 @@ Things you may want to cover:
 
 # Deployment instructions
 
+## Credentials/Secrets
+
+- use `EDITOR="code --wait" bin/rails credentials:edit` to edit the credentials
+
 ## AWS Configuration
 
 ### EC2-Instance Creation
