@@ -4,7 +4,6 @@ require "rails_helper"
 
 RSpec.describe HomeController, type: :request do
   describe "GET /index" do
-
     context "when not logged in" do
       it "returns http success" do
         get root_path
