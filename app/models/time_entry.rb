@@ -7,10 +7,8 @@ class TimeEntry < ApplicationRecord
 
   monetize :cost_cents, with_model_currency: :cost_currency, allow_nil: false
 
-  validates :name, presence: true
-  validates :date, presence: true
-  validates :time_from, presence: true
-  validates :time_to, presence: true
+  validates :name, :date, :time_from, :time_to, :cost_cents, :cost_currency, :spent_time_in_seconds, presence: true
+  validates :cost_cents, numericality: { greater_than: 0 }
   validate :no_time_overlap
 
   before_validation :calculate_spent_time_and_cost
@@ -43,9 +41,7 @@ class TimeEntry < ApplicationRecord
 
   def calculate_cost
     hourly_rate = project&.client&.hourly_rate
-    if hourly_rate.blank? || spent_time_in_seconds.blank?
-      return Money.zero(hourly_rate&.currency || Money.default_currency)
-    end
+    return 0 if hourly_rate.blank? || spent_time_in_seconds.nil?
 
     Rational(spent_time_in_seconds) / 1.hour * hourly_rate
   end

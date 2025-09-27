@@ -6,7 +6,7 @@
         <p><strong><%= @total_hours %> h</strong> worth <strong><%= number_to_currency(@total_value) %></strong></p>
         <ul class="list-disc ml-4">
           <% @entries.limit(5).each do |entry| %>
-            <li><%= entry.project.name %> — <%= entry.spent_time_in_seconds %>h</li>
+            <li><%= entry.project.name %> — <%= format_spent_time(entry.spent_time_in_seconds) %></li>
           <% end %>
         </ul>
         <% if @entries.count > 5 %>

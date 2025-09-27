@@ -14,7 +14,7 @@ RSpec.describe TimeEntriesController, type: :request do
   end
 
   before do
-    sign_in user
+    sign_in user, scope: :user
   end
 
   describe "GET /index" do
@@ -92,7 +92,7 @@ RSpec.describe TimeEntriesController, type: :request do
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        time_entry = TimeEntry.create! valid_attributes
+        time_entry = create(:time_entry)
         patch time_entry_url(time_entry), params: { time_entry: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
