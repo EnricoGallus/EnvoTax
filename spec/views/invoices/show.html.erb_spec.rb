@@ -81,8 +81,8 @@ RSpec.describe "invoices/show", type: :view do
       expect(rendered).to include(expense.amount.format)
     end
 
-    it "renders a receipt image as data URI when attached" do
-      expect(rendered).to have_css("img[src='#{rails_blob_path(expense.receipt)}']")
+    it "renders download link for receipt" do
+      expect(rendered).to have_link("Download", href: rails_blob_path(expense.receipt, disposition: "attachment"))
     end
   end
 

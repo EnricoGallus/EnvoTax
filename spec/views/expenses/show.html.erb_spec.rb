@@ -36,7 +36,7 @@ RSpec.describe "expenses/show", type: :view do
     let(:expense) { create(:expense, :with_receipt) }
 
     it "renders download link for receipt" do
-      expect(rendered).to have_css("img[src='#{rails_blob_path(expense.receipt)}']")
+      expect(rendered).to have_link("Download", href: rails_blob_path(expense.receipt, disposition: "attachment"))
     end
   end
 end

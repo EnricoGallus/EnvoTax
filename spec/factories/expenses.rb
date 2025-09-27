@@ -17,7 +17,13 @@ FactoryBot.define do
     end
 
     trait :with_receipt do
-      receipt { Rack::Test::UploadedFile.new("spec/fixtures/files/receipt.pdf", "application/pdf") }
+      after(:build) do |invoice|
+        invoice.receipt.attach(
+          io: File.open(Rails.root.join("spec/fixtures/files/receipt.txt")),
+          filename: "receipt.txt",
+          content_type: "text/plain"
+        )
+      end
     end
   end
 end
