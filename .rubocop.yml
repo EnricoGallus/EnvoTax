@@ -31,6 +31,10 @@ Style/StringLiterals:
 Style/SymbolArray:
   Enabled: false
 
+Metrics/BlockLength:
+  Exclude:
+    - "config/routes.rb"
+
 Metrics/MethodLength:
   Max: 15
 

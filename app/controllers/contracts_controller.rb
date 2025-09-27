@@ -31,7 +31,7 @@ class ContractsController < ApplicationController
     if @contract.save
       redirect_to @contract, notice: t("contract.successfully_created")
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -40,7 +40,7 @@ class ContractsController < ApplicationController
     if @contract.update(contract_params)
       redirect_to @contract, notice: t("cost_types.successfully_updated"), status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

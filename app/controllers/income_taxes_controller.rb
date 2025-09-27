@@ -28,7 +28,7 @@ class IncomeTaxesController < ApplicationController
     if @income_tax.save
       redirect_to @income_tax, notice: t("income_taxes.controller.successfuly_created")
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -37,7 +37,7 @@ class IncomeTaxesController < ApplicationController
     if @income_tax.update(income_tax_params)
       redirect_to @income_tax, notice: t("income_tax.successfully_updated"), status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

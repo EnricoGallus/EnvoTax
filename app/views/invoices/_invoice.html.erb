@@ -69,13 +69,10 @@
             <% if expense.receipt.attached? %>
               <tr>
                 <td colspan="4" class="text-center">
-                  <% begin %>
-                    <% blob = expense.receipt.blob %>
-                    <% image_data = Base64.strict_encode64(blob.download) %>
-                    <img src="data:<%= blob.content_type %>;base64,<%= image_data %>"
-                         class="max-w-full max-h-48 mx-auto" alt="image">
-                  <% rescue => e %>
-                    <p class="text-error">Error loading image: <%= e.message %></p>
+                  <% if expense.receipt.representable? %>
+                    <%= image_tag rails_blob_path(expense.receipt) %>
+                  <% elsif expense.receipt.attached? %>
+                    <%= link_to "Download", rails_blob_path(expense.receipt, disposition: "attachment") %>
                   <% end %>
                 </td>
               </tr>

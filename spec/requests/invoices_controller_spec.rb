@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe InvoicesController, type: :request do
-  let(:user) { create(:user, :with_all_associations) }
+  let(:user) { create(:valid_user) }
   let(:contract_instance) { create(:contract_instance) }
   let(:valid_attributes) do
     attributes_for(:invoice).merge(user_id: user.id, contract_instance_id: contract_instance.id)
@@ -65,7 +65,7 @@ RSpec.describe InvoicesController, type: :request do
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post invoices_url, params: { invoice: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

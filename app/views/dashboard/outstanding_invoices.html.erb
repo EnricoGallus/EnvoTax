@@ -1,0 +1,24 @@
+<turbo-frame id="outstanding_invoices">
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">Outstanding Invoices</h2>
+      <% if @invoices.any? %>
+        <p>Total Due: <strong><%= number_to_currency(@total_due) %></strong></p>
+        <ul class="divide-y">
+          <% @invoices.each do |inv| %>
+            <li class="flex justify-between py-2">
+            <span>
+              ##<%= inv.invoice_number %> — <%= inv.contract_instance.contract.client.name %>
+            </span>
+              <span class="badge <%= inv.invoice_date < Date.today ? 'badge-error' : 'badge-warning' %>">
+                due <%= inv.invoice_date.strftime("%b %d") %>
+              </span>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-sm text-gray-500">All invoices paid 🟢</p>
+      <% end %>
+    </div>
+  </div>
+</turbo-frame>

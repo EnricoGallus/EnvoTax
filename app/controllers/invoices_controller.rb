@@ -32,8 +32,8 @@ class InvoicesController < ApplicationController
         format.html { redirect_to invoices_path, notice: t("invoices.successfully_created") }
         format.json { render :show, status: :created, location: @invoice }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @invoice.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @invoice.errors, status: :unprocessable_content }
       end
     end
   end
@@ -43,7 +43,7 @@ class InvoicesController < ApplicationController
     if @invoice.save
       redirect_to invoices_path, notice: t("invoices.status_change_to_approved")
     else
-      render :show, status: :unprocessable_entity
+      render :show, status: :unprocessable_content
     end
   end
 

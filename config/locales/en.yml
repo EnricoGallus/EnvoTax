@@ -64,16 +64,16 @@ en:
     show:
       content_title: "Showing project"
       title: "Showing project"
-    successfully_created: "Client was successfully created."
-    successfully_updated: "Client was successfully updated."
-    successfully_destroyed: "Client was successfully destroyed."
+    successfully_created: "Project was successfully created."
+    successfully_updated: "Project was successfully updated."
+    successfully_destroyed: "Project was successfully destroyed."
 
   cost_types:
     index:
-      content_title: "Cost types"
-      title: "Cost types"
-      new: "New Cost type"
-      none_found: "No Cost types found"
+      content_title: "Cost Types"
+      title: "Cost Types"
+      new: "New Cost Type"
+      none_found: "No cost types found"
     successfully_created: "Cost type was successfully created."
     successfully_updated: "Cost type was successfully updated."
     successfully_destroyed: "Cost type was successfully destroyed."
@@ -123,7 +123,7 @@ en:
       none_found: "No time entries found."
       new: "New time entry"
       table:
-        spent_time: "Spend time"
+        spent_time: "Spent time"
     new:
       content_title: "New time entry"
       title: "New time entry"
@@ -193,9 +193,9 @@ en:
     new:
       content_title: "New Payment Allocation"
       title: "New Payment Allocation"
-    successfully_created: "Payment allocations was successfully created."
-    successfully_updated: "Payment allocations was successfully updated."
-    successfully_destroyed: "Payment allocations was successfully destroyed."
+    successfully_created: "Payment allocation was successfully created."
+    successfully_updated: "Payment allocation was successfully updated."
+    successfully_destroyed: "Payment allocation was successfully destroyed."
 
   bank_account:
     successfully_created: "Bank account was successfully created."
@@ -207,7 +207,7 @@ en:
       content_title: "Contracts"
       title: "Contracts"
       new: "New Contract"
-      none_found: "No Contracts found"
+      none_found: "No contracts found"
     successfully_created: "Contract was successfully created."
     successfully_updated: "Contract was successfully updated."
     successfully_destroyed: "Contract was successfully destroyed."
@@ -216,7 +216,7 @@ en:
     index:
       title: "Contract Instances"
       new: "New Contract Instance"
-      none_found: "No contracts instances found"
+      none_found: "No contract instances found"
     name: "%{client}: %{contract} (%{period})"
     period: "%{start_date} to %{end_date}"
     successfully_created: "Contract instance was successfully created."
@@ -227,7 +227,7 @@ en:
     edit:
       content_title: "Account settings"
       title: "Account settings"
-    successfully_updated: "Account setting was successfully updated."
+    successfully_updated: "Account settings were successfully updated."
 
   select:
     all: "All"
@@ -274,6 +274,14 @@ en:
     tax:
       included: "Note: Tax Included"
 
+  dashboard:
+    loading:
+      today: "Loading today's data..."
+      weekly: "Loading this week's data..."
+      monthly: "Loading this month's data..."
+      unbilled_time: "Loading unbilled time entries..."
+      outstanding_invoices: "Loading outstanding invoices..."
+
   errors:
     template:
       header:
@@ -283,7 +291,7 @@ en:
   enums:
     bank_account:
       account_type:
-        ordinary: "Regular"
+        ordinary: "Ordinary"
         savings: "Savings"
 
   activerecord:
@@ -436,3 +444,4 @@ en:
           attributes:
             process_time_entries:
               unique: "can only be set to true for one contract per client"
+

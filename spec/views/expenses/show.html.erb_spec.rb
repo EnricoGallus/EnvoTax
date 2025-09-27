@@ -32,29 +32,11 @@ RSpec.describe "expenses/show", type: :view do
     expect(rendered).to have_button(I18n.t("table.delete"))
   end
 
-  context "when expense has an attached receipt", skip: "mock not working" do
-    before do
-      allow(expense.receipt).to receive_messages(attached?: true, representable?: false)
-      allow(view).to receive(:rails_blob_path).and_return("/path/to/receipt")
-
-      render
-    end
+  context "when expense has an attached receipt" do
+    let(:expense) { create(:expense, :with_receipt) }
 
     it "renders download link for receipt" do
-      expect(rendered).to have_link("Download", href: "/path/to/receipt")
-    end
-  end
-
-  context "when expense has a displayable receipt", skip: "mock not working" do
-    before do
-      allow(expense.receipt).to receive_messages(attached?: true, representable?: true)
-      allow(view).to receive(:image_tag).and_return('<img src="/path/to/receipt" />')
-
-      render
-    end
-
-    it "renders receipt image" do
-      expect(rendered).to have_css("div", text: %r{img src="/path/to/receipt"})
+      expect(rendered).to have_link("Download", href: rails_blob_path(expense.receipt, disposition: "attachment"))
     end
   end
 end

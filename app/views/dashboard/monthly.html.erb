@@ -1,0 +1,19 @@
+<turbo-frame id="monthly">
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">Monthly Overview (This Year)</h2>
+
+      <%= column_chart [
+                         { name: "Hours", data: @monthly_hours },
+                         { name: "Income", data: @monthly_income }
+                       ],
+                       stacked: false,
+                       height: "250px",
+                       library: {
+                         scales: {
+                           y: { beginAtZero: true }
+                         }
+                       } %>
+    </div>
+  </div>
+</turbo-frame>

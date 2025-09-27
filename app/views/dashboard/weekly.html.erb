@@ -1,0 +1,18 @@
+<turbo-frame id="weekly">
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">Weekly Overview (This Month)</h2>
+
+      <%= line_chart [
+                       { name: "Hours", data: @weekly_hours },
+                       { name: "Income", data: @weekly_income }
+                     ],
+                     height: "250px",
+                     library: {
+                       scales: {
+                         y: { beginAtZero: true }
+                       }
+                     } %>
+    </div>
+  </div>
+</turbo-frame>

@@ -1,0 +1,11 @@
+<div class="flex flex-col gap-4 flex-grow">
+  <div class="grid grid-cols-1 gap-4">
+    <%= render(Dashboard::LazyComponent.new(id: "today", path: today_dashboard_index_path)) %>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <%= render(Dashboard::LazyComponent.new(id: "weekly", path: weekly_dashboard_index_path)) %>
+    <%= render(Dashboard::LazyComponent.new(id: "monthly", path: monthly_dashboard_index_path)) %>
+    <%= render(Dashboard::LazyComponent.new(id: "unbilled_time", path: unbilled_time_dashboard_index_path)) %>
+    <%= render(Dashboard::LazyComponent.new(id: "outstanding_invoices", path: outstanding_invoices_dashboard_index_path)) %>
+  </div>
+</div>

@@ -6,6 +6,7 @@ FactoryBot.define do
     start_date { Faker::Date.backward(days: 60) }
     end_date { Faker::Date.backward(days: 30) }
     status { :draft }
+    calculation_mode { :total_based }
 
     user
     contract_instance

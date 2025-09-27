@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe Address, type: :model do
-  subject(:address) { build(:address) }
+  subject(:address) { build(:address, :for_user) }
 
   describe "validations" do
     it { is_expected.to validate_presence_of(:postal_code) }
@@ -34,7 +34,7 @@ RSpec.describe Address, type: :model do
 
   describe "factory" do
     it "has a valid factory" do
-      expect(build(:address)).to be_valid
+      expect(build(:address, :for_user)).to be_valid
     end
   end
 

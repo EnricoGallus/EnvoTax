@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "clients/edit.html.erb", type: :view do
-  let(:client) { create(:client, :with_address) }
+  let(:client) { create(:valid_client) }
 
   before do
     assign(:client, client)

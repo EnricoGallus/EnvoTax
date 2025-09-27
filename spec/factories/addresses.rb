@@ -9,7 +9,7 @@ FactoryBot.define do
     building { Faker::Address.secondary_address }
     country { :japan }
 
-    for_client
+    addressable { nil }
 
     trait :for_client do
       addressable factory: %i[client]

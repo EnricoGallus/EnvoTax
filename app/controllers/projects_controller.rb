@@ -33,8 +33,8 @@ class ProjectsController < ApplicationController
         format.json { render :show, status: :created, location: @project }
       else
         populate_dropdowns
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @project.errors, status: :unprocessable_content }
       end
     end
   end
@@ -47,8 +47,8 @@ class ProjectsController < ApplicationController
         format.json { render :show, status: :ok, location: @project }
       else
         populate_dropdowns
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @project.errors, status: :unprocessable_content }
       end
     end
   end
