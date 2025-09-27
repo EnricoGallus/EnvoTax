@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe InvoicesController, type: :request do
-  let(:user) { create(:user, :with_all_associations) }
+  let(:user) { create(:valid_user) }
   let(:contract_instance) { create(:contract_instance) }
   let(:valid_attributes) do
     attributes_for(:invoice).merge(user_id: user.id, contract_instance_id: contract_instance.id)

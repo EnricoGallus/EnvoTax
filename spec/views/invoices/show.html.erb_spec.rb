@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "invoices/show", type: :view do
-  let(:user) { create(:user, :with_all_associations) }
+  let(:user) { create(:valid_user) }
   let(:invoice) { create(:invoice) }
 
   before do
@@ -20,7 +20,7 @@ RSpec.describe "invoices/show", type: :view do
 
   it "renders the client information" do
     expect(rendered).to have_content(invoice.contract_instance.contract.client.name)
-    expect(rendered).to have_content(invoice.contract_instance.contract.client.address)
+    expect(rendered).to have_content(invoice.contract_instance.contract.client.address.city)
   end
 
   it "renders the invoice details", skip: "under construction" do

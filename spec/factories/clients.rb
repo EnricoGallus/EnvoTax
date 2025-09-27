@@ -8,15 +8,9 @@ FactoryBot.define do
 
     user
 
-    trait :with_address do
+    factory :valid_client do
       after(:build) do |client|
-        client.build_address(
-          postal_code: "123-4567",
-          prefecture: "Tokyo",
-          city: "Shibuya",
-          street: "Example Street",
-          country: "japan"
-        )
+        client.address ||= build(:address, addressable: client)
       end
     end
   end
