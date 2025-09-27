@@ -1,6 +1,7 @@
 <div class="flex flex-col gap-4 flex-grow">
-  <div class="grid grid-cols-1 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <%= render(Dashboard::LazyComponent.new(id: "today", path: today_dashboard_index_path)) %>
+    <%= render(Dashboard::LazyComponent.new(id: "new_time_entry", path: new_time_entry_dashboard_index_path(format: :turbo_stream))) %>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <%= render(Dashboard::LazyComponent.new(id: "weekly", path: weekly_dashboard_index_path)) %>

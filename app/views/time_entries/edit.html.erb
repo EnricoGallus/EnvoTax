@@ -3,7 +3,7 @@
 <div class="w-full">
   <h1 class="font-bold text-4xl">Editing time entry</h1>
 
-  <%= render "form", time_entry: @time_entry %>
+  <%= render "form", time_entry: @time_entry, turbo: false %>
 
   <%= link_to t('table.show'), @time_entry, class: "btn btn-primary" %>
   <%= link_to t('table.back'), time_entries_path, class: "btn" %>

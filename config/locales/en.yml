@@ -281,6 +281,9 @@ en:
       monthly: "Loading this month's data..."
       unbilled_time: "Loading unbilled time entries..."
       outstanding_invoices: "Loading outstanding invoices..."
+    today:
+      title: "Today's work %{time}"
+      none: "No time entries for today"
 
   errors:
     template:
