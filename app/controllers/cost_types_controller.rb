@@ -28,7 +28,7 @@ class CostTypesController < ApplicationController
     if @cost_type.save
       redirect_to @cost_type, notice: t("cost_types.successfully_created")
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -37,7 +37,7 @@ class CostTypesController < ApplicationController
     if @cost_type.update(cost_type_params)
       redirect_to @cost_type, notice: t("cost_types.successfully_updated"), status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

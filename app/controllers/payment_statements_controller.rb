@@ -28,7 +28,7 @@ class PaymentStatementsController < ApplicationController
     if @payment_statement.save
       redirect_to @payment_statement, notice: t("payment_statement.successfully_created")
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -37,7 +37,7 @@ class PaymentStatementsController < ApplicationController
     if @payment_statement.update(payment_statement_params)
       redirect_to @payment_statement, notice: t("payment_statement.successfully_updated"), status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

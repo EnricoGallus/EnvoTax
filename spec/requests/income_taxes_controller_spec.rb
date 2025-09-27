@@ -70,7 +70,7 @@ RSpec.describe "/income_taxes", type: :request do
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post income_taxes_url, params: { income_tax: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -102,7 +102,7 @@ RSpec.describe "/income_taxes", type: :request do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         income_tax = IncomeTax.create! valid_attributes
         patch income_tax_url(income_tax), params: { income_tax: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

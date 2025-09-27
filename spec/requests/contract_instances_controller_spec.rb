@@ -55,7 +55,7 @@ RSpec.describe ContractInstancesController, type: :request do
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post contract_contract_instances_path(contract), params: { contract_instance: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -89,7 +89,7 @@ RSpec.describe ContractInstancesController, type: :request do
         contract_instance = ContractInstance.create! valid_attributes
         patch contract_contract_instance_path(contract, contract_instance),
               params: { contract_instance: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

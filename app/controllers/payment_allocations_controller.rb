@@ -33,7 +33,7 @@ class PaymentAllocationsController < ApplicationController
       redirect_to payment_statement_path(@payment_statement), notice: t("payment_allocation.successfully_created")
     else
       reference_list
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -44,7 +44,7 @@ class PaymentAllocationsController < ApplicationController
                                                               status: :see_other
     else
       reference_list
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

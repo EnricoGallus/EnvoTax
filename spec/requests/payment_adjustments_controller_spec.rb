@@ -71,7 +71,7 @@ RSpec.describe PaymentAdjustmentsController, type: :request do
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post payment_adjustments_url, params: { payment_adjustment: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -103,7 +103,7 @@ RSpec.describe PaymentAdjustmentsController, type: :request do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         payment_adjustment = PaymentAdjustment.create! valid_attributes
         patch payment_adjustment_url(payment_adjustment), params: { payment_adjustment: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

@@ -23,7 +23,7 @@ class ContractInstancesController < ApplicationController
     if @contract_instance.save
       redirect_to contract_path(@contract), notice: t("contract_instance.successfully_created")
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -33,7 +33,7 @@ class ContractInstancesController < ApplicationController
       redirect_to contract_contract_instance_path(@contract, @contract_instance),
                   notice: t("contract_instance.successfully_updated"), status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

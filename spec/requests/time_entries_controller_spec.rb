@@ -63,7 +63,7 @@ RSpec.describe TimeEntriesController, type: :request do
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post time_entries_url, params: { time_entry: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -94,7 +94,7 @@ RSpec.describe TimeEntriesController, type: :request do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         time_entry = create(:time_entry)
         patch time_entry_url(time_entry), params: { time_entry: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
