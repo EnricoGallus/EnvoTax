@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "Dashboard::Index", :js, type: :system do
+RSpec.describe "Dashboard", :js, type: :system do
   let(:user) { create(:valid_user) }
 
   before do
@@ -10,7 +10,7 @@ RSpec.describe "Dashboard::Index", :js, type: :system do
     visit root_path
   end
 
-  describe "GET /index" do
+  describe "when visiting dashboard" do
     it "has today dashboard" do
       expect(page).to have_css("turbo-frame#today")
     end
@@ -24,28 +24,29 @@ RSpec.describe "Dashboard::Index", :js, type: :system do
   describe "when creating time entry" do
     let(:form_selector) { "form[action='#{time_entries_path}']" }
 
-    it "shows time entry form" do
+    def open_time_entry_form
       click_link I18n.t("dashboard.time_entry.new_button")
-
       expect(page).to have_css(form_selector)
     end
 
-    it "shows validation errors" do
-      click_link I18n.t("dashboard.time_entry.new_button")
+    it "opening the form" do
+      open_time_entry_form
+    end
 
-      expect(page).to have_css(form_selector)
+    it "with invalid data" do
+      open_time_entry_form
+
       click_button "Create Time Entry"
 
       expect(page).to have_content("can't be blank")
       expect(page).to have_css(form_selector)
     end
 
-    it "set new button after successful save" do
+    it "with valid data" do
       create(:project)
 
-      click_link I18n.t("dashboard.time_entry.new_button")
+      open_time_entry_form
 
-      expect(page).to have_css(form_selector)
       fill_in "time_entry[name]", with: "Worked on something"
       fill_in "time_entry[time_from]", with: "10:15"
       fill_in "time_entry[time_to]", with: "11:15"
