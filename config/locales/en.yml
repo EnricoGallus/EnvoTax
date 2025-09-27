@@ -284,6 +284,8 @@ en:
     today:
       title: "Today's work %{time}"
       none: "No time entries for today"
+    time_entry:
+      new_button: "New time entry"
 
   errors:
     template:
