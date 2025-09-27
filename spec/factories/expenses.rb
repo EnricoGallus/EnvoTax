@@ -19,7 +19,7 @@ FactoryBot.define do
     trait :with_receipt do
       after(:build) do |invoice|
         invoice.receipt.attach(
-          io: File.open(Rails.root.join("spec/fixtures/files/receipt.txt")),
+          io: Rails.root.join("spec/fixtures/files/receipt.txt").open,
           filename: "receipt.txt",
           content_type: "text/plain"
         )
