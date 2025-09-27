@@ -1,0 +1,13 @@
+<%= helpers.turbo_frame_tag @id, src: @path do %>
+  <div class="card bg-base-200 p-4">
+    <div class="card-body">
+      <h2 class="card-title"><%= t("dashboard.loading.#{@id}") %></h2>
+      <div class="flex w-52 flex-col gap-4">
+        <div class="skeleton h-32 w-full"></div>
+        <div class="skeleton h-4 w-28"></div>
+        <div class="skeleton h-4 w-full"></div>
+        <div class="skeleton h-4 w-full"></div>
+      </div>
+    </div>
+  </div>
+<% end %>

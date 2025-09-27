@@ -1,234 +1,240 @@
 # Files in the config/locales directory are used for internationalization and
 # are automatically loaded by Rails. If you want to use locales other than
 # English, add the necessary files in this directory.
-en:
+ja:
   menu:
-    login: "Log in"
-    logout: "Log out"
-    settings: "Settings"
-    client: "Clients"
-    projects: "Projects"
-    expenses: "Expenses"
-    time_entry: "Track Time"
-    invoices: "Invoices"
-    finances: "Finances"
-    cost_types: "Cost Types"
-    payment_adjustments: "Payment Adjustments"
-    payment_statements: "Payment Statements"
-    income_taxes: "Income Taxes"
-    account: "Account"
-    contracts: "Contracts"
+    login: "ログイン"
+    logout: "ログアウト"
+    settings: "設定"
+    client: "顧客"
+    projects: "プロジェクト"
+    expenses: "経費"
+    time_entry: "時間記録"
+    invoices: "請求書"
+    finances: "財務"
+    cost_types: "費用区分"
+    payment_adjustments: "入金調整"
+    payment_statements: "入金明細"
+    income_taxes: "所得税"
+    account: "アカウント"
+    contracts: "契約"
 
   table:
-    actions: "Actions"
-    new: "New"
-    edit: "Edit"
-    show: "Show"
-    back: "Back"
-    delete: "Delete"
-    delete_confirmation: "Are you sure?"
-    preview: "Preview"
+    actions: "操作"
+    new: "新規作成"
+    edit: "編集"
+    show: "詳細"
+    back: "戻る"
+    delete: "削除"
+    delete_confirmation: "削除してよろしいですか？"
+    preview: "プレビュー"
 
   clients:
-    header: "Clients"
+    header: "顧客"
     show:
-      content_title: "Showing Client"
-      title: "Showing Client"
+      content_title: "顧客の詳細"
+      title: "顧客の詳細"
     new:
-      content_title: "New Client"
-      title: "New Client"
+      content_title: "新規顧客"
+      title: "新規顧客"
     index:
-      content_title: "Clients"
-      title: "Clients"
-      none_found: "No clients found."
-      new: "New client"
+      content_title: "顧客"
+      title: "顧客"
+      none_found: "顧客が見つかりません。"
+      new: "新規顧客"
     edit:
-      content_title: "Editing client"
-      title: "Editing client"
-    successfully_created: "Client was successfully created."
-    successfully_updated: "Client was successfully updated."
-    successfully_destroyed: "Client was successfully destroyed."
+      content_title: "顧客の編集"
+      title: "顧客の編集"
+    successfully_created: "顧客を作成しました。"
+    successfully_updated: "顧客を更新しました。"
+    successfully_destroyed: "顧客を削除しました。"
 
   projects:
     new:
-      content_title: "New project"
-      title: "New project"
+      content_title: "新規プロジェクト"
+      title: "新規プロジェクト"
     edit:
-      content_title: "Edit project"
-      title: "Edit project"
+      content_title: "プロジェクトの編集"
+      title: "プロジェクトの編集"
     index:
-      content_title: "Projects"
-      title: "Projects"
-      none_found: "No projects found."
-      new: "New project"
+      content_title: "プロジェクト"
+      title: "プロジェクト"
+      none_found: "プロジェクトが見つかりません。"
+      new: "新規プロジェクト"
     show:
-      content_title: "Showing project"
-      title: "Showing project"
-    successfully_created: "Client was successfully created."
-    successfully_updated: "Client was successfully updated."
-    successfully_destroyed: "Client was successfully destroyed."
+      content_title: "プロジェクトの詳細"
+      title: "プロジェクトの詳細"
+    successfully_created: "プロジェクトを作成しました。"
+    successfully_updated: "プロジェクトを更新しました。"
+    successfully_destroyed: "プロジェクトを削除しました。"
 
   cost_types:
     index:
-      content_title: "Cost types"
-      title: "Cost types"
-      new: "New Cost type"
-      none_found: "No Cost types found"
-    successfully_created: "Cost type was successfully created."
-    successfully_updated: "Cost type was successfully updated."
-    successfully_destroyed: "Cost type was successfully destroyed."
+      content_title: "費用区分"
+      title: "費用区分"
+      new: "新しい費用区分"
+      none_found: "費用区分が見つかりません"
+    successfully_created: "費用区分を作成しました。"
+    successfully_updated: "費用区分を更新しました。"
+    successfully_destroyed: "費用区分を削除しました。"
 
   expense:
     new:
-      content_title: "New expense"
-      title: "New expense"
+      content_title: "新しい経費"
+      title: "新しい経費"
     edit:
-      content_title: "Edit expense"
-      title: "Edit expense"
+      content_title: "経費の編集"
+      title: "経費の編集"
     index:
-      content_title: "Expenses"
-      title: "Expenses"
-      none_found: "No expenses found."
-      new: "New expense"
+      content_title: "経費"
+      title: "経費"
+      none_found: "経費が見つかりません。"
+      new: "新しい経費"
       table:
-          date: "Date"
-          description: "Description"
-          amount: "Amount"
-    successfully_created: "Expense was successfully created."
-    successfully_updated: "Expense was successfully updated."
-    successfully_destroyed: "Expense was successfully destroyed."
+        date: "日付"
+        description: "説明"
+        amount: "金額"
+    successfully_created: "経費を作成しました。"
+    successfully_updated: "経費を更新しました。"
+    successfully_destroyed: "経費を削除しました。"
 
   invoices:
     index:
-      content_title: "Invoices"
-      title: "Invoices"
-      none_found: "No invoices found."
-      new: "New invoice"
+      content_title: "請求書"
+      title: "請求書"
+      none_found: "請求書が見つかりません。"
+      new: "新しい請求書"
       table:
-        sum: "Amount"
+        sum: "金額"
     new:
-      content_title: "New invoice"
-      title: "New invoice"
-    approve: "Approve"
-    status_change_to_approved: "Invoice approved"
-    unsupported_calculation_mode: "Unsupported calculation mode %{mode}"
-    successfully_created: "Invoice was successfully created."
-    successfully_updated: "Invoice was successfully updated."
-    successfully_destroyed: "Invoice was successfully destroyed."
+      content_title: "新しい請求書"
+      title: "新しい請求書"
+    approve: "承認する"
+    status_change_to_approved: "請求書を承認しました"
+    unsupported_calculation_mode: "未対応の計算モードです %{mode}"
+    successfully_created: "請求書を作成しました。"
+    successfully_updated: "請求書を更新しました。"
+    successfully_destroyed: "請求書を削除しました。"
 
   time_entry:
     index:
-      content_title: "Time Entries"
-      title: "Time Entries"
-      none_found: "No time entries found."
-      new: "New time entry"
+      content_title: "作業時間"
+      title: "作業時間"
+      none_found: "時間記録が見つかりません。"
+      new: "新しい時間記録"
       table:
-        spent_time: "Spend time"
+        spent_time: "作業時間"
     new:
-      content_title: "New time entry"
-      title: "New time entry"
-    successfully_created: "Time entry was successfully created."
-    successfully_updated: "Time entry was successfully updated."
-    successfully_destroyed: "Time entry was successfully destroyed."
+      content_title: "新しい時間記録"
+      title: "新しい時間記録"
+    successfully_created: "時間記録を作成しました。"
+    successfully_updated: "時間記録を更新しました。"
+    successfully_destroyed: "時間記録を削除しました。"
 
   payment_adjustment:
     index:
-      title: "Payment Adjustments"
-      content_title: "Payment Adjustments"
-      new: "New Payment Adjustment"
-      none_found: "No payment adjustments found"
-    successfully_created: "Payment adjustment was successfully created."
-    successfully_updated: "Payment adjustment was successfully updated."
-    successfully_destroyed: "Payment adjustment was successfully destroyed."
+      title: "入金調整"
+      content_title: "入金調整"
+      new: "新しい入金調整"
+      none_found: "入金調整が見つかりません"
+    show:
+      content_title: "入金調整の詳細"
+      title: "入金調整の詳細"
+    edit:
+      content_title: "入金調整の編集"
+      title: "入金調整の編集"
+    successfully_created: "入金調整を作成しました。"
+    successfully_updated: "入金調整を更新しました。"
+    successfully_destroyed: "入金調整を削除しました。"
 
   payment_statement:
     index:
-      title: "Payment Statements"
-      content_title: "Payment Statements"
-      new: "New Payment Statement"
-      none_found: "No payment statements found"
+      title: "入金明細"
+      content_title: "入金明細"
+      new: "新しい入金明細"
+      none_found: "入金明細が見つかりません"
     show:
-      content_title: "Showing Payment Statement"
-      title: "Showing Payment Statement"
+      content_title: "入金明細の詳細"
+      title: "入金明細の詳細"
     edit:
-      content_title: "Edit Payment Statement"
-      title: "Edit Payment Statement"
+      content_title: "入金明細の編集"
+      title: "入金明細の編集"
     new:
-      content_title: "New Payment Statement"
-      title: "New Payment Statement"
-    successfully_created: "Payment statement was successfully created."
-    successfully_updated: "Payment statement was successfully updated."
-    successfully_destroyed: "Payment statement was successfully destroyed."
+      content_title: "新しい入金明細"
+      title: "新しい入金明細"
+    successfully_created: "入金明細を作成しました。"
+    successfully_updated: "入金明細を更新しました。"
+    successfully_destroyed: "入金明細を削除しました。"
 
   income_tax:
     index:
-      title: "Income Taxes"
-      content_title: "Income Taxes"
-      new: "New Income Tax"
-      none_found: "No income taxes found"
-    successfully_created: "Income tax was successfully created."
-    successfully_updated: "Income tax was successfully updated."
-    successfully_destroyed: "Income tax was successfully destroyed."
+      title: "所得税"
+      content_title: "所得税"
+      new: "新しい所得税"
+      none_found: "所得税が見つかりません"
+    successfully_created: "所得税を作成しました。"
+    successfully_updated: "所得税を更新しました。"
+    successfully_destroyed: "所得税を削除しました。"
 
   payment_allocation:
     index:
-      title: "Payment Allocations"
-      content_title: "Payment Allocations"
-      new: "New Payment Allocation"
-      none_found: "No payment allocations found"
-      net_amount: "Net Amount"
-      tax_amount: "Tax Amount"
+      title: "入金の割当"
+      content_title: "入金の割当"
+      new: "新しい割当"
+      none_found: "割当が見つかりません"
+      net_amount: "税抜金額"
+      tax_amount: "税額"
     edit:
-      content_title: "Edit Payment Allocation"
-      title: "Edit Payment Allocation"
+      content_title: "割当の編集"
+      title: "割当の編集"
     show:
-      content_title: "Showing Payment Allocation"
-      title: "Showing Payment Allocation"
+      content_title: "割当の詳細"
+      title: "割当の詳細"
     new:
-      content_title: "New Payment Allocation"
-      title: "New Payment Allocation"
-    successfully_created: "Payment allocations was successfully created."
-    successfully_updated: "Payment allocations was successfully updated."
-    successfully_destroyed: "Payment allocations was successfully destroyed."
+      content_title: "新しい割当"
+      title: "新しい割当"
+    successfully_created: "入金の割当を作成しました。"
+    successfully_updated: "入金の割当を更新しました。"
+    successfully_destroyed: "入金の割当を削除しました。"
 
   bank_account:
-    successfully_created: "Bank account was successfully created."
-    successfully_updated: "Bank account was successfully updated."
-    successfully_destroyed: "Bank account was successfully destroyed."
+    successfully_created: "銀行口座を作成しました。"
+    successfully_updated: "銀行口座を更新しました。"
+    successfully_destroyed: "銀行口座を削除しました。"
 
   contract:
     index:
-      content_title: "Contracts"
-      title: "Contracts"
-      new: "New Contract"
-      none_found: "No Contracts found"
-    successfully_created: "Contract was successfully created."
-    successfully_updated: "Contract was successfully updated."
-    successfully_destroyed: "Contract was successfully destroyed."
+      content_title: "契約"
+      title: "契約"
+      new: "新しい契約"
+      none_found: "契約が見つかりません"
+    successfully_created: "契約を作成しました。"
+    successfully_updated: "契約を更新しました。"
+    successfully_destroyed: "契約を削除しました。"
 
   contract_instance:
     index:
-      title: "Contract Instances"
-      new: "New Contract Instance"
-      none_found: "No contracts instances found"
-    name: "%{client}: %{contract} (%{period})"
-    period: "%{start_date} to %{end_date}"
-    successfully_created: "Contract instance was successfully created."
-    successfully_updated: "Contract instance was successfully updated."
-    successfully_destroyed: "Contract instance was successfully destroyed."
+      title: "契約インスタンス"
+      new: "新しい契約インスタンス"
+      none_found: "契約インスタンスが見つかりません"
+    name: "%{client}：%{contract}（%{period}）"
+    period: "%{start_date} 〜 %{end_date}"
+    successfully_created: "契約インスタンスを作成しました。"
+    successfully_updated: "契約インスタンスを更新しました。"
+    successfully_destroyed: "契約インスタンスを削除しました。"
 
   users:
     edit:
-      content_title: "Account settings"
-      title: "Account settings"
-    successfully_updated: "Account setting was successfully updated."
+      content_title: "アカウント設定"
+      title: "アカウント設定"
+    successfully_updated: "アカウント設定を更新しました。"
 
   select:
-    all: "All"
+    all: "すべて"
 
   ransack:
-    search: "Search"
-    reset: "Reset"
+    search: "検索"
+    reset: "リセット"
 
   time:
     formats:
@@ -237,27 +243,27 @@ en:
   invoice:
     header:
       title: "御請求書"
-      date: "発行日： %{date}"
-      period: "請求期間： %{from} - %{to}"
-      reference_id: "請求書参照ID: REF-%{number}"
+      date: "発行日：%{date}"
+      period: "請求期間：%{from} 〜 %{to}"
+      reference_id: "請求書番号：REF-%{number}"
       work: "作業内容"
     address:
       postal_code: "〒%{zip}"
     from:
-      title: "差出人:"
+      title: "差出人："
     to:
       title: "請求先："
-      client_name: "株式会社%{name} 御中"
+      client_name: "%{name} 御中"
     bank_details:
       title: "お振込先"
-      bank: "銀行名： %{name}"
-      branch: "支店名： %{name}"
-      type: "口座種別： %{name}"
-      account_number: "口座番号： %{name}"
-      account_holder: "口座名義： %{name}"
+      bank: "銀行名：%{name}"
+      branch: "支店名：%{name}"
+      type: "口座種別：%{name}"
+      account_number: "口座番号：%{name}"
+      account_holder: "口座名義：%{name}"
     billing_details:
       title: "請求内容"
-      total: "合計:"
+      total: "合計："
       term: "期間"
       description: "内容"
       quantity: "数量"
@@ -266,166 +272,176 @@ en:
       total_amount: "合計金額"
       grouped_breakdown: "内訳"
     tax:
-      included: "備考： 税込み"
+      included: "備考：消費税込"
+
+  dashboard:
+    loading:
+      today: "本日のデータを読み込んでいます…"
+      weekly: "今週のデータを読み込んでいます…"
+      monthly: "今月のデータを読み込んでいます…"
+      unbilled_time: "未請求の時間記録を読み込んでいます…"
+      outstanding_invoices: "未入金の請求書を読み込んでいます…"
 
   errors:
     template:
       header:
-        one: "1 error prohibited this %{model} from being saved:"
-        other: "%{count} errors prohibited this %{model} from being saved:"
+        one: "%{model}を保存できませんでした（エラー1件）。"
+        other: "%{model}を保存できませんでした（エラー%{count}件）。"
 
   enums:
     bank_account:
       account_type:
         ordinary: "普通預金"
-        savings: "当座"
+        savings: "貯蓄預金"
 
   activerecord:
     models:
       address:
-        one: "Address"
-        other: "Addresses"
+        one: "住所"
+        other: "住所"
       bank_account:
-        one: "Bank Account"
-        other: "Bank Accounts"
+        one: "銀行口座"
+        other: "銀行口座"
       client:
-        one: "Client"
-        other: "Clients"
+        one: "顧客"
+        other: "顧客"
       cost_type:
-        one: "Cost Type"
-        other: "Cost Types"
+        one: "費用区分"
+        other: "費用区分"
       expense:
         one: "経費"
         other: "経費"
       invoice:
-        one: "Invoice"
-        other: "Invoices"
+        one: "請求書"
+        other: "請求書"
       time_entry:
-        one: "Time Entry"
-        other: "Time Entries"
+        one: "時間記録"
+        other: "時間記録"
       user:
-        one: "User"
-        other: "Users"
+        one: "ユーザー"
+        other: "ユーザー"
       payment_adjustment:
-        one: "Payment Adjustment"
-        other: "Payment Adjustments"
+        one: "入金調整"
+        other: "入金調整"
       payment_statement:
-        one: "Payment Statement"
-        other: "Payment Statements"
+        one: "入金明細"
+        other: "入金明細"
       income_tax:
-        one: "Income Tax"
-        other: "Income Taxes"
+        one: "所得税"
+        other: "所得税"
       payment_allocation:
-        one: "Payment Allocation"
-        other: "Payment Allocations"
+        one: "入金の割当"
+        other: "入金の割当"
       contract:
-        one: "Contract"
-        other: "Contracts"
+        one: "契約"
+        other: "契約"
       contract_instance:
-        one: "Contract Instance"
-        other: "Contract Instances"
+        one: "契約インスタンス"
+        other: "契約インスタンス"
     attributes:
       address:
-        street: "Street"
-        city: "City"
-        building: "Building"
-        prefecture: "Prefecture"
-        postal_code: "Postal Code"
-        country: "Country"
+        street: "住所"
+        city: "市区町村"
+        building: "建物名"
+        prefecture: "都道府県"
+        postal_code: "郵便番号"
+        country: "国"
       bank_account:
-        account_holder: "Account Holder"
-        account_number: "Account Number"
-        branch_code: "Branch Code"
-        bank_name: "Bank Name"
-        account_type: "Account Type"
-        account_types:
-          normal: "普通"
-          savings: "貯蓄"
+        account_holder: "口座名義"
+        account_number: "口座番号"
+        branch_code: "支店コード"
+        bank_name: "銀行名"
+        account_type: "口座種別"
       client:
-        name: "Name"
-        hourly_rate: "Hourly Rate"
+        name: "名称"
+        hourly_rate: "時給単価"
+        calculation_mode: "計算方式"
+        calculation_modes:
+          item_based: "明細ごと"
+          total_based: "合計ベース"
       cost_type:
-        name: "Name"
+        name: "名称"
       project:
-        name: "Name"
-        client: "Client"
+        name: "名称"
+        client: "顧客"
       expense:
-        contract_instance: "Contract Instance"
-        amount: "Amount"
-        date: "Date"
-        description: "Description"
-        cost_type: "Cost Type"
-        transaction_type: "Transaction Type"
-        receipt: "Receipt"
+        contract_instance: "契約インスタンス"
+        amount: "金額"
+        date: "日付"
+        description: "説明"
+        cost_type: "費用区分"
+        transaction_type: "取引種別"
+        receipt: "領収書"
       invoice:
-        contract: "Contract"
-        user: "User"
-        start_date: "Start Date"
-        end_date: "End Date"
-        status: "Status"
-        invoice_date: "Invoice Date"
+        contract: "契約"
+        user: "ユーザー"
+        start_date: "開始日"
+        end_date: "終了日"
+        status: "ステータス"
+        invoice_date: "請求日"
       time_entry:
-        project: "Project"
-        date: "Date"
-        time_from: "From"
-        time_to: "To"
-        name: "Name"
-        invoice: "Invoice"
+        project: "プロジェクト"
+        date: "日付"
+        time_from: "開始時刻"
+        time_to: "終了時刻"
+        name: "内容"
+        invoice: "請求書"
       user:
-        email: "Email"
-        password: "Password"
+        email: "メールアドレス"
+        password: "パスワード"
       payment_adjustment:
-        client: "Client"
-        user: "User"
-        amount: "Amount"
-        description: "Description"
-        date: "Date"
-        status: "Status"
+        client: "顧客"
+        user: "ユーザー"
+        amount: "金額"
+        description: "説明"
+        date: "日付"
+        status: "ステータス"
       payment_statement:
-        client: "Client"
-        user: "User"
-        amount: "Amount"
-        received_on: "Received On"
-        status: "Status"
+        client: "顧客"
+        user: "ユーザー"
+        amount: "金額"
+        received_on: "入金日"
+        status: "ステータス"
       income_tax:
-        tax_type: "Tax Type"
-        tax_rate: "Tax Rate"
+        tax_type: "税区分"
+        tax_rate: "税率"
       payment_allocation:
-        amount: "Amount"
-        income_tax: "Income Tax"
-        payment_statement: "Payment Statement"
-        reference: "Reference"
+        amount: "金額"
+        income_tax: "所得税"
+        payment_statement: "入金明細"
+        reference: "参照"
       contract:
-        name: "Name"
-        client: "Client"
-        process_time_entries: "Process Time Entries"
-        status: "Status"
+        name: "名称"
+        client: "顧客"
+        process_time_entries: "時間記録を処理する"
+        status: "ステータス"
       contract_instance:
-        contract: "Contract"
-        start_date: "Start Date"
-        end_date: "End Date"
-        budget_limit: "Budget Limit"
+        contract: "契約"
+        start_date: "開始日"
+        end_date: "終了日"
+        budget_limit: "予算上限"
     errors:
       models:
         address:
           attributes:
             postal_code:
-              invalid: "must be in the format XXX-XXXX"
+              invalid: "XXX-XXXX の形式で入力してください"
         bank_account:
           attributes:
             account_number:
-              invalid: "must be 7 digits"
+              invalid: "7桁で入力してください"
             branch_code:
-              invalid: "must be 3 digits"
+              invalid: "3桁で入力してください"
         time_entry:
           attributes:
             time_overlap:
-              invalid: "Overlaps with another time entry on the same day"
+              invalid: "同日の別の時間記録と重複しています"
         payment_allocation:
           attributes:
             amount:
-              exceeded: "cannot exceed the unallocated amount of the payment statement"
+              exceeded: "入金明細の未割当金額を超えることはできません"
         contract:
           attributes:
             process_time_entries:
-              unique: "can only be set to true for one contract per client"
+              unique: "同一顧客につき、この設定を有効化できる契約は1件のみです"
+
