@@ -236,10 +236,6 @@ ja:
     search: "検索"
     reset: "リセット"
 
-  time:
-    formats:
-      time_only: "%H:%M"
-
   invoice:
     header:
       title: "御請求書"
@@ -293,6 +289,10 @@ ja:
       account_type:
         ordinary: "普通預金"
         savings: "貯蓄預金"
+
+  time:
+    formats:
+      time_only: "%H:%M"
 
   activerecord:
     models:

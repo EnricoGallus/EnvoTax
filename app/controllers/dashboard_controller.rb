@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
   def index; end
 
   def today
-    @entries = TimeEntry.where(date: Time.zone.today).order(:time_from)
+    @entries = TimeEntry.where(date: Time.zone.today).order(time_from: :desc)
   end
 
   def weekly

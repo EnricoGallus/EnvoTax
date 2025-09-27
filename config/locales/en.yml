@@ -236,10 +236,6 @@ en:
     search: "Search"
     reset: "Reset"
 
-  time:
-    formats:
-      time_only: "%H:%M"
-
   invoice:
     header:
       title: "INVOICE"
@@ -298,6 +294,10 @@ en:
       account_type:
         ordinary: "Ordinary"
         savings: "Savings"
+
+  time:
+    formats:
+      time_only: "%H:%M"
 
   activerecord:
     models:

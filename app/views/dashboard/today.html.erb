@@ -7,6 +7,7 @@
           <% @entries.each do |entry| %>
             <li class="flex justify-between py-2">
               <span><%= entry.project.name %> — <%= entry.name %></span>
+              <span><%= l(entry.time_from, format: :time_only) %> — <%= l(entry.time_to, format: :time_only) %></span>
               <span><%= format_spent_time(entry.spent_time_in_seconds) %></span>
             </li>
           <% end %>
