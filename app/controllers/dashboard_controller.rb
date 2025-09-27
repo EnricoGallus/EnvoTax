@@ -39,11 +39,11 @@ class DashboardController < ApplicationController
   def unbilled_time
     @entries = TimeEntry.where(invoice: nil)
     @total_hours = @entries.sum(:spent_time_in_seconds)
-    @total_value = @entries.map(&:cost).sum
+    @total_value = @entries.sum(&:cost)
   end
 
   def outstanding_invoices
     @invoices = Invoice.not_paid.order(:invoice_date)
-    @total_due = @invoices.map(&:total_amount).sum
+    @total_due = @invoices.sum(&:total_amount)
   end
 end
