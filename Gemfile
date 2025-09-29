@@ -50,6 +50,7 @@ gem "chartkick", "~> 5.2"
 gem "enum_help"
 gem "groupdate", "~> 6.7"
 gem "pagy", "~> 9.3"
+gem "enview", git: "https://github.com/EnricoGallus/EnView.git", branch: "issues"
 gem "ransack"
 gem "view_component"
 

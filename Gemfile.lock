@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/EnricoGallus/EnView.git
+  revision: 917212ed468095cba5a7333f8f4587d5481b2b0a
+  branch: issues
+  specs:
+    enview (0.1.1)
+      pundit (~> 2.5)
+      rails (>= 8.0.3)
+      tailwindcss-rails (~> 4.3)
+      view_component (~> 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -488,6 +499,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   enum_help
+  enview!
   factory_bot_rails
   faker
   foreman (~> 0.89.1)

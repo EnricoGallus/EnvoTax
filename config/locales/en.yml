@@ -280,6 +280,12 @@ en:
     today:
       title: "Today's work %{time}"
       none: "No time entries for today"
+    weekly:
+        title: "Weekly Overview (This Month)"
+        subtitle: "Total time %{hours} worked and earned %{income}"
+    monthly:
+      title: "Monthly Overview (This Year)"
+      subtitle: "Total time %{hours} worked and earned %{income}"
     time_entry:
       new_button: "New time entry"
 
