@@ -26,10 +26,10 @@ class TimeEntriesController < ApplicationController
     respond_to do |format|
       if @time_entry.save
         format.html { redirect_to @time_entry, notice: t("time_entry.successfully_created") }
-        format.json { render :show, status: :created, location: @time_entry }
+        format.turbo_stream { render "dashboard/new_time_entry", status: :created }
       else
         format.html { render :new, status: :unprocessable_content }
-        format.json { render json: @time_entry.errors, status: :unprocessable_content }
+        format.turbo_stream { render :new, status: :unprocessable_content }
       end
     end
   end

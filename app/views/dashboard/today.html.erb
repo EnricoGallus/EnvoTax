@@ -1,18 +1,19 @@
 <turbo-frame id="today">
   <div class="card bg-base-100 shadow-xl">
     <div class="card-body">
-      <h2 class="card-title">Today’s Entries</h2>
+      <h2 class="card-title"><%= t('dashboard.today.title', time: format_spent_time(@entries.sum(&:spent_time_in_seconds))) %></h2>
       <% if @entries.any? %>
         <ul class="divide-y">
           <% @entries.each do |entry| %>
             <li class="flex justify-between py-2">
               <span><%= entry.project.name %> — <%= entry.name %></span>
+              <span><%= l(entry.time_from, format: :time_only) %> — <%= l(entry.time_to, format: :time_only) %></span>
               <span><%= format_spent_time(entry.spent_time_in_seconds) %></span>
             </li>
           <% end %>
         </ul>
       <% else %>
-        <p class="text-sm text-gray-500">No entries today.</p>
+        <p class="text-sm text-gray-500"><%= t('dashboard.today.none') %></p>
       <% end %>
     </div>
   </div>

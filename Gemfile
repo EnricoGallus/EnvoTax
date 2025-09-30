@@ -46,8 +46,11 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 # ui
+gem "chartkick", "~> 5.2"
 gem "enum_help"
+gem "groupdate", "~> 6.7"
 gem "pagy", "~> 9.3"
+gem "enview", "~> 0.1.3", git: "https://github.com/EnricoGallus/EnView.git"
 gem "ransack"
 gem "view_component"
 
@@ -106,7 +109,3 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
-gem "chartkick", "~> 5.2"
-
-gem "groupdate", "~> 6.7"

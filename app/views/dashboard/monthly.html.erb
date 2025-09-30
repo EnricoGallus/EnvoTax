@@ -1,17 +1,22 @@
 <turbo-frame id="monthly">
   <div class="card bg-base-100 shadow-xl">
     <div class="card-body">
-      <h2 class="card-title">Monthly Overview (This Year)</h2>
+      <h2 class="card-title"><%= t('dashboard.monthly.title') %></h2>
+      <h3><%= t('dashboard.monthly.subtitle', hours: format_spent_time(@total_hours), income: @total_income) %></h3>
 
       <%= column_chart [
                          { name: "Hours", data: @monthly_hours },
                          { name: "Income", data: @monthly_income }
                        ],
+                       id: "monthly-chart",
                        stacked: false,
                        height: "250px",
                        library: {
                          scales: {
-                           y: { beginAtZero: true }
+                           y: {
+                             beginAtZero: true,
+                             prefix: "$"
+                           }
                          }
                        } %>
     </div>

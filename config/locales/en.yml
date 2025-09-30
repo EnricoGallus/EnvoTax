@@ -236,10 +236,6 @@ en:
     search: "Search"
     reset: "Reset"
 
-  time:
-    formats:
-      time_only: "%H:%M"
-
   invoice:
     header:
       title: "INVOICE"
@@ -281,6 +277,17 @@ en:
       monthly: "Loading this month's data..."
       unbilled_time: "Loading unbilled time entries..."
       outstanding_invoices: "Loading outstanding invoices..."
+    today:
+      title: "Today's work %{time}"
+      none: "No time entries for today"
+    weekly:
+        title: "Weekly Overview (This Month)"
+        subtitle: "Total time %{hours} worked and earned %{income}"
+    monthly:
+      title: "Monthly Overview (This Year)"
+      subtitle: "Total time %{hours} worked and earned %{income}"
+    time_entry:
+      new_button: "New time entry"
 
   errors:
     template:
@@ -293,6 +300,10 @@ en:
       account_type:
         ordinary: "Ordinary"
         savings: "Savings"
+
+  time:
+    formats:
+      time_only: "%H:%M"
 
   activerecord:
     models:

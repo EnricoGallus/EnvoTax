@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       get :monthly
       get :unbilled_time
       get :outstanding_invoices
+      get :new_time_entry
     end
   end
 

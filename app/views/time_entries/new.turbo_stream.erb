@@ -1,0 +1,4 @@
+<%= turbo_stream.update "new_time_entry" do %>
+  <%= render "form", time_entry: @time_entry, turbo: true %>
+  <%= button_to "Cancel", new_time_entry_dashboard_index_path(format: :turbo_stream), method: :get, class: "btn btn-secondary" %>
+<% end %>

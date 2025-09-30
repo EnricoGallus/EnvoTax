@@ -1,12 +1,15 @@
 <turbo-frame id="weekly">
   <div class="card bg-base-100 shadow-xl">
     <div class="card-body">
-      <h2 class="card-title">Weekly Overview (This Month)</h2>
+      <h2 class="card-title"><%= t('dashboard.weekly.title') %></h2>
+      <h3><%= t('dashboard.weekly.subtitle', hours: format_spent_time(@total_hours), income: @total_income) %></h3>
 
-      <%= line_chart [
+      <%= column_chart [
                        { name: "Hours", data: @weekly_hours },
                        { name: "Income", data: @weekly_income }
                      ],
+                       id: "weekly-chart",
+                       stacked: false,
                      height: "250px",
                      library: {
                        scales: {
