@@ -1,9 +1,8 @@
 GIT
   remote: https://github.com/EnricoGallus/EnView.git
-  revision: 917212ed468095cba5a7333f8f4587d5481b2b0a
-  branch: issues
+  revision: 92af381d39c8a22cb98f544ca32650ab6461bbf6
   specs:
-    enview (0.1.1)
+    enview (0.1.3)
       pundit (~> 2.5)
       rails (>= 8.0.3)
       tailwindcss-rails (~> 4.3)
@@ -499,7 +498,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   enum_help
-  enview!
+  enview (~> 0.1.3)!
   factory_bot_rails
   faker
   foreman (~> 0.89.1)
