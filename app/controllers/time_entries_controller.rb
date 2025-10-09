@@ -38,7 +38,7 @@ class TimeEntriesController < ApplicationController
   def update
     respond_to do |format|
       if @time_entry.update(time_entry_params)
-        format.html { redirect_to @time_entry, notice: t("time_entry.successfully_updated") }
+        format.html { redirect_to time_entries_path, notice: t("time_entry.successfully_updated") }
         format.json { render :show, status: :ok, location: @time_entry }
       else
         format.html { render :edit, status: :unprocessable_content }

@@ -48,9 +48,9 @@ gem "thruster", require: false
 # ui
 gem "chartkick", "~> 5.2"
 gem "enum_help"
+gem "enview", "~> 0.1.4", git: "https://github.com/EnricoGallus/EnView.git"
 gem "groupdate", "~> 6.7"
 gem "pagy", "~> 9.3"
-gem "enview", "~> 0.1.4", git: "https://github.com/EnricoGallus/EnView.git"
 gem "ransack"
 gem "view_component"
 
