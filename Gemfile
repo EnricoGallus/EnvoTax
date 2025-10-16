@@ -12,7 +12,6 @@ gem "pg", "~> 1.1"
 gem "puma", "~> 6.6"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails", "~> 1.3"
-gem "tailwindcss-rails", "~> 4.1"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0"
@@ -48,11 +47,10 @@ gem "thruster", require: false
 # ui
 gem "chartkick", "~> 5.2"
 gem "enum_help"
-gem "enview", "~> 0.1.4", git: "https://github.com/EnricoGallus/EnView.git"
+gem "enview", "~> 0.1.6", git: "https://github.com/EnricoGallus/EnView.git"
 gem "groupdate", "~> 6.7"
 gem "pagy", "~> 9.3"
 gem "ransack"
-gem "view_component"
 
 # authorization
 gem "pundit"
