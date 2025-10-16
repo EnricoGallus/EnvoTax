@@ -9,7 +9,7 @@ gem "propshaft", "~> 1.1"
 # Use postgres as the database for Active Record
 gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 6.6"
+gem "puma", "~> 7.0"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails", "~> 1.3"
 
@@ -75,7 +75,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "faker"
 
-  gem "foreman", "~> 0.89.1"
+  gem "foreman", "~> 0.90"
 
   gem "pundit-matchers", "~> 4.0"
 
