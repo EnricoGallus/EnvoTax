@@ -9,10 +9,9 @@ gem "propshaft", "~> 1.1"
 # Use postgres as the database for Active Record
 gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 6.6"
+gem "puma", "~> 7.0"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails", "~> 1.3"
-gem "tailwindcss-rails", "~> 4.1"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 2.0"
@@ -48,11 +47,10 @@ gem "thruster", require: false
 # ui
 gem "chartkick", "~> 5.2"
 gem "enum_help"
+gem "enview", "~> 0.1.6", git: "https://github.com/EnricoGallus/EnView.git"
 gem "groupdate", "~> 6.7"
 gem "pagy", "~> 9.3"
-gem "enview", "~> 0.1.4", git: "https://github.com/EnricoGallus/EnView.git"
 gem "ransack"
-gem "view_component"
 
 # authorization
 gem "pundit"
@@ -77,7 +75,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "faker"
 
-  gem "foreman", "~> 0.89.1"
+  gem "foreman", "~> 0.90"
 
   gem "pundit-matchers", "~> 4.0"
 

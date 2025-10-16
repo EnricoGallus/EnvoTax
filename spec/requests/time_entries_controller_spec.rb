@@ -82,11 +82,11 @@ RSpec.describe TimeEntriesController, type: :request do
         expect(time_entry.name).to eq("changes")
       end
 
-      it "redirects to the time_entry" do
+      it "redirects to the index" do
         time_entry = TimeEntry.create! valid_attributes
         patch time_entry_url(time_entry), params: { time_entry: new_attributes }
         time_entry.reload
-        expect(response).to redirect_to(time_entry_url(time_entry))
+        expect(response).to redirect_to(time_entries_path)
       end
     end
 

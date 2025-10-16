@@ -30,7 +30,7 @@ RSpec.describe "Dashboard", :js, type: :system do
     end
 
     it "opening the form" do
-      expect(page).to have_current_path(time_entries_path, ignore_query: true)
+      expect(page).to have_current_path(root_path, ignore_query: true)
       open_time_entry_form
     end
 
