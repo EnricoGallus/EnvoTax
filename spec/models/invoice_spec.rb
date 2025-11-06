@@ -75,49 +75,33 @@ RSpec.describe Invoice, type: :model do
     end
   end
 
-  describe "#clear_generated_errors_for_job_save" do
-    it "clears specific errors when validation context is job" do
-      invoice = build(:invoice, contract_instance: nil, user: nil, status: nil)
-      invoice.valid?(:job)
-
-      expect(invoice.errors).not_to include(:contract_instance)
-      expect(invoice.errors).not_to include(:user)
-      expect(invoice.errors).not_to include(:status)
-    end
-
-    it "keeps errors for normal validation" do
-      invoice = build(:invoice, contract_instance: nil, user: nil, status: nil)
-      invoice.valid?
-
-      expect(invoice.errors).to include(:contract_instance)
-      expect(invoice.errors).to include(:user)
-      expect(invoice.errors).to include(:status)
-    end
-  end
-
   describe "#generate_invoice_number" do
-    it "generates invoice number with format YYYY-MM-XXX" do
+    it "generates invoice number with format YYYY-XXXX" do
       invoice = build(:invoice, invoice_date: Date.new(2025, 6, 15))
       invoice.save
 
-      expect(invoice.invoice_number).to match(/^202506-\d{3}$/)
+      expect(invoice.invoice_number).to match(/^2025-\d{4}$/)
     end
 
     it "increments sequence number for invoices in same month" do
-      july_invoice = create(:invoice, invoice_date: Date.new(2025, 7, 10))
-      expect(july_invoice.invoice_number).to eq("202507-001")
+      client = create(:client)
+      july_invoice = create(:invoice, client: client, invoice_date: Date.new(2025, 7, 10))
+      expect(july_invoice.invoice_number).to eq("2025-0001")
 
-      other_july_invoice = create(:invoice, invoice_date: Date.new(2025, 7, 20))
-      expect(other_july_invoice.invoice_number).to eq("202507-002")
+      other_july_invoice = create(:invoice, client: client, invoice_date: Date.new(2025, 7, 20))
+      expect(other_july_invoice.invoice_number).to eq("2025-0002")
 
-      other_year_invoice = create(:invoice, invoice_date: Date.new(2024, 7, 20))
-      expect(other_year_invoice.invoice_number).to eq("202407-001")
+      different_july_invoice = create(:invoice, invoice_date: Date.new(2025, 7, 20))
+      expect(different_july_invoice.invoice_number).to eq("2025-0001")
 
-      august_invoice = create(:invoice, invoice_date: Date.new(2025, 8, 5))
-      expect(august_invoice.invoice_number).to eq("202508-003")
+      other_year_invoice = create(:invoice, client: client, invoice_date: Date.new(2024, 7, 20))
+      expect(other_year_invoice.invoice_number).to eq("2024-0001")
 
-      december_invoice = create(:invoice, invoice_date: Date.new(2025, 12, 31))
-      expect(december_invoice.invoice_number).to eq("202512-004")
+      august_invoice = create(:invoice, client: client, invoice_date: Date.new(2025, 8, 5))
+      expect(august_invoice.invoice_number).to eq("2025-0003")
+
+      december_invoice = create(:invoice, client: client, invoice_date: Date.new(2025, 12, 31))
+      expect(december_invoice.invoice_number).to eq("2025-0004")
     end
   end
 end

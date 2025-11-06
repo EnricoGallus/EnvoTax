@@ -4,8 +4,8 @@
 class InvoiceProcessorJob < ApplicationJob
   queue_as :default
 
-  def perform(params, current_user_id, contract_id)
-    contracts = contract_id.present? ? [Contract.find(contract_id)] : Contract.all
+  def perform(params, current_user_id)
+    contracts = params[:contract_id].present? ? [Contract.find(params[:contract_id])] : Contract.all
     user = User.find(current_user_id)
 
     contracts.each do |contract|

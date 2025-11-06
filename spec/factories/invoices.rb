@@ -10,6 +10,7 @@ FactoryBot.define do
 
     user
     contract_instance
+    client
 
     trait :approved do
       status { :approved }

@@ -12,7 +12,7 @@ class InvoiceCreator
   end
 
   def call
-    ActiveRecord::Base.transaction do
+    Invoice.transaction do
       invoice = create_invoice
 
       assign_time_entries(invoice) if @contract.process_time_entries
@@ -29,6 +29,7 @@ class InvoiceCreator
 
   def create_invoice
     Invoice.create!(
+      client: @contract.client,
       contract_instance: @contract.active_instance_by_period(@start_date, @end_date),
       user: @user,
       start_date: @start_date,
