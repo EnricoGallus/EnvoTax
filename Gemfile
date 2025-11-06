@@ -3,13 +3,13 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.0.3"
+gem "rails", "~> 8.1.1"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft", "~> 1.1"
 # Use postgres as the database for Active Record
 gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 7.0"
+gem "puma", "~> 7.1"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails", "~> 1.3"
 
@@ -30,16 +30,16 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "solid_cable", "~> 3.0"
 gem "solid_cache", "~> 1.0"
-gem "solid_queue", "~> 1.1"
+gem "solid_queue", "~> 1.2"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
-gem "kamal", require: false
+gem "kamal", "~> 2.8", require: false
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
-gem "thruster", require: false
+gem "thruster", "~> 0.1", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -47,10 +47,11 @@ gem "thruster", require: false
 # ui
 gem "chartkick", "~> 5.2"
 gem "enum_help"
-gem "enview", "~> 0.1.6", git: "https://github.com/EnricoGallus/EnView.git"
 gem "groupdate", "~> 6.7"
-gem "pagy", "~> 9.3"
+gem "pagy", "~> 9.4"
 gem "ransack"
+gem "tailwindcss-rails", "~> 4.4"
+gem "view_component", "~> 4.1"
 
 # authorization
 gem "pundit"
@@ -59,8 +60,8 @@ gem "pundit"
 gem "money-rails"
 
 # sentry
-gem "sentry-rails"
-gem "sentry-ruby"
+gem "sentry-rails", "~> 6.1"
+gem "sentry-ruby", "~> 6.1"
 gem "stackprof"
 
 # aws
@@ -72,7 +73,7 @@ group :development, :test do
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
-  gem "brakeman", require: false
+  gem "brakeman", "~> 7.1.0", require: false
 
   gem "bundler-audit", require: false
 
@@ -81,23 +82,25 @@ group :development, :test do
 
   gem "foreman", "~> 0.90"
 
+  gem "i18n-tasks", "~> 1.0"
+
   gem "pundit-matchers", "~> 4.0"
 
   gem "rails-controller-testing"
   gem "rspec-rails"
 
-  gem "rubocop", require: false
+  gem "rubocop", "~> 1.81", require: false
   gem "rubocop-capybara", require: false
   gem "rubocop-factory_bot", require: false
   gem "rubocop-i18n", require: false
   gem "rubocop-md", require: false
-  gem "rubocop-performance", require: false
+  gem "rubocop-performance", "~> 1.26", require: false
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
   gem "rubocop-rspec_rails", require: false
   gem "rubocop-thread_safety", require: false
 
-  gem "shoulda-matchers", "~> 6.0"
+  gem "shoulda-matchers", "~> 7.0"
   gem "simplecov", require: false
 end
 
@@ -109,5 +112,5 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
-  gem "selenium-webdriver"
+  gem "selenium-webdriver", "~> 4.35"
 end

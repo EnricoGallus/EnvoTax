@@ -1,7 +1,7 @@
-<% content_for :title, "Editing time entry" %>
+<% content_for :title, t('time_entry.edit.content_title') %>
 
 <div class="w-full">
-  <h1 class="font-bold text-4xl">Editing time entry</h1>
+  <h1 class="font-bold text-4xl"><%= t('time_entry.edit.title') %></h1>
 
   <%= render "form", time_entry: @time_entry, turbo: false %>
 

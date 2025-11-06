@@ -9,6 +9,5 @@ class AddContractToInvoices < ActiveRecord::Migration[8.0]
   def change
     add_reference :invoices, :contract, foreign_key: true, null: false
     remove_column :invoices, :client_id
-    remove_column :invoices, :category_id
   end
 end

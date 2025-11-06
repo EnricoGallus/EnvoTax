@@ -8,7 +8,6 @@
 class AddContractToExpenses < ActiveRecord::Migration[8.0]
   def change
     add_reference :expenses, :contract, foreign_key: true
-    remove_column :expenses, :category_id, :integer
     remove_column :expenses, :client_id, :integer
   end
 end

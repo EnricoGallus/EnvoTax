@@ -1,10 +1,10 @@
-<% content_for :title, "Editing payment adjustment" %>
+<% content_for :title, t('payment_adjustment.edit.content_title') %>
 
 <div class="md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing payment adjustment</h1>
+  <h1 class="font-bold text-4xl"><%= t('payment_adjustment.edit.title') %></h1>
 
   <%= render "form", payment_adjustment: @payment_adjustment %>
 
-  <%= link_to "Show this payment adjustment", @payment_adjustment, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to payment adjustments", payment_adjustments_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+  <%= link_to t('table.show'), @payment_adjustment, class: "btn btn-primary" %>
+  <%= link_to t('table.back'), payment_adjustments_path, class: "btn" %>
 </div>
