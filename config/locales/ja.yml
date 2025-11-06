@@ -294,7 +294,7 @@ ja:
       content_title: 新しい請求書
       title: 新しい請求書
     status_change_to_approved: 請求書を承認しました
-    successfully_created: 請求書を作成しました。
+    successfully_created: 請求書作成ジョブが正常に開始されました。
     successfully_destroyed: 請求書を削除しました。
     unsupported_calculation_mode: 未対応の計算モードです %{mode}
   menu:

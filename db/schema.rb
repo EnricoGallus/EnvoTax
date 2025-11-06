@@ -136,21 +136,36 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_06_104924) do
     t.index ["tax_type"], name: "index_income_taxes_on_tax_type", unique: true
   end
 
+  create_table "invoice_series", force: :cascade do |t|
+    t.bigint "client_id", null: false
+    t.datetime "created_at", null: false
+    t.integer "next_number", default: 1, null: false
+    t.integer "period", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id", "period"], name: "index_invoice_series_on_client_id_and_period", unique: true
+    t.index ["client_id"], name: "index_invoice_series_on_client_id"
+  end
+
   create_table "invoices", force: :cascade do |t|
     t.integer "calculation_mode"
+    t.bigint "client_id", null: false
     t.bigint "contract_instance_id"
     t.datetime "created_at", null: false
     t.date "end_date", null: false
     t.date "invoice_date", null: false
     t.string "invoice_number", default: "", null: false
+    t.integer "period"
+    t.integer "sequence"
     t.date "start_date", null: false
     t.integer "status", null: false
     t.integer "total_amount_cents", default: 0, null: false
     t.string "total_amount_currency", default: "JPY", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
+    t.index ["client_id", "invoice_number"], name: "index_invoices_on_client_id_and_invoice_number", unique: true
+    t.index ["client_id", "period", "sequence"], name: "uniq_invoice_series_seq", unique: true
+    t.index ["client_id"], name: "index_invoices_on_client_id"
     t.index ["contract_instance_id"], name: "index_invoices_on_contract_instance_id"
-    t.index ["invoice_number"], name: "index_invoices_on_invoice_number", unique: true
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
@@ -242,6 +257,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_06_104924) do
   add_foreign_key "expenses", "contract_instances"
   add_foreign_key "expenses", "cost_types"
   add_foreign_key "expenses", "invoices"
+  add_foreign_key "invoice_series", "clients"
+  add_foreign_key "invoices", "clients"
   add_foreign_key "invoices", "contract_instances"
   add_foreign_key "invoices", "users"
   add_foreign_key "payment_adjustments", "clients"
