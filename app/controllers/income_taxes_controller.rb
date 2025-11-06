@@ -26,7 +26,7 @@ class IncomeTaxesController < ApplicationController
     @income_tax = IncomeTax.new(income_tax_params)
 
     if @income_tax.save
-      redirect_to @income_tax, notice: t("income_taxes.controller.successfuly_created")
+      redirect_to @income_tax, notice: t("income_tax.successfully_created")
     else
       render :new, status: :unprocessable_content
     end

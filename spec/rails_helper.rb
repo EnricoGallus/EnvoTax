@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 require "simplecov"
-SimpleCov.start "rails"
+SimpleCov.start "rails" do
+  enable_coverage :branch
+  maximum_coverage_drop 0.05
+end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require "spec_helper"

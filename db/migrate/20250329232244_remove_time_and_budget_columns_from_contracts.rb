@@ -5,6 +5,5 @@ class RemoveTimeAndBudgetColumnsFromContracts < ActiveRecord::Migration[8.0]
   def change
     remove_column :contracts, :start_date, :date
     remove_column :contracts, :end_date, :date
-    remove_column :contracts, :budget_limit, :decimal
   end
 end

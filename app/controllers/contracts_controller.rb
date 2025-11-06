@@ -38,7 +38,7 @@ class ContractsController < ApplicationController
   # PATCH/PUT /contracts/1
   def update
     if @contract.update(contract_params)
-      redirect_to @contract, notice: t("cost_types.successfully_updated"), status: :see_other
+      redirect_to @contract, notice: t("contract.successfully_updated"), status: :see_other
     else
       render :edit, status: :unprocessable_content
     end

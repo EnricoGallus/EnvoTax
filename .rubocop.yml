@@ -34,6 +34,7 @@ Style/SymbolArray:
 Metrics/BlockLength:
   Exclude:
     - "config/routes.rb"
+    - "config/environments/*"
 
 Metrics/MethodLength:
   Max: 15

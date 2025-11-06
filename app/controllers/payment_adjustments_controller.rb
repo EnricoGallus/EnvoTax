@@ -26,7 +26,7 @@ class PaymentAdjustmentsController < ApplicationController
     @payment_adjustment = current_user.payment_adjustments.build(payment_adjustment_params)
 
     if @payment_adjustment.save
-      redirect_to @payment_adjustment, notice: t("payment_adjustments.successfully_created")
+      redirect_to @payment_adjustment, notice: t("payment_adjustment.successfully_created")
     else
       render :new, status: :unprocessable_content
     end

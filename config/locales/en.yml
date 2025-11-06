@@ -1,458 +1,422 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
+---
 en:
-  menu:
-    login: "Log in"
-    logout: "Log out"
-    settings: "Settings"
-    client: "Clients"
-    projects: "Projects"
-    expenses: "Expenses"
-    time_entry: "Track Time"
-    invoices: "Invoices"
-    finances: "Finances"
-    cost_types: "Cost Types"
-    payment_adjustments: "Payment Adjustments"
-    payment_statements: "Payment Statements"
-    income_taxes: "Income Taxes"
-    account: "Account"
-    contracts: "Contracts"
-
-  table:
-    actions: "Actions"
-    new: "New"
-    edit: "Edit"
-    show: "Show"
-    back: "Back"
-    delete: "Delete"
-    delete_confirmation: "Are you sure?"
-    preview: "Preview"
-
-  clients:
-    header: "Clients"
-    show:
-      content_title: "Showing Client"
-      title: "Showing Client"
-    new:
-      content_title: "New Client"
-      title: "New Client"
-    index:
-      content_title: "Clients"
-      title: "Clients"
-      none_found: "No clients found."
-      new: "New client"
-    edit:
-      content_title: "Editing client"
-      title: "Editing client"
-    successfully_created: "Client was successfully created."
-    successfully_updated: "Client was successfully updated."
-    successfully_destroyed: "Client was successfully destroyed."
-
-  projects:
-    new:
-      content_title: "New project"
-      title: "New project"
-    edit:
-      content_title: "Edit project"
-      title: "Edit project"
-    index:
-      content_title: "Projects"
-      title: "Projects"
-      none_found: "No projects found."
-      new: "New project"
-    show:
-      content_title: "Showing project"
-      title: "Showing project"
-    successfully_created: "Project was successfully created."
-    successfully_updated: "Project was successfully updated."
-    successfully_destroyed: "Project was successfully destroyed."
-
-  cost_types:
-    index:
-      content_title: "Cost Types"
-      title: "Cost Types"
-      new: "New Cost Type"
-      none_found: "No cost types found"
-    successfully_created: "Cost type was successfully created."
-    successfully_updated: "Cost type was successfully updated."
-    successfully_destroyed: "Cost type was successfully destroyed."
-
-  expense:
-    new:
-      content_title: "New expense"
-      title: "New expense"
-    edit:
-      content_title: "Edit expense"
-      title: "Edit expense"
-    index:
-      content_title: "Expenses"
-      title: "Expenses"
-      none_found: "No expenses found."
-      new: "New expense"
-      table:
-          date: "Date"
-          description: "Description"
-          amount: "Amount"
-    successfully_created: "Expense was successfully created."
-    successfully_updated: "Expense was successfully updated."
-    successfully_destroyed: "Expense was successfully destroyed."
-
-  invoices:
-    index:
-      content_title: "Invoices"
-      title: "Invoices"
-      none_found: "No invoices found."
-      new: "New invoice"
-      table:
-        sum: "Amount"
-    new:
-      content_title: "New invoice"
-      title: "New invoice"
-    approve: "Approve"
-    status_change_to_approved: "Invoice approved"
-    unsupported_calculation_mode: "Unsupported calculation mode %{mode}"
-    successfully_created: "Invoice was successfully created."
-    successfully_updated: "Invoice was successfully updated."
-    successfully_destroyed: "Invoice was successfully destroyed."
-
-  time_entry:
-    index:
-      content_title: "Time Entries"
-      title: "Time Entries"
-      none_found: "No time entries found."
-      new: "New time entry"
-      table:
-        spent_time: "Spent time"
-    new:
-      content_title: "New time entry"
-      title: "New time entry"
-    successfully_created: "Time entry was successfully created."
-    successfully_updated: "Time entry was successfully updated."
-    successfully_destroyed: "Time entry was successfully destroyed."
-
-  payment_adjustment:
-    index:
-      title: "Payment Adjustments"
-      content_title: "Payment Adjustments"
-      new: "New Payment Adjustment"
-      none_found: "No payment adjustments found"
-    show:
-      content_title: "Showing Payment Adjustment"
-      title: "Showing Payment Adjustment"
-    edit:
-      content_title: "Edit Payment Adjustment"
-      title: "Edit Payment Adjustment"
-    successfully_created: "Payment adjustment was successfully created."
-    successfully_updated: "Payment adjustment was successfully updated."
-    successfully_destroyed: "Payment adjustment was successfully destroyed."
-
-  payment_statement:
-    index:
-      title: "Payment Statements"
-      content_title: "Payment Statements"
-      new: "New Payment Statement"
-      none_found: "No payment statements found"
-    show:
-      content_title: "Showing Payment Statement"
-      title: "Showing Payment Statement"
-    edit:
-      content_title: "Edit Payment Statement"
-      title: "Edit Payment Statement"
-    new:
-      content_title: "New Payment Statement"
-      title: "New Payment Statement"
-    successfully_created: "Payment statement was successfully created."
-    successfully_updated: "Payment statement was successfully updated."
-    successfully_destroyed: "Payment statement was successfully destroyed."
-
-  income_tax:
-    index:
-      title: "Income Taxes"
-      content_title: "Income Taxes"
-      new: "New Income Tax"
-      none_found: "No income taxes found"
-    successfully_created: "Income tax was successfully created."
-    successfully_updated: "Income tax was successfully updated."
-    successfully_destroyed: "Income tax was successfully destroyed."
-
-  payment_allocation:
-    index:
-      title: "Payment Allocations"
-      content_title: "Payment Allocations"
-      new: "New Payment Allocation"
-      none_found: "No payment allocations found"
-      net_amount: "Net Amount"
-      tax_amount: "Tax Amount"
-    edit:
-      content_title: "Edit Payment Allocation"
-      title: "Edit Payment Allocation"
-    show:
-      content_title: "Showing Payment Allocation"
-      title: "Showing Payment Allocation"
-    new:
-      content_title: "New Payment Allocation"
-      title: "New Payment Allocation"
-    successfully_created: "Payment allocation was successfully created."
-    successfully_updated: "Payment allocation was successfully updated."
-    successfully_destroyed: "Payment allocation was successfully destroyed."
-
-  bank_account:
-    successfully_created: "Bank account was successfully created."
-    successfully_updated: "Bank account was successfully updated."
-    successfully_destroyed: "Bank account was successfully destroyed."
-
-  contract:
-    index:
-      content_title: "Contracts"
-      title: "Contracts"
-      new: "New Contract"
-      none_found: "No contracts found"
-    successfully_created: "Contract was successfully created."
-    successfully_updated: "Contract was successfully updated."
-    successfully_destroyed: "Contract was successfully destroyed."
-
-  contract_instance:
-    index:
-      title: "Contract Instances"
-      new: "New Contract Instance"
-      none_found: "No contract instances found"
-    name: "%{client}: %{contract} (%{period})"
-    period: "%{start_date} to %{end_date}"
-    successfully_created: "Contract instance was successfully created."
-    successfully_updated: "Contract instance was successfully updated."
-    successfully_destroyed: "Contract instance was successfully destroyed."
-
-  users:
-    edit:
-      content_title: "Account settings"
-      title: "Account settings"
-    successfully_updated: "Account settings were successfully updated."
-
-  select:
-    all: "All"
-
-  ransack:
-    search: "Search"
-    reset: "Reset"
-
-  invoice:
-    header:
-      title: "INVOICE"
-      date: "Date: %{date}"
-      period: "Period: %{from} to %{to}"
-      reference_id: "Reference ID: REF-%{number}"
-      work: "Contract work"
-    address:
-      postal_code: "%{zip}"
-    from:
-      title: "From:"
-    to:
-      title: "To:"
-      client_name: "%{name}"
-    bank_details:
-      title: "Bank Transfer Details"
-      bank: "Bank： %{name}"
-      branch: "Branch： %{name}"
-      type: "Type： %{name}"
-      account_number: "Account No： %{name}"
-      account_holder: "Account Name： %{name}"
-    billing_details:
-      title: "Billing Details"
-      total: "Total:"
-      term: "Term"
-      description: "Description"
-      quantity: "Quantity"
-      unit_price: "Unit Price"
-      amount: "Amount"
-      total_amount: "Total Amount"
-      grouped_breakdown: "Grouped Breakdown"
-    tax:
-      included: "Note: Tax Included"
-
-  dashboard:
-    loading:
-      today: "Loading today's data..."
-      weekly: "Loading this week's data..."
-      monthly: "Loading this month's data..."
-      unbilled_time: "Loading unbilled time entries..."
-      outstanding_invoices: "Loading outstanding invoices..."
-    today:
-      title: "Today's work %{time}"
-      none: "No time entries for today"
-    weekly:
-        title: "Weekly Overview (This Month)"
-        subtitle: "Total time %{hours} worked and earned %{income}"
-    monthly:
-      title: "Monthly Overview (This Year)"
-      subtitle: "Total time %{hours} worked and earned %{income}"
-    time_entry:
-      new_button: "New time entry"
-
-  errors:
-    template:
-      header:
-        one: "1 error prohibited this %{model} from being saved:"
-        other: "%{count} errors prohibited this %{model} from being saved:"
-
-  enums:
-    bank_account:
-      account_type:
-        ordinary: "Ordinary"
-        savings: "Savings"
-
-  time:
-    formats:
-      time_only: "%H:%M"
-
   activerecord:
-    models:
-      address:
-        one: "Address"
-        other: "Addresses"
-      bank_account:
-        one: "Bank Account"
-        other: "Bank Accounts"
-      client:
-        one: "Client"
-        other: "Clients"
-      cost_type:
-        one: "Cost Type"
-        other: "Cost Types"
-      expense:
-        one: "Expense"
-        other: "Expenses"
-      invoice:
-        one: "Invoice"
-        other: "Invoices"
-      time_entry:
-        one: "Time Entry"
-        other: "Time Entries"
-      user:
-        one: "User"
-        other: "Users"
-      payment_adjustment:
-        one: "Payment Adjustment"
-        other: "Payment Adjustments"
-      payment_statement:
-        one: "Payment Statement"
-        other: "Payment Statements"
-      income_tax:
-        one: "Income Tax"
-        other: "Income Taxes"
-      payment_allocation:
-        one: "Payment Allocation"
-        other: "Payment Allocations"
-      contract:
-        one: "Contract"
-        other: "Contracts"
-      contract_instance:
-        one: "Contract Instance"
-        other: "Contract Instances"
     attributes:
       address:
-        street: "Street"
-        city: "City"
-        building: "Building"
-        prefecture: "Prefecture"
-        postal_code: "Postal Code"
-        country: "Country"
+        building: Building
+        city: City
+        country: Country
+        postal_code: Postal Code
+        prefecture: Prefecture
+        street: Street
       bank_account:
-        account_holder: "Account Holder"
-        account_number: "Account Number"
-        branch_code: "Branch Code"
-        bank_name: "Bank Name"
-        account_type: "Account Type"
+        account_holder: Account Holder
+        account_number: Account Number
+        account_type: Account Type
+        bank_name: Bank Name
+        branch_code: Branch Code
       client:
-        name: "Name"
-        hourly_rate: "Hourly Rate"
-        calculation_mode: "Calculation Mode"
+        calculation_mode: Calculation Mode
         calculation_modes:
-          item_based: "Item Based"
-          total_based: "Total Based"
-      cost_type:
-        name: "Name"
-      project:
-        name: "Name"
-        client: "Client"
-      expense:
-        contract_instance: "Contract Instance"
-        amount: "Amount"
-        date: "Date"
-        description: "Description"
-        cost_type: "Cost Type"
-        transaction_type: "Transaction Type"
-        receipt: "Receipt"
-      invoice:
-        contract: "Contract"
-        user: "User"
-        start_date: "Start Date"
-        end_date: "End Date"
-        status: "Status"
-        invoice_date: "Invoice Date"
-      time_entry:
-        project: "Project"
-        date: "Date"
-        time_from: "From"
-        time_to: "To"
-        name: "Name"
-        invoice: "Invoice"
-      user:
-        email: "Email"
-        password: "Password"
-      payment_adjustment:
-        client: "Client"
-        user: "User"
-        amount: "Amount"
-        description: "Description"
-        date: "Date"
-        status: "Status"
-      payment_statement:
-        client: "Client"
-        user: "User"
-        amount: "Amount"
-        received_on: "Received On"
-        status: "Status"
-      income_tax:
-        tax_type: "Tax Type"
-        tax_rate: "Tax Rate"
-      payment_allocation:
-        amount: "Amount"
-        income_tax: "Income Tax"
-        payment_statement: "Payment Statement"
-        reference: "Reference"
+          item_based: Item Based
+          total_based: Total Based
+        hourly_rate: Hourly Rate
+        name: Name
       contract:
-        name: "Name"
-        client: "Client"
-        process_time_entries: "Process Time Entries"
-        status: "Status"
+        client: Client
+        name: Name
+        process_time_entries: Process Time Entries
+        status: Status
       contract_instance:
-        contract: "Contract"
-        start_date: "Start Date"
-        end_date: "End Date"
-        budget_limit: "Budget Limit"
+        budget_limit: Budget Limit
+        contract: Contract
+        end_date: End Date
+        start_date: Start Date
+      cost_type:
+        name: Name
+      expense:
+        amount: Amount
+        contract_instance: Contract Instance
+        cost_type: Cost Type
+        date: Date
+        description: Description
+        receipt: Receipt
+        transaction_type: Transaction Type
+      income_tax:
+        tax_rate: Tax Rate
+        tax_type: Tax Type
+      invoice:
+        contract: Contract
+        end_date: End Date
+        invoice_date: Invoice Date
+        start_date: Start Date
+        status: Status
+        user: User
+      payment_adjustment:
+        amount: Amount
+        client: Client
+        date: Date
+        description: Description
+        status: Status
+        user: User
+      payment_allocation:
+        amount: Amount
+        income_tax: Income Tax
+        payment_statement: Payment Statement
+        reference: Reference
+      payment_statement:
+        amount: Amount
+        client: Client
+        received_on: Received On
+        status: Status
+        user: User
+      project:
+        client: Client
+        name: Name
+      time_entry:
+        date: Date
+        invoice: Invoice
+        name: Name
+        project: Project
+        time_from: From
+        time_to: To
+      user:
+        email: Email
+        password: Password
     errors:
       models:
         address:
           attributes:
             postal_code:
-              invalid: "must be in the format XXX-XXXX"
+              invalid: must be in the format XXX-XXXX
         bank_account:
           attributes:
             account_number:
-              invalid: "must be 7 digits"
+              invalid: must be 7 digits
             branch_code:
-              invalid: "must be 3 digits"
-        time_entry:
-          attributes:
-            time_overlap:
-              invalid: "Overlaps with another time entry on the same day"
-        payment_allocation:
-          attributes:
-            amount:
-              exceeded: "cannot exceed the unallocated amount of the payment statement"
+              invalid: must be 3 digits
         contract:
           attributes:
             process_time_entries:
-              unique: "can only be set to true for one contract per client"
-
+              unique: can only be set to true for one contract per client
+        payment_allocation:
+          attributes:
+            amount:
+              exceeded: cannot exceed the unallocated amount of the payment statement
+        time_entry:
+          attributes:
+            time_overlap:
+              invalid: Overlaps with another time entry on the same day
+    models:
+      address:
+        one: Address
+        other: Addresses
+      bank_account:
+        one: Bank Account
+        other: Bank Accounts
+      client:
+        one: Client
+        other: Clients
+      contract:
+        one: Contract
+        other: Contracts
+      contract_instance:
+        one: Contract Instance
+        other: Contract Instances
+      cost_type:
+        one: Cost Type
+        other: Cost Types
+      expense:
+        one: Expense
+        other: Expenses
+      income_tax:
+        one: Income Tax
+        other: Income Taxes
+      invoice:
+        one: Invoice
+        other: Invoices
+      payment_adjustment:
+        one: Payment Adjustment
+        other: Payment Adjustments
+      payment_allocation:
+        one: Payment Allocation
+        other: Payment Allocations
+      payment_statement:
+        one: Payment Statement
+        other: Payment Statements
+      time_entry:
+        one: Time Entry
+        other: Time Entries
+      user:
+        one: User
+        other: Users
+  clients:
+    edit:
+      content_title: Editing client
+      title: Editing client
+    index:
+      content_title: Clients
+      new: New client
+      none_found: No clients found.
+      title: Clients
+    new:
+      content_title: New Client
+      title: New Client
+    show:
+      content_title: Showing Client
+      title: Showing Client
+    successfully_created: Client was successfully created.
+    successfully_destroyed: Client was successfully destroyed.
+    successfully_updated: Client was successfully updated.
+  contract:
+    index:
+      content_title: Contracts
+      new: New Contract
+      none_found: No contracts found
+      title: Contracts
+    successfully_created: Contract was successfully created.
+    successfully_destroyed: Contract was successfully destroyed.
+    successfully_updated: Contract was successfully updated.
+  contract_instance:
+    index:
+      new: New Contract Instance
+      none_found: No contract instances found
+      title: Contract Instances
+    name: "%{client}: %{contract} (%{period})"
+    period: "%{start_date} to %{end_date}"
+    successfully_created: Contract instance was successfully created.
+    successfully_destroyed: Contract instance was successfully destroyed.
+    successfully_updated: Contract instance was successfully updated.
+  cost_types:
+    index:
+      content_title: Cost Types
+      new: New Cost Type
+      none_found: No cost types found
+      title: Cost Types
+    successfully_created: Cost type was successfully created.
+    successfully_destroyed: Cost type was successfully destroyed.
+    successfully_updated: Cost type was successfully updated.
+  dashboard:
+    loading:
+      monthly: Loading this month's data...
+      outstanding_invoices: Loading outstanding invoices...
+      today: Loading today's data...
+      unbilled_time: Loading unbilled time entries...
+      weekly: Loading this week's data...
+    monthly:
+      subtitle: Total time %{hours} worked and earned %{income}
+      title: Monthly Overview (This Year)
+    time_entry:
+      new_button: New time entry
+    today:
+      none: No time entries for today
+      title: Today's work %{time}
+    weekly:
+      subtitle: Total time %{hours} worked and earned %{income}
+      title: Weekly Overview (This Month)
+  enums:
+    bank_account:
+      account_type:
+        ordinary: Ordinary
+        savings: Savings
+  errors:
+    template:
+      header:
+        one: '1 error prohibited this %{model} from being saved:'
+        other: "%{count} errors prohibited this %{model} from being saved:"
+  expense:
+    edit:
+      content_title: Edit expense
+      title: Edit expense
+    index:
+      content_title: Expenses
+      new: New expense
+      none_found: No expenses found.
+      title: Expenses
+    new:
+      content_title: New expense
+      title: New expense
+    successfully_created: Expense was successfully created.
+    successfully_destroyed: Expense was successfully destroyed.
+    successfully_updated: Expense was successfully updated.
+  income_tax:
+    index:
+      content_title: Income Taxes
+      new: New Income Tax
+      none_found: No income taxes found
+      title: Income Taxes
+    successfully_created: Income tax was successfully created.
+    successfully_destroyed: Income tax was successfully destroyed.
+    successfully_updated: Income tax was successfully updated.
+  invoice:
+    address:
+      postal_code: "%{zip}"
+    bank_details:
+      account_holder: Account Name： %{name}
+      account_number: Account No： %{name}
+      bank: Bank： %{name}
+      branch: Branch： %{name}
+      title: Bank Transfer Details
+      type: Type： %{name}
+    billing_details:
+      amount: Amount
+      description: Description
+      grouped_breakdown: Grouped Breakdown
+      quantity: Quantity
+      term: Term
+      title: Billing Details
+      total: 'Total:'
+      total_amount: Total Amount
+      unit_price: Unit Price
+    from:
+      title: 'From:'
+    header:
+      date: 'Date: %{date}'
+      period: 'Period: %{from} to %{to}'
+      reference_id: 'Reference ID: REF-%{number}'
+      title: INVOICE
+      work: Contract work
+    tax:
+      included: 'Note: Tax Included'
+    to:
+      client_name: "%{name}"
+      title: 'To:'
+  invoices:
+    approve: Approve
+    index:
+      content_title: Invoices
+      new: New invoice
+      none_found: No invoices found.
+      table:
+        sum: Amount
+      title: Invoices
+    new:
+      content_title: New invoice
+      title: New invoice
+    status_change_to_approved: Invoice approved
+    successfully_created: Invoice was successfully created.
+    successfully_destroyed: Invoice was successfully destroyed.
+    unsupported_calculation_mode: Unsupported calculation mode %{mode}
+  menu:
+    account: Account
+    client: Clients
+    contracts: Contracts
+    cost_types: Cost Types
+    expenses: Expenses
+    finances: Finances
+    income_taxes: Income Taxes
+    invoices: Invoices
+    logout: Log out
+    payment_adjustments: Payment Adjustments
+    payment_statements: Payment Statements
+    projects: Projects
+    settings: Settings
+    time_entry: Track Time
+  payment_adjustment:
+    edit:
+      content_title: Edit Payment Adjustment
+      title: Edit Payment Adjustment
+    index:
+      content_title: Payment Adjustments
+      new: New Payment Adjustment
+      none_found: No payment adjustments found
+      title: Payment Adjustments
+    show:
+      content_title: Showing Payment Adjustment
+      title: Showing Payment Adjustment
+    successfully_created: Payment adjustment was successfully created.
+    successfully_destroyed: Payment adjustment was successfully destroyed.
+    successfully_updated: Payment adjustment was successfully updated.
+  payment_allocation:
+    edit:
+      content_title: Edit Payment Allocation
+      title: Edit Payment Allocation
+    index:
+      net_amount: Net Amount
+      new: New Payment Allocation
+      none_found: No payment allocations found
+      tax_amount: Tax Amount
+      title: Payment Allocations
+    new:
+      content_title: New Payment Allocation
+      title: New Payment Allocation
+    show:
+      content_title: Showing Payment Allocation
+      title: Showing Payment Allocation
+    successfully_created: Payment allocation was successfully created.
+    successfully_destroyed: Payment allocation was successfully destroyed.
+    successfully_updated: Payment allocation was successfully updated.
+  payment_statement:
+    edit:
+      content_title: Edit Payment Statement
+      title: Edit Payment Statement
+    index:
+      content_title: Payment Statements
+      new: New Payment Statement
+      none_found: No payment statements found
+      title: Payment Statements
+    new:
+      content_title: New Payment Statement
+      title: New Payment Statement
+    show:
+      content_title: Showing Payment Statement
+      title: Showing Payment Statement
+    successfully_created: Payment statement was successfully created.
+    successfully_destroyed: Payment statement was successfully destroyed.
+    successfully_updated: Payment statement was successfully updated.
+  projects:
+    edit:
+      content_title: Edit project
+      title: Edit project
+    index:
+      content_title: Projects
+      new: New project
+      none_found: No projects found.
+      title: Projects
+    new:
+      content_title: New project
+      title: New project
+    show:
+      content_title: Showing project
+      title: Showing project
+    successfully_created: Project was successfully created.
+    successfully_destroyed: Project was successfully destroyed.
+    successfully_updated: Project was successfully updated.
+  ransack:
+    reset: Reset
+    search: Search
+  select:
+    all: All
+  table:
+    actions: Actions
+    back: Back
+    delete: Delete
+    delete_confirmation: Are you sure?
+    edit: Edit
+    preview: Preview
+    show: Show
+  time:
+    formats:
+      time_only: "%H:%M"
+  time_entry:
+    edit:
+      content_title: Edit time entry
+      title: Edit time entry
+    index:
+      content_title: Time Entries
+      new: New time entry
+      none_found: No time entries found.
+      table:
+        spent_time: Spent time
+      title: Time Entries
+    new:
+      content_title: New time entry
+      title: New time entry
+    successfully_created: Time entry was successfully created.
+    successfully_destroyed: Time entry was successfully destroyed.
+    successfully_updated: Time entry was successfully updated.
+  users:
+    edit:
+      content_title: Account settings
+      title: Account settings
+    successfully_updated: Account settings were successfully updated.
