@@ -14,8 +14,8 @@ class CreateInvoiceSeries < ActiveRecord::Migration[8.0]
     end
 
     change_table :invoices, bulk: true do |t|
-      t.integer :period, null: false, default: ""
-      t.integer :sequence, null: false, default: ""
+      t.integer :period, null: true, default: ""
+      t.integer :sequence, null: true, default: ""
     end
 
     Invoice.find_each do |invoice|
@@ -34,7 +34,10 @@ class CreateInvoiceSeries < ActiveRecord::Migration[8.0]
         invoice_number: "#{period}-#{next_number.to_s.rjust(4, '0')}"
       )
     end
+
     change_column_null :invoices, :client_id, false
+    change_column_null :invoices, :period, false
+    change_column_null :invoices, :sequence, false
 
     add_index :invoices, [:client_id, :period, :sequence], unique: true, name: "uniq_invoice_series_seq"
     add_index :invoices, [:client_id, :invoice_number], unique: true
