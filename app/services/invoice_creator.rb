@@ -36,6 +36,7 @@ class InvoiceCreator
       end_date: @end_date,
       invoice_date: @invoice_date,
       status: :draft,
+      period: @invoice_date.year,
       calculation_mode: @contract.client.calculation_mode
     )
   end
