@@ -4,14 +4,12 @@ require "rails_helper"
 
 RSpec.describe "time_entries/index", type: :view do
   let(:project) { create(:project) }
-  let(:today) { Date.current }
-  let(:tomorrow) { today + 1.day }
 
   before do
     assign(:time_entries, [
-             create(:time_entry, project: project, date: today, name: "Task 1"),
-             create(:time_entry, project: project, date: today, name: "Task 2"),
-             create(:time_entry, project: project, date: tomorrow, name: "Task 3")
+             create(:time_entry, slot_index: 0, project: project, name: "Task 1"),
+             create(:time_entry, slot_index: 1, project: project, name: "Task 2"),
+             create(:time_entry, :tomorrow, project: project, name: "Task 3")
            ])
 
     assign(:q, TimeEntry.ransack)

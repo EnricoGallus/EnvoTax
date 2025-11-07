@@ -6,7 +6,7 @@ RSpec.describe InvoicesController, type: :request do
   let(:user) { create(:valid_user) }
   let(:contract_instance) { create(:contract_instance) }
   let(:valid_attributes) do
-    attributes_for(:invoice).merge(user_id: user.id, contract_instance_id: contract_instance.id)
+    attributes_for(:invoice).merge(contract_instance_id: contract_instance.id)
   end
 
   let(:invalid_attributes) do
@@ -14,12 +14,12 @@ RSpec.describe InvoicesController, type: :request do
   end
 
   before do
-    sign_in user
+    sign_in user, scope: :user
   end
 
   describe "GET /index" do
     it "renders a successful response" do
-      Invoice.create! valid_attributes
+      create_list(:invoice, 5)
       get invoices_url
       expect(response).to be_successful
     end
@@ -27,7 +27,7 @@ RSpec.describe InvoicesController, type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      invoice = Invoice.create! valid_attributes
+      invoice = create(:invoice, user: user)
       get invoice_url(invoice)
       expect(response).to be_successful
     end
@@ -72,14 +72,14 @@ RSpec.describe InvoicesController, type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested invoice" do
-      invoice = Invoice.create! valid_attributes
+      invoice = create(:invoice, user: user)
       expect do
         delete invoice_url(invoice)
       end.to change(Invoice, :count).by(-1)
     end
 
     it "redirects to the invoices list" do
-      invoice = Invoice.create! valid_attributes
+      invoice = create(:invoice, user: user)
       delete invoice_url(invoice)
       expect(response).to redirect_to(invoices_url)
     end

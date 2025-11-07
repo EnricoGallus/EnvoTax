@@ -294,7 +294,7 @@ en:
       content_title: New invoice
       title: New invoice
     status_change_to_approved: Invoice approved
-    successfully_created: Invoice was successfully created.
+    successfully_created: Job for creating Invoices was successfully started..
     successfully_destroyed: Invoice was successfully destroyed.
     unsupported_calculation_mode: Unsupported calculation mode %{mode}
   menu:

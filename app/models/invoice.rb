@@ -4,10 +4,11 @@
 class Invoice < ApplicationRecord
   include Allocatable
 
-  before_create :generate_invoice_number
+  before_create :assign_invoice_number
 
   belongs_to :user
   belongs_to :contract_instance
+  belongs_to :client
 
   monetize :total_amount_cents, with_currency: :jpy, numericality: { greater_than_or_equal_to: 0 }
 
@@ -15,7 +16,7 @@ class Invoice < ApplicationRecord
   has_many :expenses, dependent: :nullify
 
   validates :invoice_date, :start_date, :end_date, :status, presence: true
-  validate :clear_generated_errors_for_job_save
+  validates :invoice_number, uniqueness: { scope: :client_id }, allow_nil: true
 
   enum :calculation_mode, { item_based: 0, total_based: 1 }
   enum :status, { draft: 0, approved: 1, partially_paid: 2, paid: 3, overdue: 4 }
@@ -44,31 +45,17 @@ class Invoice < ApplicationRecord
 
   private
 
-  def clear_generated_errors_for_job_save
-    return unless validation_context == :job
+  def assign_invoice_number
+    return if invoice_number.present?
 
-    errors.delete(:contract_instance)
-    errors.delete(:user)
-    errors.delete(:status)
-    errors.delete(:total_amount)
-  end
+    period = invoice_date.year
 
-  def generate_invoice_number
-    return if invoice_number.present? || invoice_date.blank?
+    series = InvoiceSeries.find_or_create_by!(client_id: client.id, period: period)
 
-    year = invoice_date.year
-    month = invoice_date.month
-
-    latest_invoice = Invoice.where("EXTRACT(YEAR FROM invoice_date) = ?", year)
-                            .order(invoice_number: :desc)
-                            .limit(1)
-                            .first
-    sequence = 1
-    if latest_invoice
-      match = latest_invoice.invoice_number.match(/(\d{4})(\d{2})-(\d+)/)
-      sequence = match[3].to_i + 1 if match
+    series.with_lock do
+      self.sequence       = series.next_number
+      self.invoice_number = "#{period}-#{sequence.to_s.rjust(4, '0')}"
+      series.update!(next_number: sequence + 1)
     end
-
-    self.invoice_number = "#{year}#{month.to_s.rjust(2, '0')}-#{sequence.to_s.rjust(3, '0')}"
   end
 end
