@@ -1,39 +1,61 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
+  sequence(:_time_entry_seq) { |n| n }
+
   factory :time_entry do
-    name { Faker::Name.name }
-    date { Faker::Date.between(from: 1.month.ago, to: Time.zone.now) }
     project
+    sequence(:name) { |n| "Task #{n}" }
 
-    sequence(:time_from) do |n|
-      hour = (8 + (n * 2)) % 24
-      Time.zone.parse("#{hour}:00")
+    # --- Deterministic, non-overlapping config ---
+    transient do
+      slot_index { 0 }             # 0,1,2,...
+      slot_minutes { 60 }          # default duration
+      slot_stride_minutes { 480 }  # 8h spacing → no overlap even with long durations
+      first_hour { 9 }             # base start time in the day
+      day_offset { 0 }             # shift the calendar day if needed
     end
 
-    sequence(:time_to) do |n|
-      hour = (9 + (n * 2)) % 24
-      Time.zone.parse("#{hour}:00")
+    date { Time.zone.today + day_offset.days }
+
+    time_from do
+      base = date.in_time_zone.change(hour: first_hour, min: 0, sec: 0)
+      base + (slot_index * slot_stride_minutes).minutes
     end
 
-    trait :with_invoice do
-      invoice
-    end
+    time_to { time_from + slot_minutes.minutes }
 
-    trait :random do
-      time_from { Faker::Time.between(from: DateTime.parse("8:00"), to: DateTime.parse("16:00")) }
-      time_to { |e| Faker::Time.between(from: e.time_from, to: DateTime.parse("18:00")) }
+    trait :sequential do
+      # auto-assigns a unique slot per created record (within a spec example)
+      slot_index { generate(:_time_entry_seq) }
     end
 
     trait :with_duration do
       transient do
         hours { 2 }
         minutes { 0 }
-        start_hour { 10 }
+        start_hour { nil }
       end
 
-      time_from { Time.zone.local(date.year, date.month, date.day, start_hour, 0, 0) }
+      time_from do
+        base =
+          if start_hour
+            date.in_time_zone.change(hour: start_hour, min: 0, sec: 0)
+          else
+            date.in_time_zone.change(hour: first_hour, min: 0, sec: 0)
+          end
+        base + (slot_index * slot_stride_minutes).minutes
+      end
+
       time_to { time_from + hours.hours + minutes.minutes }
+    end
+
+    trait :yesterday do
+      day_offset { -1 }
+    end
+
+    trait :tomorrow do
+      day_offset { 1 }
     end
   end
 end

@@ -13,8 +13,8 @@ RSpec.describe InvoiceAmountCalculator do
       let(:calculation_mode) { :item_based }
 
       it "calculates the total based on time entries and expenses" do
-        create(:time_entry, :with_duration, hours: 4, minutes: 20, invoice: invoice, project: project)
-        create(:time_entry, :with_duration, hours: 3, minutes: 20, invoice: invoice, project: project)
+        create(:time_entry, :with_duration, hours: 4, minutes: 20, slot_index: 0, invoice: invoice, project: project)
+        create(:time_entry, :with_duration, hours: 3, minutes: 20, slot_index: 1, invoice: invoice, project: project)
         create(:expense, invoice: invoice, amount_cents: 2000, transaction_type: :debit)
         create(:expense, invoice: invoice, amount_cents: 1000, transaction_type: :credit)
 
@@ -26,8 +26,8 @@ RSpec.describe InvoiceAmountCalculator do
       let(:calculation_mode) { :total_based }
 
       it "calculates the total based on spent time and hourly rate" do
-        create(:time_entry, :with_duration, hours: 4, minutes: 20, invoice: invoice, project: project)
-        create(:time_entry, :with_duration, hours: 3, minutes: 20, invoice: invoice, project: project)
+        create(:time_entry, :with_duration, hours: 4, minutes: 20, slot_index: 0, invoice: invoice, project: project)
+        create(:time_entry, :with_duration, hours: 3, minutes: 20, slot_index: 1, invoice: invoice, project: project)
         create(:expense, invoice: invoice, amount_cents: 2000, transaction_type: :debit)
         create(:expense, invoice: invoice, amount_cents: 1000, transaction_type: :credit)
 

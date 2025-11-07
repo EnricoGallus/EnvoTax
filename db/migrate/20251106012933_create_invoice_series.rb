@@ -13,8 +13,11 @@ class CreateInvoiceSeries < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
-    add_column :invoices, :period, :integer
-    add_column :invoices, :sequence, :integer
+    change_table :invoices, bulk: true do |t|
+      t.integer :period, null: false, default: ""
+      t.integer :sequence, null: false, default: ""
+    end
+
     Invoice.find_each do |invoice|
       period = invoice.invoice_date.year
       series = InvoiceSeries.find_or_create_by!(client: invoice.contract_instance.contract.client,
