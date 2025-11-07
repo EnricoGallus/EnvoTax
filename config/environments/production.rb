@@ -83,10 +83,10 @@ Rails.application.configure do
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   config.hosts = [
-    "enchan.org", # Allow requests from example.com
+    "envotax.enchan.org", # Allow requests from example.com
     /.*\.enchan\.org/ # Allow requests from subdomains like `www.example.com`
   ]
   #
   # Skip DNS rebinding protection for the default health check endpoint.
-  # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end
