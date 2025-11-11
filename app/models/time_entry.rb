@@ -28,9 +28,9 @@ class TimeEntry < ApplicationRecord
 
     overlapping_exists = TimeEntry.where(date: date)
                                   .where.not(id: id)
-                                  .exists?(["(time_from < ? AND time_to > ?) OR
-                                      (time_from < ? AND time_to > ?) OR
-                                      (time_from >= ? AND time_to <= ?)",
+                                  .exists?(["(time_from < ?::time AND time_to > ?::time) OR
+                                      (time_from < ?::time AND time_to > ?::time) OR
+                                      (time_from >= ?::time AND time_to <= ?::time)",
                                             time_to, time_from, time_from, time_from, time_from, time_to])
 
     return unless overlapping_exists
