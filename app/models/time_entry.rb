@@ -28,10 +28,15 @@ class TimeEntry < ApplicationRecord
 
     overlapping_exists = TimeEntry.where(date: date)
                                   .where.not(id: id)
-                                  .exists?(["(time_from < ?::time AND time_to > ?::time) OR
-                                      (time_from < ?::time AND time_to > ?::time) OR
-                                      (time_from >= ?::time AND time_to <= ?::time)",
-                                            time_to, time_from, time_from, time_from, time_from, time_to])
+                                  .exists?(
+                                    [<<~SQL.squish, { date: date, from: time_from, to: time_to }]
+                                      time_from < time_to
+                                      AND :from::time < :to::time
+                                      AND ( (date + time_from, date + time_to)
+                                            OVERLAPS
+                                            (:date::date + :from::time, :date::date + :to::time) )
+                                    SQL
+                                  )
 
     return unless overlapping_exists
 
