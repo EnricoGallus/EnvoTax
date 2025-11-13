@@ -54,7 +54,11 @@ class TimeEntry < ApplicationRecord
   def calculate_spent_time_and_cost
     return unless time_from && time_to
 
-    self.spent_time_in_seconds = time_to - time_from
+    from_secs = time_from.seconds_since_midnight
+    to_secs = time_to.seconds_since_midnight
+    to_secs += 24.hours if to_secs <= from_secs
+
+    self.spent_time_in_seconds = to_secs - from_secs
     self.cost = calculate_cost
   end
 end
