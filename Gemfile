@@ -29,11 +29,11 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "solid_cable", "~> 3.0"
-gem "solid_cache", "~> 1.0"
+gem "solid_cache", "~> 1.0.10"
 gem "solid_queue", "~> 1.2"
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
+gem "bootsnap", "~> 1.19", require: false
 
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", "~> 2.8", require: false
@@ -51,7 +51,7 @@ gem "groupdate", "~> 6.7"
 gem "pagy", "~> 9.4"
 gem "ransack"
 gem "tailwindcss-rails", "~> 4.4"
-gem "view_component", "~> 4.1"
+gem "view_component", "~> 4.1.1"
 
 # authorization
 gem "pundit"
@@ -66,7 +66,7 @@ gem "stackprof"
 
 # aws
 gem "aws-sdk-rails", "~> 5.1"
-gem "aws-sdk-s3", "~> 1.203"
+gem "aws-sdk-s3", "~> 1.204"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -82,22 +82,22 @@ group :development, :test do
 
   gem "foreman", "~> 0.90"
 
-  gem "i18n-tasks", "~> 1.0"
+  gem "i18n-tasks", "~> 1.1"
 
   gem "pundit-matchers", "~> 4.0"
 
   gem "rails-controller-testing"
   gem "rspec-rails"
 
-  gem "rubocop", "~> 1.81", require: false
+  gem "rubocop", "~> 1.81.0", require: false
   gem "rubocop-capybara", require: false
-  gem "rubocop-factory_bot", require: false
+  gem "rubocop-factory_bot", "~> 2.28.0", require: false
   gem "rubocop-i18n", require: false
   gem "rubocop-md", require: false
-  gem "rubocop-performance", "~> 1.26", require: false
-  gem "rubocop-rails", require: false
-  gem "rubocop-rspec", require: false
-  gem "rubocop-rspec_rails", require: false
+  gem "rubocop-performance", "~> 1.26.0", require: false
+  gem "rubocop-rails", "~> 2.34.0", require: false
+  gem "rubocop-rspec", "~> 3.8.0", require: false
+  gem "rubocop-rspec_rails", "~> 2.32.0", require: false
   gem "rubocop-thread_safety", require: false
 
   gem "shoulda-matchers", "~> 7.0"
