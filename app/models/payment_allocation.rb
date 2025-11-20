@@ -23,7 +23,7 @@ class PaymentAllocation < ApplicationRecord
 
   def update_statuses
     payment_statement.update_status!
-    reference.update_status_from_allocations! if reference.present?
+    reference.presence&.update_status_from_allocations!
   end
 
   private
