@@ -7,6 +7,7 @@ class InvoicesController < ApplicationController
   # GET /invoices or /invoices.json
   def index
     @q = policy_scope(Invoice).ransack(params[:q])
+    @q.sorts = ["status asc", "invoice_date desc"] if @q.sorts.empty?
     @invoices = @q.result(distinct: true)
   end
 

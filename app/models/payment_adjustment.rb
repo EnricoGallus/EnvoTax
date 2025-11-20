@@ -15,6 +15,8 @@ class PaymentAdjustment < ApplicationRecord
 
   after_initialize :set_default_status, if: :new_record?
 
+  scope :unpaid, -> { where.not(status: :paid) }
+
   def details
     amount.format
   end
