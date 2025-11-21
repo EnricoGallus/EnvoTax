@@ -10,6 +10,7 @@ RSpec.describe Invoice, type: :model do
     it { is_expected.to belong_to(:contract_instance) }
     it { is_expected.to have_many(:time_entries).dependent(:nullify) }
     it { is_expected.to have_many(:expenses).dependent(:nullify) }
+    it { is_expected.to have_many(:payment_allocations).dependent(:destroy) }
   end
 
   describe "validations" do

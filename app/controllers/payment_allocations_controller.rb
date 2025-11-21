@@ -68,7 +68,7 @@ class PaymentAllocationsController < ApplicationController
 
   # TODO: play around with view component, maybe we can optimize not calling it in every controller action
   def reference_list
-    @references = (Invoice.all + PaymentAdjustment.all).map do |ref|
+    @references = (Invoice.unpaid + PaymentAdjustment.unpaid).map do |ref|
       [
         "#{ref.class.name} ##{ref.id} – #{ref.details}",
         "#{ref.class.name}_#{ref.id}"
