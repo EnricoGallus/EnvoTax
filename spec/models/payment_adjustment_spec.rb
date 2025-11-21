@@ -8,6 +8,7 @@ RSpec.describe PaymentAdjustment, type: :model do
   describe "associations" do
     it { is_expected.to belong_to(:client) }
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to have_many(:payment_allocations).dependent(:destroy) }
   end
 
   describe "validations" do
@@ -22,6 +23,25 @@ RSpec.describe PaymentAdjustment, type: :model do
   describe "factory" do
     it "has a valid factory" do
       expect(build(:payment_adjustment)).to be_valid
+    end
+  end
+
+  describe "scopes" do
+    context "when unpaid" do
+      subject(:unpaid) { described_class.unpaid }
+
+      let!(:pending) { create(:payment_adjustment, status: :pending) }
+      let!(:partially_paid) { create(:payment_adjustment, status: :partially_paid) }
+      let!(:canceled) { create(:payment_adjustment, status: :canceled) }
+      let!(:paid) { create(:payment_adjustment, status: :paid) }
+
+      it "does not include paid records" do
+        expect(unpaid).not_to include(paid)
+      end
+
+      it "includes all other statuses" do
+        expect(unpaid).to include(pending, partially_paid, canceled)
+      end
     end
   end
 

@@ -21,8 +21,6 @@ class Invoice < ApplicationRecord
   enum :calculation_mode, { item_based: 0, total_based: 1 }
   enum :status, { draft: 0, approved: 1, partially_paid: 2, paid: 3, overdue: 4 }
 
-  scope :unpaid, -> { where.not(status: :paid) }
-
   def details
     total_amount.format
   end

@@ -6,6 +6,8 @@ module Allocatable
 
   included do
     has_many :payment_allocations, as: :reference, dependent: :destroy
+
+    scope :unpaid, -> { where.not(status: :paid) }
   end
 
   def allocated_amount
