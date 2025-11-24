@@ -411,7 +411,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.47.1, < 2.0)
-    rubocop-rails (2.34.0)
+    rubocop-rails (2.34.1)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
@@ -578,7 +578,7 @@ DEPENDENCIES
   rubocop-i18n
   rubocop-md
   rubocop-performance (~> 1.26.0)
-  rubocop-rails (~> 2.34.0)
+  rubocop-rails (~> 2.34.1)
   rubocop-rspec (~> 3.8.0)
   rubocop-rspec_rails (~> 2.32.0)
   rubocop-thread_safety

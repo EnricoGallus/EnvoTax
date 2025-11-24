@@ -95,7 +95,7 @@ group :development, :test do
   gem "rubocop-i18n", require: false
   gem "rubocop-md", require: false
   gem "rubocop-performance", "~> 1.26.0", require: false
-  gem "rubocop-rails", "~> 2.34.0", require: false
+  gem "rubocop-rails", "~> 2.34.1", require: false
   gem "rubocop-rspec", "~> 3.8.0", require: false
   gem "rubocop-rspec_rails", "~> 2.32.0", require: false
   gem "rubocop-thread_safety", require: false
