@@ -66,7 +66,7 @@ gem "stackprof"
 
 # aws
 gem "aws-sdk-rails", "~> 5.1"
-gem "aws-sdk-s3", "~> 1.204"
+gem "aws-sdk-s3", "~> 1.208"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
