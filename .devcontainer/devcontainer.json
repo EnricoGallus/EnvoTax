@@ -1,0 +1,53 @@
+{
+  "name": "EnvoTax",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "web",
+  "workspaceFolder": "/workspace",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ruby-lang.Ruby",
+        "Shopify.ruby-lsp",
+        "Hridoy.rails-snippets",
+        "CodeRabbit.coderabbit-vscode",
+        "kaiwood.endwise",
+        "rubocop.vscode-rubocop",
+        "connorshea.vscode-ruby-test-adapter",
+        "vscode-icons-team.vscode-icons",
+        "ms-azuretools.vscode-containers",
+        "ms-azuretools.vscode-docker",
+        "bradlc.vscode-tailwindcss",
+        "kirillpalkin.vscode-ruby-extend-intellisense",
+        "aliariff.vscode-erb-beautify",
+        "donjayamanne.githistory",
+        "ms-ossdata.vscode-pgsql"
+      ],
+      "settings": {
+        "[ruby]": {
+          "editor.defaultFormatter": "Shopify.ruby-lsp",
+          "editor.formatOnSave": true
+        }
+      }
+    }
+  },
+
+  "remoteEnv": {
+    "RAILS_ENV": "development"
+  },
+
+  "postCreateCommand": "bundle install && yarn install",
+  "postStartCommand": "",
+
+  "forwardPorts": [3000, 5432],
+  "portsAttributes": {
+    "3000": {
+      "label": "Rails Server",
+      "onAutoForward": "notify"
+    },
+    "5432": {
+      "label": "PostgreSQL",
+      "onAutoForward": "silent"
+    }
+  }
+}
