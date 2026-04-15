@@ -62,7 +62,7 @@ sudo usermod -aG docker ec2-user
 
 ### Swap-File to prevent memory spikes
 - Connect to the instance when running and execute the following commands
-```
+```bash
 sudo fallocate -l 1G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile

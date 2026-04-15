@@ -3,7 +3,6 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "web",
   "workspaceFolder": "/workspace",
-
   "customizations": {
     "vscode": {
       "extensions": [
@@ -31,15 +30,14 @@
       }
     }
   },
-
   "remoteEnv": {
     "RAILS_ENV": "development"
   },
-
   "postCreateCommand": "bundle install && yarn install",
-  "postStartCommand": "",
-
-  "forwardPorts": [3000, 5432],
+  "forwardPorts": [
+    3000,
+    5432
+  ],
   "portsAttributes": {
     "3000": {
       "label": "Rails Server",

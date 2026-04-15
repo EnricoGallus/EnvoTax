@@ -44,18 +44,18 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 
+Capybara.register_driver :headless_chrome_ci do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument("--headless=new")
+  options.add_argument("--window-size=1400,1400")
+  options.add_argument("--no-sandbox")
+  options.add_argument("--disable-dev-shm-usage")
+  options.add_argument("--disable-gpu")
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
+end
+
 RSpec.configure do |config|
-  Capybara.register_driver :headless_chrome_ci do |app|
-    options = Selenium::WebDriver::Chrome::Options.new
-    options.add_argument("--headless=new")
-    options.add_argument("--window-size=1400,1400")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-gpu")
-
-    Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
-  end
-
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join("spec/fixtures")

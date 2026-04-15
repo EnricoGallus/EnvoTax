@@ -50,8 +50,6 @@ ENV RAILS_ENV=development \
     GEM_HOME=/usr/local/bundle \
     NODE_ENV=development
 
-EXPOSE 3000 5432
-
 # Health check to prevent early exit
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD [ -d /workspace ] || exit 1

@@ -3,13 +3,13 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.1.1"
+gem "rails", "~> 8.1.3"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft", "~> 1.1"
 # Use postgres as the database for Active Record
 gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 7.1"
+gem "puma", "~> 8.0"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails", "~> 1.3"
 
@@ -22,7 +22,7 @@ gem "stimulus-rails", "~> 1.3"
 
 # authentication and authorization
 gem "bcrypt", "~> 3.1.20"
-gem "devise", "~> 4.9"
+gem "devise", "~> 5.0"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[windows jruby]
@@ -51,7 +51,7 @@ gem "groupdate", "~> 6.7"
 gem "pagy", "~> 9.4"
 gem "ransack"
 gem "tailwindcss-rails", "~> 4.4"
-gem "view_component", "~> 4.1.1"
+gem "view_component", "~> 4.6"
 
 # authorization
 gem "pundit"
@@ -73,7 +73,7 @@ group :development, :test do
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
-  gem "brakeman", "~> 7.1.0", require: false
+  gem "brakeman", "~> 8.0", require: false
 
   gem "bundler-audit", require: false
 
@@ -89,14 +89,14 @@ group :development, :test do
   gem "rails-controller-testing"
   gem "rspec-rails"
 
-  gem "rubocop", "~> 1.81.0", require: false
+  gem "rubocop", "~> 1.86", require: false
   gem "rubocop-capybara", require: false
   gem "rubocop-factory_bot", "~> 2.28.0", require: false
   gem "rubocop-i18n", require: false
   gem "rubocop-md", require: false
   gem "rubocop-performance", "~> 1.26.0", require: false
   gem "rubocop-rails", "~> 2.34.0", require: false
-  gem "rubocop-rspec", "~> 3.8.0", require: false
+  gem "rubocop-rspec", "~> 3.9", require: false
   gem "rubocop-rspec_rails", "~> 2.32.0", require: false
   gem "rubocop-thread_safety", require: false
 
