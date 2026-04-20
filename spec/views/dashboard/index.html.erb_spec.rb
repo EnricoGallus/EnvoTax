@@ -23,7 +23,8 @@ RSpec.describe "dashboard/index.html.erb", type: :view do
 
   it "renders a translated loading title inside each frame as fallback" do
     %w[today weekly monthly unbilled_time outstanding_invoices].each do |id|
-      assert_select "h2.card-title", text: I18n.t("dashboard.loading.#{id}"), count: 1
+      exepected_title = "dashboard.loading.#{id}"
+      assert_select "h2.card-title", text: I18n.t(exepected_title), count: 1
     end
   end
 end
