@@ -252,6 +252,7 @@ ja:
   invoice:
     address:
       postal_code: "〒%{zip}"
+    approve: 承認する
     bank_details:
       account_holder: 口座名義：%{name}
       account_number: 口座番号：%{name}
@@ -277,12 +278,6 @@ ja:
       reference_id: 請求書番号：REF-%{number}
       title: 御請求書
       work: 作業内容
-    tax:
-      included: 備考：消費税込
-    to:
-      client_name: "%{name} 御中"
-      title: 請求先：
-    approve: 承認する
     index:
       content_title: 請求書
       new: 新しい請求書
@@ -296,6 +291,11 @@ ja:
     status_change_to_approved: 請求書を承認しました
     successfully_created: 請求書作成ジョブが正常に開始されました。
     successfully_destroyed: 請求書を削除しました。
+    tax:
+      included: 備考：消費税込
+    to:
+      client_name: "%{name} 御中"
+      title: 請求先：
     unsupported_calculation_mode: 未対応の計算モードです %{mode}
   menu:
     account: アカウント

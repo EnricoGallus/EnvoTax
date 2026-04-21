@@ -252,6 +252,7 @@ en:
   invoice:
     address:
       postal_code: "%{zip}"
+    approve: Approve
     bank_details:
       account_holder: Account Name： %{name}
       account_number: Account No： %{name}
@@ -277,12 +278,6 @@ en:
       reference_id: 'Reference ID: REF-%{number}'
       title: INVOICE
       work: Contract work
-    tax:
-      included: 'Note: Tax Included'
-    to:
-      client_name: "%{name}"
-      title: 'To:'
-    approve: Approve
     index:
       content_title: Invoices
       new: New invoice
@@ -296,7 +291,12 @@ en:
     status_change_to_approved: Invoice approved
     successfully_created: Job for creating Invoices was successfully started..
     successfully_destroyed: Invoice was successfully destroyed.
-    unsupported_calculation_mode: Unsupported calculation mode %{mode}    
+    tax:
+      included: 'Note: Tax Included'
+    to:
+      client_name: "%{name}"
+      title: 'To:'
+    unsupported_calculation_mode: Unsupported calculation mode %{mode}
   menu:
     account: Account
     client: Clients
