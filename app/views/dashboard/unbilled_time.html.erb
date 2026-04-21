@@ -3,7 +3,7 @@
     <div class="card-body">
       <h2 class="card-title">Unbilled Time</h2>
       <% if @entries.any? %>
-        <p><strong><%= @total_hours %> h</strong> worth <strong><%= number_to_currency(@total_value) %></strong></p>
+        <p><strong><%= format_spent_time(@total_hours) %></strong> worth <strong><%= @total_value.format %></strong></p>
         <ul class="list-disc ml-4">
           <% @entries.limit(5).each do |entry| %>
             <li><%= entry.project.name %> — <%= format_spent_time(entry.spent_time_in_seconds) %></li>

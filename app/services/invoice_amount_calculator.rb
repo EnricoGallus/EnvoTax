@@ -18,7 +18,7 @@ class InvoiceAmountCalculator
     when :total_based
       calculate_total_based_cost(time_entries)
     else
-      raise ArgumentError, _(I18n.t("invoices.unsupported_calculation_mode", mode: @invoice.calculation_mode))
+      raise ArgumentError, _(I18n.t("invoice.unsupported_calculation_mode", mode: @invoice.calculation_mode))
     end
   end
 

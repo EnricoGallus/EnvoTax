@@ -150,7 +150,7 @@ en:
       user:
         one: User
         other: Users
-  clients:
+  client:
     edit:
       content_title: Editing client
       title: Editing client
@@ -187,7 +187,7 @@ en:
     successfully_created: Contract instance was successfully created.
     successfully_destroyed: Contract instance was successfully destroyed.
     successfully_updated: Contract instance was successfully updated.
-  cost_types:
+  cost_type:
     index:
       content_title: Cost Types
       new: New Cost Type
@@ -252,6 +252,7 @@ en:
   invoice:
     address:
       postal_code: "%{zip}"
+    approve: Approve
     bank_details:
       account_holder: Account Name： %{name}
       account_number: Account No： %{name}
@@ -277,13 +278,6 @@ en:
       reference_id: 'Reference ID: REF-%{number}'
       title: INVOICE
       work: Contract work
-    tax:
-      included: 'Note: Tax Included'
-    to:
-      client_name: "%{name}"
-      title: 'To:'
-  invoices:
-    approve: Approve
     index:
       content_title: Invoices
       new: New invoice
@@ -297,6 +291,11 @@ en:
     status_change_to_approved: Invoice approved
     successfully_created: Job for creating Invoices was successfully started..
     successfully_destroyed: Invoice was successfully destroyed.
+    tax:
+      included: 'Note: Tax Included'
+    to:
+      client_name: "%{name}"
+      title: 'To:'
     unsupported_calculation_mode: Unsupported calculation mode %{mode}
   menu:
     account: Account
@@ -365,7 +364,7 @@ en:
     successfully_created: Payment statement was successfully created.
     successfully_destroyed: Payment statement was successfully destroyed.
     successfully_updated: Payment statement was successfully updated.
-  projects:
+  project:
     edit:
       content_title: Edit project
       title: Edit project

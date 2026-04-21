@@ -89,6 +89,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      DATABASE_HOST: 127.0.0.1
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: password
+
     services:
       postgres:
         image: postgres:17.5

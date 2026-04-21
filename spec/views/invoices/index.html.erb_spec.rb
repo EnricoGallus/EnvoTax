@@ -23,8 +23,8 @@ RSpec.describe "invoices/index", type: :view do
 
   private
 
-  def assert_details(element, invoices)
-    assert_select element, "td", text: invoices.contract_instance.name, count: 1
+  def assert_details(element, invoice)
+    assert_select element, "td", text: invoice.contract_instance.name, count: 1
     assert_select element, "td" do
       assert_select "a.btn.btn-accent", text: /Preview/
       assert_select "form button.btn.btn-error", text: /Delete/

@@ -7,13 +7,13 @@
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^8.0.20",
+    "@hotwired/turbo-rails": "^8.0.23",
     "chart.js": "^4.5.1",
     "chartkick": "^5.0.1",
     "toastify-js": "^1.12.0"
   },
   "devDependencies": {
-    "daisyui": "^5.4.5",
-    "esbuild": "^0.25.12"
+    "daisyui": "^5.5.19",
+    "esbuild": "^0.28.0"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "rubyLsp.enabledFeatures": {
+    "codeLens": true
+  },
+  "editor.formatOnSave": true,
+  "[ruby]": {
+    "editor.defaultFormatter": "Shopify.ruby-lsp"
+  },
+  "rubyLsp.formatter": "rubocop",
+  "rubyLsp.addonSettings": {
+    "Ruby LSP RSpec": {
+      "rspecCommand": "env RAILS_ENV=test bundle exec rspec",
+      "debug": true
+    }
+  }
+}

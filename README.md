@@ -60,6 +60,16 @@ sudo systemctl start docker
 sudo usermod -aG docker ec2-user
 ```
 
+### Swap-File to prevent memory spikes
+- Connect to the instance when running and execute the following commands
+```bash
+sudo fallocate -l 1G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+sudo swapon -a
+```
+
 ### Using kamal
 
 - check for the current profile by executing `aws configure list`

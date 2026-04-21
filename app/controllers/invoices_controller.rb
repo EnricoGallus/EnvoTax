@@ -30,7 +30,7 @@ class InvoicesController < ApplicationController
     respond_to do |format|
       if @invoice.valid?
         InvoiceProcessorJob.perform_later(@invoice.to_h, current_user.id)
-        format.html { redirect_to invoices_path, notice: t("invoices.successfully_created") }
+        format.html { redirect_to invoices_path, notice: t("invoice.successfully_created") }
         format.json { render :show, status: :created, location: @invoice }
       else
         format.html { render :new, status: :unprocessable_content }
@@ -42,7 +42,7 @@ class InvoicesController < ApplicationController
   def approve
     @invoice.approved!
     if @invoice.save
-      redirect_to invoices_path, notice: t("invoices.status_change_to_approved")
+      redirect_to invoices_path, notice: t("invoice.status_change_to_approved")
     else
       render :show, status: :unprocessable_content
     end
@@ -53,7 +53,7 @@ class InvoicesController < ApplicationController
     @invoice.destroy!
 
     respond_to do |format|
-      format.html { redirect_to invoices_path, status: :see_other, notice: t("invoices.successfully_destroyed") }
+      format.html { redirect_to invoices_path, status: :see_other, notice: t("invoice.successfully_destroyed") }
       format.json { head :no_content }
     end
   end

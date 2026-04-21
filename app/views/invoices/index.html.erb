@@ -1,9 +1,9 @@
 <%= render(IndexPageComponent.new(
-  content_title: t('invoices.index.content_title'),
-  title: t('invoices.index.title'),
+  content_title: t('invoice.index.content_title'),
+  title: t('invoice.index.title'),
   model_name: 'invoice',
   new_path: new_invoice_path,
-  new_text: t('invoices.index.new'),
+  new_text: t('invoice.index.new'),
   collection: @invoices
 )) do %>
   <%= render(DataTableComponent.new(collection: @invoices, edit_path: false)) do |component| %>
@@ -11,7 +11,7 @@
       <td><%= sort_link(@q, :contract_instance_name, t('activerecord.attributes.invoice.contract')) %></td>
       <td><%= sort_link(@q, :invoice_date, t('activerecord.attributes.invoice.invoice_date')) %></td>
       <td><%= sort_link(@q, :status, t('activerecord.attributes.invoice.status')) %></td>
-      <td><%= t('invoices.index.table.sum') %></td>
+      <td><%= t('invoice.index.table.sum') %></td>
     <% end %>
 
     <% @invoices.each do |invoice| %>

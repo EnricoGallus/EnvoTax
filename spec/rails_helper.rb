@@ -18,6 +18,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require "rspec/rails"
 require "rails-controller-testing"
 require "pundit/matchers"
+require "selenium/webdriver"
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -41,6 +42,17 @@ begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
+end
+
+Capybara.register_driver :headless_chrome_ci do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument("--headless=new")
+  options.add_argument("--window-size=1400,1400")
+  options.add_argument("--no-sandbox")
+  options.add_argument("--disable-dev-shm-usage")
+  options.add_argument("--disable-gpu")
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
 end
 
 RSpec.configure do |config|
@@ -84,7 +96,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, :js, type: :system) do
-    driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+    driven_by :headless_chrome_ci
   end
 
   config.include PunditSpecHelper, type: :view

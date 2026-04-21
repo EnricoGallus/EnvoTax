@@ -150,7 +150,7 @@ ja:
       user:
         one: ユーザー
         other: ユーザー
-  clients:
+  client:
     edit:
       content_title: 顧客の編集
       title: 顧客の編集
@@ -187,7 +187,7 @@ ja:
     successfully_created: 契約インスタンスを作成しました。
     successfully_destroyed: 契約インスタンスを削除しました。
     successfully_updated: 契約インスタンスを更新しました。
-  cost_types:
+  cost_type:
     index:
       content_title: 費用区分
       new: 新しい費用区分
@@ -252,6 +252,7 @@ ja:
   invoice:
     address:
       postal_code: "〒%{zip}"
+    approve: 承認する
     bank_details:
       account_holder: 口座名義：%{name}
       account_number: 口座番号：%{name}
@@ -277,13 +278,6 @@ ja:
       reference_id: 請求書番号：REF-%{number}
       title: 御請求書
       work: 作業内容
-    tax:
-      included: 備考：消費税込
-    to:
-      client_name: "%{name} 御中"
-      title: 請求先：
-  invoices:
-    approve: 承認する
     index:
       content_title: 請求書
       new: 新しい請求書
@@ -297,6 +291,11 @@ ja:
     status_change_to_approved: 請求書を承認しました
     successfully_created: 請求書作成ジョブが正常に開始されました。
     successfully_destroyed: 請求書を削除しました。
+    tax:
+      included: 備考：消費税込
+    to:
+      client_name: "%{name} 御中"
+      title: 請求先：
     unsupported_calculation_mode: 未対応の計算モードです %{mode}
   menu:
     account: アカウント
@@ -365,7 +364,7 @@ ja:
     successfully_created: 入金明細を作成しました。
     successfully_destroyed: 入金明細を削除しました。
     successfully_updated: 入金明細を更新しました。
-  projects:
+  project:
     edit:
       content_title: プロジェクトの編集
       title: プロジェクトの編集
