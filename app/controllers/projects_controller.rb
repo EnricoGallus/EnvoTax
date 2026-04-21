@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: t("projects.successfully_created") }
+        format.html { redirect_to @project, notice: t("project.successfully_created") }
         format.json { render :show, status: :created, location: @project }
       else
         populate_dropdowns
@@ -43,7 +43,7 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to @project, notice: t("projects.successfully_updated") }
+        format.html { redirect_to @project, notice: t("project.successfully_updated") }
         format.json { render :show, status: :ok, location: @project }
       else
         populate_dropdowns
@@ -58,7 +58,7 @@ class ProjectsController < ApplicationController
     @project.destroy!
 
     respond_to do |format|
-      format.html { redirect_to projects_path, status: :see_other, notice: t("projects.successfully_destroyed") }
+      format.html { redirect_to projects_path, status: :see_other, notice: t("project.successfully_destroyed") }
       format.json { head :no_content }
     end
   end

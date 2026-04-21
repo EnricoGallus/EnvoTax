@@ -25,7 +25,7 @@ RSpec.describe "invoices/show", type: :view do
     end
 
     it "renders action buttons (approve when draft and owner)" do
-      expect(rendered).to have_button(I18n.t("invoices.approve"))
+      expect(rendered).to have_button(I18n.t("invoice.approve"))
       expect(rendered).to have_link(I18n.t("table.back"))
       expect(rendered).to have_button(I18n.t("table.delete"))
     end

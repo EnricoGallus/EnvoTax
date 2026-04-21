@@ -3,7 +3,7 @@
     <div class="card-body">
       <h2 class="card-title">Outstanding Invoices</h2>
       <% if @invoices.any? %>
-        <p>Total Due: <strong><%= number_to_currency(@total_due) %></strong></p>
+        <p>Total Due: <strong><%= @total_due.format %></strong></p>
         <ul class="divide-y">
           <% @invoices.each do |inv| %>
             <li class="flex justify-between py-2">

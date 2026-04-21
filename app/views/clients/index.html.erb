@@ -1,9 +1,9 @@
 <%= render(IndexPageComponent.new(
-  content_title: t('clients.index.content_title'),
-  title: t('clients.index.title'),
+  content_title: t('client.index.content_title'),
+  title: t('client.index.title'),
   model_name: 'client',
   new_path: new_client_path,
-  new_text: t('clients.index.new'),
+  new_text: t('client.index.new'),
   collection: @clients
 )) do %>
   <%= render(DataTableComponent.new(collection: @clients)) do |component| %>

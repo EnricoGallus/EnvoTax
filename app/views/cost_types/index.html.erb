@@ -1,9 +1,9 @@
 <%= render(IndexPageComponent.new(
-  content_title: t('cost_types.index.content_title'),
-  title: t('cost_types.index.title'),
+  content_title: t('cost_type.index.content_title'),
+  title: t('cost_type.index.title'),
   model_name: 'cost_type',
   new_path: new_cost_type_path,
-  new_text: t('cost_types.index.new'),
+  new_text: t('cost_type.index.new'),
   collection: @cost_types
 )) do %>
   <%= render(DataTableComponent.new(collection: @cost_types)) do |component| %>

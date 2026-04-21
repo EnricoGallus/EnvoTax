@@ -3,7 +3,7 @@
 <div class="w-full">
 
   <% if policy(@invoice).approve? %>
-    <%= button_to t('invoices.approve'), approve_invoice_path(@invoice), class: "btn btn-primary" %>
+    <%= button_to t('invoice.approve'), approve_invoice_path(@invoice), class: "btn btn-primary" %>
   <% end %>
   <%= link_to t('table.back'), invoices_path, class: "btn" %>
   <%= button_to t('table.delete'), @invoice, method: :delete, class: "btn btn-error", form_class: "inline-block", data: { turbo_confirm: t('table.delete_confirmation') } %>

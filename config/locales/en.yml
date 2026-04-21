@@ -150,7 +150,7 @@ en:
       user:
         one: User
         other: Users
-  clients:
+  client:
     edit:
       content_title: Editing client
       title: Editing client
@@ -187,7 +187,7 @@ en:
     successfully_created: Contract instance was successfully created.
     successfully_destroyed: Contract instance was successfully destroyed.
     successfully_updated: Contract instance was successfully updated.
-  cost_types:
+  cost_type:
     index:
       content_title: Cost Types
       new: New Cost Type
@@ -282,7 +282,6 @@ en:
     to:
       client_name: "%{name}"
       title: 'To:'
-  invoices:
     approve: Approve
     index:
       content_title: Invoices
@@ -297,7 +296,7 @@ en:
     status_change_to_approved: Invoice approved
     successfully_created: Job for creating Invoices was successfully started..
     successfully_destroyed: Invoice was successfully destroyed.
-    unsupported_calculation_mode: Unsupported calculation mode %{mode}
+    unsupported_calculation_mode: Unsupported calculation mode %{mode}    
   menu:
     account: Account
     client: Clients
@@ -365,7 +364,7 @@ en:
     successfully_created: Payment statement was successfully created.
     successfully_destroyed: Payment statement was successfully destroyed.
     successfully_updated: Payment statement was successfully updated.
-  projects:
+  project:
     edit:
       content_title: Edit project
       title: Edit project
