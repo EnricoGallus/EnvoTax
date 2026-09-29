@@ -25,7 +25,7 @@ RUN set -ex && \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install Node.js from official distribution
-ARG NODE_VERSION=24.11.0
+ARG NODE_VERSION=24.21.0
 RUN set -ex && \
     NODE_ARCH=$(uname -m | sed 's/x86_64/x64/; s/aarch64/arm64/') && \
     cd /tmp && \
