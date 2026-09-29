@@ -13,7 +13,7 @@
     "toastify-js": "^1.12.0"
   },
   "devDependencies": {
-    "daisyui": "^5.5.19",
+    "daisyui": "^5.7.46",
     "esbuild": "^0.28.2"
   }
 }
