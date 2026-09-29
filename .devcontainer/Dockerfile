@@ -1,5 +1,5 @@
 # Development Dockerfile for Dev Containers
-ARG RUBY_VERSION=3.4.9
+ARG RUBY_VERSION=4.0.7
 FROM ruby:${RUBY_VERSION}-slim
 
 # Install system dependencies

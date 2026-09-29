@@ -58,7 +58,7 @@ GitHub Actions runs on every push and pull request:
 **With the dev container (easiest).** Open the project in VS Code and choose
 *Reopen in Container*. It starts Postgres and installs the gems and JavaScript packages.
 
-**Without it.** You need Ruby 3.4.7, Node 24 with Yarn, and Docker for Postgres:
+**Without it.** You need Ruby 4.0.7, Node 24 with Yarn, and Docker for Postgres:
 
 ```bash
 docker compose up -d db
