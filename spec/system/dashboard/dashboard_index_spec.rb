@@ -49,8 +49,8 @@ RSpec.describe "Dashboard", :js, type: :system do
       open_time_entry_form
 
       fill_in "time_entry[name]", with: "Worked on something"
-      fill_in "time_entry[time_from]", with: "10:15"
-      fill_in "time_entry[time_to]", with: "11:15"
+      fill_in "time_entry[time_from]", with: Time.zone.local(2000, 1, 1, 10, 15)
+      fill_in "time_entry[time_to]", with: Time.zone.local(2000, 1, 1, 11, 15)
       click_button "Create Time Entry"
 
       expect(page).to have_no_css(form_selector)
