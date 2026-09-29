@@ -9,6 +9,6 @@ RSpec.describe "projects/show", type: :view do
   end
 
   it "renders name" do
-    expect(rendered).to match(/Name/)
+    expect(rendered).to include("Name")
   end
 end

@@ -39,7 +39,7 @@ RSpec.describe "Dashboard", :js, type: :system do
 
       click_button "Create Time Entry"
 
-      expect(page).to have_content("can't be blank")
+      expect(page).to have_text("can't be blank")
       expect(page).to have_css(form_selector)
     end
 

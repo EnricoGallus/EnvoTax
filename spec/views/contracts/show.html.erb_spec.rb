@@ -18,7 +18,7 @@ RSpec.describe "contracts/show", type: :view do
 
     expect(rendered).to have_css("h1", text: "Showing contract")
 
-    expect(rendered).to have_content(contract.name)
+    expect(rendered).to have_text(contract.name)
 
     expect(rendered).to have_link("Edit", href: edit_contract_path(contract))
     expect(rendered).to have_link("Back", href: contracts_path)

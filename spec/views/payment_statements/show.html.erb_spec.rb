@@ -11,9 +11,9 @@ RSpec.describe "payment_statements/show", type: :view do
   end
 
   it "renders attributes in <p>" do
-    expect(rendered).to have_content(payment_statement.client.name)
-    expect(rendered).to have_content(payment_statement.amount.format)
-    expect(rendered).to have_content(payment_statement.received_on)
-    expect(rendered).to have_content(payment_statement.status)
+    expect(rendered).to have_text(payment_statement.client.name)
+    expect(rendered).to have_text(payment_statement.amount.format)
+    expect(rendered).to have_text(payment_statement.received_on)
+    expect(rendered).to have_text(payment_statement.status)
   end
 end
