@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.1.3"
+gem "rails", "~> 8.1.4"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft", "~> 1.1"
 # Use postgres as the database for Active Record
@@ -51,7 +51,7 @@ gem "groupdate", "~> 6.7"
 gem "pagy", "~> 9.4"
 gem "ransack"
 gem "tailwindcss-rails", "~> 4.4"
-gem "view_component", "~> 4.6"
+gem "view_component", "~> 4.15"
 
 # authorization
 gem "pundit"
