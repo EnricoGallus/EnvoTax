@@ -94,9 +94,7 @@ This creates and seeds the database, then starts the app at <http://localhost:30
 ### Running the tests
 
 ```bash
-bundle exec rspec
-bin/rubocop
-bin/brakeman
+bin/ci
 ```
 
 ## Deployment
