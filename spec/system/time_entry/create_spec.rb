@@ -27,7 +27,7 @@ RSpec.describe "Creation", type: :system do
 
       click_button "Create Time Entry"
 
-      expect(page).to have_content("can't be blank")
+      expect(page).to have_text("can't be blank")
       expect(page).to have_css(form_selector)
     end
 
@@ -42,7 +42,7 @@ RSpec.describe "Creation", type: :system do
       fill_in "time_entry[time_to]", with: "11:15"
       expect { click_button "Create Time Entry" }.to change(TimeEntry, :count).by(1)
 
-      expect(page).to have_content(I18n.t("time_entry.successfully_created"))
+      expect(page).to have_text(I18n.t("time_entry.successfully_created"))
       expect(page).to have_current_path(time_entry_path(TimeEntry.last))
     end
   end

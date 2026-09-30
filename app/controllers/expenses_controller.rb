@@ -70,7 +70,7 @@ class ExpensesController < ApplicationController
   def set_contract_instance
     return unless params[:expense][:contract_id].present? && params[:expense][:date].present?
 
-    contract = Contract.find(params[:expense][:contract_id])
+    contract = Contract.find(params.expect(:expense)[:contract_id])
     @expense.contract_instance = contract.active_instance_by_date(params[:expense][:date])
   end
 

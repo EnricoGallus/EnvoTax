@@ -46,7 +46,7 @@ class ContractInstancesController < ApplicationController
   private
 
   def set_contract
-    @contract = Contract.find(params[:contract_id])
+    @contract = Contract.find(params.expect(:contract_id))
   end
 
   # Use callbacks to share common setup or constraints between actions.

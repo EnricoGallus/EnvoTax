@@ -10,6 +10,7 @@ CI.run do
   step "Style I18n", "bundle exec i18n-tasks health"
 
   step "Security: Gem audit", "bin/bundler-audit"
+  step "Security: JavaScript dependency audit", "yarn audit"
   step "Security: Brakeman code analysis", "bin/brakeman --quiet --no-pager --exit-on-warn --exit-on-error"
 
   step "Tests: Rspec", "bundle exec rspec"

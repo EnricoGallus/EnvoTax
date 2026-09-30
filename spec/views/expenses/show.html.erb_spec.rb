@@ -19,11 +19,11 @@ RSpec.describe "expenses/show", type: :view do
   end
 
   it "displays expense details" do
-    expect(rendered).to have_content(expense.amount.format)
-    expect(rendered).to have_content(expense.date)
-    expect(rendered).to have_content(expense.cost_type.name)
-    expect(rendered).to have_content(expense.description)
-    expect(rendered).to have_content(expense.contract_instance.name)
+    expect(rendered).to have_text(expense.amount.format)
+    expect(rendered).to have_text(expense.date)
+    expect(rendered).to have_text(expense.cost_type.name)
+    expect(rendered).to have_text(expense.description)
+    expect(rendered).to have_text(expense.contract_instance.name)
   end
 
   it "renders action buttons" do

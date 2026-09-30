@@ -58,7 +58,7 @@ class PaymentAllocationsController < ApplicationController
   private
 
   def set_payment_statement
-    @payment_statement = PaymentStatement.find(params[:payment_statement_id])
+    @payment_statement = PaymentStatement.find(params.expect(:payment_statement_id))
   end
 
   # Use callbacks to share common setup or constraints between actions.

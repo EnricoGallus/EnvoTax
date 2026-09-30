@@ -12,7 +12,7 @@ RSpec.describe "payment_allocations/show", type: :view do
   end
 
   it "renders attributes in <p>" do
-    expect(rendered).to have_content(payment_allocation.amount.format)
-    expect(rendered).to have_content(payment_allocation.income_tax.tax_type)
+    expect(rendered).to have_text(payment_allocation.amount.format)
+    expect(rendered).to have_text(payment_allocation.income_tax.tax_type)
   end
 end

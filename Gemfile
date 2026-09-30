@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.1.3"
+gem "rails", "~> 8.1.4"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft", "~> 1.1"
 # Use postgres as the database for Active Record
@@ -28,7 +28,7 @@ gem "devise", "~> 5.0"
 gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
-gem "solid_cable", "~> 3.0"
+gem "solid_cable", "~> 4.1"
 gem "solid_cache", "~> 1.0.10"
 gem "solid_queue", "~> 1.2"
 
@@ -39,10 +39,10 @@ gem "bootsnap", "~> 1.19", require: false
 gem "kamal", "~> 2.8", require: false
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
-gem "thruster", "~> 0.1", require: false
+gem "thruster", "~> 0.1.0", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 1.14"
+gem "image_processing", "~> 2.2"
 
 # ui
 gem "chartkick", "~> 5.2"
@@ -50,8 +50,8 @@ gem "enum_help"
 gem "groupdate", "~> 6.7"
 gem "pagy", "~> 9.4"
 gem "ransack"
-gem "tailwindcss-rails", "~> 4.4"
-gem "view_component", "~> 4.6"
+gem "tailwindcss-rails", "~> 4.6"
+gem "view_component", "~> 4.15"
 
 # authorization
 gem "pundit"
@@ -60,12 +60,12 @@ gem "pundit"
 gem "money-rails"
 
 # sentry
-gem "sentry-rails", "~> 6.1"
-gem "sentry-ruby", "~> 6.1"
+gem "sentry-rails", "~> 7.1"
+gem "sentry-ruby", "~> 7.1"
 gem "stackprof"
 
 # aws
-gem "aws-sdk-rails", "~> 5.1"
+gem "aws-sdk-rails", "~> 5.2"
 gem "aws-sdk-s3", "~> 1.204"
 
 group :development, :test do
@@ -80,7 +80,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "faker"
 
-  gem "foreman", "~> 0.90"
+  gem "foreman", "~> 0.90.0"
 
   gem "i18n-tasks", "~> 1.1"
 
@@ -89,18 +89,19 @@ group :development, :test do
   gem "rails-controller-testing"
   gem "rspec-rails"
 
-  gem "rubocop", "~> 1.86", require: false
-  gem "rubocop-capybara", require: false
+  # Minor RuboCop releases can add cops; keep them intentional because NewCops is enabled.
+  gem "rubocop", "~> 1.91.0", require: false
+  gem "rubocop-capybara", "~> 3.0.0", require: false
   gem "rubocop-factory_bot", "~> 2.28.0", require: false
-  gem "rubocop-i18n", require: false
-  gem "rubocop-md", require: false
-  gem "rubocop-performance", "~> 1.26.0", require: false
-  gem "rubocop-rails", "~> 2.34.0", require: false
-  gem "rubocop-rspec", "~> 3.9", require: false
+  gem "rubocop-i18n", "~> 3.3.0", require: false
+  gem "rubocop-md", "~> 2.0.0", require: false
+  gem "rubocop-performance", "~> 1.27.0", require: false
+  gem "rubocop-rails", "~> 2.38.0", require: false
+  gem "rubocop-rspec", "~> 3.10.0", require: false
   gem "rubocop-rspec_rails", "~> 2.32.0", require: false
-  gem "rubocop-thread_safety", require: false
+  gem "rubocop-thread_safety", "~> 0.8.0", require: false
 
-  gem "shoulda-matchers", "~> 7.0"
+  gem "shoulda-matchers", "~> 8.0"
   gem "simplecov", require: false
 end
 

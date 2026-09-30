@@ -6,6 +6,9 @@ service: envotax
 # Name of the container image.
 image: envo_tax
 
+# Number of old containers (and their images) kept for rollback. Default is 5.
+retain_containers: 2
+
 # Deploy to these servers.
 servers:
   web:
@@ -91,7 +94,7 @@ builder:
   #
   # # Pass arguments and secrets to the Docker build process
   # args:
-  #   RUBY_VERSION: 3.4.6
+  #   RUBY_VERSION: 4.0.7
   # secrets:
   #   - GITHUB_TOKEN
   #   - RAILS_MASTER_KEY
@@ -104,7 +107,7 @@ ssh:
 # Use accessory services (secrets come from .kamal/secrets).
 accessories:
   db:
-    image: postgres:17.4
+    image: postgres:18.6
     host: <%= ENV["KAMAL_WEB_SERVER_PUBLIC_IP"] %>
 #     # Change to 3306 to expose port to the world instead of just local network.
 #     port: "127.0.0.1:3306:3306"
@@ -117,8 +120,10 @@ accessories:
 #     files:
 #       - config/mysql/production.cnf:/etc/mysql/my.cnf
 #       - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
-#     directories:
-#       - data:/var/lib/mysql
+    # Postgres 18+ keeps its data under /var/lib/postgresql (not .../data).
+    # Stored on the host at ~/envotax-db/data.
+    directories:
+      - data:/var/lib/postgresql
 #   redis:
 #     image: redis:7.0
 #     host: 192.168.0.2

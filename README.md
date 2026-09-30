@@ -1,94 +1,113 @@
-# README
+# EnvoTax
 
-# TODO:
-Dashboard when creating time entry with valid data
-Failure/Error: expect(page).to have_no_css(form_selector)
-expected not to find visible css "form[action='/time_entries']", found 1 match: "Name\nProject\nCristopher Kertzmann Jr.\nDate\nFrom\nTo"
+[![CI](https://github.com/EnricoGallus/EnvoTax/actions/workflows/ci.yml/badge.svg)](https://github.com/EnricoGallus/EnvoTax/actions/workflows/ci.yml)
 
-     [Screenshot Image]: /home/runner/work/EnvoTax/EnvoTax/tmp/capybara/failures_r_spec_example_groups_dashboard_when_creating_time_entry_with_valid_data_564.png
+EnvoTax is a Rails app for the paperwork side of freelancing: tracking time and expenses,
+turning them into invoices, and matching incoming payments against those invoices.
+I built it for my own freelance work and use it to bill my clients.
 
+<!-- TODO: add screenshots (dashboard, invoice preview, payment allocation) to docs/screenshots/ and link them here -->
 
-     # ./spec/system/dashboard/dashboard_index_spec.rb:56:in 'block (3 levels) in <top (required)>'
-This test always fails on CI, but works locally.
+## What it does
 
-Run actions/upload-artifact@v4
-No files were found with the provided path: /home/runner/work/EnvoTax/EnvoTax/tmp/screenshots. No artifacts will be uploaded.
+- **Time tracking.** Log time against client projects; overlapping entries are rejected and the cost is
+  calculated from the client's hourly rate. The dashboard shows today, the current week and month
+  (with charts), unbilled time and outstanding invoices.
+- **Contracts.** Clients have contracts, split into dated periods with optional budget limits.
+- **Invoicing.** Pick a date range and a background job creates an invoice per contract, pulling in the
+  unbilled time entries and expenses from that range. The total is either the sum of each entry's cost or
+  total hours × hourly rate, depending on the client. Invoice numbers run per client and year
+  (`2026-0001`), and drafts can be previewed before they're approved.
+- **Expenses.** Record expenses by cost type, as charges or credits, with the receipt attached.
+- **Payments.** Record an incoming payment, then allocate it across invoices and adjustments (bonuses,
+  deductions). Each allocation records the withholding tax the client deducted, and invoices move to
+  partially paid or paid on their own.
+- **English and Japanese UI.**
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Tech stack
 
-Things you may want to cover:
+| Area              | Choice                                                                          |
+|-------------------|---------------------------------------------------------------------------------|
+| Framework         | Ruby 3.4, Rails 8.1                                                             |
+| Database          | PostgreSQL 17                                                                   |
+| Frontend          | Hotwire (Turbo, Stimulus), Tailwind CSS, ViewComponent, Chartkick               |
+| Background jobs   | Solid Queue (plus Solid Cache and Solid Cable, so no Redis)                     |
+| Auth              | Devise for authentication, Pundit for authorization                             |
+| Money             | money-rails                                                                     |
+| Search and paging | Ransack, Pagy                                                                   |
+| Monitoring        | Sentry                                                                          |
+| Hosting           | Kamal 2 and Thruster on a single arm64 EC2 instance, images in ECR, files on S3 |
 
-# Ruby version
+## Tests and CI
 
-3.4.6
+The RSpec suite covers models, services, policies, requests, routing, components, views and
+system tests (Capybara with headless Chrome).
 
-* System dependencies
+GitHub Actions runs on every push and pull request:
 
-* Configuration
+- RSpec
+- RuboCop (including RSpec, Rails, i18n and Markdown rules)
+- Brakeman and bundler-audit
+- i18n-tasks, to catch missing or unused translations
+- an asset precompile check
 
-* Database creation
+## Running it locally
 
-* Database initialization
+### 1. Get the dependencies
 
-* How to run the test suite
+**With the dev container (easiest).** Open the project in VS Code and choose
+*Reopen in Container*. It starts Postgres and installs the gems and JavaScript packages.
 
-* Services (job queues, cache servers, search engines, etc.)
+**Without it.** You need Ruby 4.0.7, Node 24 with Yarn, and Docker for Postgres:
 
-# Deployment instructions
-
-## Credentials/Secrets
-
-- use `EDITOR="code --wait" bin/rails credentials:edit` to edit the credentials
-
-## AWS Configuration
-
-### EC2-Instance Creation
-
-- Need an EC2 instance, best and cheapest option is an arm64 t4g.nano
-- Use the Amazon Linux 2 AMI
-- Security Group attached should allow https inbound only
-- Change the EC2 IAM task role to support Session Manager connections
-
-### EC2-Instance Preparation
-
-- Connect to the instance when running and execute the following commands
-```
-sudo yum update -y
-sudo yum install -y docker
-sudo systemctl start docker
-sudo usermod -aG docker ec2-user
-```
-
-### Swap-File to prevent memory spikes
-- Connect to the instance when running and execute the following commands
 ```bash
-sudo fallocate -l 1G /swapfile
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-sudo swapon -a
+docker compose up -d db
+export DATABASE_HOST=localhost
+bundle install
+yarn install
 ```
 
-### Using kamal
+### 2. Create a login
 
-- check for the current profile by executing `aws configure list`
-- export aws profile by executing `export AWS_PROFILE=envotax`
-- setup aws configure and provide the necessary credentials
-- it needs a user in aws that has the necessary permissions for ecr and ec2
-- adjust the `deploy.yml` file to match the server settings
-- when running `kamal deploy` from own machine, ssh port needs to be opened up
-- run `kamal app stop && kamal deploy` to prevent memory spikes and server freezing
+There's no sign-up page. The seed creates the user from Rails credentials, and since
+`config/master.key` isn't in the repository, create development credentials of your own:
 
-## Docker cleanup
-- run `kamal prune all` to remove all unused containers and images
-- but make sure it is cleaned up `kamal server exec docker system df`
-- looks like sometimes it needs to be manually forced `kamal server exec docker container prune -f`
+```bash
+EDITOR="code --wait" bin/rails credentials:edit --environment development
+```
 
-## Database backup
-- deactivate caching by executing `kamal shell` and then twice executing `bin/rails dev:cache`
-- create a backup of the database by executing `kamal server exec cat /mnt/storage/production.sqlite3 > production.sqlite3`
-- but remember to remove the first couple of lines, it contains output from the kamal command
+```yaml
+user:
+  email: you@example.com
+  name: Your Name
+  password: choose-a-password
+```
 
-# Database copy
-scp -i ~/.ssh/EnvoTax.pem storage/production.sqlite3 ec2-user@52.198.76.244:/mnt/storage/production.sqlite3
+### 3. Set up and start
+
+```bash
+bin/setup
+```
+
+This creates and seeds the database, then starts the app at <http://localhost:3001>.
+
+### Running the tests
+
+```bash
+bin/ci
+```
+
+## Deployment
+
+Production runs on a single arm64 EC2 instance, deployed with Kamal. Postgres runs as a Kamal
+accessory on the same host and uploads go to S3. The runbook is in
+[docs/deployment.md](docs/deployment.md).
+
+## Scope
+
+EnvoTax is shaped around my own workflow: amounts default to Japanese yen and the preset tax rates
+are Japanese withholding rates. It isn't meant as a general-purpose product, but feel free to fork it.
+
+## License
+
+[MIT](LICENSE)
