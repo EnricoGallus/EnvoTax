@@ -68,3 +68,9 @@ sudo swapon -a
 - `kamal prune all` removes unused containers and images.
 - Check the result with `kamal server exec docker system df`.
 - If containers are left over, force it with `kamal server exec docker container prune -f`.
+
+## Database Backup
+
+```bash
+kamal accessory exec db --reuse --interactive --quiet "pg_dump -h localhost -d envo_tax_production -U postgres" > production-$(date +%Y_%m_%d_%H_%M_%S)-dump.sql
+```
