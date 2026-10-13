@@ -90,7 +90,7 @@ group :development, :test do
   gem "rspec-rails"
 
   # Minor RuboCop releases can add cops; keep them intentional because NewCops is enabled.
-  gem "rubocop", "~> 1.91.0", require: false
+  gem "rubocop", "~> 1.92.0", require: false
   gem "rubocop-capybara", "~> 3.0.0", require: false
   gem "rubocop-factory_bot", "~> 2.28.0", require: false
   gem "rubocop-i18n", "~> 3.3.0", require: false
