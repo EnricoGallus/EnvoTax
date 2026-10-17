@@ -3,6 +3,25 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "web",
   "workspaceFolder": "/workspace",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/rails/devcontainer/features/activestorage": {},
+    "ghcr.io/devcontainers/features/node:2.1.1": {},
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "moby": false
+    },
+    "ghcr.io/rails/devcontainer/features/postgres-client": {}
+  },
+  "containerEnv": {
+    "CAPYBARA_SERVER_PORT": "45678",
+    "SELENIUM_HOST": "selenium",
+    "KAMAL_REGISTRY_PASSWORD": "$KAMAL_REGISTRY_PASSWORD",
+    "DB_HOST": "postgres",
+  },
+  "forwardPorts": [
+    3000,
+    5432
+  ],
   "customizations": {
     "vscode": {
       "extensions": [
@@ -20,7 +39,8 @@
         "kirillpalkin.vscode-ruby-extend-intellisense",
         "aliariff.vscode-erb-beautify",
         "donjayamanne.githistory",
-        "ms-ossdata.vscode-pgsql"
+        "ms-ossdata.vscode-pgsql",
+        "openai.chatgpt"
       ],
       "settings": {
         "[ruby]": {
@@ -30,22 +50,7 @@
       }
     }
   },
-  "remoteEnv": {
-    "RAILS_ENV": "development"
-  },
-  "postCreateCommand": "bundle install && yarn install",
-  "forwardPorts": [
-    3001,
-    5432
-  ],
-  "portsAttributes": {
-    "3000": {
-      "label": "Rails Server",
-      "onAutoForward": "notify"
-    },
-    "5432": {
-      "label": "PostgreSQL",
-      "onAutoForward": "silent"
-    }
-  }
+  // Uncomment to connect as root instead. More info: https://containers.dev/implementors/json_reference/#remoteUser.
+  // "remoteUser": "root",
+  "postCreateCommand": "bin/setup --skip-server && mkdir -p /home/vscode/.codex && printf '[projects.\"/workspace\"]\\ntrust_level = \"trusted\"\\n' >> /home/vscode/.codex/config.toml"
 }

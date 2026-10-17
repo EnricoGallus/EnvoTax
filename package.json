@@ -1,6 +1,7 @@
 {
   "name": "app",
   "private": true,
+  "packageManager": "yarn@1.22.22",
   "scripts": {
     "build:dev": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
     "build": "esbuild app/javascript/*.* --bundle --format=esm --outdir=app/assets/builds --public-path=/assets"

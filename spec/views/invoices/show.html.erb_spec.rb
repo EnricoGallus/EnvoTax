@@ -60,7 +60,7 @@ RSpec.describe "invoices/show", type: :view do
     it "renders bank details and tax notice" do
       expect(rendered).to include(I18n.t("invoice.bank_details.title"))
       expect(rendered).to include(user.bank_account.account_holder)
-      expect(rendered).to include(user.bank_account.bank_name)
+      expect(Nokogiri::HTML.fragment(rendered).text).to include(user.bank_account.bank_name)
       expect(rendered).to include(user.bank_account.branch_code)
       expect(rendered).to include(user.bank_account.account_number)
       expect(rendered).to include(I18n.t("invoice.tax.included"))
@@ -77,7 +77,7 @@ RSpec.describe "invoices/show", type: :view do
     it "renders expenses section and a row with details" do
       expect(rendered).to include(I18n.t("activerecord.models.expense.other"))
       expect(rendered).to include(I18n.l(expense.date, format: :default))
-      expect(rendered).to include(expense.description)
+      expect(Nokogiri::HTML.fragment(rendered).text).to include(expense.description)
       expect(rendered).to include(expense.amount.format)
     end
 
