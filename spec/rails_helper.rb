@@ -44,6 +44,12 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 
+if ENV["SELENIUM_HOST"]
+  Capybara.server_host = "0.0.0.0"
+  Capybara.server_port = ENV.fetch("CAPYBARA_SERVER_PORT", "45678").to_i
+  Capybara.app_host = "http://web:#{Capybara.server_port}"
+end
+
 Capybara.register_driver :headless_chrome_ci do |app|
   options = Selenium::WebDriver::Chrome::Options.new
   options.add_argument("--headless=new")
@@ -52,7 +58,16 @@ Capybara.register_driver :headless_chrome_ci do |app|
   options.add_argument("--disable-dev-shm-usage")
   options.add_argument("--disable-gpu")
 
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
+  if ENV["SELENIUM_HOST"]
+    Capybara::Selenium::Driver.new(
+      app,
+      browser: :remote,
+      url: "http://#{ENV.fetch('SELENIUM_HOST')}:4444",
+      options: options
+    )
+  else
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+  end
 end
 
 RSpec.configure do |config|

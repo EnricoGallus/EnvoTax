@@ -29,7 +29,8 @@ services:
       - default
 
   selenium:
-    image: selenium/standalone-chrome
+    image: selenium/standalone-chromium
+    shm_size: "2gb"
     restart: unless-stopped
 
 volumes:
