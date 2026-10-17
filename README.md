@@ -89,7 +89,7 @@ user:
 bin/setup
 ```
 
-This creates and seeds the database, then starts the app at <http://localhost:3001>.
+This creates and seeds the database, then starts the app at <http://localhost:3000>.
 
 ### Running the tests
 
