@@ -77,7 +77,7 @@ RSpec.describe "invoices/show", type: :view do
     it "renders expenses section and a row with details" do
       expect(rendered).to include(I18n.t("activerecord.models.expense.other"))
       expect(rendered).to include(I18n.l(expense.date, format: :default))
-      expect(rendered).to include(expense.description)
+      expect(Nokogiri::HTML.fragment(rendered).text).to include(expense.description)
       expect(rendered).to include(expense.amount.format)
     end
 
