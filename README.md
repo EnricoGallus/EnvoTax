@@ -6,8 +6,6 @@ EnvoTax is a Rails app for the paperwork side of freelancing: tracking time and 
 turning them into invoices, and matching incoming payments against those invoices.
 I built it for my own freelance work and use it to bill my clients.
 
-<!-- TODO: add screenshots (dashboard, invoice preview, payment allocation) to docs/screenshots/ and link them here -->
-
 ## What it does
 
 - **Time tracking.** Log time against client projects; overlapping entries are rejected and the cost is
@@ -28,8 +26,8 @@ I built it for my own freelance work and use it to bill my clients.
 
 | Area              | Choice                                                                          |
 |-------------------|---------------------------------------------------------------------------------|
-| Framework         | Ruby 3.4, Rails 8.1                                                             |
-| Database          | PostgreSQL 17                                                                   |
+| Framework         | Ruby 4.0.7, Rails 8.1                                                             |
+| Database          | PostgreSQL 18.6                                                                   |
 | Frontend          | Hotwire (Turbo, Stimulus), Tailwind CSS, ViewComponent, Chartkick               |
 | Background jobs   | Solid Queue (plus Solid Cache and Solid Cable, so no Redis)                     |
 | Auth              | Devise for authentication, Pundit for authorization                             |
@@ -55,17 +53,8 @@ GitHub Actions runs on every push and pull request:
 
 ### 1. Get the dependencies
 
-**With the dev container (easiest).** Open the project in VS Code and choose
+**With the dev container.** Open the project in VS Code and choose
 *Reopen in Container*. It starts Postgres and installs the gems and JavaScript packages.
-
-**Without it.** You need Ruby 4.0.7, Node 24 with Yarn, and Docker for Postgres:
-
-```bash
-docker compose up -d db
-export DATABASE_HOST=localhost
-bundle install
-yarn install
-```
 
 ### 2. Create a login
 
