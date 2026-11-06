@@ -98,7 +98,7 @@ group :development, :test do
   gem "rubocop-performance", "~> 1.27.0", require: false
   gem "rubocop-rails", "~> 2.38.0", require: false
   gem "rubocop-rspec", "~> 3.10.0", require: false
-  gem "rubocop-rspec_rails", "~> 2.32.0", require: false
+  gem "rubocop-rspec_rails", "~> 2.33.0", require: false
   gem "rubocop-thread_safety", "~> 0.8.0", require: false
 
   gem "shoulda-matchers", "~> 8.0"
