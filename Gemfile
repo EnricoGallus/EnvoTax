@@ -94,7 +94,7 @@ group :development, :test do
   gem "rubocop-capybara", "~> 3.0.0", require: false
   gem "rubocop-factory_bot", "~> 2.28.0", require: false
   gem "rubocop-i18n", "~> 3.3.0", require: false
-  gem "rubocop-md", "~> 2.0.0", require: false
+  gem "rubocop-md", "~> 3.0.0", require: false
   gem "rubocop-performance", "~> 1.27.0", require: false
   gem "rubocop-rails", "~> 2.38.0", require: false
   gem "rubocop-rspec", "~> 3.10.0", require: false
