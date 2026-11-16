@@ -51,7 +51,7 @@ gem "groupdate", "~> 6.7"
 gem "pagy", "~> 9.4"
 gem "ransack"
 gem "tailwindcss-rails", "~> 4.6"
-gem "view_component", "~> 4.15"
+gem "view_component", "~> 4.24"
 
 # authorization
 gem "pundit"
